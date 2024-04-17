@@ -9,7 +9,7 @@ import EscortOneItems from "./EscortOneItems";
 
 const EscortOne = () => {
   return (
-    <div className="py-8 px-4">
+    <div className="py-8 px-2">
       <div className="flex justify-between items-center">
         <h1 className="text-white font-semibold text-[24px] pb-6">
           Top Escort

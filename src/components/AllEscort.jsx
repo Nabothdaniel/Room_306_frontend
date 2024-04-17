@@ -4,7 +4,7 @@ import AllEscortItems from "./AllEscortItems";
 
 const AllEscort = () => {
   return (
-    <div className="py-14 bg-[#121212] px-3">
+    <div className="py-14 bg-[#121212] px-2">
       <div className="flex justify-between items-center">
         <h1 className="text-white font-semibold text-[24px] pb-6">
           All Escort

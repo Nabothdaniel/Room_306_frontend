@@ -7,7 +7,7 @@ import Slider1 from "../images/slider1.png";
 const AllEscortItems = () => {
   return (
     <div>
-      <div className="bg-[#1E1E1E] text-white p-2 rounded-lg">
+      <div className="bg-[#1E1E1E] text-white p-3 rounded-lg">
         <img className="rounded-lg object-scal-down" src={Slider1} alt="" />
         <div className="flex justify-between py-3">
           <div>
@@ -27,7 +27,7 @@ const AllEscortItems = () => {
         <p className="text-[15px] pb-2 text-[#DADADA]">
           Hey, I’m pretty and good on bed. Give me a message
         </p>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between pb-2 items-center">
           <p className="flex justify-between items-center">
             <FaStar className="text-[#FFD910] mr-2" />
             4.9
