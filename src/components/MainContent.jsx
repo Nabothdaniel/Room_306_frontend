@@ -10,7 +10,7 @@ const MainContent = () => {
       <Navbar />
       <EscortOne />
       <EscortBanner />
-      {/* <AllEscort /> */}
+      <AllEscort />
     </div>
   );
 };

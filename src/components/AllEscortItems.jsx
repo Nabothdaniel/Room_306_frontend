@@ -7,15 +7,15 @@ import Slider1 from "../images/slider1.png";
 const AllEscortItems = () => {
   return (
     <div>
-      <div className="bg-[#1E1E1E] text-white p-3 rounded-lg">
-        <img className="rounded-lg object-scal-down" src={Slider1} alt="" />
+      <div className="bg-[#1E1E1E] text-white mb-14 p-3 rounded-lg">
+        <img className="rounded-lg" src={Slider1} alt="" />
         <div className="flex justify-between py-3">
           <div>
             <h4 className="font-semibold pb-2">Sandra Kiss</h4>
-            <p className="pb-1">
+            <p className="pb-1 text-[12px] md:text-[14px]">
               <span className="font-semibold">#7,500</span> short time
             </p>
-            <p className="flex items-center">
+            <p className="flex items-center text-[12px] md:text-[14px]">
               <MdLocationOn className="mr-1 size-5" />
               <span>lagos, Nigeria</span>
             </p>
@@ -24,7 +24,7 @@ const AllEscortItems = () => {
             <LuHeart className="text-red-500 size-7" />
           </div>
         </div>
-        <p className="text-[15px] pb-2 text-[#DADADA]">
+        <p className="lg:text-[15px] text-[12px] text-wrap  pb-2 text-[#DADADA]">
           Hey, I’m pretty and good on bed. Give me a message
         </p>
         <div className="flex justify-between pb-2 items-center">
