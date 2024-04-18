@@ -4,14 +4,14 @@ import { RiSearchLine } from "react-icons/ri";
 import { TbBell } from "react-icons/tb";
 import Avatar from "../images/avatar.png";
 
-const Navbar = () => {
+const Navbar = ({Headervalue, textValue}) => {
   return (
     <>
       <div className="flex justify-between items-center">
         <div className="hidden md:block">
           <Header
-            value={"Welcome to Room 306"}
-            text={"Explore our escort at your own pace"}
+            value={Headervalue}
+            text={textValue}
           />
         </div>
 

@@ -13,15 +13,18 @@ const ProfileHero = () => {
           </p>
           <p className="bg-[#0A0A0A] py-3 px-4 rounded-xl">Client Account</p>
         </div>
-        <div className="pl-5 py-4 relative">
+        <div className="pl-5 py-4">
           <div className="bg-[#1E1E1E] h-[12rem] rounded-xl"></div>
-          <div className="absolute flex top-24 left-24">
-            <img
-              className="w-[300px] object-cover h-[300px] rounded-full"
-              src={ProfileImg}
-              alt=""
-            />
-            <div className="mt-36 pl-10 flex justify-between items-start">
+          <div className="flex -mt-20 ml-16">
+            <div className="">
+              <img
+                className="min-h-[14rem] min-w-[14rem] max-h-[15rem] max-w-[15rem] object-cover rounded-full"
+                src={ProfileImg}
+                alt=""
+              />
+            </div>
+
+            <div className="mt-28 ml-20 w-[100%] flex justify-between items-start">
               <div className="">
                 <h2 className="text-2xl font-semibold">Alex Fresh</h2>
                 <p className="text-[13px] w-[45%] leading-5 text-[#DADADA] py-4 text-wrap">
@@ -43,9 +46,7 @@ const ProfileHero = () => {
                   </div>
                 </div>
               </div>
-              <p className="bg-[#0A0A0A] ml-16 py-3 px-4 rounded-xl">
-                Edit Account
-              </p>
+              <p className="bg-[#0A0A0A] py-3 px-4 rounded-xl">Edit Account</p>
             </div>
           </div>
         </div>

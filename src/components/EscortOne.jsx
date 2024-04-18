@@ -24,7 +24,7 @@ const EscortOne = () => {
     6,
   ];
   return (
-    <div className="flex-1 max-w-[1300px] py-8 px-2">
+    <div className="flex-1 max-w-[1530px] py-8 px-2">
       <div className="flex justify-between items-center">
         <h1 className="text-white font-semibold text-[24px] pb-6">
           Top Escort
@@ -54,7 +54,7 @@ const EscortOne = () => {
             },
           }}
           modules={[Pagination]}
-          // onSwiper={(swiper) => console.log(swiper)}
+          
           className="mySwiper"
         >
           {names.map((item) => {

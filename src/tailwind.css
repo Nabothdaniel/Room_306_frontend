@@ -26,9 +26,18 @@ body {
   height: 10px;
 }
 
-/* .swiper {
-  width: 68vw;
+.circle {
+  width: 30%;
+  border-radius: 50%;
+}
+
+/* .circle:after {
+  content: "";
+  padding-bottom: 100%;
+
+  display: block;
 } */
+
 .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #fff;
   width: 25px;

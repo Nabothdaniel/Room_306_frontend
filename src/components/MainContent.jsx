@@ -6,7 +6,7 @@ import AllEscort from "./AllEscort";
 
 const MainContent = () => {
   return (
-    <div className="flex-1 h-full md:w-[90%] pt-10 md:px-10">
+    <div className="flex-1 h-full md:w-[80%] pt-16 md:px-10">
       <Navbar />
       <EscortOne />
       <EscortBanner />

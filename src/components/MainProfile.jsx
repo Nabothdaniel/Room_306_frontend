@@ -5,7 +5,7 @@ import ProfileHero from "./ProfileHero";
 
 const MainProfile = () => {
   return (
-    <div className="flex-1 h-full pt-10 px-10">
+    <div className="flex-1 h-full md:w-[80%] pt-16 md:px-10">
       <Navbar />
       <ProfileHero />
     </div>
