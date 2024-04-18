@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   --white: #fff;
@@ -10,7 +10,32 @@
 }
 
 body {
-    font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
+}
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-1 {
+  background-position: center;
+  background-size: cover;
+  width: 1000px;
+  height: 10px;
+}
+
+/* .swiper {
+  width: 68vw;
+} */
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #fff;
+  width: 25px;
+  border-radius: 5px;
+}
+.swiper-pagination .swiper-pagination-bullet {
+  background-color: #e9cb50;
 }
 
 /* body {

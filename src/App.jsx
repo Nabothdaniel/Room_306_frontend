@@ -5,7 +5,7 @@ const App =()=> {
 
   return (
     <>
-      <div className="h-auto w-auto">
+      <div className="">
        <Outlet/>
       </div>
       

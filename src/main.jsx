@@ -8,6 +8,7 @@ import Login from './pages/Login.jsx'
 import Profile from './pages/Profile.jsx'
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <Profile />,
       },
+      
     ],
   },
 ]);
