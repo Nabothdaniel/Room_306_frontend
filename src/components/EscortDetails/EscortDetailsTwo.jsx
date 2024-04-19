@@ -1,7 +1,7 @@
 import React from "react";
-import Input from "./Input";
-import { countries } from "./COUNTRY_DATA.JS";
-import TextArea from "./TextArea";
+import Input from "../Input";
+import { countries } from "../COUNTRY_DATA.JS";
+import TextArea from "../TextArea";
 
 const EscortDetailsTwo = () => {
   return (
@@ -45,6 +45,7 @@ const EscortDetailsTwo = () => {
         <div className="grid md:col-span-2 lg:gap-x-16 md:gap-x-6 gap-y-8 md:grid-cols-2">
           <Input
             labelValue={"Occupation"}
+            labelClass={"font-semibold py-2"}
             inputType={"text"}
             required={"*"}
             inputName={"occupation"}
@@ -53,6 +54,7 @@ const EscortDetailsTwo = () => {
           />
           <Input
             labelValue={"Occupation"}
+            labelClass={"font-semibold py-2"}
             inputType={"text"}
             required={"*"}
             inputName={"occupation"}
@@ -61,6 +63,7 @@ const EscortDetailsTwo = () => {
           />
           <Input
             labelValue={"Occupation"}
+            labelClass={"font-semibold py-2"}
             inputType={"text"}
             required={"*"}
             inputName={"occupation"}
@@ -69,6 +72,7 @@ const EscortDetailsTwo = () => {
           />
           <Input
             labelValue={"Occupation"}
+            labelClass={"font-semibold py-2"}
             inputType={"text"}
             required={"*"}
             inputName={"occupation"}
@@ -77,6 +81,7 @@ const EscortDetailsTwo = () => {
           />
           <Input
             labelValue={"Occupation"}
+            labelClass={"font-semibold py-2"}
             inputType={"text"}
             required={"*"}
             inputName={"occupation"}
@@ -85,6 +90,7 @@ const EscortDetailsTwo = () => {
           />
           <Input
             labelValue={"Occupation"}
+            labelClass={"font-semibold py-2"}
             inputType={"text"}
             required={"*"}
             inputName={"occupation"}
@@ -97,6 +103,7 @@ const EscortDetailsTwo = () => {
             </h4>
             <Input
               labelValue={"Occupation"}
+              labelClass={"font-semibold py-2"}
               inputType={"checkbox"}
               required={"*"}
               inputName={"occupation"}
@@ -107,6 +114,7 @@ const EscortDetailsTwo = () => {
             />
             <Input
               labelValue={"Occupation"}
+              labelClass={"font-semibold py-2"}
               inputType={"checkbox"}
               required={"*"}
               inputName={"occupation"}
@@ -118,6 +126,7 @@ const EscortDetailsTwo = () => {
           </div>
           <Input
             labelValue={"Occupation"}
+            labelClass={"font-semibold py-2"}
             inputType={"text"}
             required={"*"}
             inputName={"occupation"}

@@ -21,7 +21,6 @@ const EscortOne = () => {
     4,
     5,
     6,
-    6,
   ];
   return (
     <div className="flex-1 max-w-[1530px] py-8 px-2">

@@ -1,10 +1,11 @@
 import React from "react";
-import EscortDetailsOne from "../components/EscortDetailsOne";
+import EscortDetailsOne from "../components/EscortDetails/EscortDetailsOne";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
-import EscortDetailsTwo from "../components/EscortDetailsTwo";
-import EscortDetailsFive from "../components/EscortDetailsFive";
-import EscortDetailsSecFive from "../components/EscortDetailsSecFive";
+import EscortDetailsTwo from "../components/EscortDetails/EscortDetailsTwo";
+import EscortDetailsFive from "../components/EscortDetails/EscortDetailsFive";
+import EscortDetailsSecFive from "../components/EscortDetails/EscortDetailsSecFive";
+import EscortSurvey from "../components/EscortDetails/EscortSurvey";
 
 const EscortDetails = () => {
   return (
@@ -32,8 +33,9 @@ const EscortDetails = () => {
           </div>
           {/* <EscortDetailsOne /> */}
           {/* <EscortDetailsTwo /> */}
-          {/* <EscortDetailsFive /> */}
-          <EscortDetailsSecFive />
+          <EscortDetailsFive />
+          {/* <EscortDetailsSecFive /> */}
+          {/* <EscortSurvey /> */}
         </div>
       </div>
     </div>

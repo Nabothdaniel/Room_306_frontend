@@ -67,6 +67,10 @@ ul li {
   list-style: none !important;
 }
 
+.unorder li {
+  padding-bottom: 5px;
+}
+
 .icon-color {
   color: var(--btn-color);
 }
@@ -99,7 +103,6 @@ a {
     align-items:center ;
     gap:3rem;
 }**/
-
 
 .card {
   border: 1px solid rgb(229, 235, 233);
