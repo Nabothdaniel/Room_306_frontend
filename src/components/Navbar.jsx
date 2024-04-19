@@ -4,6 +4,7 @@ import { RiSearchLine } from "react-icons/ri";
 import { TbBell } from "react-icons/tb";
 import Avatar from "../images/avatar.png";
 import Login from "../pages/Login";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ Headervalue, textValue }) => {
   const [user, setUser] = useState(false);
@@ -55,7 +56,7 @@ const Navbar = ({ Headervalue, textValue }) => {
           {!user && (
             <div className="flex ">
               <button className="bg-transparent text-white font-medium rounded-xl py-3 w-[90px] mr-3">
-                Sign Up
+                <Link to={"/sign-up"}>Sign Up</Link>
               </button>
               <button
                 onClick={() => setOpenLogin(!openLogin)}
