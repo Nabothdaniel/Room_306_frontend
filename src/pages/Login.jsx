@@ -5,25 +5,31 @@ import { CiMail, CiLock } from "react-icons/ci";
 import { LiaTimesSolid } from "react-icons/lia";
 
 const Login = ({ loginControl, loginClass }) => {
-  
-  const [formData, setFormData] = useState('')
+  const [formData, setFormData] = useState("");
 
   const handleForm = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
-
-
-
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   return (
-    <div className={`bg-black/40 duration-500 fixed top-0 z-[999] ${loginClass} left-0 w-[100%] h-screen flex justify-center items-center`}>
+    <div
+      className={`bg-black/40 duration-500 fixed top-0 z-[999] ${loginClass} left-0 w-[100%] h-screen flex justify-center items-center`}
+    >
       <div className="bg-[#1E1E1E] flex pt-20 flex-col w-[500px] relative text-white z-[9999] rounded-xl px-8 py-3 mx-5 ">
-        <LiaTimesSolid onClick={() => {loginControl(false)}} className="absolute top-5 right-5 size-5 text-[#D2B6B6] cursor-pointer" />
-        <img className="w-[200px]  h-[130px] mx-auto" src={Logo} alt="" />
+        <LiaTimesSolid
+          onClick={() => {
+            loginControl(false);
+          }}
+          className="absolute top-5 right-5 size-5 text-[#D2B6B6] cursor-pointer"
+        />
+        <img
+          className="md:w-[200px] w-[180px] h-[100px]  md:h-[130px] mx-auto"
+          src={Logo}
+          alt=""
+        />
         <Header
           value="Login to your Account"
-          headerClass="text-3xl text-center text-[#D8D8D8] font-semibold pt-4 mb-2"
+          headerClass="md:text-3xl text-2xl text-center text-[#D8D8D8] font-semibold pt-7 mb-2"
         />
 
         <label className="flex flex-col pt-8" htmlFor="email">
@@ -53,7 +59,7 @@ const Login = ({ loginControl, loginClass }) => {
         <p className="text-end py-4 text-[#D8D8D8] text-[17px] pr-4">
           Forgot Password?
         </p>
-        <button className="bg-[#E9CB50] w-[100%] text-[18px] py-5 font-semibold text-[#171717] mb-10 rounded-xl">
+        <button className="bg-[#E9CB50] w-[100%] text-[18px] md:py-5 py-3 font-semibold text-[#171717] mb-10 rounded-xl">
           Log In
         </button>
       </div>

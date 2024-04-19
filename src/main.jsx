@@ -8,6 +8,7 @@ import Login from "./pages/Login.jsx";
 import Profile from "./pages/Profile.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import EscortDetails from "./pages/EscortDetails.jsx";
+import RegisterCard from "./pages/RegisterCard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/escort-details",
         element: <EscortDetails />,
+      },
+      {
+        path: "/register-card",
+        element: <RegisterCard />,
       },
     ],
   },

@@ -19,7 +19,7 @@ const SideBar = () => {
     <div
       className={`${
         open ? "min-w-48 w-52" : "w-20"
-      } flex  bg-[#0A0A0A] shadow-sm pt-8 duration-500 md:h-screen transition-all sticky top:0 left:0 left:0 md:block h-12 py-3 `}
+      } flex  bg-[#0A0A0A] shadow-sm pt-8 duration-500 md:h-fit transition-all sticky top:0 left:0 left:0 md:block h-12 py-3 `}
     >
       <div
         onClick={() => setOpen(!open)}
@@ -34,175 +34,181 @@ const SideBar = () => {
         <img className="max-w-[120px] h-auto mx-auto" src={Logo} alt="" />
       </div>
 
-      <ul className={` duration-500 overflow-hidden pt-4`}>
-        <li
-          className={`flex text-lg items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <BiHomeCircle className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            } origin-right text-white hover:text-[#FDF2C5] text-[15px]  duration-700`}
+      <ul
+        className={` duration-500 overflow-hidden pt-4 flex flex-col justify-between md:h-[920px] `}
+      >
+        <div>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            <Link to={"/dashboard"}>Home</Link>
-          </span>
-        </li>
-        <li
-          className={`flex text-lg items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <IoChatboxEllipsesOutline className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            <BiHomeCircle className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              } origin-right text-white hover:text-[#FDF2C5] text-[15px]  duration-700`}
+            >
+              <Link to={"/dashboard"}>Home</Link>
+            </span>
+          </li>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            Channel
-          </span>
-        </li>
-        <li
-          className={`flex text-lg items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <LuMap className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            <IoChatboxEllipsesOutline className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            >
+              Channel
+            </span>
+          </li>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            Tours
-          </span>
-        </li>
-        <li
-          className={`flex text-lg items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <TbVideoMinus className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            <LuMap className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            >
+              Tours
+            </span>
+          </li>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            Naught Video
-          </span>
-        </li>
-        <li
-          className={`flex text-lg items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <LuThumbsUp className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            <TbVideoMinus className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            >
+              Naught Video
+            </span>
+          </li>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            Adverts
-          </span>
-        </li>
-        <li
-          className={`flex text-lg items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <RiBookOpenLine className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            <LuThumbsUp className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            >
+              Adverts
+            </span>
+          </li>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            Events
-          </span>
-        </li>
-        <li
-          className={`flex text-lg items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <CiWallet className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            <RiBookOpenLine className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            >
+              Events
+            </span>
+          </li>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            Blacklisteds
-          </span>
-        </li>
-        <li
-          className={`flex text-lg items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <BiLogoBlogger className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            <CiWallet className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            >
+              Blacklisteds
+            </span>
+          </li>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            Blogs
-          </span>
-        </li>
-        <li
-          className={`flex text-lg items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <FaRegNewspaper className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            <BiLogoBlogger className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            >
+              Blogs
+            </span>
+          </li>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            Testimonial
-          </span>
-        </li>
-        <li
-          className={`flex text-lg items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <LiaQuestionCircle className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            <FaRegNewspaper className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            >
+              Testimonial
+            </span>
+          </li>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            FAQs
-          </span>
-        </li>
-        <li
-          className={`flex text-lg items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <TbUserSquareRounded className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            <LiaQuestionCircle className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            >
+              FAQs
+            </span>
+          </li>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            Admins
-          </span>
-        </li>
-        <li
-          className={`flex text-lg mt-16 items-center px-4 py-[14px] ${
-            open && "pl-8"
-          } gap-x-4 duration-700 text-white cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-        >
-          <HiArrowLeftStartOnRectangle className=" size-8" />
-          <span
-            className={`${
-              !open && "hidden"
-            }  hover:text-[#FDF2C5] origin-right text-[15px] font-medium duration-700`}
+            <TbUserSquareRounded className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+            >
+              Admins
+            </span>
+          </li>
+        </div>
+        <div>
+          <li
+            className={`flex text-lg items-center px-4 py-[14px] ${
+              open && "pl-8"
+            } gap-x-4 duration-700 text-white cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
-            Logouts
-          </span>
-        </li>
+            <HiArrowLeftStartOnRectangle className=" size-8" />
+            <span
+              className={`${
+                !open && "hidden"
+              }  hover:text-[#FDF2C5] origin-right text-[15px] font-medium duration-700`}
+            >
+              Logouts
+            </span>
+          </li>
+        </div>
       </ul>
     </div>
   );
