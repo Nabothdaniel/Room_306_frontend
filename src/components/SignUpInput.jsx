@@ -1,6 +1,8 @@
 import React from "react";
 import Input from "./Input";
 import Navbar from "./Navbar";
+import { countries } from "./COUNTRY_DATA.JS";
+
 
 const SignUpInput = () => {
   return (
@@ -68,16 +70,29 @@ const SignUpInput = () => {
                   }
                   holder={"Enter Display Name"}
                 />
-                <Input
-                  labelValue={"Country"}
-                  inputType={"option"}
-                  required={"*"}
-                  inputName={"country"}
-                  inputClass={
-                    "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
-                  }
-                  holder={"Select"}
-                />
+
+                <label className="text-white flex flex-col" htmlFor="country">
+                  <span className="py-2 font-semibold">
+                    Country <span className="text-[#E9CB50]">*</span>
+                  </span>
+                  <select
+                    className="px-3 py-[14px] rounded-xl text-[#102127] placeholder-[#102127]"
+                    name="country"
+                    id="country"
+                  >
+                    <option className="rounded-xl" value="">
+                      Select
+                    </option>
+                    {countries.map((country) => {
+                      return (
+                        <option className="rounded-xl" value={country.text}>
+                          {country.text}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </label>
+
                 <Input
                   labelValue={"State"}
                   inputType={"text"}
@@ -139,7 +154,7 @@ const SignUpInput = () => {
                 </div>
               </div>
             </div>
-            <button className="bg-[#E9CB50] py-3 px-4 font-semibold mt-12 rounded-xl">
+            <button className="bg-[#E9CB50] w-[100%] py-4 md:w-[120px] font-semibold mt-12 rounded-xl">
               Sign up as a client
             </button>
           </div>

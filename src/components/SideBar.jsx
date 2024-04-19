@@ -17,8 +17,8 @@ const SideBar = () => {
   return (
     <div
       className={`${
-        open ? "md:w-[15%] w-full" : "w-20"
-      } flex  bg-[#0A0A0A] shadow-sm duration-500 sticky top:0 left:0 left:0 md:block h-12 py-3  md:h-full `}
+        open ? "w-[15%] min-w-40" : "w-20"
+      } flex  bg-[#0A0A0A] shadow-sm duration-500 transition-all sticky top:0 left:0 left:0 md:block h-12 py-3  md:h-full `}
     >
       <div
         onClick={() => setOpen(!open)}
@@ -33,31 +33,31 @@ const SideBar = () => {
         <img className="max-w-[120px] h-auto mx-auto" src={Logo} alt="" />
       </div>
 
-      <ul className="text- text-center overflow-hidden pt-6">
+      <ul className="text-center overflow-hidden pt-6">
         <li
           className={`flex text-lg items-center p-5 ${
-            open && "pl-16"
-          } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+            open && ""
+          } font-semibold gap-x-4 duration-700 text-[#D2B6B6] justify-center cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
         >
           <BiHomeCircle className=" size-8" />
           <span
             className={`${
               !open && "hidden"
-            } origin-right text-white hover:text-[#FDF2C5]  duration-10000`}
+            } origin-right text-white hover:text-[#FDF2C5]  duration-700`}
           >
             Home
           </span>
         </li>
         <li
           className={`flex text-lg items-center p-5 ${
-            open && "pl-16"
-          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+            open && ""
+          } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer justify-center hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
         >
           <BiHomeCircle className=" size-8" />
           <span
             className={`${
               !open && "hidden"
-            } text-white hover:text-[#FDF2C5] origin-right  duration-10000`}
+            } text-white hover:text-[#FDF2C5] origin-right  duration-700`}
           >
             Home
           </span>

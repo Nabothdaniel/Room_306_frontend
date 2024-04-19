@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Login from "./pages/Login.jsx";
 import Profile from "./pages/Profile.jsx";
 import SignUp from "./pages/SignUp.jsx";
+import EscortDetails from "./pages/EscortDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignUp />,
+      },
+      {
+        path: "/escort-details",
+        element: <EscortDetails />,
       },
     ],
   },
