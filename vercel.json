@@ -1,0 +1,32 @@
+{
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "/"
+    },
+    {
+      "src": "/sign-up",
+      "dest": "/"
+    },
+    {
+      "src": "/login",
+      "dest": "/"
+    },
+    {
+      "src": "/escort-details",
+      "dest": "/"
+    },
+    {
+      "src": "/register-card",
+      "dest": "/"
+    },
+    {
+      "src": "/profile",
+      "dest": "/"
+    }
+  ]
+}
