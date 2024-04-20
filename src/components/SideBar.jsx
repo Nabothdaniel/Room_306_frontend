@@ -8,64 +8,90 @@ import { BiLogoBlogger, BiHomeCircle } from "react-icons/bi";
 import { TbUserSquareRounded, TbVideoMinus } from "react-icons/tb";
 import { FaRegNewspaper } from "react-icons/fa";
 import { LiaQuestionCircle } from "react-icons/lia";
-
+import { navClick } from "../redux/UtilSlice";
 import Logo from "../images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+import { useSelector, useDispatch } from "react-redux";
 
 const SideBar = () => {
-  const [open, setOpen] = useState(true);
+  const open = useSelector((state) => state.Util.navOpen);
+  const dispatch = useDispatch();
+
 
   return (
     <div
       className={`${
-        open ? "min-w-48 w-52" : "w-20"
-      } flex  bg-[#0A0A0A] shadow-sm pt-8 duration-500 md:h-fit transition-all sticky top:0 left:0 left:0 md:block h-12 py-3 `}
+        open ? "min-w-48 w-52" : "-translate-x-[50vw] md:translate-x-0 w-24"
+      }   bg-[#0A0A0A] shadow-sm pt-8 duration-500 md:h-fit transition-all z-[99999] fixed md:relative top:0 left:0 left:0 block h-screen py-3 `}
     >
       <div
-        onClick={() => setOpen(!open)}
-        className={`absolute cursor-pointer -right-3 top-24  p-[6px] bg-[#1B1717] duration-500 text-white rounded-lg ${
+        onClick={() => dispatch(navClick(!open))}
+        className={`absolute cursor-pointer -right-3 top-32  p-[6px] bg-[#1B1717] duration-500 text-white rounded-lg ${
           !open && "rotate-180"
         } `}
       >
         <LuChevronLeft className="size-7" />
       </div>
 
-      <div className="pt-4 p-5 h-32">
+      <div className=" p-5 h-32">
         <img className="max-w-[120px] h-auto mx-auto" src={Logo} alt="" />
       </div>
 
       <ul
-        className={` duration-500 overflow-hidden pt-4 flex flex-col justify-between md:h-[920px] `}
+        className={` duration-500 overflow-hidden pt-4 flex flex-col h-[85%] justify-between md:h-[920px] `}
       >
         <div>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <BiHomeCircle className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              } origin-right text-white hover:text-[#FDF2C5] text-[15px]  duration-700`}
+          <div className="relative">
+            <NavLink
+              to={"/dashboard"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
             >
-              <Link to={"/dashboard"}>Home</Link>
-            </span>
-          </li>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <IoChatboxEllipsesOutline className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
+              <li
+                className={`flex text-lg items-center px-4 py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <BiHomeCircle className=" size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[15px]  duration-700`}
+                >
+                  Home
+                </span>
+              </li>
+            </NavLink>
+          </div>
+          <div className="relative">
+            <NavLink
+              to={"/dashboard"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
             >
-              Channel
-            </span>
-          </li>
+              <li
+                className={`flex text-lg items-center px-4 py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <BiHomeCircle className=" size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[15px]  duration-700`}
+                >
+                  Home
+                </span>
+              </li>
+            </NavLink>
+          </div>
           <li
             className={`flex text-lg items-center px-4 py-[14px] ${
               open && "pl-8"
@@ -197,7 +223,7 @@ const SideBar = () => {
           <li
             className={`flex text-lg items-center px-4 py-[14px] ${
               open && "pl-8"
-            } gap-x-4 duration-700 text-white cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+            } gap-x-4  duration-700 text-white cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
           >
             <HiArrowLeftStartOnRectangle className=" size-8" />
             <span

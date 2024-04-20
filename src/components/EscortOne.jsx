@@ -24,8 +24,8 @@ const EscortOne = () => {
   ];
   return (
     <div className="flex-1 max-w-[1530px] py-8 px-2">
-      <div className="flex justify-between items-center">
-        <h1 className="text-white font-semibold text-[24px] pb-6">
+      <div className="flex pb-4 justify-between items-center">
+        <h1 className="text-white font-semibold text-[24px]">
           Top Escort
         </h1>
         <p className="text-white cursor-pointer">See all</p>

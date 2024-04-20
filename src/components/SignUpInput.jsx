@@ -3,11 +3,10 @@ import Input from "./Input";
 import Navbar from "./Navbar";
 import { countries } from "./COUNTRY_DATA.JS";
 
-
 const SignUpInput = () => {
   return (
     <>
-      <div className="flex-1 md:w-[80%] pt-16 md:px-10">
+      <div className="flex-1 md:w-[80%] pt-16 md:px-14">
         <Navbar
           Headervalue={"Welcome to Room 306"}
           textValue={"Explore our escort at your own pace"}
@@ -154,7 +153,7 @@ const SignUpInput = () => {
                 </div>
               </div>
             </div>
-            <button className="bg-[#E9CB50] w-[100%] py-4 md:w-[120px] font-semibold mt-12 rounded-xl">
+            <button className="bg-[#E9CB50] w-[100%] py-4 md:w-[200px] font-semibold mt-12 rounded-xl">
               Sign up as a client
             </button>
           </div>

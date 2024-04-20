@@ -5,10 +5,17 @@ import { TbBell } from "react-icons/tb";
 import Avatar from "../images/avatar.png";
 import Login from "../pages/Login";
 import { Link } from "react-router-dom";
+import Menu from "../images/Featured-icon.svg";
+import Logo from "../images/logo.png";
+import { useSelector, useDispatch } from "react-redux";
+import { navClick } from "../redux/UtilSlice";
 
 const Navbar = ({ Headervalue, textValue }) => {
   const [user, setUser] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
+  const open = useSelector((state) => state.Util.navOpen);
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -19,6 +26,17 @@ const Navbar = ({ Headervalue, textValue }) => {
             value={Headervalue}
             text={textValue}
           />
+        </div>
+
+        <div className="flex items-center md:hidden">
+          <img
+            onClick={() => dispatch(navClick(!open))}
+            className="size-10 cursor-pointer mr-3"
+            src={Menu}
+            alt=""
+          />
+
+          <img className="w-[80px]" src={Logo} alt="" />
         </div>
 
         <div className="flex lg:justify-between justify-end items-center gap-x-4">
@@ -60,7 +78,7 @@ const Navbar = ({ Headervalue, textValue }) => {
               </button>
               <button
                 onClick={() => setOpenLogin(!openLogin)}
-                className="bg-[#E9CB50] text-[#171717] font-medium rounded-xl  py-3 w-[90px]"
+                className="bg-[#E9CB50] text-[#171717] font-medium rounded-xl w-[70px] py-2 md:py-3 md:w-[90px]"
               >
                 Login
               </button>

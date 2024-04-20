@@ -63,6 +63,11 @@ input {
   background-position: center;
 }
 
+#sidebar a.active {
+  background-color: #1b1717;
+  color: #FDF2C5;
+}
+
 ul li {
   list-style: none !important;
 }

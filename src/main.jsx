@@ -9,6 +9,8 @@ import Profile from "./pages/Profile.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import EscortDetails from "./pages/EscortDetails.jsx";
 import RegisterCard from "./pages/RegisterCard.jsx";
+import { Provider } from "react-redux";
+import { store } from "./redux/store.jsx";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

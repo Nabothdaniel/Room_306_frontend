@@ -4,10 +4,10 @@ import { LuHeart, LuUserCog2 } from "react-icons/lu";
 import { FaStar } from "react-icons/fa";
 import Slider1 from "../images/slider1.png";
 
-const AllEscortItems = () => {
+const AllEscortItems = ({ value }) => {
   return (
     <div>
-      <div className="bg-[#1E1E1E] text-white mb-14 p-3 rounded-lg">
+      <div className="bg-[#1E1E1E] h- text-white p-3 rounded-lg">
         <img className="rounded-lg" src={Slider1} alt="" />
         <div className="flex justify-between py-3">
           <div>
@@ -17,7 +17,7 @@ const AllEscortItems = () => {
             </p>
             <p className="flex items-center text-[12px] md:text-[14px]">
               <MdLocationOn className="mr-1 size-5" />
-              <span>lagos, Nigeria</span>
+              <span>lagos, {value}</span>
             </p>
           </div>
           <div className="bg-[#0A0A0A] h-[42px] p-2 rounded-full">
