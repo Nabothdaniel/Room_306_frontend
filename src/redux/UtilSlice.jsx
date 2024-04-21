@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  navOpen: true,
+  navOpen: false,
 };
 
 export const UtilSlice = createSlice({

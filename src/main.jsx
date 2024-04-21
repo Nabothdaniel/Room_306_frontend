@@ -11,6 +11,7 @@ import EscortDetails from "./pages/EscortDetails.jsx";
 import RegisterCard from "./pages/RegisterCard.jsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.jsx";
+import ClienDetails from "./pages/ClientDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,13 +26,28 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+
       {
         path: "/profile",
         element: <Profile />,
       },
       {
         path: "/sign-up",
-        element: <SignUp />,
+        element: <App />,
+        children: [
+          {
+            index: true,
+            element: <SignUp />,
+          },
+          {
+            path: "escort",
+            element: <EscortDetails />,
+          },
+          {
+            path: "client",
+            element: <ClienDetails />,
+          },
+        ],
       },
       {
         path: "/escort-details",

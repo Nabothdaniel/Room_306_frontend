@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import { LuChevronLeft, LuMap, LuThumbsUp } from "react-icons/lu";
-import { RiBookOpenLine } from "react-icons/ri";
-import { IoChatboxEllipsesOutline } from "react-icons/io5";
-import { HiArrowLeftStartOnRectangle } from "react-icons/hi2";
-import { CiWallet } from "react-icons/ci";
-import { BiLogoBlogger, BiHomeCircle } from "react-icons/bi";
-import { TbUserSquareRounded, TbVideoMinus } from "react-icons/tb";
-import { FaRegNewspaper } from "react-icons/fa";
-import { LiaQuestionCircle } from "react-icons/lia";
 import { navClick } from "../redux/UtilSlice";
 import Logo from "../images/logo.png";
 import { Link, NavLink } from "react-router-dom";
-
 import { useSelector, useDispatch } from "react-redux";
+
+import Home from "../images/home-hashtag.svg";
+import Blogger from "../images/blogger.svg";
+import Book from "../images/book-saved.svg";
+import LogOut from "../images/logout.svg";
+import Map from "../images/map.svg";
+import Message from "../images/message.svg";
+import Faqs from "../images/message-question.svg";
+import Like from "../images/like.svg";
+import Profile from "../images/personalcard.svg";
+import Users from "../images/user-square.svg";
+import Video from "../images/video.svg";
+import Wallet from "../images/wallet-2.svg";
+import { LuChevronLeft } from "react-icons/lu";
 
 const SideBar = () => {
   const open = useSelector((state) => state.Util.navOpen);
   const dispatch = useDispatch();
-
 
   return (
     <div
@@ -27,19 +30,23 @@ const SideBar = () => {
     >
       <div
         onClick={() => dispatch(navClick(!open))}
-        className={`absolute cursor-pointer -right-3 top-32  p-[6px] bg-[#1B1717] duration-500 text-white rounded-lg ${
+        className={`absolute cursor-pointer -right-3 top-[100px] md:top-32  p-[6px] bg-[#1B1717] duration-500 text-white rounded-lg ${
           !open && "rotate-180"
         } `}
       >
         <LuChevronLeft className="size-7" />
       </div>
 
-      <div className=" p-5 h-32">
-        <img className="max-w-[120px] h-auto mx-auto" src={Logo} alt="" />
+      <div className=" px-5 md:p-5 h-[110px] md:h-32">
+        <img
+          className="md:max-w-[120px] max-w-[110px] h-auto mx-auto"
+          src={Logo}
+          alt=""
+        />
       </div>
 
       <ul
-        className={` duration-500 overflow-hidden pt-4 flex flex-col h-[85%] justify-between md:h-[920px] `}
+        className={` duration-500 overflow-hidden md:pt-4 h-[80vh] flex flex-col justify-between md:h-[920px] `}
       >
         <div>
           <div className="relative">
@@ -47,20 +54,20 @@ const SideBar = () => {
               to={"/dashboard"}
               className={({ isActive }) =>
                 isActive
-                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  ? " active  before:contents-[''] md:before:top-[21px] before:top-[15px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
                   : ""
               }
             >
               <li
-                className={`flex text-lg items-center px-4 py-[14px] ${
-                  open ? "pl-8" : "justify-center"
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                  open ? "md:pl-8 pl-[28px]" : "justify-center"
                 } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
               >
-                <BiHomeCircle className=" size-8" />
+                <img src={Home} className=" size-6 md:size-8" />
                 <span
                   className={`${
                     !open && "hidden"
-                  } origin-right text-white hover:text-[#FDF2C5] text-[15px]  duration-700`}
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
                 >
                   Home
                 </span>
@@ -69,7 +76,7 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
-              to={"/dashboard"}
+              to={"/"}
               className={({ isActive }) =>
                 isActive
                   ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
@@ -77,163 +84,273 @@ const SideBar = () => {
               }
             >
               <li
-                className={`flex text-lg items-center px-4 py-[14px] ${
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                   open ? "pl-8" : "justify-center"
                 } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
               >
-                <BiHomeCircle className=" size-8" />
+                <img src={Message} className=" size-6 md:size-8" />
                 <span
                   className={`${
                     !open && "hidden"
-                  } origin-right text-white hover:text-[#FDF2C5] text-[15px]  duration-700`}
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                >
+                  Channel
+                </span>
+              </li>
+            </NavLink>
+          </div>
+          <div className="relative">
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
+            >
+              <li
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <img src={Map} className=" size-6 md:size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                >
+                  Tour
+                </span>
+              </li>
+            </NavLink>
+          </div>
+          <div className="relative">
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
+            >
+              <li
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <img src={Video} className=" size-6 md:size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                >
+                  Naught Video
+                </span>
+              </li>
+            </NavLink>
+          </div>
+          <div className="relative">
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
+            >
+              <li
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <img src={Like} className=" size-6 md:size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                >
+                  Adverts
+                </span>
+              </li>
+            </NavLink>
+          </div>
+          <div className="relative">
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
+            >
+              <li
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <img src={Book} className=" size-6 md:size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                >
+                  Events
+                </span>
+              </li>
+            </NavLink>
+          </div>
+          <div className="relative">
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
+            >
+              <li
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <img src={Wallet} className=" size-6 md:size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                >
+                  Blacklisteds
+                </span>
+              </li>
+            </NavLink>
+          </div>
+          <div className="relative">
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
+            >
+              <li
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <img src={Blogger} className=" size-6 md:size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                >
+                  Blogs
+                </span>
+              </li>
+            </NavLink>
+          </div>
+          <div className="relative">
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
+            >
+              <li
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <img src={Profile} className=" size-6 md:size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                >
+                  Testimonial
+                </span>
+              </li>
+            </NavLink>
+          </div>
+          <div className="relative">
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
+            >
+              <li
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <img src={Faqs} className=" size-6 md:size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                >
+                  FAQs
+                </span>
+              </li>
+            </NavLink>
+          </div>
+          <div className="relative">
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
+            >
+              <li
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <img src={Users} className=" size-6 md:size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                >
+                  Admins
+                </span>
+              </li>
+            </NavLink>
+          </div>
+        </div>
+        <div>
+          <div className="relative">
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive
+                  ? " active  before:contents-[''] before:top-[21px] before:absolute before:left-3 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  : ""
+              }
+            >
+              <li
+                className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                  open ? "pl-8" : "justify-center"
+                } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+              >
+                <img src={LogOut} className=" size-6 md:size-8" />
+                <span
+                  className={`${
+                    !open && "hidden"
+                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
                 >
                   Home
                 </span>
               </li>
             </NavLink>
           </div>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <LuMap className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
-            >
-              Tours
-            </span>
-          </li>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <TbVideoMinus className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
-            >
-              Naught Video
-            </span>
-          </li>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <LuThumbsUp className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
-            >
-              Adverts
-            </span>
-          </li>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <RiBookOpenLine className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
-            >
-              Events
-            </span>
-          </li>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <CiWallet className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
-            >
-              Blacklisteds
-            </span>
-          </li>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <BiLogoBlogger className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
-            >
-              Blogs
-            </span>
-          </li>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <FaRegNewspaper className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
-            >
-              Testimonial
-            </span>
-          </li>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <LiaQuestionCircle className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
-            >
-              FAQs
-            </span>
-          </li>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <TbUserSquareRounded className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              } text-white hover:text-[#FDF2C5] origin-right text-[15px] font-light duration-700`}
-            >
-              Admins
-            </span>
-          </li>
-        </div>
-        <div>
-          <li
-            className={`flex text-lg items-center px-4 py-[14px] ${
-              open && "pl-8"
-            } gap-x-4  duration-700 text-white cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
-          >
-            <HiArrowLeftStartOnRectangle className=" size-8" />
-            <span
-              className={`${
-                !open && "hidden"
-              }  hover:text-[#FDF2C5] origin-right text-[15px] font-medium duration-700`}
-            >
-              Logouts
-            </span>
-          </li>
         </div>
       </ul>
     </div>

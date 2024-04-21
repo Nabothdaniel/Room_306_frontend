@@ -4,7 +4,7 @@ const EscortBanner = () => {
   return (
     <div className="bg-[#1F1A1A] text-white py-8 md:py-14 rounded-3xl">
       <div className="md:w-[75%] md:px-0 px-8 md:ml-20">
-        <h3 className="md:text-3xl text-[22px] font-semibold pb-5">
+        <h3 className="md:text-3xl text-[20px] font-semibold pb-5">
           Our Esteemed Gentlemen
         </h3>
         <p className="lg:text-base text-[14px] text-wrap ">

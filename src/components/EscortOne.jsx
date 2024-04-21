@@ -9,25 +9,11 @@ import "swiper/css/pagination";
 import EscortOneItems from "./EscortOneItems";
 
 const EscortOne = () => {
-  const names = [
-    "James",
-    "Paul",
-    "John",
-    "George",
-    "Ringo",
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-  ];
+  const names = ["James", "Paul", "John", "George", "Ringo", 1, 2, 3, 4, 5, 6];
   return (
     <div className="flex-1 max-w-[1530px] py-8 px-2">
       <div className="flex pb-4 justify-between items-center">
-        <h1 className="text-white font-semibold text-[24px]">
-          Top Escort
-        </h1>
+        <h1 className="text-white font-semibold text-[24px]">Top Escort</h1>
         <p className="text-white cursor-pointer">See all</p>
       </div>
 
@@ -53,7 +39,6 @@ const EscortOne = () => {
             },
           }}
           modules={[Pagination]}
-          
           className="mySwiper"
         >
           {names.map((item) => {

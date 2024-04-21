@@ -39,11 +39,11 @@ const Navbar = ({ Headervalue, textValue }) => {
           <img className="w-[80px]" src={Logo} alt="" />
         </div>
 
-        <div className="flex lg:justify-between justify-end items-center gap-x-4">
+        <div className="flex lg:justify-between justify-end md:w-[360px] lg:w-fit items-center gap-x-4">
           <div
             className={`bg-[#0A0A0A] ${
               !user && "hidden"
-            } p-2 md:py-3 md:px-4 rounded-full md:rounded-lg w-[45%] md:flex`}
+            } p-2 md:py-3 md:px-4 rounded-full md:rounded-lg md:w-[40%] lg:w-[45%] md:flex`}
           >
             <RiSearchLine className="text-[#DADADA] size-8 md:size-6" />
             <input

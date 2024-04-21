@@ -1,5 +1,6 @@
 import React from "react";
 import Check from "../images/Check.svg";
+import { Link } from "react-router-dom";
 
 const RegisterCardComp = () => {
   return (
@@ -49,9 +50,12 @@ const RegisterCardComp = () => {
           </ul>
           <p className="pt-8 text-3xl text-[#B29A9A]">Free</p>
 
-          <button className="bg-white w-[100%] py-4 font-semibold mt-8 mb-3 rounded-[35px]">
+          <Link
+            to={"/sign-up/escort"}
+            className="bg-white w-[100%] text-center block py-4 font-semibold mt-8 mb-3 rounded-[35px]"
+          >
             Register Here
-          </button>
+          </Link>
         </div>
         <div className="bg-[#1E1E1E] rounded-xl md:h-[720px] h-[640px] lg:h-[640px] py-7 px-6 w-[350px]">
           <h3 className="text-[#F2D870] text-[18px]">
@@ -83,9 +87,12 @@ const RegisterCardComp = () => {
             <div className="md:mb-12 lg:mb-8">
               <p className="pt-8 text-3xl text-[#B29A9A]">Free</p>
 
-              <button className="bg-white w-[100%] py-4 font-semibold mt-8 mb-3 rounded-[35px]">
+              <Link
+                to={"/sign-up/client"}
+                className="bg-white block text-center w-[100%] py-4 font-semibold mt-8 mb-3 rounded-[35px]"
+              >
                 Register Here
-              </button>
+              </Link>
             </div>
           </div>
         </div>
