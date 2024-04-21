@@ -73,9 +73,9 @@ const Navbar = ({ Headervalue, textValue }) => {
 
           {!user && (
             <div className="flex ">
-              <button className="bg-transparent text-white font-medium rounded-xl py-3 w-[90px] mr-3">
-                <Link to={"/sign-up"}>Sign Up</Link>
-              </button>
+              <Link to={'/signup'} className="bg-[#1B1717] text-center block text-white font-medium rounded-xl py-3 w-[90px] mr-3">
+                Sign Up
+              </Link>
               <button
                 onClick={() => setOpenLogin(!openLogin)}
                 className="bg-[#E9CB50] text-[#171717] font-medium rounded-xl w-[70px] py-2 md:py-3 md:w-[90px]"

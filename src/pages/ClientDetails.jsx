@@ -7,9 +7,9 @@ import SideBar from "../components/SideBar";
 const ClienDetails = () => {
   return (
     <>
-      <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto px-4 md:px-0">
+      <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
         <SideBar />
-        <div className="flex-1 md:w-[80%] pt-7 md:pt-16 md:px-6 lg:px-10">
+        <div className="flex-1 md:w-[80%] pt-8 md:pt-16 md:px-6 lg:px-10">
           <Navbar
             Headervalue={"Welcome to Room 306"}
             textValue={"Explore our escort at your own pace"}
@@ -19,7 +19,7 @@ const ClienDetails = () => {
             <h2 className="text-white py-4 pb-6 text-2xl font-semibold">
               Client Details
             </h2>
-            <div className="rounded-xl px-4 md:px-10 md:pl-12 mb-32 py-14 pb-20 bg-[#1E1E1E] ">
+            <div className="rounded-xl px-4 md:px-6 lg:px-10 md:pl-12 pt-8 md:py-14 pb-8 bg-[#1E1E1E] ">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-4 lg:gap-y-0 gap-x-12 ">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-x-12 gap-x-5 gap-y-8 lg:col-span-2">
                   <Input
@@ -156,7 +156,7 @@ const ClienDetails = () => {
                   </div>
                 </div>
               </div>
-              <button className="bg-[#E9CB50] w-[100%] py-4 md:w-[200px] font-semibold mt-12 rounded-xl">
+              <button className="bg-[#E9CB50] w-[100%] py-4 md:w-[200px] font-semibold mt-10 rounded-xl">
                 Sign up as a client
               </button>
             </div>

@@ -9,11 +9,7 @@
       "dest": "/"
     },
     {
-      "src": "/sign-up",
-      "dest": "/"
-    },
-    {
-      "src": "/login",
+      "src": "/signup",
       "dest": "/"
     },
     {
@@ -21,7 +17,23 @@
       "dest": "/"
     },
     {
-      "src": "/escort-details",
+      "src": "/escort",
+      "dest": "/"
+    },
+    {
+      "src": "/1",
+      "dest": "/"
+    },
+    {
+      "src": "/2",
+      "dest": "/"
+    },
+    {
+      "src": "/5",
+      "dest": "/"
+    },
+    {
+      "src": "/6",
       "dest": "/"
     },
     {

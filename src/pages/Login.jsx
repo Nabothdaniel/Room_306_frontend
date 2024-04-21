@@ -29,7 +29,7 @@ const Login = ({ loginControl, loginClass }) => {
         />
         <Header
           value="Login to your Account"
-          headerClass="md:text-3xl text-[28px] text-center text-[#D8D8D8] font-semibold pt-7 mb-2"
+          headerClass="md:text-3xl text-[23px] text-center text-[#D8D8D8] font-semibold pt-7 mb-2"
         />
 
         <label className="flex flex-col pt-8" htmlFor="email">
