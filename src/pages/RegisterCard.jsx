@@ -7,7 +7,7 @@ const RegisterCard = () => {
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto px-4 md:px-8">
       <SideBar />
-      <div className="flex-1 md:w-[80%] pt-16 md:px-4 lg:px-16">
+      <div className="flex-1 md:w-[80%] pt-8 md:pt-16 md:px-4 lg:px-16">
         <Navbar
           Headervalue={"Welcome to Room 306"}
           textValue={"Explore our escort at your own pace"}

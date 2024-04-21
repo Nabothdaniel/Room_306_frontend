@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const RegisterCardComp = () => {
   return (
     <div>
-      <div className="flex flex-col md:flex-row gap-y-8 md:gap-y-0 items-center md:items-start gap-x-4 lg:gap-x-8">
+      <div className="flex flex-col md:flex-row gap-y-8 md:gap-y-0 items-center  md:items-start gap-x-4 lg:gap-x-8">
         <div className="bg-[#1E1E1E] md:h-[720px] lg:h-full rounded-xl py-7 px-3 lg:px-6 w-[350px]">
           <h3 className="text-[#F2D870] text-[18px]">
             Register as Independent Escort
