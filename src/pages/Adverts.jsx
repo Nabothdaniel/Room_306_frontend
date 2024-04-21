@@ -9,7 +9,7 @@ const Adverts = () => {
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />
-      <div className="flex-1 h-full md:w-[80%] px-3 pt-8 md:pt-16 md:px-8 lg:px-14 md:pr-12">
+      <div className="flex-1 h-full md:w-[80%] px-3 pt-6 md:pt-14 md:px-8 lg:px-14 md:pr-12">
         <Navbar
           Headervalue={"Advert for Quality"}
           textValue={"Advert for best escorts and activities"}
