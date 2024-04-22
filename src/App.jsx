@@ -1,16 +1,13 @@
-import { Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom";
 
-
-const App =()=> {
-
+const App = () => {
   return (
     <>
-      <div className="">
-       <Outlet/>
+      <div className="mt-20 md:-mt-8">
+        <Outlet />
       </div>
-      
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

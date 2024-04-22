@@ -18,8 +18,8 @@ const EscortDetailsOne = () => {
         />
 
         <div className="py-8">
-          <div className="flex justify-between items-center pt-8">
-            <h2 className="text-white py-4 pb-6 text-2xl font-semibold">
+          <div className="flex justify-between items-center pb-6 pt-8">
+            <h2 className="text-white py-4 text-2xl font-semibold">
               Escort Details
             </h2>
 
@@ -30,7 +30,7 @@ const EscortDetailsOne = () => {
               6
             </p>
           </div>
-          <div className="rounded-xl lg:px-10 md:px-7 px-4 py-8 md:pl-12 md:py-14 bg-[#1E1E1E] ">
+          <div className="rounded-xl lg:px-10 md:px-7 px-4 py-6 md:pl-12 md:py-14 bg-[#1E1E1E] ">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-4 lg:gap-y-0 lg:gap-x-12 md:gap-x-5">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-x-12 md:gap-x-4 gap-y-8 lg:col-span-2">
                 <Input
@@ -196,7 +196,10 @@ const EscortDetailsOne = () => {
                 </div>
               </div>
             </div>
-            <Link to={'/signup/escort/1'} className="text-center block bg-[#E9CB50] w-[100%] py-4 md:w-[120px] font-semibold mt-12 rounded-xl">
+            <Link
+              to={"/signup/escort/1"}
+              className="text-center block bg-[#E9CB50] w-[100%] py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
+            >
               Next
             </Link>
           </div>

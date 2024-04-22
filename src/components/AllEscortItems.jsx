@@ -7,7 +7,7 @@ import Slider1 from "../images/slider1.png";
 const AllEscortItems = ({ value }) => {
   return (
     <div>
-      <div className="bg-[#1E1E1E] h- text-white p-3 rounded-lg">
+      <div className="bg-[#1E1E1E] text-white p-3 rounded-lg">
         <img className="rounded-lg" src={Slider1} alt="" />
         <div className="flex justify-between py-3">
           <div>

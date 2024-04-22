@@ -26,7 +26,7 @@ const SideBar = () => {
     <div
       className={`${
         open ? "min-w-48 w-52" : "-translate-x-[50vw] md:translate-x-0 w-24"
-      }   bg-[#0A0A0A] shadow-sm pt-8 duration-500 md:h-fit transition-all z-[99999] fixed md:relative top:0 left:0 left:0 block h-screen py-3 `}
+      }   bg-[#0A0A0A] shadow-sm pt-8 duration-500 md:h-fit transition-all z-[99999] fixed md:relative top-0 left:0 left:0 block h-screen py-3 `}
     >
       <div
         onClick={() => dispatch(navClick(!open))}
@@ -46,7 +46,7 @@ const SideBar = () => {
       </div>
 
       <ul
-        className={` duration-500 overflow-hidden md:pt-4 h-[80vh] flex flex-col justify-between md:h-[920px] `}
+        className={` duration-500 overflow-hidden overflow-y-scroll md:overflow-y-auto scrollbar scrollbar-thumb-neutral-600 md:pt-4 h-[80vh] flex flex-col justify-between md:h-[920px] `}
       >
         <div>
           <div className="relative">
@@ -176,10 +176,10 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
-              to={"/"}
+              to={"/events"}
               className={({ isActive }) =>
                 isActive
-                  ? " active  before:contents-[''] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  ? " active  before:contents-[''] md:before:top-[19px] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
                   : ""
               }
             >
@@ -226,10 +226,13 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
-              to={"/"}
+              to={"/blogs"}
+              style={({ isActive }) => ({
+                backgroundColor: isActive ? "active" : "",
+              })}
               className={({ isActive }) =>
                 isActive
-                  ? " active  before:contents-[''] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  ? "  before:contents-[''] md:before:top-[19px] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
                   : ""
               }
             >
@@ -242,7 +245,7 @@ const SideBar = () => {
                 <span
                   className={`${
                     !open && "hidden"
-                  } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                  } origin-right text-white  hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
                 >
                   Blogs
                 </span>
@@ -251,10 +254,10 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
-              to={"/"}
+              to={"/testimonials"}
               className={({ isActive }) =>
                 isActive
-                  ? " active  before:contents-[''] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  ? " active  before:contents-[''] md:before:top-[19px] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
                   : ""
               }
             >

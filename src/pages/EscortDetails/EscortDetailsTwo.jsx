@@ -17,8 +17,8 @@ const EscortDetailsTwo = () => {
         />
 
         <div className="py-8">
-          <div className="flex justify-between items-center pt-8">
-            <h2 className="text-white py-4 pb-6 text-2xl font-semibold">
+          <div className="flex justify-between items-center pb-6 pt-8">
+            <h2 className="text-white py-4  text-2xl font-semibold">
               Escort Details
             </h2>
 

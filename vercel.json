@@ -21,19 +21,31 @@
       "dest": "/"
     },
     {
-      "src": "/1",
+      "src": "/signup/escort/1",
       "dest": "/"
     },
     {
-      "src": "/2",
+      "src": "/testimonials",
       "dest": "/"
     },
     {
-      "src": "/5",
+      "src": "/events",
       "dest": "/"
     },
     {
-      "src": "/6",
+      "src": "/blogs",
+      "dest": "/"
+    },
+    {
+      "src": "/signup/escort/2",
+      "dest": "/"
+    },
+    {
+      "src": "/signup/escort/5",
+      "dest": "/"
+    },
+    {
+      "src": "/signup/escort/6",
       "dest": "/"
     },
     {

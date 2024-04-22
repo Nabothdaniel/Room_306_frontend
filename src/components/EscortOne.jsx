@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -24,6 +24,10 @@ const EscortOne = () => {
           pagination={{
             clickable: true,
           }}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
           breakpoints={{
             640: {
               slidesPerView: 2.2,
@@ -38,7 +42,7 @@ const EscortOne = () => {
               spaceBetween: 10,
             },
           }}
-          modules={[Pagination]}
+          modules={[Pagination, Autoplay]}
           className="mySwiper"
         >
           {names.map((item) => {

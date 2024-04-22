@@ -15,6 +15,8 @@ import EscortSurvey from "./pages/EscortDetails/EscortSurvey.jsx";
 import EscortDetailsSecFive from "./pages/EscortDetails/EscortDetailsSecFive.jsx";
 import RegisterCard from "./pages/RegisterCard.jsx";
 import Blog from "./pages/Blog.jsx";
+import Testimonials from "./pages/Testimonials.jsx";
+import Events from "./pages/Events.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blog />,
+      },
+      {
+        path: "/events",
+        element: <Events />,
+      },
+      {
+        path: "/testimonials",
+        element: <Testimonials />,
       },
       {
         path: "/signup",

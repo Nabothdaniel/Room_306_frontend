@@ -19,7 +19,7 @@ const Navbar = ({ Headervalue, textValue }) => {
 
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between bg-[#121212] z-[999] md:relative fixed px-4 md:px-0 top-0 py-8 w-[100%] md:w-auto left-0 items-center">
         <div className="hidden md:block">
           <Header
             headerClass={"text-white text-[20px] lg:text-[23px] font-semibold "}
@@ -73,7 +73,10 @@ const Navbar = ({ Headervalue, textValue }) => {
 
           {!user && (
             <div className="flex ">
-              <Link to={'/signup'} className="bg-[#1B1717] text-center block text-white font-medium rounded-xl py-3 w-[90px] mr-3">
+              <Link
+                to={"/signup"}
+                className="bg-[#1B1717] text-center block text-white font-medium rounded-xl py-3 w-[90px] mr-3"
+              >
                 Sign Up
               </Link>
               <button
