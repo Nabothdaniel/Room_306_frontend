@@ -4,6 +4,7 @@ import SideBar from "../components/SideBar";
 import Filter from "../images/Input.svg";
 import Vector from "../images/Vector.svg";
 import EventItem from "../components/EventItem";
+import Pagination from "../components/Pagination";
 
 const Events = () => {
   return (
@@ -16,7 +17,7 @@ const Events = () => {
           textValue={"Explore our rooms and activities"}
         />
         <div className="pb-10 md:pl-2">
-          <div className="flex pt-6 justify-between items-center pb-6">
+          <div className="flex pt-8 justify-between items-center pb-6">
             <h2 className="text-white py-4 text-[20px] font-semibold">
               All Events
             </h2>
@@ -65,6 +66,7 @@ const Events = () => {
               <EventItem />
             </div>
           </div>
+          <Pagination />
         </div>
       </div>
     </div>

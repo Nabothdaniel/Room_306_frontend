@@ -17,14 +17,17 @@ export const BlogSwiper = () => {
           640: {
             slidesPerView: 2.8,
             spaceBetween: 10,
+           
           },
 
           1023: {
             slidesPerView: 3.4,
             spaceBetween: 290,
             direction: "vertical",
+          
           },
         }}
+        speed={1200}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,

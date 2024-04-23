@@ -17,7 +17,7 @@ const Blog = () => {
           textValue={"Explore our escort at your own Pace"}
         />
         <div
-          className="py-6  grid grid-cols-1
+          className="py-6 pt-10  grid grid-cols-1
          lg:grid-cols-4 gap-6"
         >
           <div className="lg:col-span-3">

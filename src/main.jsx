@@ -17,6 +17,7 @@ import RegisterCard from "./pages/RegisterCard.jsx";
 import Blog from "./pages/Blog.jsx";
 import Testimonials from "./pages/Testimonials.jsx";
 import Events from "./pages/Events.jsx";
+import Faqs from "./pages/Faqs.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/events",
         element: <Events />,
+      },
+      {
+        path: "/faqs",
+        element: <Faqs />,
       },
       {
         path: "/testimonials",

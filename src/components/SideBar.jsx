@@ -51,6 +51,7 @@ const SideBar = () => {
         <div>
           <div className="relative">
             <NavLink
+              onClick={() => dispatch(navClick(!open))}
               to={"/dashboard"}
               className={({ isActive }) =>
                 isActive
@@ -76,6 +77,7 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
+              onClick={() => dispatch(navClick(!open))}
               to={"/"}
               className={({ isActive }) =>
                 isActive
@@ -101,6 +103,7 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
+              onClick={() => dispatch(navClick(!open))}
               to={"/"}
               className={({ isActive }) =>
                 isActive
@@ -126,6 +129,7 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
+              onClick={() => dispatch(navClick(!open))}
               to={"/"}
               className={({ isActive }) =>
                 isActive
@@ -151,6 +155,7 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
+              onClick={() => dispatch(navClick(!open))}
               to={"/"}
               className={({ isActive }) =>
                 isActive
@@ -176,6 +181,7 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
+              onClick={() => dispatch(navClick(!open))}
               to={"/events"}
               className={({ isActive }) =>
                 isActive
@@ -201,6 +207,7 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
+              onClick={() => dispatch(navClick(!open))}
               to={"/"}
               className={({ isActive }) =>
                 isActive
@@ -226,6 +233,7 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
+              onClick={() => dispatch(navClick(!open))}
               to={"/blogs"}
               style={({ isActive }) => ({
                 backgroundColor: isActive ? "active" : "",
@@ -254,6 +262,7 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
+              onClick={() => dispatch(navClick(!open))}
               to={"/testimonials"}
               className={({ isActive }) =>
                 isActive
@@ -279,10 +288,11 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
-              to={"/"}
+              onClick={() => dispatch(navClick(!open))}
+              to={"/faqs"}
               className={({ isActive }) =>
                 isActive
-                  ? " active  before:contents-[''] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                  ? " active  before:contents-[''] md:before:top-[19px] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
                   : ""
               }
             >
@@ -304,6 +314,7 @@ const SideBar = () => {
           </div>
           <div className="relative">
             <NavLink
+              onClick={() => dispatch(navClick(!open))}
               to={"/"}
               className={({ isActive }) =>
                 isActive
@@ -331,6 +342,7 @@ const SideBar = () => {
         <div>
           <div className="relative">
             <NavLink
+              onClick={() => dispatch(navClick(!open))}
               to={"/"}
               className={({ isActive }) =>
                 isActive

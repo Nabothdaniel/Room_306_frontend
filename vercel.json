@@ -21,6 +21,10 @@
       "dest": "/"
     },
     {
+      "src": "/faqs",
+      "dest": "/"
+    },
+    {
       "src": "/signup/escort/1",
       "dest": "/"
     },

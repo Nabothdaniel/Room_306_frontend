@@ -6,6 +6,7 @@ import Location from "../images/location-tick.svg";
 import Slider1 from "../images/slider1.png";
 import Love from "../images/Love.svg";
 import Clock from "../images/clock.svg";
+import Ticket from "../images/ticket-2.svg";
 
 const EventItem = () => {
   return (
@@ -39,8 +40,12 @@ const EventItem = () => {
             <img src={User} /> <span className="font-semibold pl-1">(10)</span>
           </p>
         </div>
-        <p className="lg:text-[13px] text-[12px] text-wrap  pb-2 text-[#DADADA]">
-          Hey, I’m pretty and good on bed. Give me a message
+        <p className="lg:text-[13px] flex justify-between items-center text-[12px] text-wrap  pb-2 text-[#DADADA]">
+          <span className="flex font-semibold items-center">
+            <img className="size-5 mr-2" src={Ticket} alt="" />
+            Available Ticket
+          </span>
+          <span className="font-semibold text-[18px]">3</span>
         </p>
       </div>
     </div>
