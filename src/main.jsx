@@ -18,6 +18,9 @@ import Blog from "./pages/Blog.jsx";
 import Testimonials from "./pages/Testimonials.jsx";
 import Events from "./pages/Events.jsx";
 import Faqs from "./pages/Faqs.jsx";
+import ProfileMenu from "./pages/ProfileMenu.jsx";
+import EscortDetailsThree from "./pages/EscortDetails/EscortDetailsThree.jsx";
+import EscortDetailsFour from "./pages/EscortDetails/EscortDetailsFour.jsx";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +49,10 @@ const router = createBrowserRouter([
         element: <Faqs />,
       },
       {
+        path: "/profileMnu",
+        element: <ProfileMenu />,
+      },
+      {
         path: "/testimonials",
         element: <Testimonials />,
       },
@@ -68,6 +75,14 @@ const router = createBrowserRouter([
               {
                 path: "1",
                 element: <EscortDetailsTwo />,
+              },
+              {
+                path: "2",
+                element: <EscortDetailsThree />,
+              },
+              {
+                path: "3",
+                element: <EscortDetailsFour />,
               },
               {
                 path: "4",

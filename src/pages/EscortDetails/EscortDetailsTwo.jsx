@@ -16,7 +16,7 @@ const EscortDetailsTwo = () => {
           textValue={"Explore our escort at your own pace"}
         />
 
-        <div className="py-8">
+        <div className="md:py-8">
           <div className="flex justify-between items-center pb-6 pt-8">
             <h2 className="text-white py-4  text-2xl font-semibold">
               Escort Details
@@ -69,10 +69,57 @@ const EscortDetailsTwo = () => {
                 />
               </div>
 
-              <h3 className="text-xl font-semibold text-white pt-3">
+              <h3 className="text-xl font-semibold  text-white pt-3">
                 Body Details <span className="text-[#E9CB50]">*</span>
               </h3>
               <div className="grid md:col-span-2 lg:gap-x-16 md:gap-x-6 gap-y-8 md:grid-cols-2">
+                <label className="text-white flex flex-col" htmlFor="ethnicity">
+                  <span className="font-semibold pb-1 ">
+                    Ethnicity<span className="text-[#E9CB50]">*</span>
+                  </span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      name="ethnicity"
+                      id="ethnicity"
+                    >
+                      <option value="">Your Ethnicity</option>
+                      <option value="all">All</option>
+                      <option value="asian">Asian</option>
+                      <option value="black">Black</option>
+                      <option value="indian">Indian</option>
+                      <option value="latino">Latino</option>
+                      <option value="middle eastern">Mid Eastern</option>
+                      <option value="mix-race">Mix Race</option>
+                      <option value="other">Other</option>
+                      <option value="others">Others</option>
+                      <option value="white">White</option>
+                    </select>
+                  </div>
+                </label>
+                <label className="text-white flex flex-col" htmlFor="bust-size">
+                  <span className="font-semibold pb-1">
+                    Bust Size<span className="text-[#E9CB50]">*</span>
+                  </span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      name="bust-size"
+                      id="bust-size"
+                    >
+                      <option value="">Choose here</option>
+                      <option>All</option>
+                      <option>Enormous(E+)</option>
+                      <option>Large(C-cup)</option>
+                      <option>Large(D-cup)</option>
+                      <option>Medium(B-cup)</option>
+                      <option>None</option>
+                      <option>Small A</option>
+                      <option>Very Large(DD-cup)</option>
+                      <option>Very Small</option>
+                    </select>
+                  </div>
+                </label>
                 <Input
                   labelValue={"Occupation"}
                   labelClass={"font-semibold py-2"}
@@ -95,88 +142,143 @@ const EscortDetailsTwo = () => {
                   }
                   holder={"Enter Here"}
                 />
-                <Input
-                  labelValue={"Occupation"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"text"}
-                  required={"*"}
-                  inputName={"occupation"}
-                  inputClass={
-                    "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
-                  }
-                  holder={"Enter Here"}
-                />
-                <Input
-                  labelValue={"Occupation"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"text"}
-                  required={"*"}
-                  inputName={"occupation"}
-                  inputClass={
-                    "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
-                  }
-                  holder={"Enter Here"}
-                />
-                <Input
-                  labelValue={"Occupation"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"text"}
-                  required={"*"}
-                  inputName={"occupation"}
-                  inputClass={
-                    "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
-                  }
-                  holder={"Enter Here"}
-                />
-                <Input
-                  labelValue={"Occupation"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"text"}
-                  required={"*"}
-                  inputName={"occupation"}
-                  inputClass={
-                    "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
-                  }
-                  holder={"Enter Here"}
-                />
-                <div>
-                  <h4 className="text-white font-semibold">
-                    Smoker <span className="text-[#E9CB50]">*</span>
+                <label className="text-white flex flex-col" htmlFor="build">
+                  <span className="font-semibold pb-1">
+                    Build<span className="text-[#E9CB50]">*</span>
+                  </span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      name="build"
+                      id="build"
+                    >
+                      <option value="">Choose here</option>
+                      <option>All</option>
+                      <option>Athletic</option>
+                      <option>Chubby</option>
+                      <option>Curvy</option>
+                      <option>Elegant</option>
+                      <option>Fat</option>
+                      <option>Fluffy</option>
+                      <option>Gym Buddy</option>
+                      <option>Heavy</option>
+                      <option>Huge</option>
+                      <option>Muscular</option>
+                      <option>Regular</option>
+                      <option>Robust</option>
+                      <option>Skinny</option>
+                      <option>Slender</option>
+                      <option>Slim</option>
+                    </select>
+                  </div>
+                </label>
+                <label className="text-white flex flex-col" htmlFor="looks">
+                  <span className="font-semibold pb-1">
+                    Looks<span className="text-[#E9CB50]">*</span>
+                  </span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      name="looks"
+                      id="looks"
+                    >
+                      <option value="">Choose here</option>
+                      <option>All</option>
+                      <option>Average</option>
+                      <option>Corporate type</option>
+                      <option>Dominatrix</option>
+                      <option>Eye Candy</option>
+                      <option>Goddess</option>
+                      <option>Naugthy Teacher</option>
+                      <option>PornStar</option>
+                      <option>Pretty Boy with Red lips</option>
+                      <option>Sexy</option>
+                      <option>Sexy Tranny</option>
+                      <option>Slutty Nurse</option>
+                      <option>Stripper</option>
+                    </select>
+                  </div>
+                </label>
+                <div className=" ">
+                  <h4 className="text-white font-semibold pb-3">
+                    Smoker<span className="text-[#E9CB50]">*</span>
                   </h4>
-                  <Input
-                    labelValue={"Occupation"}
-                    labelClass={"font-semibold py-2"}
-                    inputType={"checkbox"}
-                    required={"*"}
-                    inputName={"occupation"}
-                    inputClass={
-                      "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
-                    }
-                    holder={"Enter Here"}
-                  />
-                  <Input
-                    labelValue={"Occupation"}
-                    labelClass={"font-semibold py-2"}
-                    inputType={"checkbox"}
-                    required={"*"}
-                    inputName={"occupation"}
-                    inputClass={
-                      "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
-                    }
-                    holder={"Enter Here"}
-                  />
+                  <div className="flex md:w-[50%]">
+                    <label className="container text-white ">
+                      Yes
+                      <input type="radio" name="smoker" />
+                      <span className="checkmark"></span>
+                    </label>
+
+                    <label className="container text-white">
+                      No
+                      <input type="radio" name="smoker" />
+                      <span className="checkmark"></span>
+                    </label>
+                  </div>
                 </div>
-                <Input
-                  labelValue={"Occupation"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"text"}
-                  required={"*"}
-                  inputName={"occupation"}
-                  inputClass={
-                    "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
-                  }
-                  holder={"Enter Here"}
-                />
+                <label
+                  className="text-white flex flex-col"
+                  htmlFor="sexual-orientation"
+                >
+                  <span className="font-semibold pb-1">
+                    Sexual Orientation<span className="text-[#E9CB50]">*</span>
+                  </span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      name="sexual-orientation"
+                      id="sexual-orientation"
+                    >
+                      <option value="">Sexual Orientation</option>
+                      <option>HetroSexual(Straight)</option>
+                      <option>Bisexual</option>
+                      <option>Lesian</option>
+                      <option>Gay</option>
+                      <option>Trans-Sexual</option>
+                      <option>Mistress(Domination)</option>
+                      <option>Master(Domination)</option>
+                    </select>
+                  </div>
+                </label>
+                <div className=" ">
+                  <h4 className="text-white font-semibold pb-3">
+                    Availability for Incall
+                    <span className="text-[#E9CB50]">*</span>
+                  </h4>
+                  <div className="flex md:w-[50%]">
+                    <label className="container text-white ">
+                      Yes
+                      <input type="radio" name="incall" />
+                      <span className="checkmark"></span>
+                    </label>
+
+                    <label className="container text-white">
+                      No
+                      <input type="radio" name="incall" />
+                      <span className="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+                <div className=" ">
+                  <h4 className="text-white font-semibold pb-3">
+                    Availability for Outcall
+                    <span className="text-[#E9CB50]">*</span>
+                  </h4>
+                  <div className="flex md:w-[50%]">
+                    <label className="container text-white ">
+                      Yes
+                      <input type="radio" name="outcall" />
+                      <span className="checkmark"></span>
+                    </label>
+
+                    <label className="container text-white">
+                      No
+                      <input type="radio" name="outcall" />
+                      <span className="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
 

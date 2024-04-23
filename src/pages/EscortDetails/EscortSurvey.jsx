@@ -14,7 +14,7 @@ const EscortSurvey = () => {
           textValue={"Explore our escort at your own pace"}
         />
 
-        <div className="py-8">
+        <div className="md:py-8">
           <div className="flex justify-between items-center pt-8">
             <h2 className="text-white py-4 pb-6 text-2xl font-semibold">
               Escort Details

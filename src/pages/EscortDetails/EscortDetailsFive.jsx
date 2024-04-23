@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "../../images/avatar2.png"
+import Avatar from "../../images/avatar2.png";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
@@ -15,7 +15,7 @@ const EscortDetailsFive = () => {
           textValue={"Explore our escort at your own pace"}
         />
 
-        <div className="py-8">
+        <div className="md:py-8">
           <div className="flex justify-between items-center pb-6 pt-8">
             <h2 className="text-white py-4 text-2xl font-semibold">
               Escort Details
@@ -57,11 +57,14 @@ const EscortDetailsFive = () => {
                   </li>
                 </ol>
                 <div className="bg-[#676767]  mt-8 h-[280px] md:max-w-[300px]  rounded-xl "></div>
-                <div className="mt-4 flex justify-between md:block">
+                <div className="mt-4 md:w-[15%] flex justify-between">
                   <button className="bg-[#CD2727] mr-5 w-[100%] py-4 md:w-[120px] font-medium rounded-xl">
                     Delete
                   </button>
-                  <Link to={'/signup/escort/5'} className="bg-[#E9CB50] w-[100%] text-[#171717] py-4 md:w-[120px] font-medium rounded-xl">
+                  <Link
+                    to={"/signup/escort/5"}
+                    className="bg-[#E9CB50] block text-center w-[100%] text-[#171717] py-4 md:w-[120px] font-medium rounded-xl"
+                  >
                     Next
                   </Link>
                 </div>

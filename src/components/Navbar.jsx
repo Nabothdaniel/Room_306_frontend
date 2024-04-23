@@ -9,13 +9,19 @@ import Menu from "../images/Featured-icon.svg";
 import Logo from "../images/logo.png";
 import { useSelector, useDispatch } from "react-redux";
 import { navClick } from "../redux/UtilSlice";
+import SearchModel from "./SearchModel";
 
 const Navbar = ({ Headervalue, textValue }) => {
   const [user, setUser] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false)
   const open = useSelector((state) => state.Util.navOpen);
 
   const dispatch = useDispatch();
+
+  const handleSearch = () => {
+    setOpenSearch(!openSearch)
+  }
 
   return (
     <>
@@ -41,6 +47,7 @@ const Navbar = ({ Headervalue, textValue }) => {
 
         <div className="flex lg:justify-between justify-end md:w-[360px] lg:w-fit items-center gap-x-4">
           <div
+            onClick={handleSearch}
             className={`bg-[#0A0A0A] ${
               !user && "hidden"
             } p-2 md:py-3 md:px-4 rounded-full md:rounded-lg md:w-[40%] lg:w-[45%] md:flex`}
@@ -94,8 +101,12 @@ const Navbar = ({ Headervalue, textValue }) => {
           loginControl={setOpenLogin}
         />
       </div>
+      <SearchModel
+        SearchClass={`${!openSearch ? "translate-x-[120vw]" : "translate-x-0"}`}
+        handleSearch={handleSearch}
+      />
     </>
-  );
+  )
 };
 
 export default Navbar;

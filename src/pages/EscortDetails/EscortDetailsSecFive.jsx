@@ -15,7 +15,7 @@ const EscortDetailsSecFive = () => {
           textValue={"Explore our escort at your own pace"}
         />
 
-        <div className="py-8">
+        <div className="md:py-8">
           <div className="flex justify-between items-center pb-6 pt-8">
             <h2 className="text-white py-4  text-2xl font-semibold">
               Escort Details
@@ -62,7 +62,7 @@ const EscortDetailsSecFive = () => {
                   />
                   <div className="bg-[#676767] h-[330px] w-[100%] md:max-w-[280px] rounded-xl "></div>
                 </div>
-                <div className="mt-4 flex justify-between md:block">
+                <div className="mt-4 flex justify-between md:w-[15%]">
                   <button className="bg-[#CD2727] mr-5 w-[100%] py-4 md:w-[120px] font-semibold rounded-xl">
                     Delete
                   </button>
