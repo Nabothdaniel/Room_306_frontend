@@ -21,6 +21,14 @@
       "dest": "/"
     },
     {
+      "src": "/tours",
+      "dest": "/"
+    },
+    {
+      "src": "/rooms",
+      "dest": "/"
+    },
+    {
       "src": "/faqs",
       "dest": "/"
     },
