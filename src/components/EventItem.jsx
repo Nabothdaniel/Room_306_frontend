@@ -1,6 +1,5 @@
 import React from "react";
 import Calender from "../images/calendar-tick.svg";
-import Note from "../images/note-2.svg";
 import User from "../images/user-tick.svg";
 import Location from "../images/location-tick.svg";
 import Slider1 from "../images/slider1.png";
@@ -12,7 +11,11 @@ const EventItem = () => {
   return (
     <div>
       <div className="bg-[#121212] text-white p-3 rounded-lg">
-        <img className="rounded-lg" src={Slider1} alt="" />
+        <img
+          className="rounded-lg h-[200px] object-cover"
+          src={Slider1}
+          alt=""
+        />
         <div className="flex justify-between py-3">
           <div>
             <h4 className="font-semibold lg:text-base text-[15px] pb-2">

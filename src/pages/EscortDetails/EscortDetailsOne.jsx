@@ -112,6 +112,7 @@ const EscortDetailsOne = () => {
                 </label>
 
                 <Input
+                  labelValue={"Start Date"}
                   inputType={"date"}
                   labelClass={"font-semibold py-2"}
                   required={""}
@@ -121,17 +122,19 @@ const EscortDetailsOne = () => {
                   }
                   holder={""}
                 />
-                <Input
-                  labelValue={"Display Name"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"checkbox"}
-                  required={"*"}
-                  inputName={"name"}
-                  inputClass={
-                    "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
-                  }
-                  holder={"Enter Display Name"}
-                />
+                <div className="text-white flex pt-10 items-center">
+                  <label className="container ">
+                    Male
+                    <input type="radio" name="gender" />
+                    <span className="checkmark"></span>
+                  </label>
+
+                  <label className="container">
+                    Female
+                    <input type="radio" name="gender" />
+                    <span className="checkmark"></span>
+                  </label>
+                </div>
 
                 <div className="md:col-span-2">
                   <TextArea

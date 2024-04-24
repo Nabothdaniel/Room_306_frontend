@@ -1,14 +1,19 @@
 import React from "react";
-import { MdLocationOn } from "react-icons/md";
-import { LuHeart, LuUserCog2 } from "react-icons/lu";
 import { FaStar } from "react-icons/fa";
 import Slider1 from "../images/slider1.png";
+import Location from "../images/location-tick.svg";
+import Love from "../images/Love.svg";
+import User from "../images/user-tick.svg";
 
 const EscortOneItems = () => {
   return (
     <>
-      <div className="bg-[#1E1E1E] mb-14 p-3 rounded-lg">
-        <img className="rounded-lg" src={Slider1} alt="" />
+      <div className="bg-[#1E1E1E] text-white mb-14  p-3 rounded-lg">
+        <img
+          className="rounded-lg h-[200px] object-cover"
+          src={Slider1}
+          alt=""
+        />
         <div className="flex justify-between py-3">
           <div>
             <h4 className="font-semibold pb-2">Sandra Kiss</h4>
@@ -16,13 +21,11 @@ const EscortOneItems = () => {
               <span className="font-semibold">#7,500</span> short time
             </p>
             <p className="flex items-center text-[12px] md:text-[14px]">
-              <MdLocationOn className="mr-1 size-5" />
+              <img src={Location} className="mr-1 size-5" />
               <span>lagos, Nigeria</span>
             </p>
           </div>
-          <div className="bg-[#0A0A0A] h-[42px] p-2 rounded-full">
-            <LuHeart className="text-red-500 size-7" />
-          </div>
+          <img src={Love} className="size-12" />
         </div>
         <p className="lg:text-[15px] text-[12px] text-wrap  pb-2 text-[#DADADA]">
           Hey, I’m pretty and good on bed. Give me a message
@@ -33,7 +36,7 @@ const EscortOneItems = () => {
             4.9
           </p>
           <p className="flex justify-between items-center">
-            <LuUserCog2 /> <span className="font-semibold pl-1">(22)</span>
+            <img src={User} /> <span className="font-semibold pl-1">(22)</span>
           </p>
         </div>
       </div>

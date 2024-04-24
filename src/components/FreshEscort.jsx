@@ -4,10 +4,10 @@ import Slider1 from "../images/slider1.png";
 import Location from "../images/location-tick.svg";
 import Whatsapp from "../images/whatsapp.svg";
 
-const BlogEscort = () => {
+const FreshEscort = () => {
   return (
     <div className="bg-[#1E1E1E] text-white mb-14 p-3 rounded-lg">
-      <img className="rounded-lg" src={Slider1} alt="" />
+      <img className="rounded-lg h-[170px] object-cover" src={Slider1} alt="" />
       <div className="flex justify-between py-3">
         <div>
           <h4 className="font-semibold pb-2">Sandra Kiss</h4>
@@ -37,4 +37,4 @@ const BlogEscort = () => {
   );
 };
 
-export default BlogEscort;
+export default FreshEscort;

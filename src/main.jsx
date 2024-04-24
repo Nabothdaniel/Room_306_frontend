@@ -21,6 +21,8 @@ import Faqs from "./pages/Faqs.jsx";
 import ProfileMenu from "./pages/ProfileMenu.jsx";
 import EscortDetailsThree from "./pages/EscortDetails/EscortDetailsThree.jsx";
 import EscortDetailsFour from "./pages/EscortDetails/EscortDetailsFour.jsx";
+import Tours from "./pages/Tours.jsx";
+import Rooms from "./pages/Rooms.jsx";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
       {
         path: "/profileMnu",
         element: <ProfileMenu />,
+      },
+      {
+        path: "/tours",
+        element: <Tours />,
+      },
+      {
+        path: "/rooms",
+        element: <Rooms />,
       },
       {
         path: "/testimonials",

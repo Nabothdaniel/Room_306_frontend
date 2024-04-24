@@ -95,7 +95,7 @@ const SideBar = () => {
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
-                  } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                  }  gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
                 >
                   <img src={Message} className=" size-6 md:size-8" />
                   <span
@@ -111,17 +111,17 @@ const SideBar = () => {
             <div className="relative">
               <NavLink
                 onClick={() => dispatch(navClick(false))}
-                to={"/"}
+                to={"/tours"}
                 className={({ isActive }) =>
                   isActive
-                    ? " active  before:contents-[''] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                    ? " active  before:contents-[''] md:before:top-[19px] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
                     : ""
                 }
               >
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
-                  } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                  }  gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
                 >
                   <img src={Map} className=" size-6 md:size-8" />
                   <span
@@ -147,7 +147,7 @@ const SideBar = () => {
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
-                  } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                  }  gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
                 >
                   <img src={Video} className=" size-6 md:size-8" />
                   <span
@@ -173,7 +173,7 @@ const SideBar = () => {
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
-                  } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                  }  gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
                 >
                   <img src={Like} className=" size-6 md:size-8" />
                   <span
@@ -199,7 +199,7 @@ const SideBar = () => {
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
-                  } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                  }  gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
                 >
                   <img src={Book} className=" size-6 md:size-8" />
                   <span
@@ -208,6 +208,32 @@ const SideBar = () => {
                     } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
                   >
                     Events
+                  </span>
+                </li>
+              </NavLink>
+            </div>
+            <div className="relative">
+              <NavLink
+                onClick={() => dispatch(navClick(false))}
+                to={"/rooms"}
+                className={({ isActive }) =>
+                  isActive
+                    ? " active  before:contents-[''] md:before:top-[19px] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                    : ""
+                }
+              >
+                <li
+                  className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
+                    open ? "md:pl-8 pl-9" : "justify-center"
+                  }  gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                >
+                  <img src={Video} className=" size-6 md:size-8" />
+                  <span
+                    className={`${
+                      !open && "hidden"
+                    } origin-right text-white hover:text-[#FDF2C5] text-[14px] md:text-[15px]  duration-700`}
+                  >
+                    Rooms
                   </span>
                 </li>
               </NavLink>
@@ -225,7 +251,7 @@ const SideBar = () => {
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "pl-8" : "justify-center"
-                  } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                  }  gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
                 >
                   <img src={Wallet} className=" size-6 md:size-8" />
                   <span
@@ -254,7 +280,7 @@ const SideBar = () => {
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
-                  } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                  }  gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
                 >
                   <img src={Blogger} className=" size-6 md:size-8" />
                   <span
@@ -280,7 +306,7 @@ const SideBar = () => {
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
-                  } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                  }  gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
                 >
                   <img src={Profile} className=" size-6 md:size-8" />
                   <span
@@ -306,7 +332,7 @@ const SideBar = () => {
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
-                  } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                  }  gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
                 >
                   <img src={Faqs} className=" size-6 md:size-8" />
                   <span
@@ -324,7 +350,7 @@ const SideBar = () => {
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
-                  } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                  }  gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
                 >
                   <img src={Users} className=" size-6 md:size-8" />
                   <span
@@ -352,7 +378,7 @@ const SideBar = () => {
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
-                  } font-semibold gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
+                  } gap-x-4 duration-700 text-[#D2B6B6] cursor-pointer hover:bg-[#1B1717] hover:text-[#FDF2C5]`}
                 >
                   <img src={LogOut} className=" size-6 md:size-8" />
                   <span

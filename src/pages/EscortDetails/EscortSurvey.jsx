@@ -8,7 +8,7 @@ const EscortSurvey = () => {
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
 
-      <div className="flex-1 md:w-[80%] px-4 pt-6 md:pt-14 md:px-10">
+      <div className="flex-1 md:w-[80%] px-4 pb-8 pt-6 md:pt-14 md:px-10">
         <Navbar
           Headervalue={"Welcome to Room 306"}
           textValue={"Explore our escort at your own pace"}

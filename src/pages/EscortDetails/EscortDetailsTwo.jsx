@@ -279,6 +279,17 @@ const EscortDetailsTwo = () => {
                     </label>
                   </div>
                 </div>
+                <Input
+                  labelValue={"Language Spoken"}
+                  required={'*'}
+                  labelClass={"text-white pb-2 font-semibold text-[16px]"}
+                  inputType={"text"}
+                  inputName={"language"}
+                  inputClass={
+                    "bg-[#F0F2F5] py-3 px-4 md:mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
+                  }
+                  holder={"Enter Here"}
+                />
               </div>
             </div>
 

@@ -14,9 +14,9 @@ const AdminModel = ({ handleAdmin, adminClass }) => {
       <div
         className={`bg-black/40 duration-500 ${adminClass} fixed top-0 z-[999999] left-0 w-[100%] h-screen flex justify-center items-center`}
       >
-        <div className="bg-white flex flex-col  w-[380px] z-[9999999] rounded-2xl mx-auto ">
+        <div className="bg-white flex flex-col w-[80%]  md:w-[380px] z-[9999999] rounded-2xl mx-auto ">
           <div className="border-b-2 p-4 flex justify-between items-center font-semibold px-5 text-[20px] border-[#F1D6D6]">
-            <h3>Contact Admin via Email</h3>
+            <h3 className="text-[16px] md:text-[20px]">Contact Admin via Email</h3>
             <img
               onClick={handleAdmin}
               className="size-3 cursor-pointer"
@@ -27,17 +27,17 @@ const AdminModel = ({ handleAdmin, adminClass }) => {
           <div className="py-9 px-8">
             <button
               onClick={() => {
-                handleAdmin()
-                handleSupport()
+                handleAdmin();
+                handleSupport();
               }}
-              className="bg-[#E9CB50] w-[303px] text-[14px] h-[48px] font-semibold rounded-xl"
+              className="bg-[#E9CB50] w-[100%] md:w-[303px] text-[14px] h-[48px] font-semibold rounded-xl"
             >
               Email Admin
             </button>
             <Link
               onClick={handleAdmin}
               to={"/faqs"}
-              className="bg-[#876F0E] block text-center w-[303px] text-[14px] py-[15px] text-white mt-3 font-semibold rounded-xl"
+              className="bg-[#876F0E] block text-center w-[100%] md:w-[303px] text-[14px] py-[15px] text-white mt-3 font-semibold rounded-xl"
             >
               Go to FAQs
             </Link>

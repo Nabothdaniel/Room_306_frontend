@@ -57,8 +57,8 @@ const EscortDetailsFive = () => {
                   </li>
                 </ol>
                 <div className="bg-[#676767]  mt-8 h-[280px] md:max-w-[300px]  rounded-xl "></div>
-                <div className="mt-4 md:w-[15%] flex justify-between">
-                  <button className="bg-[#CD2727] mr-5 w-[100%] py-4 md:w-[120px] font-medium rounded-xl">
+                <div className="mt-4 flex md:justify-start justify-between">
+                  <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-4 md:w-[120px] font-medium rounded-xl">
                     Delete
                   </button>
                   <Link

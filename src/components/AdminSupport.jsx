@@ -2,14 +2,16 @@ import React from "react";
 import Close from "../images/close-icon.svg";
 import Input from "./Input";
 
-const AdminSupport = ({supportClass, handleSupport}) => {
+const AdminSupport = ({ supportClass, handleSupport }) => {
   return (
     <div
-      className={`bg-black/40 duration-500 ${supportClass} fixed top-0 z-[999] left-0 w-[100%] h-screen flex justify-center items-center`}
+      className={`bg-black/40 duration-500 ${supportClass} fixed top-0 z-[99999999] left-0 w-[100%] h-screen flex justify-center items-center`}
     >
-      <div className="bg-white flex flex-col w-[533px] z-[9999] rounded-2xl mx-5 ">
+      <div className="bg-white flex flex-col w-[80%] md:w-[533px] z-[999999999] rounded-2xl mx-5 ">
         <div className="border-b-2 p-4 flex justify-between items-center font-semibold px-5 text-[20px] border-[#F1D6D6]">
-          <h3 className="text-[#2D2D2D]">Admin Support Via Email</h3>
+          <h3 className="text-[#2D2D2D] text-[16px] md:text-[20px]">
+            Admin Support Via Email
+          </h3>
           <img
             onClick={handleSupport}
             className="size-3 cursor-pointer"
@@ -52,7 +54,10 @@ const AdminSupport = ({supportClass, handleSupport}) => {
             ></textarea>
           </label>
           <div className="flex justify-end pt-6 pb-1">
-            <button onClick={handleSupport} className="bg-transparent text-[#171717] mr-1 text-[14px] h-[48px] w-[92px] font-semibold rounded-xl">
+            <button
+              onClick={handleSupport}
+              className="bg-transparent text-[#171717] mr-1 text-[14px] h-[48px] w-[92px] font-semibold rounded-xl"
+            >
               Cancel
             </button>
             <button className="bg-[#E9CB50] text-[#171717] text-[14px] h-[48px] w-[92px] font-semibold rounded-xl">

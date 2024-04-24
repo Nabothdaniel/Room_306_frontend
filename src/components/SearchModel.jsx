@@ -16,9 +16,13 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
     return <p>loading</p>;
   }
 
+  console.log(data);
+
   const countries = [...new Set(data.map((item) => item.country))];
 
   countries.sort();
+
+  
 
   const handleCountry = (e) => {
     let states = data.filter((state) => state.country === e.target.value);

@@ -11,7 +11,7 @@ const Events = () => {
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />
 
-      <div className="flex-1 md:w-[80%] pt-6 md:pt-14 px-3 md:px-6 lg:px-10">
+      <div className="flex-1 md:w-[80%] pt-4 md:pt-14 px-3 md:px-6 lg:px-10">
         <Navbar
           Headervalue={"Best Escort Room"}
           textValue={"Explore our rooms and activities"}

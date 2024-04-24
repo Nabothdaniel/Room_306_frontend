@@ -62,8 +62,8 @@ const EscortDetailsSecFive = () => {
                   />
                   <div className="bg-[#676767] h-[330px] w-[100%] md:max-w-[280px] rounded-xl "></div>
                 </div>
-                <div className="mt-4 flex justify-between md:w-[15%]">
-                  <button className="bg-[#CD2727] mr-5 w-[100%] py-4 md:w-[120px] font-semibold rounded-xl">
+                <div className="mt-4 flex justify-between md:justify-start">
+                  <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-4 md:w-[120px] font-semibold rounded-xl">
                     Delete
                   </button>
                   <Link to={'/signup/escort/6'} className="bg-[#E9CB50] text-center block w-[100%] text-[#171717] py-4 md:w-[120px] font-semibold rounded-xl">

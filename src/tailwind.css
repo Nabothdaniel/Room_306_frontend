@@ -39,12 +39,12 @@ body {
   background-color: blue;
 }
 
-/* Track */
+
 ::-webkit-scrollbar-track {
   background-color: #1b1717;
 }
 
-/* Handle */
+
 ::-webkit-scrollbar-thumb {
   background-color: #888;
   border-radius: 5px;
@@ -81,9 +81,7 @@ body {
   background-color: #e9cb50;
 }
 
-/* body {
-  background: hsla(180, 5%, 96%, 0.89);
-} */
+
 html {
   background: #121212;
 }
@@ -148,7 +146,7 @@ a {
   width: 25px;
   border: 1px solid #a0a8b5;
   background-color: #fff;
-  
+
   border-radius: 50%;
 }
 

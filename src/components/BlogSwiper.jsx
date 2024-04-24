@@ -6,7 +6,7 @@ import { Autoplay } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import BlogEscort from "./BlogEscort";
+import FreshEscort from "./FreshEscort";
 
 export const BlogSwiper = () => {
   const names = ["James", "Paul", "John", "George", "Ringo", 1, 2, 3, 4, 5, 6];
@@ -38,7 +38,7 @@ export const BlogSwiper = () => {
         {names.map((item) => {
           return (
             <SwiperSlide className=" swiper-1" key={item}>
-              <BlogEscort />
+              <FreshEscort />
             </SwiperSlide>
           );
         })}

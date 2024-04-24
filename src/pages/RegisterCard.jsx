@@ -14,15 +14,15 @@ const RegisterCard = () => {
           textValue={"Explore our escort at your own pace"}
         />
 
-        <div className="py-8 px-2">
+        <div className="md:py-8 px-2">
           <div className="flex justify-between pt-8 ">
             <h2 className="text-white py-4 pb-10 md:text-2xl text-xl font-semibold">
               Create An Account
             </h2>
           </div>
           <div>
-            <div className="flex flex-col md:flex-row gap-y-8 md:gap-y-0 items-center  md:items-start gap-x-4 lg:gap-x-8">
-              <div className="bg-[#1E1E1E] md:h-[720px] lg:h-full rounded-xl py-7 px-6 w-[100%] sm:w-[350px]">
+            <div className="flex flex-col md:grid md:grid-cols-2 lg:flex-row lg:flex gap-y-8 md:gap-y-0 items-center  md:items-start gap-x-4 lg:gap-x-8">
+              <div className="bg-[#1E1E1E] md:h-[650px] md:w-[100%] lg:w-[400px] lg:h-full rounded-xl py-7 px-6 w-[100%] sm:w-[350px]">
                 <h3 className="text-[#F2D870] text-[18px]">
                   Register as Independent Escort
                 </h3>
@@ -73,7 +73,7 @@ const RegisterCard = () => {
                   Register Here
                 </Link>
               </div>
-              <div className="bg-[#1E1E1E] rounded-xl md:h-[720px] h-[640px] lg:h-[640px] py-7 px-6 w-[100%] sm:w-[350px]">
+              <div className="bg-[#1E1E1E] rounded-xl md:h-[650px] lg:w-[400px] md:w-[100%] h-[640px] lg:h-[640px] py-7 px-6 w-[100%] sm:w-[350px]">
                 <h3 className="text-[#F2D870] text-[18px]">
                   Register as a Guest/Client
                 </h3>
