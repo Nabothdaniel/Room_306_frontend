@@ -25,6 +25,14 @@
       "dest": "/"
     },
     {
+      "src": "/new-tours",
+      "dest": "/"
+    },
+    {
+      "src": "/new-adverts",
+      "dest": "/"
+    },
+    {
       "src": "/rooms",
       "dest": "/"
     },

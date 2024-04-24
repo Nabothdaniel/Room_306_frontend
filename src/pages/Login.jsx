@@ -13,9 +13,9 @@ const Login = ({ loginControl, loginClass }) => {
 
   return (
     <div
-      className={`bg-black/40 duration-500 fixed top-0 z-[999] ${loginClass} left-0 w-[100%] h-screen flex justify-center items-center`}
+      className={`bg-black/40 duration-500 fixed top-0 z-[999999] ${loginClass} left-0 w-[100%] h-screen flex justify-center items-center`}
     >
-      <div className="bg-[#1E1E1E] flex pt-20 flex-col w-[500px] relative text-white z-[9999] rounded-xl px-8 py-3 mx-5 ">
+      <div className="bg-[#1E1E1E] flex pt-20 flex-col w-[500px] relative text-white z-[9999999] rounded-xl px-8 py-3 mx-5 ">
         <LiaTimesSolid
           onClick={() => {
             loginControl(false);

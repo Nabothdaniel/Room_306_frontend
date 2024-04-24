@@ -3,7 +3,9 @@ import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Frame from "../images/Frame.svg";
 import Input from "../images/Input.svg";
-import Profile from "../images/profile.jpeg";
+import AdvertsItem from "../components/AdvertsItem";
+import Pagination from "../components/Pagination";
+import { Link } from "react-router-dom";
 
 const Adverts = () => {
   return (
@@ -15,34 +17,29 @@ const Adverts = () => {
           textValue={"Advert for best escorts and activities"}
         />
 
-        <div className="px-4 md:px-0">
-          <div className="flex pb-4 justify-between items-center pt-10">
-            <h1 className="text-white font-semibold text-[24px] flex items-center">
-              Classified Ads <img className="size-9 ml-3" src={Frame} alt="" />{" "}
+        <div className="px-4 md:px-0 pb-10">
+          <div className="flex pb-4 justify-between items-center pt-5 md:pt-10">
+            <h1 className="text-white font-semibold md:text-[24px] text-[16px] flex items-center">
+              Classified Ads{" "}
+              <Link to={"/new-adverts"}>
+                <img className="size-9 ml-3" src={Frame} alt="" />
+              </Link>
             </h1>
             <p className="text-white cursor-pointer">
               <img className="" src={Input} alt="" />
             </p>
           </div>
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-            <div className="bg-[#1E1E1E] relative rounded-3xl p-7 ">
-              <div className="flex justify-between">
-                <div className="block profile">
-                  <img
-                    src={Profile}
-                    className="object-cover w-full h-full rounded-full"
-                    alt=""
-                  />
-                </div>
-                <div>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Nesciunt molestiae amet, quibusdam ipsam numquam unde animi
-                  vel iure magni minus hic ducimus ratione deleniti consequuntur
-                  cumque nihil. Expedita, fuga vel.
-                </div>
-              </div>
-            </div>
+          <div className="grid xl:grid-cols-2 grid-cols-1 gap-4">
+            <AdvertsItem />
+            <AdvertsItem />
+            <AdvertsItem />
+            <AdvertsItem />
+            <AdvertsItem />
+            <AdvertsItem />
+            <AdvertsItem />
+            <AdvertsItem />
           </div>
+          <Pagination />
         </div>
       </div>
     </div>

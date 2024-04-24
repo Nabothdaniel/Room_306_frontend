@@ -23,6 +23,9 @@ import EscortDetailsThree from "./pages/EscortDetails/EscortDetailsThree.jsx";
 import EscortDetailsFour from "./pages/EscortDetails/EscortDetailsFour.jsx";
 import Tours from "./pages/Tours.jsx";
 import Rooms from "./pages/Rooms.jsx";
+import AddTours from "./pages/AddTours.jsx";
+import Adverts from "./pages/Adverts.jsx";
+import AddAdverts from "./pages/AddAdverts.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,10 +36,18 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <Dashboard />,
       },
-
       {
-        path: "/profile",
-        element: <Profile />,
+        path: "/adverts",
+        element: <Adverts />,
+      },
+      
+      {
+        path: "/new-tours",
+        element: <AddTours />,
+      },
+      {
+        path: "/new-adverts",
+        element: <AddAdverts />,
       },
       {
         path: "/blogs",

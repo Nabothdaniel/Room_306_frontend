@@ -163,10 +163,10 @@ const SideBar = () => {
             <div className="relative">
               <NavLink
                 onClick={() => dispatch(navClick(false))}
-                to={"/"}
+                to={"/adverts"}
                 className={({ isActive }) =>
                   isActive
-                    ? " active  before:contents-[''] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                    ? " active  before:contents-[''] md:before:top-[20px] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
                     : ""
                 }
               >
