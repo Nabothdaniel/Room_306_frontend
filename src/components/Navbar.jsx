@@ -106,7 +106,7 @@ const Navbar = ({ Headervalue, textValue }) => {
         SearchClass={`${!openSearch ? "translate-x-[120vw]" : "translate-x-0"}`}
         handleSearch={handleSearch}
       />
-      <ProfileModel />
+      {/* <ProfileModel /> */}
     </>
   );
 };
