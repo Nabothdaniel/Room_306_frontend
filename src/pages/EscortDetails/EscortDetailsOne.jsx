@@ -32,7 +32,7 @@ const EscortDetailsOne = () => {
           </div>
           <div className="rounded-xl lg:px-10 md:px-7 px-4 py-6 md:pl-12 md:py-14 bg-[#1E1E1E] ">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-4 lg:gap-y-0 lg:gap-x-12 md:gap-x-5">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-x-12 md:gap-x-4 gap-y-8 lg:col-span-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-x-12 md:gap-x-4 gap-y-3 md:gap-y-8 lg:col-span-2">
                 <Input
                   labelValue={"Username"}
                   labelClass={"font-semibold py-2"}
@@ -40,7 +40,7 @@ const EscortDetailsOne = () => {
                   required={"*"}
                   inputName={"username"}
                   inputClass={
-                    "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={"Enter username"}
                 />
@@ -51,7 +51,7 @@ const EscortDetailsOne = () => {
                   required={""}
                   inputName={"email"}
                   inputClass={
-                    "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
+                    " rounded-xl text-[#102127]  placeholder-[#102127]"
                   }
                   holder={"Enter Email"}
                 />
@@ -62,7 +62,7 @@ const EscortDetailsOne = () => {
                   required={"*"}
                   inputName={"password"}
                   inputClass={
-                    "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={"Enter Password"}
                 />
@@ -73,7 +73,7 @@ const EscortDetailsOne = () => {
                   required={"*"}
                   inputName={"password"}
                   inputClass={
-                    "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
+                    " rounded-xl text-[#102127]  placeholder-[#102127]"
                   }
                   holder={"Enter Password"}
                 />
@@ -84,7 +84,7 @@ const EscortDetailsOne = () => {
                   required={"*"}
                   inputName={"name"}
                   inputClass={
-                    "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={"Enter Display Name"}
                 />
@@ -94,7 +94,7 @@ const EscortDetailsOne = () => {
                     Country <span className="text-[#E9CB50]">*</span>
                   </span>
                   <select
-                    className="px-3 py-[14px] rounded-xl text-[#102127] placeholder-[#102127]"
+                    className="px-3 py-[10px] md:py-[14px] rounded-xl text-[#102127] placeholder-[#102127]"
                     name="country"
                     id="country"
                   >
@@ -118,7 +118,7 @@ const EscortDetailsOne = () => {
                   required={""}
                   inputName={"state-date"}
                   inputClass={
-                    "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={""}
                 />
@@ -156,7 +156,7 @@ const EscortDetailsOne = () => {
                   required={"*"}
                   inputName={"country-code"}
                   inputClass={
-                    "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={"Select"}
                 />
@@ -201,7 +201,7 @@ const EscortDetailsOne = () => {
             </div>
             <Link
               to={"/signup/escort/1"}
-              className="text-center block bg-[#E9CB50] w-[100%] py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
+              className="text-center block bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
             >
               Next
             </Link>

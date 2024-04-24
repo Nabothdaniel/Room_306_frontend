@@ -34,14 +34,14 @@ const EscortDetailsTwo = () => {
               Additional Details
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-x-16 md:gap-x-6 gap-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-x-16 md:gap-x-6 gap-y-4 md:gap-y-8">
               <Input
                 labelValue={"Education"}
                 inputType={"text"}
                 required={"*"}
                 inputName={"education"}
                 inputClass={
-                  "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
+                  " rounded-xl text-[#102127] placeholder-[#102127]"
                 }
                 holder={"Select"}
               />
@@ -51,7 +51,7 @@ const EscortDetailsTwo = () => {
                 required={"*"}
                 inputName={"occupation"}
                 inputClass={
-                  "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
+                  " rounded-xl text-[#102127]  placeholder-[#102127]"
                 }
                 holder={"Enter Here"}
               />
@@ -72,14 +72,14 @@ const EscortDetailsTwo = () => {
               <h3 className="text-xl font-semibold  text-white pt-3">
                 Body Details <span className="text-[#E9CB50]">*</span>
               </h3>
-              <div className="grid md:col-span-2 lg:gap-x-16 md:gap-x-6 gap-y-8 md:grid-cols-2">
+              <div className="grid md:col-span-2 lg:gap-x-16 md:gap-x-6 gap-y-4 md:gap-y-8 md:grid-cols-2">
                 <label className="text-white flex flex-col" htmlFor="ethnicity">
                   <span className="font-semibold pb-1 ">
                     Ethnicity<span className="text-[#E9CB50]">*</span>
                   </span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="ethnicity"
                       id="ethnicity"
                     >
@@ -103,7 +103,7 @@ const EscortDetailsTwo = () => {
                   </span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="bust-size"
                       id="bust-size"
                     >
@@ -127,7 +127,7 @@ const EscortDetailsTwo = () => {
                   required={"*"}
                   inputName={"occupation"}
                   inputClass={
-                    "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
+                    " rounded-xl text-[#102127]  placeholder-[#102127]"
                   }
                   holder={"Enter Here"}
                 />
@@ -138,7 +138,7 @@ const EscortDetailsTwo = () => {
                   required={"*"}
                   inputName={"occupation"}
                   inputClass={
-                    "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
+                    " rounded-xl text-[#102127]  placeholder-[#102127]"
                   }
                   holder={"Enter Here"}
                 />
@@ -148,7 +148,7 @@ const EscortDetailsTwo = () => {
                   </span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="build"
                       id="build"
                     >
@@ -178,7 +178,7 @@ const EscortDetailsTwo = () => {
                   </span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="looks"
                       id="looks"
                     >
@@ -226,7 +226,7 @@ const EscortDetailsTwo = () => {
                   </span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="sexual-orientation"
                       id="sexual-orientation"
                     >
@@ -293,7 +293,7 @@ const EscortDetailsTwo = () => {
               </div>
             </div>
 
-            <button className="bg-[#E9CB50] w-[100%] py-4 md:w-[120px] font-semibold mt-12 rounded-xl">
+            <button className="bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl">
               Next
             </button>
           </div>

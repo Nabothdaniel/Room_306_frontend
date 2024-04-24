@@ -40,7 +40,7 @@ const EscortDetailsFour = () => {
               </span>
               <div className=" max-w-[900px] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                 <select
-                  className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                  className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                   name="currency"
                   id="currency"
                 >
@@ -61,7 +61,7 @@ const EscortDetailsFour = () => {
                 </span>
                 <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                   <select
-                    className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                    className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                     name="1-hour"
                     id="1-hour"
                   >
@@ -88,7 +88,7 @@ const EscortDetailsFour = () => {
                 </span>
                 <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                   <select
-                    className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                    className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                     name="overnight"
                     id="overnight"
                   >
@@ -115,7 +115,7 @@ const EscortDetailsFour = () => {
                 </span>
                 <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                   <select
-                    className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                    className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                     name="weekend"
                     id="weekend"
                   >
@@ -134,12 +134,12 @@ const EscortDetailsFour = () => {
                 </div>
               </label>
               <div className="mt-12 flex md:justify-start justify-between">
-                <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-4 md:w-[120px] font-medium rounded-xl">
+                <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-3 md:py-4 md:w-[120px] font-medium rounded-xl">
                   Delete
                 </button>
                 <Link
                   to={"/signup/escort/5"}
-                  className="bg-[#E9CB50] block text-center w-[100%] text-[#171717] py-4 md:w-[120px] font-medium rounded-xl"
+                  className="bg-[#E9CB50] block text-center w-[100%] text-[#171717] py-3 md:py-4 md:w-[120px] font-medium rounded-xl"
                 >
                   Next
                 </Link>

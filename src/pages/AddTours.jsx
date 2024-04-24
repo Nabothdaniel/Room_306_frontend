@@ -47,8 +47,8 @@ const AddTours = () => {
         />
 
         <div className="md:py-5 pb-9 md:pb-12">
-          <div className="pb-6 pt-2 md:pt-8">
-            <h2 className="text-white py-4 text-2xl font-semibold">
+          <div className="md:pb-3 pt-2 md:pt-8">
+            <h2 className="text-white py-4 md:text-2xl font-semibold">
               Add New Tour
             </h2>
           </div>
@@ -76,12 +76,12 @@ const AddTours = () => {
                 }
                 holder={""}
               />
-              <div className="grid grid-cols-3 gap-x-3 pt-5">
+              <div className="grid md:grid-cols-3 gap-y-3 gap-x-3 pt-5">
                 <label className="text-white flex flex-col" htmlFor="country">
                   <span className="font-semibold pb-1">Country</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="country"
                       id="country"
                       value={country}
@@ -105,7 +105,7 @@ const AddTours = () => {
                   <span className="font-semibold pb-1">State</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="state"
                       id="state"
                       value={State}
@@ -129,7 +129,7 @@ const AddTours = () => {
                   <span className="font-semibold pb-1">City</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="city"
                       id="city"
                       value={cities}

@@ -19,14 +19,14 @@ const AdminSupport = ({ supportClass, handleSupport }) => {
             alt=""
           />
         </div>
-        <div className="py-5 text-[#475367] px-8">
+        <div className="py-5 text-[#475367] px-4 md:px-8">
           <Input
             labelValue={"Enter Name"}
             labelClass={"text-[#475367] pb-2 font-semibold text-[14px]"}
             inputType={"text"}
             inputName={"name"}
             inputClass={
-              "bg-[#F0F2F5] py-3 px-4 mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
+              "bg-[#F0F2F5] px-4 mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
             }
             holder={"Enter Name Here"}
           />
@@ -36,7 +36,7 @@ const AdminSupport = ({ supportClass, handleSupport }) => {
             inputType={"email"}
             inputName={"email"}
             inputClass={
-              "bg-[#F0F2F5] py-3 px-4 rounded-xl placeholder-[#102127] text-[#102127]"
+              "bg-[#F0F2F5] px-4 rounded-xl placeholder-[#102127] text-[#102127]"
             }
             holder={"Enter Email Here"}
           />

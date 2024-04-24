@@ -52,7 +52,7 @@ const AddAdverts = () => {
               Create Classified Ads
             </h2>
           </div>
-          <div className="rounded-xl lg:px-10 grid grid-cols-1 md:grid-cols-2 lg:gap-x-14 md:gap-x-8 gap-x-4 gap-y-6 px-4  md:py-6 md:px-12  bg-[#1E1E1E] ">
+          <div className="rounded-xl lg:px-10 grid grid-cols-1 md:grid-cols-2 lg:gap-x-14 md:gap-x-8 gap-x-4 gap-y-3 md:gap-y-6 px-4  md:py-6 md:px-12  bg-[#1E1E1E] ">
             <label
               className="text-[#475367] pt-5 flex flex-col"
               htmlFor="looking"
@@ -62,7 +62,7 @@ const AddAdverts = () => {
               </span>
               <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                 <select
-                  className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                  className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                   name="looking"
                   id="looking"
                 >
@@ -80,10 +80,12 @@ const AddAdverts = () => {
             <Input
               labelValue={"Start Date"}
               inputType={"date"}
-              labelClass={"font-semibold pt-4 py-2"}
+              labelClass={"font-semibold md:pt-4 py-2"}
               required={""}
               inputName={"state-date"}
-              inputClass={"p-3 rounded-xl text-[#102127] placeholder-[#102127]"}
+              inputClass={
+                "md:p-3 py-[6px] px-3 rounded-xl text-[#102127] placeholder-[#102127]"
+              }
               holder={""}
             />
             <Input
@@ -93,7 +95,7 @@ const AddAdverts = () => {
               inputType={"text"}
               inputName={"title"}
               inputClass={
-                "bg-[#F0F2F5] py-3 px-4 md:mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
+                "bg-[#F0F2F5] md:py-3 py-[7px] px-4 md:mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
               }
               holder={"E.g Room"}
             />
@@ -104,18 +106,18 @@ const AddAdverts = () => {
               inputType={"text"}
               inputName={"amount"}
               inputClass={
-                "bg-[#F0F2F5] py-3 px-4 md:mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
+                "bg-[#F0F2F5] md:py-3 py-[8px] px-4 md:mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
               }
               holder={"E.g 100"}
             />
-            <div className="grid md:grid-cols-3  md:col-span-2 gap-x-4 gap-y-4  lg:gap-x-8 pt-5">
+            <div className="grid md:grid-cols-3  md:col-span-2 gap-x-4 gap-y-4  lg:gap-x-8 md:pt-5">
               <label className="text-white flex flex-col" htmlFor="country">
                 <span className="font-semibold pb-1">
                   Country <span className="text-[#E9CB50]">*</span>
                 </span>
                 <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                   <select
-                    className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                    className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                     name="country"
                     id="country"
                     value={country}
@@ -141,7 +143,7 @@ const AddAdverts = () => {
                 </span>
                 <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                   <select
-                    className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                    className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                     name="state"
                     id="state"
                     value={State}
@@ -165,7 +167,7 @@ const AddAdverts = () => {
                 <span className="font-semibold pb-1">City</span>
                 <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                   <select
-                    className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                    className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                     name="city"
                     id="city"
                     value={cities}
@@ -189,7 +191,7 @@ const AddAdverts = () => {
                 required={"*"}
                 inputName={"heading"}
                 inputClass={
-                  "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
+                  "md:p-3 px-3 py-[7px] rounded-xl text-[#102127] placeholder-[#102127]"
                 }
                 holder={"Your Description"}
                 col={""}

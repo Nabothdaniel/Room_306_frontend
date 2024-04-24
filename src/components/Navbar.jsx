@@ -10,18 +10,19 @@ import Logo from "../images/logo.png";
 import { useSelector, useDispatch } from "react-redux";
 import { navClick } from "../redux/UtilSlice";
 import SearchModel from "./SearchModel";
+import ProfileModel from "./ProfileModel";
 
 const Navbar = ({ Headervalue, textValue }) => {
   const [user, setUser] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
-  const [openSearch, setOpenSearch] = useState(false)
+  const [openSearch, setOpenSearch] = useState(false);
   const open = useSelector((state) => state.Util.navOpen);
 
   const dispatch = useDispatch();
 
   const handleSearch = () => {
-    setOpenSearch(!openSearch)
-  }
+    setOpenSearch(!openSearch);
+  };
 
   return (
     <>
@@ -88,7 +89,7 @@ const Navbar = ({ Headervalue, textValue }) => {
               </Link>
               <button
                 onClick={() => setOpenLogin(!openLogin)}
-                className="bg-[#E9CB50] text-[#171717] font-medium rounded-xl w-[70px] py-2 md:py-3 md:w-[90px]"
+                className="bg-[#E9CB50] text-[#171717] font-medium rounded-xl w-[70px] md:py-3 md:w-[90px]"
               >
                 Login
               </button>
@@ -105,8 +106,9 @@ const Navbar = ({ Headervalue, textValue }) => {
         SearchClass={`${!openSearch ? "translate-x-[120vw]" : "translate-x-0"}`}
         handleSearch={handleSearch}
       />
+      <ProfileModel />
     </>
-  )
+  );
 };
 
 export default Navbar;

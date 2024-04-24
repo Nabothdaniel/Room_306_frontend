@@ -15,13 +15,13 @@ const ClienDetails = () => {
             textValue={"Explore our escort at your own pace"}
           />
 
-          <div className="py-8">
+          <div className="md:py-8">
             <h2 className="text-white py-4 pb-6 text-2xl font-semibold">
               Client Details
             </h2>
             <div className="rounded-xl px-4 md:px-6 lg:px-10 md:pl-12 pt-8 md:py-14 pb-8 bg-[#1E1E1E] ">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-4 lg:gap-y-0 gap-x-12 ">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-x-12 gap-x-5 gap-y-8 lg:col-span-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-x-12 gap-x-5 gap-y-4 md:gap-y-8 lg:col-span-2">
                   <Input
                     labelValue={"Username"}
                     inputType={"text"}
@@ -78,7 +78,7 @@ const ClienDetails = () => {
                       Country <span className="text-[#E9CB50]">*</span>
                     </span>
                     <select
-                      className="px-3 py-[14px] rounded-xl text-[#102127] placeholder-[#102127]"
+                      className="px-3 py-[10px] md:py-[14px] rounded-xl text-[#102127] placeholder-[#102127]"
                       name="country"
                       id="country"
                     >
@@ -156,7 +156,7 @@ const ClienDetails = () => {
                   </div>
                 </div>
               </div>
-              <button className="bg-[#E9CB50] w-[100%] py-4 md:w-[200px] font-semibold mt-10 rounded-xl">
+              <button className="bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[200px] font-semibold mt-5 md:mt-10 rounded-xl">
                 Sign up as a client
               </button>
             </div>
