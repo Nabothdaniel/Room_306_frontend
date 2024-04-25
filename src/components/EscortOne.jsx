@@ -11,10 +11,14 @@ import EscortOneItems from "./EscortOneItems";
 const EscortOne = () => {
   const names = ["James", "Paul", "John", "George", "Ringo", 1, 2, 3, 4, 5, 6];
   return (
-    <div className="flex-1 max-w-[1530px] pt-9 py-8 px-2">
+    <div className="flex-1 max-w-[1530px] pt-2 py-8 md:pt-12 px-2">
       <div className="flex pb-4 justify-between items-center">
-        <h1 className="text-white font-semibold text-[24px]">Top Escort</h1>
-        <p className="text-white cursor-pointer">See all</p>
+        <h1 className="text-white font-semibold text-[18px] md:text-[24px]">
+          Top Escort
+        </h1>
+        <p className="text-white cursor-pointer text-[14px] lg:text-base">
+          See all
+        </p>
       </div>
 
       <div className=" text-white">

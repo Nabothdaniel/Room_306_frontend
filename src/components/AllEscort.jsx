@@ -20,9 +20,13 @@ const AllEscort = () => {
 
   return (
     <div className="py-14 bg-[#121212] px-2">
-      <div className="flex pb-4 justify-between items-center">
-        <h1 className="text-white font-semibold text-[24px]">All Escort</h1>
-        <p className="text-white cursor-pointer">See all</p>
+      <div className="flex pb-4 justify-between px-2 items-center">
+        <h1 className="text-white font-semibold text-[18px] md:text-[24px]">
+          All Escort
+        </h1>
+        <p className="text-white cursor-pointer text-[14px] md:text-base">
+          See all
+        </p>
       </div>
       <AllEscortTags />
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-8">

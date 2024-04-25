@@ -15,8 +15,8 @@ const ClienDetails = () => {
             textValue={"Explore our escort at your own pace"}
           />
 
-          <div className="md:py-8">
-            <h2 className="text-white py-4 pb-6 text-2xl font-semibold">
+          <div className="md:py-8 pb-8">
+            <h2 className="text-white py-2 md:py-4 md:pb-6 md:text-2xl font-semibold">
               Client Details
             </h2>
             <div className="rounded-xl px-4 md:px-6 lg:px-10 md:pl-12 pt-8 md:py-14 pb-8 bg-[#1E1E1E] ">

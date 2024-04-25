@@ -14,9 +14,9 @@ const RegisterCard = () => {
           textValue={"Explore our escort at your own pace"}
         />
 
-        <div className="md:py-8 px-2">
-          <div className="flex justify-between pt-8 ">
-            <h2 className="text-white py-4 pb-10 md:text-2xl text-xl font-semibold">
+        <div className="md:py-8 pb-10 px-2">
+          <div className="flex justify-between pt-2 pb-3 md:pt-8 ">
+            <h2 className="text-white md:py-4 md:pb-10 md:text-2xl text-lg font-semibold">
               Create An Account
             </h2>
           </div>
@@ -26,7 +26,7 @@ const RegisterCard = () => {
                 <h3 className="text-[#F2D870] text-[18px]">
                   Register as Independent Escort
                 </h3>
-                <ul className="pt-10 text-[18px] text-white">
+                <ul className="pt-10 md:text-[18px] text-white">
                   <li className="flex pb-3  items-center">
                     <img className="w-[25px] mr-4" src={Check} alt="" />
                     <span>Add a single profile</span>
@@ -78,7 +78,7 @@ const RegisterCard = () => {
                   Register as a Guest/Client
                 </h3>
                 <div className="flex h-full flex-col justify-between">
-                  <ul className="pt-10 text-[18px] text-white">
+                  <ul className="pt-10 md:text-[18px] text-white">
                     <li className="flex pb-3 items-center">
                       <img className="w-[25px] mr-4" src={Check} alt="" />
                       <span>Featured position</span>

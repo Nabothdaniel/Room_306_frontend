@@ -5,7 +5,7 @@ const App = () => {
   return (
     <>
       <ScrollToTop />
-      <div className="mt-20 md:-mt-4">
+      <div className="mt-[68px] md:-mt-4">
         <Outlet />
       </div>
     </>

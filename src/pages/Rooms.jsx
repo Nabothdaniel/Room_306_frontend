@@ -15,9 +15,9 @@ const Rooms = () => {
           Headervalue={"Best Escort Tours"}
           textValue={"Explore our tours and activities"}
         />
-        <div className="pb-10 pt-2 px-3 md:pl-2">
-          <div className="flex justify-between items-center pb-6">
-            <h2 className="text-white min-w-[180px] py-4 text-[20px] font-semibold">
+        <div className="pb-10 md:pt-8 pt-3 px-3 md:pl-2">
+          <div className="flex justify-between items-center">
+            <h2 className="text-white min-w-[180px] md:py-6 md:text-[20px] font-semibold">
               Rooms Let
             </h2>
             <div className="flex gap-x-3 justify-end">

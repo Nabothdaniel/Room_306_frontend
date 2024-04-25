@@ -4,11 +4,11 @@ const ProfileViewAbout = () => {
   return (
     <div className="pt-10 text-[#DADADA]">
       <h3 className="text-[#B29A9A] pb-4 text-[14px]">Bio</h3>
-      <p className="pb-4 font-semibold">
+      <p className="pb-4 font-semibold text-[15px] lg:text-base">
         Am here to satisfy ur pleasure I love sex most especially blow job (cum
         in my mouth) AVAILABLE FOR INCALL
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-4 pt-3 gap-y-6 md:gap-y-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 text-[15px] pt-3 gap-y-6 md:gap-y-8">
         <div className="flex flex-col justify-center">
           <h4 className="text-[#B29A9A] text-[14px]">Gender</h4>
           <p className="font-semibold">Female</p>

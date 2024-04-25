@@ -17,11 +17,11 @@ const Blog = () => {
           textValue={"Explore our escort at your own Pace"}
         />
         <div
-          className="py-6 pt-10  grid grid-cols-1
+          className="py-6 md:pt-14  grid grid-cols-1
          lg:grid-cols-4 gap-6"
         >
           <div className="lg:col-span-3">
-            <h2 className="text-white font-semibold text-xl pb-2">Blog</h2>
+            <h2 className="text-white font-semibold md:text-xl pb-2">Blog</h2>
             <div className="grid sm:grid-cols-2 gap-6">
               <BlogItems />
               <BlogItems />

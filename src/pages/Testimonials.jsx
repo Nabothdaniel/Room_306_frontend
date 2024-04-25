@@ -23,8 +23,8 @@ const Testimonials = () => {
           textValue={"Explore our rooms and activities"}
         />
         <div className="pb-10">
-          <div className="flex pt-6 justify-between items-center pb-6">
-            <h2 className="text-white py-4 text-[20px] font-semibold">
+          <div className="flex md:pt-8 pt-2 pb-2 justify-between items-center">
+            <h2 className="text-white md:py-6 md:text-[20px] font-semibold">
               Testimonials
             </h2>
 

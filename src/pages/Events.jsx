@@ -17,8 +17,8 @@ const Events = () => {
           textValue={"Explore our rooms and activities"}
         />
         <div className="pb-10 md:pl-2">
-          <div className="flex pt-8 justify-between items-center pb-6">
-            <h2 className="text-white py-4 text-[20px] font-semibold">
+          <div className="flex md:pt-10 pb-2 pl-1 justify-between pt-2 items-center">
+            <h2 className="text-white md:py-6 text-[16px] md:text-[20px] font-semibold">
               All Events
             </h2>
 

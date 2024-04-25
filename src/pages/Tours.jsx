@@ -20,9 +20,13 @@ const Tours = () => {
           textValue={"Explore our tours and activities"}
         />
         <div className="pb-10 px-3 md:pl-2">
-          <div className="flex pb-2 pt-6 md:hidden justify-between items-center">
-            <h1 className="text-white font-semibold text-[24px]">Top Escort</h1>
-            <p className="text-white cursor-pointer">See all</p>
+          <div className="flex pb-2 pt-3 md:pt-6 md:hidden justify-between items-center">
+            <h1 className="text-white font-semibold text-[18px] md:text-[24px]">
+              Top Escort
+            </h1>
+            <p className="text-white cursor-pointer text-[14px] md:text-base">
+              See all
+            </p>
           </div>
           <div className="flex md:pt-10 pb-4 flex-col md:flex-row md:justify-between items-end md:items-center">
             <p className="text-white md:min-w-[230px] flex items-center md:py-4 py-2 lg:text-[20px] font-semibold">

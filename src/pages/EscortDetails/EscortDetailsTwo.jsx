@@ -16,9 +16,9 @@ const EscortDetailsTwo = () => {
           textValue={"Explore our escort at your own pace"}
         />
 
-        <div className="md:py-8">
-          <div className="flex justify-between items-center pb-6 pt-8">
-            <h2 className="text-white py-4  text-2xl font-semibold">
+        <div className="md:py-8 pb-8">
+          <div className="flex justify-between items-center md:pb-6 py-2 md:pt-8">
+            <h2 className="text-white md:py-4  md:text-2xl font-semibold">
               Escort Details
             </h2>
 
@@ -40,9 +40,7 @@ const EscortDetailsTwo = () => {
                 inputType={"text"}
                 required={"*"}
                 inputName={"education"}
-                inputClass={
-                  " rounded-xl text-[#102127] placeholder-[#102127]"
-                }
+                inputClass={" rounded-xl text-[#102127] placeholder-[#102127]"}
                 holder={"Select"}
               />
               <Input
@@ -50,9 +48,7 @@ const EscortDetailsTwo = () => {
                 inputType={"text"}
                 required={"*"}
                 inputName={"occupation"}
-                inputClass={
-                  " rounded-xl text-[#102127]  placeholder-[#102127]"
-                }
+                inputClass={" rounded-xl text-[#102127]  placeholder-[#102127]"}
                 holder={"Enter Here"}
               />
               <div className="md:col-span-2">
@@ -281,7 +277,7 @@ const EscortDetailsTwo = () => {
                 </div>
                 <Input
                   labelValue={"Language Spoken"}
-                  required={'*'}
+                  required={"*"}
                   labelClass={"text-white pb-2 font-semibold text-[16px]"}
                   inputType={"text"}
                   inputName={"language"}

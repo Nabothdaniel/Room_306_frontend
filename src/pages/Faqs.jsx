@@ -55,8 +55,8 @@ const Faqs = () => {
           Headervalue={"Asking Any Questions"}
           textValue={"Explore our rooms and activities"}
         />
-        <div className="py-8">
-          <h2 className="text-white py-4 pb-6 text-2xl font-semibold">FAQs</h2>
+        <div className="md:py-8">
+          <h2 className="text-white py-4 pb-6 md:text-2xl font-semibold">FAQs</h2>
           <div className="bg-[url('../images/Mark-group.svg')] mb-5 bg-auto bg-black flex justify-center items-center h-[250px]">
             <div
               className={`bg-[#0A0A0A] p-2 md:py-3 md:px-4 flex items-center rounded-full md:rounded-lg w-[290px]`}
