@@ -25,6 +25,14 @@
       "dest": "/"
     },
     {
+      "src": "/profile-view",
+      "dest": "/"
+    },
+    {
+      "src": "/profile",
+      "dest": "/"
+    },
+    {
       "src": "/new-tours",
       "dest": "/"
     },

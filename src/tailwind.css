@@ -16,14 +16,6 @@ body {
 .swiper {
   width: 100%;
   padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-.swiper-1 {
-  background-position: center;
-  background-size: cover;
-  width: 1000px;
-  height: 10px;
 }
 
 .circle {
@@ -39,11 +31,9 @@ body {
   background-color: blue;
 }
 
-
 ::-webkit-scrollbar-track {
   background-color: #1b1717;
 }
-
 
 ::-webkit-scrollbar-thumb {
   background-color: #888;
@@ -80,7 +70,9 @@ body {
 .swiper-pagination .swiper-pagination-bullet {
   background-color: #e9cb50;
 }
-
+.swiper-pagination {
+  /* margin-bottom: -10px; */
+}
 
 html {
   background: #121212;

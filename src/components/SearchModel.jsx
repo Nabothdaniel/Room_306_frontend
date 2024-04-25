@@ -16,7 +16,7 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
     return <p>loading</p>;
   }
 
-  console.log(data);
+  
 
   const countries = [...new Set(data.map((item) => item.country))];
 
@@ -337,15 +337,15 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                 Availability
               </h3>
               <div className="flex justify-between">
-                <label class="checkContainer">
+                <label className="checkContainer">
                   Incall
                   <input type="checkbox" />
-                  <span class="checkmate"></span>
+                  <span className="checkmate"></span>
                 </label>
-                <label class="checkContainer">
+                <label className="checkContainer">
                   Outcall
                   <input type="checkbox" />
-                  <span class="checkmate"></span>
+                  <span className="checkmate"></span>
                 </label>
               </div>
             </div>

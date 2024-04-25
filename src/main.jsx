@@ -18,7 +18,6 @@ import Blog from "./pages/Blog.jsx";
 import Testimonials from "./pages/Testimonials.jsx";
 import Events from "./pages/Events.jsx";
 import Faqs from "./pages/Faqs.jsx";
-import ProfileMenu from "./pages/ProfileMenu.jsx";
 import EscortDetailsThree from "./pages/EscortDetails/EscortDetailsThree.jsx";
 import EscortDetailsFour from "./pages/EscortDetails/EscortDetailsFour.jsx";
 import Tours from "./pages/Tours.jsx";
@@ -26,6 +25,7 @@ import Rooms from "./pages/Rooms.jsx";
 import AddTours from "./pages/AddTours.jsx";
 import Adverts from "./pages/Adverts.jsx";
 import AddAdverts from "./pages/AddAdverts.jsx";
+import ProfileView from "./pages/ProfileView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +40,10 @@ const router = createBrowserRouter([
         path: "/adverts",
         element: <Adverts />,
       },
-      
+      {
+        path: "/profile-view",
+        element: <ProfileView />,
+      },
       {
         path: "/new-tours",
         element: <AddTours />,
@@ -62,8 +65,8 @@ const router = createBrowserRouter([
         element: <Faqs />,
       },
       {
-        path: "/profileMnu",
-        element: <ProfileMenu />,
+        path: "/profile",
+        element: <Profile />,
       },
       {
         path: "/tours",

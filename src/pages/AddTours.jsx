@@ -18,7 +18,7 @@ const AddTours = () => {
     return <p>loading</p>;
   }
 
-  console.log(data);
+ 
 
   const countries = [...new Set(data.map((item) => item.country))];
 
