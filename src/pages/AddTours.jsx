@@ -12,7 +12,7 @@ const AddTours = () => {
   const [State, setState] = useState("");
   const [cities, setCities] = useState("");
   const { data, isLoading } = useGetCountryQuery();
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState("");
 
   if (isLoading) {
     return <p>loading</p>;
@@ -149,14 +149,27 @@ const AddTours = () => {
                 </label>
               </div>
             </div>
-            <div onClick={() => document.querySelector(".input").click()} className="w-[100%] cursor-pointer">
-              <input type="file" name="file" id="file" className="input" hidden onChange={({ target: { files } }) => {
-               
-                if (files) {
-                  setImage(URL.createObjectURL(files[0]))
-                }
-              }} />
-              {image ? (<img className="rounded-lg w-[80%]" src={image} />) : (<img className="w-[80%] mx-auto " src={Upload} alt="" />)}
+            <div
+              onClick={() => document.querySelector(".input").click()}
+              className="w-[100%] cursor-pointer"
+            >
+              <input
+                type="file"
+                name="file"
+                id="file"
+                className="input"
+                hidden
+                onChange={({ target: { files } }) => {
+                  if (files) {
+                    setImage(URL.createObjectURL(files[0]));
+                  }
+                }}
+              />
+              {image ? (
+                <img className="rounded-lg w-[80%]" src={image} />
+              ) : (
+                <img className="w-[80%] mx-auto " src={Upload} alt="" />
+              )}
             </div>
             <button className="bg-[#E9CB50] text-[#171717] mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl">
               Submit
