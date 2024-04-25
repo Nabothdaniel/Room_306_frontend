@@ -13,9 +13,11 @@ import SearchModel from "./SearchModel";
 import ProfileModel from "./ProfileModel";
 
 const Navbar = ({ Headervalue, textValue }) => {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(true);
   const [openLogin, setOpenLogin] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false)
+  const [openMenu, setOpenMenu] = useState(false)
   const open = useSelector((state) => state.Util.navOpen);
 
   const dispatch = useDispatch();
@@ -23,6 +25,14 @@ const Navbar = ({ Headervalue, textValue }) => {
   const handleSearch = () => {
     setOpenSearch(!openSearch);
   };
+
+  const handleProfile = () => {
+    setOpenProfile(!openProfile)
+  }
+
+  const handleMenu = () => {
+    setOpenMenu(!openMenu)
+  }
 
   return (
     <>
@@ -72,11 +82,35 @@ const Navbar = ({ Headervalue, textValue }) => {
           </div>
 
           {user && (
-            <img
-              className="w-[48px] rounded-full cursor-pointer"
-              src={Avatar}
-              alt=""
-            />
+            <div className="relative">
+              <img
+                onClick={handleProfile}
+                className="w-[48px] rounded-full cursor-pointer"
+                src={Avatar}
+                alt=""
+              />
+              <div
+                className={`absolute ${
+                  openProfile ? "translate-y-0" : "-translate-y-[100vh]"
+                } duration-700 top-14 bg-[#0A0A0A] w-[140px] h-[140px] text-[#FFF5F5] flex flex-col justify-between text-[15px] right-0 rounded-xl py-3 px-3`}
+              >
+                <p className="cursor-pointer hover:text-[#E9CB50] duration-300">
+                  Profile
+                </p>
+                <p
+                  onClick={handleMenu}
+                  className="cursor-pointer hover:text-[#E9CB50] duration-300"
+                >
+                  Profile Menu
+                </p>
+                <p className="cursor-pointer hover:text-[#E9CB50] duration-300">
+                  Switch Account
+                </p>
+                <p className="cursor-pointer hover:text-[#E9CB50] duration-300">
+                  Logout
+                </p>
+              </div>
+            </div>
           )}
 
           {!user && (
@@ -106,7 +140,10 @@ const Navbar = ({ Headervalue, textValue }) => {
         SearchClass={`${!openSearch ? "translate-x-[120vw]" : "translate-x-0"}`}
         handleSearch={handleSearch}
       />
-      {/* <ProfileModel /> */}
+      <ProfileModel
+        handleMenu={handleMenu}
+        menuClass={`${!openMenu ? "translate-x-[120vw]" : "translate-x-0"}`}
+      />
     </>
   );
 };
