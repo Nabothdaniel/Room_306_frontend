@@ -16,7 +16,7 @@ const Rooms = () => {
           textValue={"Explore our tours and activities"}
         />
         <div className="pb-10 md:pt-8 pt-3 px-3 md:pl-2">
-          <div className="flex justify-between items-center">
+          <div className="flex pb-3 md:pb-0 justify-between items-center">
             <h2 className="text-white min-w-[180px] md:py-6 md:text-[20px] font-semibold">
               Rooms Let
             </h2>

@@ -28,7 +28,7 @@ body {
 }
 
 .active {
-  background-color: blue;
+  background-color: black;
 }
 
 ::-webkit-scrollbar-track {

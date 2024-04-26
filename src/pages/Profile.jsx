@@ -87,7 +87,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="border-b-2 pt-6 mt-64 md:mt-48 flex relative font-semibold items-center text-white border-[#393C49] py-3">
-          <p className="mr-10 before:contents-[''] before:absolute before:-bottom-[2px] before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]  ">
+          <p className="mr-10 before:contents-[''] cursor-pointer before:absolute before:-bottom-[2px] before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]  ">
             About
           </p>
           <p className="">Review</p>

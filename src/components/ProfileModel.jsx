@@ -8,6 +8,7 @@ import People from "../images/people.svg";
 import Tag from "../images/tag.svg";
 import Wallet from "../images/wallet-minus.svg";
 import User from "../images/user-tag.svg";
+import { Link, NavLink } from "react-router-dom";
 
 const ProfileModel = ({ menuClass, handleMenu }) => {
   return (
@@ -25,12 +26,18 @@ const ProfileModel = ({ menuClass, handleMenu }) => {
           />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 md:gap-3 gap-2 px-5 py-5 md:py-10">
-          <div className="text-center text-white w-[130px] py-3 px-1 rounded-lg">
+          <NavLink
+            to={"/profile"}
+            style={({ isActive }) => {
+              isActive ? "active" : "";
+            }}
+            className="text-center text-white w-[130px] py-3 px-1 rounded-lg"
+          >
             <img className="size-10 mx-auto" src={User} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">
               View My Profile
             </p>
-          </div>
+          </NavLink>
           <div className="text-center text-white w-[130px] py-3 px-1 rounded-lg ">
             <img className="size-10 mx-auto" src={Tag} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">

@@ -60,9 +60,16 @@ const SideBar = () => {
               <NavLink
                 onClick={() => dispatch(navClick(false))}
                 to={"/dashboard"}
+                style={({ isActive }) =>
+                  isActive ? {
+                    background: '#fff'
+                  } : {
+                    background: '#ddd'
+                  }
+                }
                 className={({ isActive }) =>
                   isActive
-                    ? " active  before:contents-[''] md:before:top-[21px] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
+                    ? " before:contents-[''] md:before:top-[21px] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-white before:w-[6px] before:rounded-xl"
                     : ""
                 }
               >
