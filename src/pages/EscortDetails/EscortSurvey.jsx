@@ -2,6 +2,7 @@ import React from "react";
 import Survey from "../../images/survey.png";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
+import { Link } from "react-router-dom";
 
 const EscortSurvey = () => {
   return (
@@ -33,9 +34,9 @@ const EscortSurvey = () => {
               <p className="text-white px-[15px] text-lg text-center font-semibold py-5">
                 All details has been survey, you can continue your activities
               </p>
-              <button className="bg-[#E9CB50] text-[#171717] py-4 w-[150px] font-medium rounded-xl">
+              <Link to={'/profile'} className="bg-[#E9CB50] text-[#171717] py-4 w-[150px] font-medium rounded-xl">
                 Go to Profile
-              </button>
+              </Link>
             </div>
           </div>
         </div>

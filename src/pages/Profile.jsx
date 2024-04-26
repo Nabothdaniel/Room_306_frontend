@@ -3,7 +3,6 @@ import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Arrow from "../images/arrow-left.svg";
 import User from "../images/profile.jpeg";
-import ProfileViewAbout from "../components/ProfileViewAbout";
 import ProfileAbout from "../components/ProfileAbout";
 
 const Profile = () => {

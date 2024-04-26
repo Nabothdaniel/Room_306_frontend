@@ -62,7 +62,7 @@ const EscortDetailsFive = () => {
                     Delete
                   </button>
                   <Link
-                    to={"/signup/escort/5"}
+                    to={"/verification"}
                     className="bg-[#E9CB50] block text-center w-[100%] text-[#171717] py-4 md:w-[120px] font-medium rounded-xl"
                   >
                     Next

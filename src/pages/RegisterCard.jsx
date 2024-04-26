@@ -67,7 +67,7 @@ const RegisterCard = () => {
                 <p className="pt-8 text-3xl text-[#B29A9A]">Free</p>
 
                 <Link
-                  to={"/signup/escort"}
+                  to={"/escort-details"}
                   className="bg-white w-[100%] text-center block py-4 font-semibold mt-8 mb-3 rounded-[35px]"
                 >
                   Register Here
@@ -104,7 +104,7 @@ const RegisterCard = () => {
                     <p className="pt-8 text-3xl text-[#B29A9A]">Free</p>
 
                     <Link
-                      to={"/signup/client"}
+                      to={"/client"}
                       className="bg-white block text-center w-[100%] py-4 font-semibold mt-8 mb-6 md:mb-3 rounded-[35px]"
                     >
                       Register Here

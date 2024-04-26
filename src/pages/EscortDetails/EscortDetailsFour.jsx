@@ -22,7 +22,7 @@ const EscortDetailsFour = () => {
 
             <p className="text-white md:text-4xl text-3xl font-semibold">
               <span className="text-[#B29A9A] text-xl md:text-2xl">
-                Step <span>1/</span>
+                Step <span>4/</span>
               </span>
               6
             </p>
@@ -138,7 +138,7 @@ const EscortDetailsFour = () => {
                   Delete
                 </button>
                 <Link
-                  to={"/signup/escort/5"}
+                  to={"/profile-upload"}
                   className="bg-[#E9CB50] block text-center w-[100%] text-[#171717] py-3 md:py-4 md:w-[120px] font-medium rounded-xl"
                 >
                   Next

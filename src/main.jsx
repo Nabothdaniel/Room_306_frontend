@@ -26,6 +26,10 @@ import AddTours from "./pages/AddTours.jsx";
 import Adverts from "./pages/Adverts.jsx";
 import AddAdverts from "./pages/AddAdverts.jsx";
 import ProfileView from "./pages/ProfileView.jsx";
+import Wallet from "./pages/Wallet.jsx";
+import SingleBlog from "./pages/SingleBlog.jsx";
+import Hello from "./pages/Hello.jsx";
+import NaughtVideo from "./pages/NaughtVideo.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/my-wallet",
+        element: <Wallet />,
       },
       {
         path: "/adverts",
@@ -82,51 +90,47 @@ const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <App />,
-        children: [
-          {
-            index: true,
-            element: <RegisterCard />,
-          },
-          {
-            path: "escort",
-            element: <App />,
-            children: [
-              {
-                index: true,
-                element: <EscortDetailsOne />,
-              },
-              {
-                path: "1",
-                element: <EscortDetailsTwo />,
-              },
-              {
-                path: "2",
-                element: <EscortDetailsThree />,
-              },
-              {
-                path: "3",
-                element: <EscortDetailsFour />,
-              },
-              {
-                path: "4",
-                element: <EscortDetailsFive />,
-              },
-              {
-                path: "5",
-                element: <EscortDetailsSecFive />,
-              },
-              {
-                path: "6",
-                element: <EscortSurvey />,
-              },
-            ],
-          },
-          {
-            path: "client",
-            element: <ClienDetails />,
-          },
-        ],
+        element: <RegisterCard />,
+      },
+      {
+        path: "/clients",
+        element: <ClienDetails />,
+      },
+      {
+        path: "/naughty-videos",
+        element: <NaughtVideo />,
+      },
+      {
+        path: "/escort-details",
+        element: <EscortDetailsOne />,
+      },
+      {
+        path: "/additional-details",
+        element: <EscortDetailsTwo />,
+      },
+      {
+        path: "/services",
+        element: <EscortDetailsThree />,
+      },
+      {
+        path: "/rates",
+        element: <EscortDetailsFour />,
+      },
+      {
+        path: "/profile-upload",
+        element: <EscortDetailsFive />,
+      },
+      {
+        path: "/verification",
+        element: <EscortDetailsSecFive />,
+      },
+      {
+        path: "/survey",
+        element: <EscortSurvey />,
+      },
+      {
+        path: "/:title",
+        element: <SingleBlog />,
       },
     ],
   },

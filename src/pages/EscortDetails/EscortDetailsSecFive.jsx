@@ -66,7 +66,7 @@ const EscortDetailsSecFive = () => {
                   <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-4 md:w-[120px] font-semibold rounded-xl">
                     Delete
                   </button>
-                  <Link to={'/signup/escort/6'} className="bg-[#E9CB50] text-center block w-[100%] text-[#171717] py-4 md:w-[120px] font-semibold rounded-xl">
+                  <Link to={'/survey'} className="bg-[#E9CB50] text-center block w-[100%] text-[#171717] py-4 md:w-[120px] font-semibold rounded-xl">
                     Next
                   </Link>
                 </div>

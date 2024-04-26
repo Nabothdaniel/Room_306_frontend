@@ -50,12 +50,18 @@ const ProfileModel = ({ menuClass, handleMenu }) => {
               My Reviews
             </p>
           </div>
-          <div className="text-center text-white w-[130px] py-3 px-1 rounded-lg ">
+          <NavLink
+            to={"/my-wallet"}
+            style={({ isActive }) => {
+              isActive ? "active" : "";
+            }}
+            className="text-center text-white w-[130px] py-3 px-1 rounded-lg "
+          >
             <img className="size-10 mx-auto" src={Wallet} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">
               My Wallets
             </p>
-          </div>
+          </NavLink>
           <div className="text-center text-white w-[130px] py-3 px-1 rounded-lg ">
             <img className="size-10 mx-auto" src={People} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">

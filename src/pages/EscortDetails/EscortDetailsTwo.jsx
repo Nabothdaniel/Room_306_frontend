@@ -4,6 +4,7 @@ import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
+import { Link } from "react-router-dom";
 
 const EscortDetailsTwo = () => {
   return (
@@ -289,9 +290,9 @@ const EscortDetailsTwo = () => {
               </div>
             </div>
 
-            <button className="bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl">
+            <Link to={'/services'} className="bg-[#E9CB50] block text-center w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl">
               Next
-            </button>
+            </Link>
           </div>
         </div>
       </div>

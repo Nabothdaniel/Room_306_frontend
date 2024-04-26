@@ -200,7 +200,7 @@ const EscortDetailsOne = () => {
               </div>
             </div>
             <Link
-              to={"/signup/escort/1"}
+              to={"/additional-details"}
               className="text-center block bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
             >
               Next
