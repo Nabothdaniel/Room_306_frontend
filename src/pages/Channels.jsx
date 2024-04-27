@@ -5,7 +5,7 @@ import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
 import ChannelsName from "../components/ChannelsName";
 import { useNavigate } from "react-router-dom";
-import NaugthyChannel from "../components/NaugthyChannel";
+
 
 const Channels = () => {
   const navigate = useNavigate();
@@ -32,8 +32,8 @@ const Channels = () => {
                 <img className="size-5 mr-1" src={Arrow} alt="" />
                 Back
               </h2>
-              <div className="md:col-span-3 pt-2 h-fit  md:h-screen md:grid grid-cols-3">
-                <div className="bg-[#14211F] pb-16 md:pb-0  rounded-[30px] md:rounded-none md:rounded-s-[30px]">
+              <div className="md:col-span-3 pt-2 pb-12 md:pb-20 grid md:grid-cols-3">
+                <div className="bg-[#14211F] pb-16 md:pb-0 h-screen rounded-[30px] md:rounded-none md:rounded-s-[30px]">
                   <h1 className="text-white p-[24px] text-[24px] font-semibold">
                     Chats
                   </h1>
@@ -41,7 +41,7 @@ const Channels = () => {
                     <ChannelsName />
                   </div>
                 </div>
-                <div className="col-span-2 hidden md:block pb-16 md:pb-0  bg-[#202D2C] rounded-e-[30px]"></div>
+                <div className="col-span-2 hidden md:block pb-16 md:pb-0  h-screen bg-[#202D2C] rounded-e-[30px]"></div>
               </div>
             </div>
             <div>
