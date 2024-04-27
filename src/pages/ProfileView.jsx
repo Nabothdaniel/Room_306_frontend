@@ -5,8 +5,10 @@ import { BlogSwiper } from "../components/BlogSwiper";
 import Arrow from "../images/arrow-left.svg";
 import ProfileViewItem from "../components/ProfileViewItem";
 import ProfileViewItems from "../components/ProfileViewItems";
+import { useNavigate } from "react-router-dom";
 
 const ProfileView = () => {
+   const navigate = useNavigate();
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />
@@ -21,7 +23,10 @@ const ProfileView = () => {
          lg:grid-cols-4 gap-6"
         >
           <div className="lg:col-span-3  pb-10">
-            <h2 className="text-white pb-4 font-semibold cursor-pointer flex items-center">
+            <h2
+              onClick={() => navigate(-1)}
+              className="text-white pb-4 font-semibold cursor-pointer flex items-center"
+            >
               <img className="size-5 mr-1" src={Arrow} alt="" />
               Back
             </h2>

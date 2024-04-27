@@ -4,8 +4,10 @@ import Navbar from "../components/Navbar";
 import Arrow from "../images/arrow-left.svg";
 import User from "../images/profile.jpeg";
 import ProfileAbout from "../components/ProfileAbout";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+   const navigate = useNavigate();
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -18,7 +20,10 @@ const Profile = () => {
 
         <div className="md:py-8">
           <div className="flex justify-between items-center md:pb-6 py-2 md:pt-8">
-            <h2 className="text-white font-semibold cursor-pointer flex items-center">
+            <h2
+              onClick={() => navigate(-1)}
+              className="text-white font-semibold cursor-pointer flex items-center"
+            >
               <img className="size-5 mr-1" src={Arrow} alt="" />
               Back
             </h2>

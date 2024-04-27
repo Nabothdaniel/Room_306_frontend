@@ -30,6 +30,7 @@ import Wallet from "./pages/Wallet.jsx";
 import SingleBlog from "./pages/SingleBlog.jsx";
 import Hello from "./pages/Hello.jsx";
 import NaughtVideo from "./pages/NaughtVideo.jsx";
+import Channels from "./pages/Channels.jsx";
 
 const router = createBrowserRouter([
   {
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "/naughty-videos",
         element: <NaughtVideo />,
+      },
+      {
+        path: "/channels",
+        element: <Channels />,
       },
       {
         path: "/escort-details",

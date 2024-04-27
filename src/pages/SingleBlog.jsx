@@ -4,8 +4,10 @@ import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import { BlogSwiper } from "../components/BlogSwiper";
 import Blog from "../images/blog.jpeg";
+import { useNavigate } from "react-router-dom";
 
 const SingleBlog = () => {
+   const navigate = useNavigate();
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -16,7 +18,10 @@ const SingleBlog = () => {
         />
 
         <div className="md:pt-14 pt-3">
-          <h2 className="text-white font-semibold cursor-pointer flex items-center">
+          <h2
+            onClick={() => navigate(-1)}
+            className="text-white font-semibold cursor-pointer flex items-center"
+          >
             <img className="size-5 mr-1" src={Arrow} alt="" />
             Back
           </h2>

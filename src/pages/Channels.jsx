@@ -1,0 +1,59 @@
+import React from "react";
+import { BlogSwiper } from "../components/BlogSwiper";
+import Navbar from "../components/Navbar";
+import SideBar from "../components/SideBar";
+import Arrow from "../images/arrow-left.svg";
+import ChannelsName from "../components/ChannelsName";
+import { useNavigate } from "react-router-dom";
+
+const Channels = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
+      <SideBar />
+      <div className="flex-1 md:w-[80%] pt-6 md:pt-14 px-6 lg:px-10">
+        <Navbar
+          Headervalue={"Welcome to Room 306"}
+          textValue={"Explore our escort at your own pace"}
+        />
+
+        <div className="md:pt-14 pt-3">
+          <div
+            className="  grid grid-cols-1
+         lg:grid-cols-4 gap-6"
+          >
+            <div className="lg:col-span-3">
+              <h2
+                onClick={() => navigate(-1)}
+                className="text-white font-semibold cursor-pointer flex items-center"
+              >
+                <img className="size-5 mr-1" src={Arrow} alt="" />
+                Back
+              </h2>
+              <div className="col-span-3 pt-2 grid grid-cols-3">
+                <div className="bg-[#14211F]  h-screen rounded-s-xl">
+                  <h1 className="text-white p-[24px] text-[24px] font-semibold">
+                    Chats
+                  </h1>
+                  <div className="pt-[120px]">
+                    <ChannelsName />
+                  </div>
+                </div>
+                <div className="col-span-2 bg-[#202D2C] h-screen rounded-e-xl"></div>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-center text-white font-medium pb-6 lg:pb-3 text-xl">
+                Fresh Escorts
+              </h2>
+              <BlogSwiper />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Channels;
