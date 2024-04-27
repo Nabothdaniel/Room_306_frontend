@@ -27,8 +27,17 @@ body {
   width: 5px;
 }
 
-.active {
+/* .active {
   background-color: black;
+} */
+
+.channel::-webkit-scrollbar {
+  display: none;
+}
+
+.channel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .hove {

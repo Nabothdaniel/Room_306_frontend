@@ -31,6 +31,7 @@ import SingleBlog from "./pages/SingleBlog.jsx";
 import Hello from "./pages/Hello.jsx";
 import NaughtVideo from "./pages/NaughtVideo.jsx";
 import Channels from "./pages/Channels.jsx";
+import NaughtyRoom from "./pages/NaughtyRoom.jsx";
 
 const router = createBrowserRouter([
   {
@@ -103,7 +104,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/channels",
-        element: <Channels />,
+        element: <App />,
+        children: [
+          {
+            index: true,
+            element: <Channels />,
+          },
+          {
+            path: 'naughty-room',
+            element: <NaughtyRoom />
+          }
+        ],
       },
       {
         path: "/escort-details",
