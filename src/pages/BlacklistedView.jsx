@@ -22,7 +22,7 @@ const BlacklistedView = () => {
 
         <div className="md:pt-14 pt-3">
           <div
-            className="  grid pb-10 grid-cols-1
+            className="px-1  grid pb-10 grid-cols-1
          lg:grid-cols-4 gap-6"
           >
             <div className="lg:col-span-3">
@@ -122,7 +122,7 @@ const BlacklistedView = () => {
               </div>
             </div>
             <div>
-              <h2 className="text-center text-white font-medium pb-6 lg:pb-3 text-xl">
+              <h2 className="text-center text-white font-medium lg:pb-3 text-xl">
                 More Blacklisted
               </h2>
               <BlacklistSwiper />

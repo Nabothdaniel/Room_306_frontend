@@ -33,6 +33,7 @@ import Channels from "./pages/Channels.jsx";
 import NaughtyRoom from "./pages/NaughtyRoom.jsx";
 import Blacklisted from "./pages/Blacklisted.jsx";
 import BlacklistedView from "./pages/BlacklistedView.jsx";
+import MainProfile from "./pages/MainProfile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -53,13 +54,13 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Blacklisted />
+            element: <Blacklisted />,
           },
           {
-            path: ':id',
-            element: <BlacklistedView />
-          }
-        ]
+            path: ":id",
+            element: <BlacklistedView />,
+          },
+        ],
       },
       {
         path: "/adverts",
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/main-profile",
+        element: <MainProfile />,
       },
       {
         path: "/tours",
