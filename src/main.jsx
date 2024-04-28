@@ -34,6 +34,7 @@ import NaughtyRoom from "./pages/NaughtyRoom.jsx";
 import Blacklisted from "./pages/Blacklisted.jsx";
 import BlacklistedView from "./pages/BlacklistedView.jsx";
 import MainProfile from "./pages/MainProfile.jsx";
+import EditClient from "./pages/EditClient.jsx";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
       {
         path: "/main-profile",
         element: <MainProfile />,
+      },
+      {
+        path: "/edit-client",
+        element: <EditClient />,
       },
       {
         path: "/tours",

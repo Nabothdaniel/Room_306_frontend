@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Arrow from "../images/arrow-left.svg";
 import User from "../images/profile.jpeg";
 import ProfileAbout from "../components/ProfileAbout";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Profile = () => {
    const navigate = useNavigate();
@@ -68,9 +68,9 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className="flex justify-end ">
-                  <button className="bg-[#0A0A0A] text-[14px] text-white font-medium rounded-lg h-[40px] w-[125px]">
+                  <Link to={'/edit-client'} className="bg-[#0A0A0A] block text-center text-[14px] text-white font-medium rounded-lg h-[40px] w-[125px]">
                     Edit Profile
-                  </button>
+                  </Link>
                 </div>
               </div>
               <div className="flex justify-between px-3 md:hidden mt-4 text-white">
