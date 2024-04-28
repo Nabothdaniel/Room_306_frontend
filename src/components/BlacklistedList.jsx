@@ -10,13 +10,14 @@ import { Link } from "react-router-dom";
 
 const BlacklistedList = () => {
   return (
-    <Link to={'/blacklisted/new'} className="bg-[#121212] text-white p-3 rounded-lg">
+    <Link
+      to={"/blacklisted/new"}
+      className="bg-[#121212] text-white p-3 rounded-lg"
+    >
       <img className="rounded-lg h-[200px] object-cover" src={Slider1} alt="" />
       <div className=" py-3">
         <div>
-          <h4 className="font-semibold text-[18px] pb-2">
-            A Scammer
-          </h4>
+          <h4 className="font-semibold text-[18px] pb-2">A Scammer</h4>
           <p className="pb-1 ">
             <span className="flex items-center font-semibold mr-2 ">
               AdamFresh

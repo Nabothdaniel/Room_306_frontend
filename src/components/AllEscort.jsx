@@ -28,7 +28,10 @@ const AllEscort = () => {
           See all
         </p>
       </div>
+      <div className="overflow-x-scroll md:overflow-x-auto">
+
       <AllEscortTags />
+      </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-8">
         {displayUsers}
       </div>

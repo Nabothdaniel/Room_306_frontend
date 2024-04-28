@@ -22,7 +22,7 @@ const BlacklistedView = () => {
 
         <div className="md:pt-14 pt-3">
           <div
-            className="  grid grid-cols-1
+            className="  grid pb-10 grid-cols-1
          lg:grid-cols-4 gap-6"
           >
             <div className="lg:col-span-3">
@@ -33,7 +33,7 @@ const BlacklistedView = () => {
                 <img className="size-5 mr-1" src={Arrow} alt="" />
                 Back
               </h2>
-              <div className="md:col-span-3 mb-6 md:mb-0 bg-[#1E1E1E] pt-2 pb-12 md:pb-20">
+              <div className="md:col-span-3 mb-6 md:mb-0 bg-[#1E1E1E] rounded-2xl px-2 pt-2 pb-12 md:pb-10">
                 <BlacklistImageSwipe />
                 <div className="text-white md:pl-10 pl-6 pt-6">
                   <h2 className="md:text-3xl text-[20px] font-semibold pb-4">

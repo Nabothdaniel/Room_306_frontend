@@ -1,16 +1,25 @@
 import React from "react";
-import HoverVideoPlayer from "react-hover-video-player";
-import Video from "../images/video.jpeg";
 import Naugt from "../images/naught.jpeg";
+import Eye from "../images/eye.svg";
+import Like from "../images/dislike.svg";
+import Message from "../images/messages-2.svg";
 import Blog from "../images/blog.jpeg";
 
 const NaugthyItems = () => {
   return (
-    <div className="bg-[#1E1E1E] overflow-x-hidden w-[300px] text-white mb-14  p-3 rounded-lg">
-      <img src={Video} alt="" />
+    <div className="bg-[#1E1E1E] relative text-white  p-2 rounded-lg">
+      {/* <video
+        className="h-[300px] w-full object-cover rounded-lg"
+        src={''}
+      ></video> */}
+      <img
+        className="h-[300px] w-full object-cover rounded-lg"
+        src={Blog}
+        alt=""
+      />
 
-      <div className=" w-[100%]">
-        <div className="mx-auto p-2 z-[999999] rounded-t-3xl w-[94%] bg-[#1E1E1E]">
+      <div className=" w-[100%] absolute bottom-0 left-0">
+        <div className="mx-auto p-2 z-[999999] rounded-t-3xl md:w-[97%] w-[98%] bg-[#1E1E1E]">
           <div className="flex z-[999999]">
             <img className="size-[40px] rounded-full" src={Naugt} alt="" />
             <div className="text-white ml-3">
@@ -18,6 +27,15 @@ const NaugthyItems = () => {
               <p className="text-[11px] text-[#DADADA]">
                 Horny and bored, let's fuck
               </p>
+            </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <p className="text-[14px] text-[#E9CB50] py-1">Free video</p>
+            <div className="flex">
+              <img className=" rotate-180 mr-2 size-[20px]" src={Like} alt="" />
+              <img className="size-[20px] mr-2" src={Like} alt="" />
+              <img className="size-[20px] mr-2" src={Message} alt="" />
+              <img className="size-[20px]" src={Eye} alt="" />
             </div>
           </div>
         </div>
