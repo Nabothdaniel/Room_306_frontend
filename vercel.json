@@ -29,6 +29,10 @@
       "dest": "/"
     },
     {
+      "src": "/blacklisted/new",
+      "dest": "/"
+    },
+    {
       "src": "/profile",
       "dest": "/"
     },

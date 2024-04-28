@@ -6,10 +6,11 @@ import Slider1 from "../images/slider1.png";
 import Love from "../images/Love.svg";
 import Clock from "../images/clock.svg";
 import Ticket from "../images/ticket-2.svg";
+import { Link } from "react-router-dom";
 
 const BlacklistedList = () => {
   return (
-    <div className="bg-[#121212] text-white p-3 rounded-lg">
+    <Link to={'/blacklisted/new'} className="bg-[#121212] text-white p-3 rounded-lg">
       <img className="rounded-lg h-[200px] object-cover" src={Slider1} alt="" />
       <div className=" py-3">
         <div>
@@ -38,7 +39,7 @@ const BlacklistedList = () => {
           <img src={User} /> <span className="font-semibold pl-1">(10)</span>
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

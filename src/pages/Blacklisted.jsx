@@ -22,7 +22,7 @@ const Blacklisted = () => {
               <h1 className="md:text-2xl text-[18px] text-white font-semibold">
                 Blacklisted Clients
               </h1>
-              <p className="md:text-base text-[14px] text-white/70 font-normal pt-3">
+              <p className="md:text-base text-[14px] text-white/70 font-normal pt-1 md:pt-3">
                 Speak Up, Stay Safe
               </p>
             </div>
