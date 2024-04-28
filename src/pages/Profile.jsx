@@ -7,7 +7,7 @@ import ProfileAbout from "../components/ProfileAbout";
 import { Link, useNavigate } from "react-router-dom";
 
 const Profile = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -68,7 +68,10 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className="flex justify-end ">
-                  <Link to={'/edit-client'} className="bg-[#0A0A0A] block text-center text-[14px] text-white font-medium rounded-lg h-[40px] w-[125px]">
+                  <Link
+                    to={"/edit-client"}
+                    className="bg-[#0A0A0A] flex items-center justify-center text-center text-[14px] text-white font-medium rounded-lg h-[40px] w-[125px]"
+                  >
                     Edit Profile
                   </Link>
                 </div>
