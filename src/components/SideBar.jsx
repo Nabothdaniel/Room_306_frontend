@@ -60,7 +60,7 @@ const SideBar = () => {
             <div className="relative">
               <NavLink
                 onClick={() => dispatch(navClick(false))}
-                to={"/dashboard"}
+                to={"/"}
                 style={({ isActive }) =>
                   isActive
                     ? {
@@ -80,7 +80,7 @@ const SideBar = () => {
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
                   } font-semibold gap-x-4 duration-700 ${
-                    location == "/dashboard"
+                    location == "/"
                       ? "bg-[#1B1717] text-[#FDF2C5]"
                       : ""
                   } cursor-pointer `}
@@ -269,10 +269,10 @@ const SideBar = () => {
             <div className="relative">
               <NavLink
                 onClick={() => dispatch(navClick(false))}
-                to={"/"}
+                to={"/blacklisted"}
                 className={({ isActive }) =>
                   isActive
-                    ? " active  before:contents-[''] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-[#FDF2C5] before:w-[6px] before:rounded-xl"
+                    ? " active  before:contents-[''] md:before:top-[19px] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-[#FDF2C5] before:w-[6px] before:rounded-xl"
                     : ""
                 }
               >
@@ -280,7 +280,7 @@ const SideBar = () => {
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "pl-8" : "justify-center"
                   }  gap-x-4 duration-700 cursor-pointer ${
-                    location == "/" ? "bg-[#1B1717] text-[#FDF2C5]" : ""
+                    location == "/blacklisted" ? "bg-[#1B1717] text-[#FDF2C5]" : ""
                   }`}
                 >
                   <img src={Wallet} className=" size-6 md:size-8" />

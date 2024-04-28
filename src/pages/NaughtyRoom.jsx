@@ -48,7 +48,7 @@ const NaughtyRoom = () => {
                   </div>
                 </div>
                 <div className="md:col-span-2 bg-[#202D2C] flex flex-col p-6 rounded-[30px] h-screen w-[100%] md:rounded-none md:rounded-e-[30px]">
-                  <div className="flex pb-4">
+                  <div className="flex pb-6">
                     <img className="size-[40px]" src={Naughty} alt="" />
                     <div className="pl-4 text-white">
                       <p className="font-semibold">Naughty Room</p>

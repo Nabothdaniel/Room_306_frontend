@@ -28,10 +28,10 @@ import AddAdverts from "./pages/AddAdverts.jsx";
 import ProfileView from "./pages/ProfileView.jsx";
 import Wallet from "./pages/Wallet.jsx";
 import SingleBlog from "./pages/SingleBlog.jsx";
-import Hello from "./pages/Hello.jsx";
 import NaughtVideo from "./pages/NaughtVideo.jsx";
 import Channels from "./pages/Channels.jsx";
 import NaughtyRoom from "./pages/NaughtyRoom.jsx";
+import Blacklisted from "./pages/Blacklisted.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,12 +39,16 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/dashboard",
+        path: "/",
         element: <Dashboard />,
       },
       {
         path: "/my-wallet",
         element: <Wallet />,
+      },
+      {
+        path: "/blacklisted",
+        element: <Blacklisted />,
       },
       {
         path: "/adverts",
@@ -111,9 +115,9 @@ const router = createBrowserRouter([
             element: <Channels />,
           },
           {
-            path: 'naughty-room',
-            element: <NaughtyRoom />
-          }
+            path: "naughty-room",
+            element: <NaughtyRoom />,
+          },
         ],
       },
       {
