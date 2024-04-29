@@ -1,8 +1,8 @@
 import React from "react";
 
-const EscortServicesEdit = () => {
+const EscortServicesEdit = ({serviceClass}) => {
   return (
-    <div className="rounded-xl md:px-10 px-8 lg:px-14 pt-6 md:py-12 pb-8 bg-[#1E1E1E] ">
+    <div className={`rounded-xl ${serviceClass} md:px-10 px-8 lg:px-14 pt-6 md:py-12 pb-8 bg-[#1E1E1E] `}>
       <h3 className="text-xl pb-6 font-semibold text-white">
         Services
         <p className="text-[15px] font-normal text-[#B29A9A]">

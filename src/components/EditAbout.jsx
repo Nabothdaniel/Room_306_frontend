@@ -3,7 +3,7 @@ import TextArea from "./TextArea";
 import Input from "./Input";
 import { useGetCountryQuery } from "../redux/CountryApi";
 
-const EditAbout = () => {
+const EditAbout = ({aboutClass}) => {
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
   const [country, setCountry] = useState("");
@@ -33,7 +33,7 @@ const EditAbout = () => {
     setGetCities(cities);
   };
   return (
-    <div className="bg-[#1E1E1E] rounded-xl py-5 px-7">
+    <div className={`bg-[#1E1E1E] ${aboutClass} rounded-xl py-5 px-7`}>
       <TextArea
         labelValue={"About"}
         required={"*"}

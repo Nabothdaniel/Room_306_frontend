@@ -1,8 +1,8 @@
 import React from "react";
 
-const EscortBioEdit = () => {
+const EscortBioEdit = ({bioClass}) => {
   return (
-    <div className="bg-[#1E1E1E] rounded-xl pb-8 py-5 px-7">
+    <div className={`bg-[#1E1E1E] ${bioClass} rounded-xl pb-8 py-5 px-7`}>
       <h2 className="md:text-2xl text-[18px] text-white font-semibold">
         Body Measurement
       </h2>

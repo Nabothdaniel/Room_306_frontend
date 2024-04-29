@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
@@ -9,9 +9,39 @@ import TextArea from "../components/TextArea";
 import EditAbout from "../components/EditAbout";
 import EscortBioEdit from "../components/EscortBioEdit";
 import EscortServicesEdit from "../components/EscortServicesEdit";
+import EscortRateEdit from "../components/EscortRateEdit";
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "Change1":
+      return {
+        open1: true,
+      };
+    case "Change2":
+      return {
+        open2: true,
+      };
+    case "Change3":
+      return {
+        open3: true,
+      };
+    case "Change4":
+      return {
+        open4: true,
+      };
+  }
+};
 
 const EditEscort = () => {
   const navigate = useNavigate();
+
+  const [state, dispatch] = useReducer(reducer, {
+    open1: true,
+    open2: false,
+    open3: false,
+    open4: false,
+  });
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -25,7 +55,7 @@ const EditEscort = () => {
         <div className="md:py-5 pb-9 md:pb-12">
           <div className="md:pb-3 pt-2 md:pt-8">
             <h2
-              onClick={() => Navigate(-1)}
+              onClick={() => navigate(-1)}
               className="text-white font-semibold cursor-pointer flex items-center"
             >
               <img className="size-5 mr-1" src={Arrow} alt="" />
@@ -62,19 +92,52 @@ const EditEscort = () => {
               </div>
             </div>
 
-            <div className="border-b-2 pt-8 flex justify-between relative md:justify-normal font-semibold items-center text-white border-[#393C49] py-3">
-              <p className="md:mr-10 cursor-pointer before:contents-[''] text-[14px] md:text-base before:absolute before:-bottom-[2px] before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50] text-[#E9CB50]  ">
+            <div className="border-b-2 pt-8 flex relative font-semibold items-center text-white border-[#393C49] py-3">
+              <p
+                onClick={() => dispatch({ type: "Change1" })}
+                className={`mr-10 cursor-pointer ${
+                  state.open1 &&
+                  "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[45px] md:before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                }    `}
+              >
                 About
               </p>
-              <p className="md:mr-10 text-[14px] md:text-base">Bio</p>
-              <p className="md:mr-10 text-[14px] md:text-base">Rates</p>
-              <p className="text-[14px] md:text-base">Services</p>
+              <p
+                onClick={() => dispatch({ type: "Change2" })}
+                className={`mr-10 cursor-pointer ${
+                  state.open2 &&
+                  "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[25px] md:before:w-[30px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                }    `}
+              >
+                Bio
+              </p>
+              <p
+                onClick={() => dispatch({ type: "Change3" })}
+                className={`mr-10 cursor-pointer ${
+                  state.open3 &&
+                  "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[45px] md:before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                }    `}
+              >
+                Rates
+              </p>
+              <p
+                onClick={() => dispatch({ type: "Change4" })}
+                className={`mr-10 cursor-pointer ${
+                  state.open4 &&
+                  "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[50px] md:before:w-[70px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                }    `}
+              >
+                Services
+              </p>
             </div>
 
             <div className="pt-5">
-              {/* <EditAbout /> */}
-              {/* <EscortBioEdit /> */}
-              <EscortServicesEdit />
+              <EditAbout aboutClass={`${!state.open1 ? "hidden" : ""}`} />
+              <EscortBioEdit bioClass={`${!state.open2 ? "hidden" : ""}`} />
+              <EscortServicesEdit
+                serviceClass={`${!state.open4 ? "hidden" : ""}`}
+              />
+              <EscortRateEdit rateClass={`${!state.open3 ? "hidden" : ""}`} />
             </div>
           </div>
         </div>
