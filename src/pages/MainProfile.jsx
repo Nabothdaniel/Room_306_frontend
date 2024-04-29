@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Blog from "../images/blog.jpeg";
@@ -6,8 +6,33 @@ import { IoPhonePortraitOutline } from "react-icons/io5";
 import { FiMail } from "react-icons/fi";
 import { TbCurrencyNaira } from "react-icons/tb";
 import Notice from "../components/Notice";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import ProfileMenu from "../components/ProfileMenu";
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "Change1":
+      return {
+        open1: true,
+      };
+    case "Change2":
+      return {
+        open2: true,
+      };
+    case "Change3":
+      return {
+        open3: true,
+      };
+  }
+};
 
 const MainProfile = () => {
+  const [animationParent] = useAutoAnimate();
+  const [state, dispatch] = useReducer(reducer, {
+    open1: true,
+    open2: false,
+    open3: false,
+  });
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />
@@ -98,31 +123,48 @@ const MainProfile = () => {
         <div className="pb-20">
           <div className="bg-[#CD2727] mt-8 py-4 px-5 rounded-xl">
             <div className="flex items-center gap-x-4">
-              <h3 className="font-bold text-white text-[24px]">
+              <h3 className="font-bold text-white text-[18px] md:text-[24px]">
                 Boost Profile
               </h3>
-              <div className="bg-white cursor-pointer font-semibold md:text-[20px] h-[43px] flex items-center justify-center text-center rounded-3xl w-[150px]">
+              <div className="bg-white md:text-base text-[14px] cursor-pointer font-semibold md:text-[20px] h-[40px] flex items-center justify-center text-center rounded-3xl w-[130px]">
                 Boost Now
               </div>
             </div>
-            <p className="lg:w-[23%] md:w-[28%]  pt-2 text-[18px] text-white font-medium">
+            <p className="lg:w-[23%] md:w-[28%]  pt-2 text-[14px] md:text-[18px] text-white font-medium">
               Boost your profile to Pro Max to be on the front pages and gain
               500% more exposure.
             </p>
-            <p className="text-white pt-5 text-[18px] font-medium">
+            <p className="text-white pt-5 text-[14px] md:text-[18px] font-medium">
               More exposure = More calls{" "}
             </p>
           </div>
           <div>
-            <div className="border-b-2 pt-10 flex justify-between relative md:justify-normal font-semibold items-center text-white border-[#393C49] py-3">
-              <p className="md:mr-10 cursor-pointer before:contents-[''] before:absolute before:-bottom-[2px] before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]  ">
+            <div className="border-b-2 pt-10 flex  relative  font-semibold items-center text-white border-[#393C49] py-3">
+              <p
+                onClick={() => dispatch({ type: "Change1" })}
+                className={`md:mr-10 mr-4 cursor-pointer duration-700 ${
+                  state.open1 &&
+                  "before:contents-[''] duration-500 before:absolute before:-bottom-[2px] before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                }    `}
+              >
                 Notice
               </p>
-              <p className="md:mr-10 cursor-pointer">Profile Menu</p>
+              <p
+                onClick={() => dispatch({ type: "Change2" })}
+                className={`md:mr-10 mr-4 cursor-pointer duration-700 ${
+                  state.open2 &&
+                  "before:contents-[''] duration-500 before:absolute before:-bottom-[2px] before:w-[100px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                }    `}
+              >
+                Profile Menu
+              </p>
               <p className="md:mr-10 cursor-pointer">Media</p>
             </div>
             <div className="pt-4">
-              <Notice />
+              <div ref={animationParent}>
+                <Notice noticeClass={`${!state.open1 ? "hidden" : ""}`} />
+              </div>
+              <ProfileMenu profileClass={`${!state.open2 ? "hidden" : ""}`} />
             </div>
           </div>
         </div>

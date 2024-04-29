@@ -1,8 +1,9 @@
 import React from "react";
 
-const Notice = () => {
+const Notice = ({ noticeClass }) => {
+  
   return (
-    <div className="bg-blue-300 rounded-xl py-4 px-6">
+    <div  className={`bg-blue-200/90 ${noticeClass} duration-700 rounded-xl py-4 px-6`}>
       <h2 className="lg:text-3xl md:text-2xl text-[22px] text-center font-semibold">
         TGIF, weekend hustle !!
       </h2>
