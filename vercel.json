@@ -9,10 +9,6 @@
       "dest": "/"
     },
     {
-      "src": "/escort-profile",
-      "dest": "/"
-    },
-    {
       "src": "/signup",
       "dest": "/"
     },
