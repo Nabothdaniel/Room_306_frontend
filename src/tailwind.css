@@ -83,12 +83,10 @@ body {
 .swiper-pagination .swiper-pagination-bullet {
   background-color: #e9cb50;
 }
-.swiper-pagination {
-  /* margin-bottom: -10px; */
-}
 
 html {
   background: #121212;
+  scroll-behavior: smooth;
 }
 
 /**utility classes*/

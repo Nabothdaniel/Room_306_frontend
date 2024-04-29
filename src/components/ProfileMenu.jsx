@@ -1,5 +1,4 @@
 import React from "react";
-import Close from "../images/icon.svg";
 import Book from "../images/book-event.svg";
 import Game from "../images/game.svg";
 import Heart from "../images/heart.svg";

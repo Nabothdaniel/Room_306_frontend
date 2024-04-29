@@ -8,6 +8,10 @@ import { TbCurrencyNaira } from "react-icons/tb";
 import Notice from "../components/Notice";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import ProfileMenu from "../components/ProfileMenu";
+import Media from "../components/Media";
+import { ProfileSwiper } from "../components/ProfileSwiper";
+import { Link } from "react-router-dom";
+import ProfileViewItems from "../components/ProfileViewItems";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -26,13 +30,14 @@ const reducer = (state, action) => {
   }
 };
 
-const MainProfile = () => {
+const EscortProfile = () => {
   const [animationParent] = useAutoAnimate();
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
     open3: false,
   });
+
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />
@@ -42,7 +47,7 @@ const MainProfile = () => {
           Headervalue={"Best Escort Room"}
           textValue={"Explore our rooms and activities"}
         />
-        <div className="grid md:grid-cols-3 px-4 md:px-0 grid-cols-1 lg:grid-cols-4 gap-y-12 gap-x-8 pt-14">
+        <div className="grid md:grid-cols-3 px-4 md:px-0 grid-cols-1 lg:grid-cols-4 gap-y-12 gap-x-8 pt-8 md:pt-14">
           <div className="flex items-start min-w-[600px] text-white">
             <img className="size-[60px] rounded-full" src={Blog} alt="" />
             <div className="ml-3">
@@ -139,38 +144,85 @@ const MainProfile = () => {
             </p>
           </div>
           <div>
-            <div className="border-b-2 pt-10 flex  relative  font-semibold items-center text-white border-[#393C49] py-3">
+            <div
+              ref={animationParent}
+              className="border-b-2 pt-10 flex  relative  font-semibold items-center text-white border-[#393C49] py-3"
+            >
               <p
                 onClick={() => dispatch({ type: "Change1" })}
-                className={`md:mr-10 mr-4 cursor-pointer duration-700 ${
+                className={`md:mr-10 mr-4 text-[14px] md:text-base cursor-pointer duration-700 ${
                   state.open1 &&
-                  "before:contents-[''] duration-500 before:absolute before:-bottom-[2px] before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                  "before:contents-[''] duration-500 before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[45px] md:before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
                 }    `}
               >
                 Notice
               </p>
               <p
                 onClick={() => dispatch({ type: "Change2" })}
-                className={`md:mr-10 mr-4 cursor-pointer duration-700 ${
+                className={`md:mr-10 mr-4 text-[14px] md:text-base cursor-pointer duration-700 ${
                   state.open2 &&
-                  "before:contents-[''] duration-500 before:absolute before:-bottom-[2px] before:w-[100px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                  "before:contents-[''] duration-500 text-[#E9CB50] before:absolute  before:-bottom-[2px] before:w-[90px] md:before:w-[100px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
                 }    `}
               >
                 Profile Menu
               </p>
-              <p className="md:mr-10 cursor-pointer">Media</p>
+              <p
+                onClick={() => dispatch({ type: "Change3" })}
+                className={`md:mr-10 mr-4 text-[14px] md:text-base cursor-pointer duration-700 ${
+                  state.open3 &&
+                  "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[45px] md:before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                }    `}
+              >
+                Media
+              </p>
             </div>
             <div className="pt-4">
-              <div ref={animationParent}>
-                <Notice noticeClass={`${!state.open1 ? "hidden" : ""}`} />
-              </div>
+              <Notice noticeClass={`${!state.open1 ? "hidden" : ""}`} />
+
               <ProfileMenu profileClass={`${!state.open2 ? "hidden" : ""}`} />
+
+              <Media mediaClass={`${!state.open3 ? "hidden" : ""}`} />
             </div>
           </div>
+
+          <div className="grid grid-cols-3 mt-6 gap-x-8 rounded-xl p-3 bg-[#1E1E1E]">
+            <ProfileSwiper />
+            <div className="md:col-span-2 flex justify-between pt-4 text-white ">
+              <div>
+                <p className="text-2xl font-semibold">Adam Fresh</p>
+                <p className="font-semibold text-[18px] pt-3">Hey, I'm curvy</p>
+                <div className="flex text-white pt-6">
+                  <div className="flex mr-5 flex-col items-center">
+                    <p className="text-[24px] font-semibold">
+                      27 <span className="text-[#B29A9A]">yrs</span>
+                    </p>
+                    <p className="text-[#B29A9A]">Age</p>
+                  </div>
+                  <div className="flex mr-5 flex-col items-center">
+                    <p className="text-[24px] font-semibold">Avg</p>
+                    <p className="text-[#B29A9A]">Weight</p>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <p className="text-[24px] font-semibold">Avg</p>
+                    <p className="text-[#B29A9A]">Height</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <Link
+                  to={"/edit-escort"}
+                  className="bg-[#0A0A0A] flex items-center justify-center text-center text-[14px] text-white font-medium rounded-lg h-[40px] w-[125px]"
+                >
+                  Edit Profile
+                </Link>
+              </div>
+            </div>
+          </div>
+          <ProfileViewItems />
         </div>
       </div>
     </div>
   );
 };
 
-export default MainProfile;
+export default EscortProfile;

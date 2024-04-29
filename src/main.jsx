@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./tailwind.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Dashboard from "./pages/Dashboard.jsx";
-import Profile from "./pages/Profile.jsx";
+import ClientProfile from "./pages/ClientProfile.jsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.jsx";
 import ClienDetails from "./pages/ClientDetails.jsx";
@@ -33,8 +33,9 @@ import Channels from "./pages/Channels.jsx";
 import NaughtyRoom from "./pages/NaughtyRoom.jsx";
 import Blacklisted from "./pages/Blacklisted.jsx";
 import BlacklistedView from "./pages/BlacklistedView.jsx";
-import MainProfile from "./pages/MainProfile.jsx";
+import EscortProfile from "./pages/EscortProfile.jsx";
 import EditClient from "./pages/EditClient.jsx";
+import EditEscort from "./pages/EditEscort.jsx";
 
 const router = createBrowserRouter([
   {
@@ -93,15 +94,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: <ClientProfile />,
       },
       {
-        path: "/main-profile",
-        element: <MainProfile />,
+        path: "/escort-profile",
+        element: <EscortProfile />,
       },
       {
         path: "/edit-client",
         element: <EditClient />,
+      },
+      {
+        path: "/edit-escort",
+        element: <EditEscort />,
       },
       {
         path: "/tours",

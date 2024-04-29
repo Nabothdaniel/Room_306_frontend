@@ -6,7 +6,7 @@ import User from "../images/profile.jpeg";
 import ProfileAbout from "../components/ProfileAbout";
 import { Link, useNavigate } from "react-router-dom";
 
-const Profile = () => {
+const ClientProfile = () => {
   const navigate = useNavigate();
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -105,4 +105,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ClientProfile;
