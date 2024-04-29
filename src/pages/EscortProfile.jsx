@@ -185,7 +185,7 @@ const EscortProfile = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 mt-6 gap-x-8 rounded-xl p-3 bg-[#1E1E1E]">
+          <div className="grid md:grid-cols-3 mt-6 gap-x-8 gap-y-4 rounded-xl p-3 bg-[#1E1E1E]">
             <ProfileSwiper />
             <div className="md:col-span-2 flex justify-between pt-4 text-white ">
               <div>
