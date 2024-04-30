@@ -6,6 +6,7 @@ import Arrow from "../images/arrow-left.svg";
 import ProfileViewItem from "../components/ProfileViewItem";
 import ProfileViewItems from "../components/ProfileViewItems";
 import { useNavigate } from "react-router-dom";
+import BookingModel from "../components/BookingModel";
 
 const ProfileView = () => {
    const navigate = useNavigate();
@@ -44,6 +45,7 @@ const ProfileView = () => {
           </div>
         </div>
       </div>
+      {/* <BookingModel /> */}
     </div>
   );
 };
