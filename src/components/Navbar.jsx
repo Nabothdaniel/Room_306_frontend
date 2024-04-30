@@ -13,7 +13,7 @@ import SearchModel from "./SearchModel";
 import ProfileModel from "./ProfileModel";
 
 const Navbar = ({ Headervalue, textValue }) => {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
@@ -139,10 +139,10 @@ const Navbar = ({ Headervalue, textValue }) => {
           loginControl={setOpenLogin}
         />
       </div>
-      {/* <SearchModel
+      <SearchModel
         SearchClass={`${!openSearch ? "translate-x-[120vw]" : "translate-x-0"}`}
         handleSearch={handleSearch}
-      /> */}
+      />
       <ProfileModel
         handleMenu={handleMenu}
         menuClass={`${!openMenu ? "translate-x-[120vw]" : "translate-x-0"}`}

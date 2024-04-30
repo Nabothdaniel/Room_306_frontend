@@ -185,25 +185,33 @@ const EscortProfile = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 mt-6 gap-x-8 gap-y-4 rounded-xl p-3 bg-[#1E1E1E]">
+          <div className="grid md:grid-cols-3 mt-6 gap-x-8 gap-y-4 rounded-xl pb-5 px-3 md:pb-3 md:p-3 bg-[#1E1E1E]">
             <ProfileSwiper />
             <div className="md:col-span-2 flex justify-between pt-4 text-white ">
               <div>
-                <p className="text-2xl font-semibold">Adam Fresh</p>
-                <p className="font-semibold text-[18px] pt-3">Hey, I'm curvy</p>
+                <p className="md:text-2xl text-[20px] font-semibold">
+                  Adam Fresh
+                </p>
+                <p className="font-semibold text-white/70 md:text-[18px] pt-3">
+                  Hey, I'm curvy
+                </p>
                 <div className="flex text-white pt-6">
                   <div className="flex mr-5 flex-col items-center">
-                    <p className="text-[24px] font-semibold">
+                    <p className="md:text-[24px] text-[18px] font-semibold">
                       27 <span className="text-[#B29A9A]">yrs</span>
                     </p>
                     <p className="text-[#B29A9A]">Age</p>
                   </div>
                   <div className="flex mr-5 flex-col items-center">
-                    <p className="text-[24px] font-semibold">Avg</p>
+                    <p className="md:text-[24px] text-[18px] font-semibold">
+                      Avg
+                    </p>
                     <p className="text-[#B29A9A]">Weight</p>
                   </div>
                   <div className="flex flex-col items-center">
-                    <p className="text-[24px] font-semibold">Avg</p>
+                    <p className="md:text-[24px] text-[18px] font-semibold">
+                      Avg
+                    </p>
                     <p className="text-[#B29A9A]">Height</p>
                   </div>
                 </div>
@@ -211,7 +219,7 @@ const EscortProfile = () => {
               <div>
                 <Link
                   to={"/edit-escort"}
-                  className="bg-[#0A0A0A] flex items-center justify-center text-center text-[14px] text-white font-medium rounded-lg h-[40px] w-[125px]"
+                  className="bg-[#0A0A0A] flex items-center justify-center text-center md:text-[14px] text-[13px] text-white font-medium rounded-lg h-[40px] w-[125px]"
                 >
                   Edit Profile
                 </Link>

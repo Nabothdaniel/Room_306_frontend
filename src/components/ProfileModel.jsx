@@ -8,9 +8,10 @@ import People from "../images/people.svg";
 import Tag from "../images/tag.svg";
 import Wallet from "../images/wallet-minus.svg";
 import User from "../images/user-tag.svg";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 const ProfileModel = ({ menuClass, handleMenu }) => {
+  const location = useLocation().pathname
   return (
     <div
       className={`bg-black/40 duration-500 ${menuClass}  fixed top-0 z-[999999] left-0 w-[100%] h-screen flex justify-center items-center`}
@@ -31,7 +32,7 @@ const ProfileModel = ({ menuClass, handleMenu }) => {
             style={({ isActive }) => {
               isActive ? "active" : "";
             }}
-            className="text-center active text-white w-[130px] py-3 px-1 rounded-lg"
+            className={`text-center active ${location == '/profile' ? 'bg-black' : ''} text-white w-[130px] py-3 px-1 rounded-lg`}
           >
             <img className="size-10 mx-auto" src={User} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">
@@ -55,7 +56,7 @@ const ProfileModel = ({ menuClass, handleMenu }) => {
             style={({ isActive }) => {
               isActive ? "active" : "";
             }}
-            className="text-center text-white w-[130px] py-3 px-1 rounded-lg "
+            className={`text-center text-white w-[130px] py-3 px-1 rounded-lg ${location == '/my-wallet' ? 'bg-black' : ''} `}
           >
             <img className="size-10 mx-auto" src={Wallet} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">
@@ -98,12 +99,12 @@ const ProfileModel = ({ menuClass, handleMenu }) => {
               My Discussion
             </p>
           </div>
-          <div className="text-center text-white w-[130px] py-3 px-1 rounded-lg ">
+          <NavLink to={'/change-password'} className={`text-center text-white w-[130px] py-3 px-1 rounded-lg ${location == '/change-password' ? 'bg-black' : ''}`}>
             <img className="size-10 mx-auto" src={Like} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">
               Change Password
             </p>
-          </div>
+          </NavLink>
           <div className="text-center text-white w-[130px] py-3 px-1 rounded-lg ">
             <img className="size-10 mx-auto" src={Wallet} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">

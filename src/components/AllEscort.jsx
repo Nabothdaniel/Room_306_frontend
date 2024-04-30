@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 import AllEscortTags from "./AllEscortTags";
-import { countries } from "./COUNTRY_DATA.JS";
 import Pagination from "./Pagination";
 import EscortItems from "./EscortItems";
+import { useGetAllEscortsQuery } from "../redux/EscortApi";
 
 const AllEscort = () => {
-  const [data, setData] = useState(countries.slice(0, 100));
+
+  const {data} = useGetAllEscortsQuery()
+
+  console.log(data);
+
+  const [escort, setEscort] = useState(data);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const usersPage = 8;
+  // const usersPage = 8;
 
-  const page = currentPage * usersPage;
+  // const page = currentPage * usersPage;
 
-  const displayUsers = data.slice(page, page + usersPage).map((item) => {
-    return <EscortItems key={item.value} {...item} />;
-  });
+  // const displayUsers = data.slice(page, page + usersPage).map((item) => {
+  //   return <EscortItems key={item.value} {...item} />;
+  // });
 
-  const pageCount = Math.ceil(data.length / usersPage);
+  // const pageCount = Math.ceil(data.length / usersPage);
 
   return (
     <div className="py-14 bg-[#121212] px-2">
@@ -33,9 +38,9 @@ const AllEscort = () => {
       <AllEscortTags />
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-8">
-        {displayUsers}
+        {/* {displayUsers} */}
       </div>
-      <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
+      {/* <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} /> */}
     </div>
   );
 };

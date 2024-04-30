@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Input from "../components/Input";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import Upload from "../images/Upload.svg";
+import Loading from "../components/Loading";
 
 const AddTours = () => {
   const [getState, setGetState] = useState([]);
@@ -15,7 +16,7 @@ const AddTours = () => {
   const [image, setImage] = useState("");
 
   if (isLoading) {
-    return <p>loading</p>;
+    return <Loading />
   }
 
  

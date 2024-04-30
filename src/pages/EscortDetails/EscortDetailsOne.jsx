@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { countries } from "../../components/COUNTRY_DATA.JS";
 import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
+import { useRegisterEscortMutation } from "../../redux/EscortApi";
 
 const EscortDetailsOne = () => {
+  const [register] = useRegisterEscortMutation();
+
+  const [password, setPassword] = useState("");
+  const [confirmPwd, setConfirmPwd] = useState("");
+  const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!(password == confirmPwd)) {
+      setError("Password does not match");
+    } else {
+      setError("");
+    }
+  }, [confirmPwd]);
+
+  const handleSubmit = () => {};
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -43,6 +61,8 @@ const EscortDetailsOne = () => {
                     " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={"Enter username"}
+                  value={username}
+                  onchange={(e) => setUsername(e.target.value)}
                 />
                 <Input
                   labelValue={"Email"}
@@ -54,6 +74,7 @@ const EscortDetailsOne = () => {
                     " rounded-xl text-[#102127]  placeholder-[#102127]"
                   }
                   holder={"Enter Email"}
+                  needed={true}
                 />
                 <Input
                   labelValue={"Password"}
@@ -65,18 +86,25 @@ const EscortDetailsOne = () => {
                     " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={"Enter Password"}
+                  value={password}
+                  onchange={(e) => setPassword(e.target.value)}
                 />
-                <Input
-                  labelValue={"Re-Enter Password"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"password"}
-                  required={"*"}
-                  inputName={"password"}
-                  inputClass={
-                    " rounded-xl text-[#102127]  placeholder-[#102127]"
-                  }
-                  holder={"Enter Password"}
-                />
+                <div>
+                  <Input
+                    labelValue={"Re-Enter Password"}
+                    labelClass={"font-semibold py-2"}
+                    inputType={"password"}
+                    required={"*"}
+                    inputName={"password"}
+                    inputClass={
+                      " rounded-xl text-[#102127]  placeholder-[#102127]"
+                    }
+                    holder={"Enter Password"}
+                    value={confirmPwd}
+                    onchange={(e) => setConfirmPwd(e.target.value)}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">{error}</p>
+                </div>
                 <Input
                   labelValue={"Display Name"}
                   labelClass={"font-semibold py-2"}
@@ -103,7 +131,11 @@ const EscortDetailsOne = () => {
                     </option>
                     {countries.map((country) => {
                       return (
-                        <option className="rounded-xl" value={country.text}>
+                        <option
+                          key={country.text}
+                          className="rounded-xl"
+                          value={country.text}
+                        >
                           {country.text}
                         </option>
                       );
@@ -175,33 +207,33 @@ const EscortDetailsOne = () => {
 
               <div className="  pt-4 pb-8 lg:max-w-[300px]">
                 <div>
-                  <p className="text-[#F1D6D6] text-[14px]">
+                  <div className="text-[#F1D6D6] text-[14px]">
                     <p>
-                      Username is a unique name for admin to identify you. It
+                      Username is a unique name for admin to identify you. It
                       can be anything or whatever you can remember.
                     </p>
                     <p>
-                      Your display name is the important name everybody will see
+                      Your display name is the important name everybody will see
                       on your profile.
                     </p>
                     <p>So,</p>
-                    <p>Don't use your real name as a display name.</p>
+                    <p>Don't use your real name as a display name.</p>
                     <p>
-                      Use a fancy name like a nice nickname but one your mum and
+                      Use a fancy name like a nice nickname but one your mum and
                       dad don't know about.
                     </p>
                     <p>Date of birth:</p>
                     <p>
-                      Pick your date of birth, it Can not be changed once your
+                      Pick your date of birth, it Can not be changed once your
                       registration is completed.
                     </p>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
             <Link
               to={"/additional-details"}
-              className="text-center block bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
+              className="text-center block hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
             >
               Next
             </Link>

@@ -36,6 +36,7 @@ import BlacklistedView from "./pages/BlacklistedView.jsx";
 import EscortProfile from "./pages/EscortProfile.jsx";
 import EditClient from "./pages/EditClient.jsx";
 import EditEscort from "./pages/EditEscort.jsx";
+import ChangePassword from "./pages/ChangePassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
       {
         path: "/edit-client",
         element: <EditClient />,
+      },
+      {
+        path: "/change-password",
+        element: <ChangePassword />,
       },
       {
         path: "/edit-escort",

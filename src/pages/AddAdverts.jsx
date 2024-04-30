@@ -4,6 +4,7 @@ import SideBar from "../components/SideBar";
 import Input from "../components/Input";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import TextArea from "../components/TextArea";
+import Loading from "../components/Loading";
 
 const AddAdverts = () => {
   const [getState, setGetState] = useState([]);
@@ -14,7 +15,7 @@ const AddAdverts = () => {
   const { data, isLoading } = useGetCountryQuery();
 
   if (isLoading) {
-    return <p>loading</p>;
+    return <Loading />
   }
 
   console.log(data);

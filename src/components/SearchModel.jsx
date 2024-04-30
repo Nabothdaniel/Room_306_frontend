@@ -3,6 +3,7 @@ import Close from "../images/close-icon.svg";
 import Input from "./Input";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import { Age } from "./AgeArray";
+import Loading from "./Loading";
 
 const SearchModel = ({ handleSearch, SearchClass }) => {
   const [getState, setGetState] = useState([]);
@@ -13,7 +14,7 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
   const { data, isLoading } = useGetCountryQuery();
 
   if (isLoading) {
-    return <p>loading</p>;
+    return <Loading />
   }
 
   

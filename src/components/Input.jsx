@@ -8,6 +8,8 @@ const Input = ({
   inputType,
   inputClass,
   required,
+  value,
+  onchange
 }) => {
   return (
     <div className="text-white flex flex-col">
@@ -20,6 +22,8 @@ const Input = ({
         name={inputName}
         className={`${inputClass} md:p-3 py-[8px] px-3`}
         placeholder={holder}
+        value={value}
+        onChange={onchange}
       />
     </div>
   );
