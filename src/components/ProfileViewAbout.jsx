@@ -1,8 +1,8 @@
 import React from "react";
 
-const ProfileViewAbout = () => {
+const ProfileViewAbout = ({aboutClass}) => {
   return (
-    <div className="pt-10 text-[#DADADA]">
+    <div className={`pt-10 text-[#DADADA] ${aboutClass}`}>
       <h3 className="text-[#B29A9A] pb-4 text-[14px]">Bio</h3>
       <p className="pb-4 font-semibold text-[15px] lg:text-base">
         Am here to satisfy ur pleasure I love sex most especially blow job (cum
@@ -69,7 +69,14 @@ const ProfileViewAbout = () => {
           <p className="font-semibold">December 22, 2022</p>
         </div>
       </div>
-
+      <p className="text-white uppercase text-center pt-16">
+        Profile Viewed{" "}
+        <span className="bg-red-400 px-3 rounded-3xl mr-1 py-1 font-semibold">
+          {" "}
+          737
+        </span>
+        Times
+      </p>
       <div className="border-b-2 pt-10  font-semibold  text-white border-[#393C49] py-3">
         <p>Rates (NGN)</p>
       </div>
