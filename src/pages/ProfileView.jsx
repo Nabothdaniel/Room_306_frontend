@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import { BlogSwiper } from "../components/BlogSwiper";
@@ -9,7 +9,16 @@ import { useNavigate } from "react-router-dom";
 import BookingModel from "../components/BookingModel";
 
 const ProfileView = () => {
+  const [openBook, setOpenBook] = useState(false)
+
+
    const navigate = useNavigate();
+
+
+  
+  const handleBook = () => {
+    setOpenBook(!openBook)
+  }
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />
@@ -31,7 +40,7 @@ const ProfileView = () => {
               <img className="size-5 mr-1" src={Arrow} alt="" />
               Back
             </h2>
-            <ProfileViewItem />
+            <ProfileViewItem handleBook={handleBook} />
             <ProfileViewItems />
           </div>
 
@@ -45,7 +54,10 @@ const ProfileView = () => {
           </div>
         </div>
       </div>
-      {/* <BookingModel /> */}
+      <BookingModel
+        handleBook={handleBook}
+        bookClass={`${!openBook ? "translate-x-[120vw]" : "translate-x-0"}`}
+      />
     </div>
   );
 };

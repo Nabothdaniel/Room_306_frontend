@@ -14,8 +14,7 @@ const BlogItems = () => {
           Room306.com review: Adult dating website in Nigeria
         </h3>
         <p className="text-[#DADADA] text-[13px] pt-3 pb-4">
-          Room306.com is a Nigerian adult dating service that allows men and
-          women to advertise any sex
+          Room306 is an adult dating services that enable men and women Socialize, Share ideas and get Acquainted. 
         </p>
         <div className="flex items-center justify-between">
           <p className="flex items-center">

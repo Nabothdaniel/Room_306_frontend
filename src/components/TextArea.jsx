@@ -5,17 +5,21 @@ const TextArea = ({
   inputName,
   holder,
   inputClass,
-    required,
-    col,
-  row
+  required,
+  col,
+  row,
+  labelClass,
 }) => {
   return (
     <div className="text-white flex flex-col">
-      <label className="font-semibold  py-2" htmlFor={inputName}>
+      <label
+        className={`font-semibold ${labelClass}  py-2`}
+        htmlFor={inputName}
+      >
         {labelValue}
         <span className="text-[#E9CB50]">{required}</span>
       </label>
-     
+
       <textarea
         name={inputName}
         className={inputClass}

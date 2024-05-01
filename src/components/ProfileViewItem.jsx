@@ -4,7 +4,7 @@ import Youtube from "../images/youtube.svg";
 import Messenger from "../images/messenger.svg";
 import { ProfileSwiper } from "./ProfileSwiper";
 
-const ProfileViewItem = () => {
+const ProfileViewItem = ({ handleBook }) => {
   return (
     <div className="grid md:grid-cols-2 md:px-4 md:pt-4 py-4 px-6 gap-x-6 h-fit pb-7 md:pb-0  rounded-xl bg-[#1E1E1E] ">
       <ProfileSwiper />
@@ -51,7 +51,10 @@ const ProfileViewItem = () => {
             <p className="text-[#B29A9A]">Height</p>
           </div>
         </div>
-        <button className="bg-[#E9CB50] mt-4 w-[100%] text-[#171717] h-[40px] font-medium rounded-2xl">
+        <button
+          onClick={handleBook}
+          className="bg-[#E9CB50] mt-4 w-[100%] text-[#171717] h-[40px] font-medium rounded-2xl"
+        >
           Book Now
         </button>
         <div className="flex text-[#DADADA] justify-center md:justify-normal items-center mt-4">
