@@ -66,7 +66,12 @@ const EditEscort = () => {
                 <ProfileSwiper />
               </div>
               <div className="lg:col-span-3 col-span-1 md:col-span-2 text-white gap-4">
-                <p className="font-semibold pb-3 md:pb-0">AdamFresh</p>
+                <div className="flex items-center justify-between">
+                  <p className="font-semibold pb-3 md:pb-0">AdamFresh</p>
+                  <button className="bg-[#E9CB50] float-right text-[#171717] text-[14px] h-[48px] w-[120px] font-semibold rounded-xl">
+                    Save Changes
+                  </button>
+                </div>
                 <Input
                   labelValue={"Email"}
                   labelClass={"pt-3 font-semibold"}

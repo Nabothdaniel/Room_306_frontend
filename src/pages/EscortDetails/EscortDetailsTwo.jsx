@@ -1,12 +1,42 @@
-import React from "react";
-import { countries } from "../../components/COUNTRY_DATA.JS";
+import React, { useState } from "react";
 import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
+import { details } from "../../redux/UtilSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const EscortDetailsTwo = () => {
+
+   const open = useSelector((state) => state.Util.userDetails);
+   const dispatch = useDispatch();
+
+  const [formData, setFormData] = useState({});
+  const [is_smoker, setSmoker] = useState(false)
+  const [available_incall, setIncall] = useState(false)
+  const [available_outcall, setOutcall] = useState(false)
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+
+
+  const handleEscortTwo = () => {
+    dispatch(
+      details({
+        ...formData,
+        available_incall,
+        available_outcall,
+        is_smoker
+      })
+    );
+  };
+
+  console.log(open);
+  
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -43,6 +73,7 @@ const EscortDetailsTwo = () => {
                 inputName={"education"}
                 inputClass={" rounded-xl text-[#102127] placeholder-[#102127]"}
                 holder={"Select"}
+                onchange={handleChange}
               />
               <Input
                 labelValue={"Occupation"}
@@ -51,6 +82,7 @@ const EscortDetailsTwo = () => {
                 inputName={"occupation"}
                 inputClass={" rounded-xl text-[#102127]  placeholder-[#102127]"}
                 holder={"Enter Here"}
+                onchange={handleChange}
               />
               <div className="md:col-span-2">
                 <TextArea
@@ -63,6 +95,7 @@ const EscortDetailsTwo = () => {
                   holder={"Enter Here"}
                   col={""}
                   row={"6"}
+                  onchange={handleChange}
                 />
               </div>
 
@@ -79,6 +112,7 @@ const EscortDetailsTwo = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="ethnicity"
                       id="ethnicity"
+                      onChange={handleChange}
                     >
                       <option value="">Your Ethnicity</option>
                       <option value="all">All</option>
@@ -103,6 +137,7 @@ const EscortDetailsTwo = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="bust-size"
                       id="bust-size"
+                      onChange={handleChange}
                     >
                       <option value="">Choose here</option>
                       <option>All</option>
@@ -117,28 +152,48 @@ const EscortDetailsTwo = () => {
                     </select>
                   </div>
                 </label>
-                <Input
-                  labelValue={"Occupation"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"text"}
-                  required={"*"}
-                  inputName={"occupation"}
-                  inputClass={
-                    " rounded-xl text-[#102127]  placeholder-[#102127]"
-                  }
-                  holder={"Enter Here"}
-                />
-                <Input
-                  labelValue={"Occupation"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"text"}
-                  required={"*"}
-                  inputName={"occupation"}
-                  inputClass={
-                    " rounded-xl text-[#102127]  placeholder-[#102127]"
-                  }
-                  holder={"Enter Here"}
-                />
+                <label className="text-white flex flex-col" htmlFor="height">
+                  <span className="font-semibold pb-1">
+                    Height<span className="text-[#E9CB50]">*</span>
+                  </span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                      name="height"
+                      id="height"
+                      onChange={handleChange}
+                    >
+                      <option value="">Choose here</option>
+                      <option>Average</option>
+                      <option>Not too Tall</option>
+                      <option>Portable</option>
+                      <option>Tall</option>
+                      <option>Very Tall</option>
+                    </select>
+                  </div>
+                </label>
+                <label className="text-white flex flex-col" htmlFor="weight">
+                  <span className="font-semibold pb-1">
+                    Weight<span className="text-[#E9CB50]">*</span>
+                  </span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                      name="weight"
+                      id="weight"
+                      onChange={handleChange}
+                    >
+                      <option value="">Choose here</option>
+                      <option>Average</option>
+                      <option>BBW</option>
+                      <option>Fluffy Light</option>
+                      <option>HEAVY</option>
+                      <option>Heavy Duty</option>
+                      <option>Light</option>
+                      <option>SSBBW</option>
+                    </select>
+                  </div>
+                </label>
                 <label className="text-white flex flex-col" htmlFor="build">
                   <span className="font-semibold pb-1">
                     Build<span className="text-[#E9CB50]">*</span>
@@ -148,6 +203,7 @@ const EscortDetailsTwo = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="build"
                       id="build"
+                      onChange={handleChange}
                     >
                       <option value="">Choose here</option>
                       <option>All</option>
@@ -178,6 +234,7 @@ const EscortDetailsTwo = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="looks"
                       id="looks"
+                      onChange={handleChange}
                     >
                       <option value="">Choose here</option>
                       <option>All</option>
@@ -203,13 +260,23 @@ const EscortDetailsTwo = () => {
                   <div className="flex md:w-[50%]">
                     <label className="container text-white ">
                       Yes
-                      <input type="radio" name="smoker" />
+                      <input
+                        value={"true"}
+                        onChange={(e) => setSmoker(e.target.value)}
+                        type="radio"
+                        name="smoker"
+                      />
                       <span className="checkmark"></span>
                     </label>
 
                     <label className="container text-white">
                       No
-                      <input type="radio" name="smoker" />
+                      <input
+                        value={"false"}
+                        onChange={(e) => setSmoker(e.target.value)}
+                        type="radio"
+                        name="smoker"
+                      />
                       <span className="checkmark"></span>
                     </label>
                   </div>
@@ -226,6 +293,7 @@ const EscortDetailsTwo = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                       name="sexual-orientation"
                       id="sexual-orientation"
+                      onChange={handleChange}
                     >
                       <option value="">Sexual Orientation</option>
                       <option>HetroSexual(Straight)</option>
@@ -246,13 +314,23 @@ const EscortDetailsTwo = () => {
                   <div className="flex md:w-[50%]">
                     <label className="container text-white ">
                       Yes
-                      <input type="radio" name="incall" />
+                      <input
+                        onChange={(e) => setIncall(e.target.value)}
+                        value={"true"}
+                        type="radio"
+                        name="incall"
+                      />
                       <span className="checkmark"></span>
                     </label>
 
                     <label className="container text-white">
                       No
-                      <input type="radio" name="incall" />
+                      <input
+                        onChange={(e) => setIncall(e.target.value)}
+                        value={"false"}
+                        type="radio"
+                        name="incall"
+                      />
                       <span className="checkmark"></span>
                     </label>
                   </div>
@@ -265,13 +343,23 @@ const EscortDetailsTwo = () => {
                   <div className="flex md:w-[50%]">
                     <label className="container text-white ">
                       Yes
-                      <input type="radio" name="outcall" />
+                      <input
+                        onChange={(e) => setOutcall(e.target.value)}
+                        value={"true"}
+                        type="radio"
+                        name="outcall"
+                      />
                       <span className="checkmark"></span>
                     </label>
 
                     <label className="container text-white">
                       No
-                      <input type="radio" name="outcall" />
+                      <input
+                        onChange={(e) => setOutcall(e.target.value)}
+                        value={"false"}
+                        type="radio"
+                        name="outcall"
+                      />
                       <span className="checkmark"></span>
                     </label>
                   </div>
@@ -286,11 +374,37 @@ const EscortDetailsTwo = () => {
                     "bg-[#F0F2F5] py-3 px-4 md:mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
                   }
                   holder={"Enter Here"}
+                  onchange={handleChange}
                 />
+                <label
+                  className="text-white flex pt-7 flex-col"
+                  htmlFor="level"
+                >
+                  <span className="font-semibold pb-1">
+                    {/* <span className="text-[#E9CB50]">*</span> */}
+                  </span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                      name="level"
+                      id="level"
+                      onChange={handleChange}
+                    >
+                      <option value="">Select Level</option>
+                      <option>Minimal</option>
+                      <option>Conversational</option>
+                      <option>Fluent</option>
+                    </select>
+                  </div>
+                </label>
               </div>
             </div>
 
-            <Link to={'/services'} className="bg-[#E9CB50] block text-center w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl">
+            <Link
+              onClick={handleEscortTwo}
+              to={"/services"}
+              className="bg-[#E9CB50] block text-center w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
+            >
               Next
             </Link>
           </div>

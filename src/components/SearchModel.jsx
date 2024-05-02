@@ -14,29 +14,33 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
   const { data, isLoading } = useGetCountryQuery();
 
   if (isLoading) {
-    return <Loading />
+    return <Loading />;
   }
 
-  
-
-  const countries = [...new Set(data.map((item) => item.country))];
-
-  countries.sort();
-
-  
-
+  let states;
   const handleCountry = (e) => {
-    let states = data.filter((state) => state.country === e.target.value);
+    states = data.filter((state) => state.name === e.target.value);
 
-    states = [...new Set(states.map((item) => item.subcountry))];
+    states = states.map((item) => item.states);
+
     states.sort();
-    setGetState(states);
+    setGetState(states[0]);
   };
 
   const handleState = (e) => {
-    const cities = data.filter((item) => item.subcountry === e.target.value);
-    setGetCities(cities);
+    let city = getState.filter((item) => item.name === e.target.value);
+    city = city.map((item) => item);
+
+    setGetCities(city);
   };
+
+  let newCities = [];
+
+  getCities.forEach((childArray) => {
+    childArray.cities.forEach((item) => {
+      newCities.push(item);
+    });
+  });
 
   return (
     <div
@@ -79,10 +83,10 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   }}
                 >
                   <option value="">All Country</option>
-                  {countries.map((item) => {
+                  {data.map((item) => {
                     return (
-                      <option key={item} value={item}>
-                        {item}
+                      <option key={item.id} value={item.name}>
+                        {item.name}
                       </option>
                     );
                   })}
@@ -103,10 +107,10 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   }}
                 >
                   <option value="">State(Optional)</option>
-                  {getState.map((item) => {
+                  {getState.map((item, index) => {
                     return (
-                      <option key={item} value={item}>
-                        {item}
+                      <option key={item.id} value={item.name}>
+                        {item.name}
                       </option>
                     );
                   })}
@@ -124,9 +128,10 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   onChange={(e) => setCities(e.target.value)}
                 >
                   <option value="">City(Optional)</option>
-                  {getCities.map((item) => {
+
+                  {newCities.map((item) => {
                     return (
-                      <option key={item.name} value={item.name}>
+                      <option key={item.id} value={item.name}>
                         {item.name}
                       </option>
                     );

@@ -11,16 +11,17 @@ import { IoCashOutline } from "react-icons/io5";
 import { FiMap } from "react-icons/fi";
 import { TbLogout2 } from "react-icons/tb";
 import { MdOutlineBedroomParent } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const ProfileMenu = ({ profileClass }) => {
+  const location = useLocation().pathname
   return (
     <div
       className={`grid grid-cols-3 bg-[#1E1E1E] ${profileClass} pr-2 pl-1 rounded-xl py-6 md:px-12 gap-x-2 md:gap-x-4 gap-y-6 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7`}
     >
       <Link
         to={"/profile"}
-        className="text-center active flex flex-col items-center text-white  py-3 px-1 rounded-lg"
+        className={`text-center active flex flex-col items-center text-white  py-3 px-1 rounded-lg ${location == '/profile' ? 'bg-black' : ''}`}
       >
         <img className="size-10" src={User} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
@@ -35,18 +36,18 @@ const ProfileMenu = ({ profileClass }) => {
         </p>
       </div>
 
-      <div className="flex flex-col items-center text-white  py-3 px-1 rounded-lg ">
+      <Link to={'/my-booking'} className={`flex flex-col items-center text-white  py-3 px-1 rounded-lg ${location == '/my-booking' ? 'bg-black' : ''} `}>
         <img className="size-10" src={Tag} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
           My Booking
         </p>
-      </div>
-      <div className="flex flex-col items-center text-white  py-3 px-1 rounded-lg ">
+      </Link>
+      <Link to={'/my-favourites'} className="flex flex-col items-center text-white  py-3 px-1 rounded-lg ">
         <img className="size-10 " src={Heart} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
           Favourites
         </p>
-      </div>
+      </Link>
       <div className="flex flex-col items-center text-white  py-3 px-1 rounded-lg ">
         <img className="size-10 " src={People} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
@@ -55,7 +56,7 @@ const ProfileMenu = ({ profileClass }) => {
       </div>
       <Link
         to={"/my-wallet"}
-        className="flex flex-col items-center text-white  py-3 px-1 rounded-lg "
+        className={`flex flex-col items-center text-white  py-3 px-1 rounded-lg ${location == '/my-wallet' ? 'bg-black' : ''} `}
       >
         <img className="size-10" src={Wallet} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
@@ -126,12 +127,12 @@ const ProfileMenu = ({ profileClass }) => {
           My Discussion
         </p>
       </div>
-      <div className="text-center  text-white flex flex-col items-center py-3 px-1 rounded-lg ">
+      <Link to={'/change-password'} className={`text-center  text-white flex flex-col items-center py-3 px-1 rounded-lg ${location == '/change-password' ? 'bg-black' : ''} `}>
         <img className="size-10" src={Like} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
           Change Password
         </p>
-      </div>
+      </Link>
       <div className=" text-white text-center flex flex-col items-center py-3 px-1 rounded-lg ">
         <img className="size-10 " src={Wallet} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">

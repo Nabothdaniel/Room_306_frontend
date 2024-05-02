@@ -9,6 +9,8 @@ const TextArea = ({
   col,
   row,
   labelClass,
+  onchange,
+  value
 }) => {
   return (
     <div className="text-white flex flex-col">
@@ -27,6 +29,8 @@ const TextArea = ({
         id={inputName}
         cols={col}
         rows={row}
+        value={value}
+        onChange={onchange}
       ></textarea>
     </div>
   );

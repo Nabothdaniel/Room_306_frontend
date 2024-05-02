@@ -1,29 +1,135 @@
 import React, { useEffect, useState } from "react";
-import { countries } from "../../components/COUNTRY_DATA.JS";
 import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 import { useRegisterEscortMutation } from "../../redux/EscortApi";
+import Loading from "../../components/Loading";
+import { useGetCountryQuery } from "../../redux/CountryApi";
+import { useDispatch, useSelector } from "react-redux";
+import { details } from "../../redux/UtilSlice";
 
 const EscortDetailsOne = () => {
+  const open = useSelector((state) => state.Util.userDetails);
+  const dispatch = useDispatch();
+
   const [register] = useRegisterEscortMutation();
 
   const [password, setPassword] = useState("");
   const [confirmPwd, setConfirmPwd] = useState("");
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
+  const [code, setCode] = useState("");
+  const [currency, setCurrency] = useState("");
+  const [getState, setGetState] = useState([]);
+  const [getCities, setGetCities] = useState([]);
+  const [country, setCountry] = useState("");
+  const [State, setState] = useState("");
+  const [cities, setCities] = useState("");
+  const [match, setMatch] = useState(false);
+  const [correct, setCorrect] = useState(false);
+  const [gender, setGender] = useState("");
+  const [dob, setDob] = useState("");
+  const [heading, setHeading] = useState("");
+  const [display_name, setName] = useState("");
+  const [mobile_number, setNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const { data, isLoading } = useGetCountryQuery();
 
   useEffect(() => {
     if (!(password == confirmPwd)) {
       setError("Password does not match");
+      setMatch(false);
     } else {
       setError("");
+      setMatch(true);
     }
   }, [confirmPwd]);
 
-  const handleSubmit = () => {};
+  useEffect(() => {
+    if (
+      (username ||
+        match ||
+        email ||
+        country ||
+        State ||
+        cities ||
+        gender ||
+        currency ||
+        heading ||
+        display_name ||
+        dob,
+      mobile_number,
+      code)
+    ) {
+      setCorrect(true);
+    } else {
+      setCorrect(false);
+    }
+  }, [
+    username,
+    match,
+    email,
+    State,
+    cities,
+    gender,
+    currency,
+    heading,
+    display_name,
+    dob,
+    mobile_number,
+    code,
+  ]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  let states;
+  const handleCountry = (e) => {
+    states = data.filter((state) => state.name === e.target.value);
+    setCode(states[0].phone_code);
+    setCurrency(states[0].currency);
+    states = states.map((item) => item.states);
+
+    states.sort();
+    setGetState(states[0]);
+  };
+
+  const handleState = (e) => {
+    let city = getState.filter((item) => item.name === e.target.value);
+    city = city.map((item) => item);
+
+    setGetCities(city);
+  };
+
+  let newCities = [];
+
+  getCities.forEach((childArray) => {
+    childArray.cities.forEach((item) => {
+      newCities.push(item);
+    });
+  });
+
+
+  const handleEscortOne = () => {
+    dispatch(
+      details({
+        username,
+        email,
+        State,
+        cities,
+        gender,
+        currency,
+        heading,
+        display_name,
+        dob,
+        mobile_number,
+        code,
+      })
+    );
+  };
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -74,7 +180,8 @@ const EscortDetailsOne = () => {
                     " rounded-xl text-[#102127]  placeholder-[#102127]"
                   }
                   holder={"Enter Email"}
-                  needed={true}
+                  value={email}
+                  onchange={(e) => setEmail(e.target.value)}
                 />
                 <Input
                   labelValue={"Password"}
@@ -115,36 +222,87 @@ const EscortDetailsOne = () => {
                     " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={"Enter Display Name"}
+                  value={display_name}
+                  onchange={(e) => setName(e.target.value)}
                 />
 
-                <label className="text-white flex flex-col" htmlFor="country">
-                  <span className="py-2 font-semibold">
-                    Country <span className="text-[#E9CB50]">*</span>
-                  </span>
-                  <select
-                    className="px-3 py-[10px] md:py-[14px] rounded-xl text-[#102127] placeholder-[#102127]"
-                    name="country"
-                    id="country"
-                  >
-                    <option className="rounded-xl" value="">
-                      Select
-                    </option>
-                    {countries.map((country) => {
-                      return (
-                        <option
-                          key={country.text}
-                          className="rounded-xl"
-                          value={country.text}
-                        >
-                          {country.text}
-                        </option>
-                      );
-                    })}
-                  </select>
+                <label
+                  className="text-[#475367] flex flex-col"
+                  htmlFor="country"
+                >
+                  <span className="font-semibold text-white pb-1">Country</span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      name="country"
+                      id="country"
+                      value={country}
+                      onChange={(e) => {
+                        handleCountry(e);
+                        setCountry(e.target.value);
+                      }}
+                    >
+                      <option value="">All Country</option>
+                      {data.map((item) => {
+                        return (
+                          <option key={item.id} value={item.name}>
+                            {item.name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </label>
+
+                <label className="text-[#475367] flex flex-col" htmlFor="state">
+                  <span className="font-semibold text-white pb-1">State</span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      name="state"
+                      id="state"
+                      value={State}
+                      onChange={(e) => {
+                        handleState(e);
+                        setState(e.target.value);
+                      }}
+                    >
+                      <option value="">State(Optional)</option>
+                      {getState.map((item, index) => {
+                        return (
+                          <option key={item.id} value={item.name}>
+                            {item.name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </label>
+                <label className="text-[#475367] flex flex-col" htmlFor="city">
+                  <span className="font-semibold text-white pb-1">City</span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      name="city"
+                      id="city"
+                      value={cities}
+                      onChange={(e) => setCities(e.target.value)}
+                    >
+                      <option value="">City(Optional)</option>
+
+                      {newCities.map((item) => {
+                        return (
+                          <option key={item.id} value={item.name}>
+                            {item.name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
                 </label>
 
                 <Input
-                  labelValue={"Start Date"}
+                  labelValue={"Date of Birth"}
                   inputType={"date"}
                   labelClass={"font-semibold py-2"}
                   required={""}
@@ -153,17 +311,29 @@ const EscortDetailsOne = () => {
                     " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={""}
+                  value={dob}
+                  onchange={(e) => setDob(e.target.value)}
                 />
                 <div className="text-white flex pt-10 items-center">
                   <label className="container ">
                     Male
-                    <input type="radio" name="gender" />
+                    <input
+                      type="radio"
+                      name="gender"
+                      value={"male"}
+                      onChange={(e) => setGender(e.target.value)}
+                    />
                     <span className="checkmark"></span>
                   </label>
 
                   <label className="container">
                     Female
-                    <input type="radio" name="gender" />
+                    <input
+                      type="radio"
+                      name="gender"
+                      value={"female"}
+                      onChange={(e) => setGender(e.target.value)}
+                    />
                     <span className="checkmark"></span>
                   </label>
                 </div>
@@ -179,19 +349,31 @@ const EscortDetailsOne = () => {
                     holder={"In short, tell your clients what you offer"}
                     col={""}
                     row={"7"}
+                    value={heading}
+                    onchange={(e) => setHeading(e.target.value)}
                   />
                 </div>
-                <Input
-                  labelValue={"Country Code"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"select"}
-                  required={"*"}
-                  inputName={"country-code"}
-                  inputClass={
-                    " rounded-xl text-[#102127] placeholder-[#102127]"
-                  }
-                  holder={"Select"}
-                />
+
+                <label
+                  className="text-[#475367] pt-2 flex flex-col"
+                  htmlFor="city"
+                >
+                  <span className="font-semibold text-white pb-1">
+                    Country Code
+                  </span>
+                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                    <select
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                      name="city"
+                      id="city"
+                    >
+                      <option value="">Select</option>
+
+                      <option>+{code}</option>
+                    </select>
+                  </div>
+                </label>
+
                 <Input
                   labelValue={"Mobile Number"}
                   labelClass={"font-semibold py-2"}
@@ -202,6 +384,8 @@ const EscortDetailsOne = () => {
                     "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={"E.g 12345678881"}
+                  value={mobile_number}
+                  onchange={(e) => setNumber(e.target.value)}
                 />
               </div>
 
@@ -231,12 +415,22 @@ const EscortDetailsOne = () => {
                 </div>
               </div>
             </div>
-            <Link
-              to={"/additional-details"}
-              className="text-center block hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
-            >
-              Next
-            </Link>
+            {correct ? (
+              <Link
+                onClick={handleEscortOne}
+                to={"/additional-details"}
+                className="text-center block hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
+              >
+                Next
+              </Link>
+            ) : (
+              <button
+                disabled
+                className="text-center block hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
+              >
+                Next
+              </button>
+            )}
           </div>
         </div>
       </div>

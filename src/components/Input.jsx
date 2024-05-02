@@ -20,6 +20,7 @@ const Input = ({
       <input
         type={inputType}
         name={inputName}
+        id={inputName}
         className={`${inputClass} md:p-3 py-[8px] px-3`}
         placeholder={holder}
         value={value}

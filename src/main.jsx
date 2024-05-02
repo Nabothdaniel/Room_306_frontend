@@ -37,6 +37,9 @@ import EscortProfile from "./pages/EscortProfile.jsx";
 import EditClient from "./pages/EditClient.jsx";
 import EditEscort from "./pages/EditEscort.jsx";
 import ChangePassword from "./pages/ChangePassword.jsx";
+import Hello from "./pages/Hello.jsx";
+import MyBooking from "./pages/MyBooking.jsx";
+import MyFavorite from "./pages/MyFavorite.jsx";
 
 const router = createBrowserRouter([
   {
@@ -182,6 +185,14 @@ const router = createBrowserRouter([
       {
         path: "/:title",
         element: <SingleBlog />,
+      },
+      {
+        path: "/my-booking",
+        element: <MyBooking />,
+      },
+      {
+        path: "/my-favourites",
+        element: <MyFavorite />,
       },
     ],
   },

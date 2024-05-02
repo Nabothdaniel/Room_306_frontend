@@ -7,7 +7,7 @@ const escortApi = ApiSlice.injectEndpoints({
     }),
     registerEscort: build.mutation({
       query: (body) => ({
-        url: "auth/register_escort",
+        url: "auth/register_escort/",
         method: POST,
         body,
       }),
