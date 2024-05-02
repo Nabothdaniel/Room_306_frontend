@@ -3,7 +3,7 @@ import TextArea from "./TextArea";
 import Input from "./Input";
 import { useGetCountryQuery } from "../redux/CountryApi";
 
-const EditAbout = ({aboutClass}) => {
+const EditAbout = ({ aboutClass }) => {
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
   const [country, setCountry] = useState("");

@@ -37,9 +37,10 @@ import EscortProfile from "./pages/EscortProfile.jsx";
 import EditClient from "./pages/EditClient.jsx";
 import EditEscort from "./pages/EditEscort.jsx";
 import ChangePassword from "./pages/ChangePassword.jsx";
-import Hello from "./pages/Hello.jsx";
 import MyBooking from "./pages/MyBooking.jsx";
 import MyFavorite from "./pages/MyFavorite.jsx";
+import BlacklistedClients from "./pages/BlacklistedClients.jsx";
+import MyTour from "./pages/MyTour.jsx";
 
 const router = createBrowserRouter([
   {
@@ -193,6 +194,14 @@ const router = createBrowserRouter([
       {
         path: "/my-favourites",
         element: <MyFavorite />,
+      },
+      {
+        path: "/my-blacklisted-clients",
+        element: <BlacklistedClients />,
+      },
+      {
+        path: "/my-tours",
+        element: <MyTour />,
       },
     ],
   },

@@ -73,7 +73,7 @@ const EscortProfile = () => {
               </p>
             </div>
             <div>
-              <p className="bg-[#E9CB50] text-black/70 text-[14px] md:text-base font-semibold rounded-xl py-1 text-center min-w-[120px] md:min-w-[130px]">
+              <p className="bg-[#E9CB50] text-black/70 text-[12px] md:text-base font-semibold rounded-xl py-1 text-center min-w-[100px] md:min-w-[130px]">
                 Under Review
               </p>
             </div>
@@ -146,7 +146,7 @@ const EscortProfile = () => {
           <div>
             <div
               ref={animationParent}
-              className="border-b-2 pt-10 flex  relative  font-semibold items-center text-white border-[#393C49] py-3"
+              className="border-b-2 pt-10 flex px-2 relative  font-semibold items-center text-white border-[#393C49] py-3"
             >
               <p
                 onClick={() => dispatch({ type: "Change1" })}
@@ -176,7 +176,7 @@ const EscortProfile = () => {
                 Media
               </p>
             </div>
-            <div className="pt-4">
+            <div className="pt-4 px-2">
               <Notice noticeClass={`${!state.open1 ? "hidden" : ""}`} />
 
               <ProfileMenu profileClass={`${!state.open2 ? "hidden" : ""}`} />
@@ -197,8 +197,11 @@ const EscortProfile = () => {
                 </p>
                 <div className="flex text-white pt-6">
                   <div className="flex mr-5 flex-col items-center">
-                    <p className="md:text-[24px] text-[18px] font-semibold">
-                      27 <span className="text-[#B29A9A]">yrs</span>
+                    <p className="md:text-[24px] flex items-center text-[18px] font-semibold">
+                      27{" "}
+                      <span className="text-[#B29A9A] text-[14px] md:text-base">
+                        yrs
+                      </span>
                     </p>
                     <p className="text-[#B29A9A]">Age</p>
                   </div>
@@ -226,7 +229,9 @@ const EscortProfile = () => {
               </div>
             </div>
           </div>
-          <ProfileViewItems />
+          <div className="px-2">
+            <ProfileViewItems />
+          </div>
         </div>
       </div>
     </div>

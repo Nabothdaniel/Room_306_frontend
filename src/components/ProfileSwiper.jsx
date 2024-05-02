@@ -27,7 +27,7 @@ export const ProfileSwiper = () => {
           return (
             <SwiperSlide className="mb-10 swiper-1" key={item}>
               <img
-                className="w-[100%]  object-fill h-[403px] rounded-xl "
+                className="md:w-[100%]  object-fill h-[403px] rounded-xl "
                 src={Profile}
                 alt=""
               />

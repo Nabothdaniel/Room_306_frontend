@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ProfileSwiper } from "../components/ProfileSwiper";
 import Input from "../components/Input";
 import TextArea from "../components/TextArea";
@@ -68,7 +68,7 @@ const EditEscort = () => {
               <div className="lg:col-span-3 col-span-1 md:col-span-2 text-white gap-4">
                 <div className="flex items-center justify-between">
                   <p className="font-semibold pb-3 md:pb-0">AdamFresh</p>
-                  <button className="bg-[#E9CB50] float-right text-[#171717] text-[14px] h-[48px] w-[120px] font-semibold rounded-xl">
+                  <button className="bg-[#E9CB50] float-right text-[#171717] text-[14px] h-[35px] md:h-[48px] w-[120px] font-semibold rounded-xl">
                     Save Changes
                   </button>
                 </div>

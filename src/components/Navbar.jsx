@@ -120,13 +120,13 @@ const Navbar = ({ Headervalue, textValue }) => {
             <div className="flex ">
               <Link
                 to={"/signup"}
-                className="bg-[#1B1717] text-center block text-white font-medium rounded-xl py-3 w-[90px] mr-3"
+                className="bg-[#1B1717] text-center block text-white font-medium h-[40px] md:h-auto rounded-xl py-3 w-[90px] mr-3"
               >
                 Sign Up
               </Link>
               <button
                 onClick={() => setOpenLogin(!openLogin)}
-                className="bg-[#E9CB50] text-[#171717] font-medium rounded-xl w-[70px] md:py-3 md:w-[90px]"
+                className="bg-[#E9CB50] text-[#171717] font-medium rounded-xl w-[70px] h-[40px] md:h-auto md:py-3 md:w-[90px]"
               >
                 Login
               </button>

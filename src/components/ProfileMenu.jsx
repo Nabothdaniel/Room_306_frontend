@@ -29,7 +29,7 @@ const ProfileMenu = ({ profileClass }) => {
         </p>
       </Link>
 
-      <div className="md:text-center flex flex-col items-center active text-white  py-3 px-1 rounded-lg">
+      <div className="text-center flex flex-col items-center active text-white  py-3 px-1 rounded-lg">
         <img className="size-10 md:mx-auto" src={Book} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
           Edit My Profile
@@ -69,18 +69,18 @@ const ProfileMenu = ({ profileClass }) => {
           Boost Profile
         </p>
       </div>
-      <div className="flex flex-col items-center text-white  py-3 px-1 rounded-lg ">
+      <Link to={'/my-tours'} className="flex flex-col items-center text-white  py-3 px-1 rounded-lg ">
         <FiMap className="size-10 text-[#E9CB50]" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
           My Tours
         </p>
-      </div>
-      <div className="flex text-center flex-col items-center text-white py-3 px-1 rounded-lg ">
+      </Link>
+      <Link to={'/my-blacklisted-clients'} className="flex text-center flex-col items-center text-white py-3 px-1 rounded-lg ">
         <img className="size-10" src={Wallet} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
           My Blacklisted Clients
         </p>
-      </div>
+      </Link>
       <div className="flex text-center flex-col items-center text-white  py-3 px-1 rounded-lg ">
         <img className="size-10 " src={Wallet} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
