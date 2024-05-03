@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import { countries } from "../components/COUNTRY_DATA.JS";
 import SideBar from "../components/SideBar";
 
-const ClienDetails = () => {
+const ClientDetails = () => {
   return (
     <>
       <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -167,4 +167,4 @@ const ClienDetails = () => {
   );
 };
 
-export default ClienDetails;
+export default ClientDetails;

@@ -7,7 +7,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import ClientProfile from "./pages/ClientProfile.jsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.jsx";
-import ClienDetails from "./pages/ClientDetails.jsx";
+import ClientDetails from "./pages/ClientDetails.jsx";
 import EscortDetailsOne from "./pages/EscortDetails/EscortDetailsOne.jsx";
 import EscortDetailsTwo from "./pages/EscortDetails/EscortDetailsTwo.jsx";
 import EscortDetailsFive from "./pages/EscortDetails/EscortDetailsFive.jsx";
@@ -162,8 +162,8 @@ const router = createBrowserRouter([
         element: <RegisterCard />,
       },
       {
-        path: "/clients",
-        element: <ClienDetails />,
+        path: "/client-register",
+        element: <ClientDetails />,
       },
       {
         path: "/naughty-videos",
