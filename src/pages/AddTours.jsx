@@ -21,22 +21,31 @@ const AddTours = () => {
 
  
 
-  const countries = [...new Set(data.map((item) => item.country))];
+ let states;
+ const handleCountry = (e) => {
+   states = data.filter((state) => state.name === e.target.value);
+   setCode(states[0].phone_code);
+   setCurrency(states[0].currency);
+   states = states.map((item) => item.states);
 
-  countries.sort();
+   states.sort();
+   setGetState(states[0]);
+ };
 
-  const handleCountry = (e) => {
-    let states = data.filter((state) => state.country === e.target.value);
+ const handleState = (e) => {
+   let city = getState.filter((item) => item.name === e.target.value);
+   city = city.map((item) => item);
 
-    states = [...new Set(states.map((item) => item.subcountry))];
-    states.sort();
-    setGetState(states);
-  };
+   setGetCities(city);
+ };
 
-  const handleState = (e) => {
-    const cities = data.filter((item) => item.subcountry === e.target.value);
-    setGetCities(cities);
-  };
+ let newCities = [];
+
+ getCities.forEach((childArray) => {
+   childArray.cities.forEach((item) => {
+     newCities.push(item);
+   });
+ });
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -79,11 +88,14 @@ const AddTours = () => {
                 holder={""}
               />
               <div className="grid md:grid-cols-3 gap-y-3 gap-x-3 pt-5">
-                <label className="text-white flex flex-col" htmlFor="country">
-                  <span className="font-semibold pb-1">Country</span>
+                <label
+                  className="text-[#475367] flex flex-col"
+                  htmlFor="country"
+                >
+                  <span className="font-semibold text-white pb-1">Country</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="country"
                       id="country"
                       value={country}
@@ -93,21 +105,21 @@ const AddTours = () => {
                       }}
                     >
                       <option value="">All Country</option>
-                      {countries.map((item) => {
+                      {data.map((item) => {
                         return (
-                          <option key={item} value={item}>
-                            {item}
+                          <option key={item.id} value={item.name}>
+                            {item.name}
                           </option>
                         );
                       })}
                     </select>
                   </div>
                 </label>
-                <label className="text-white flex flex-col" htmlFor="state">
-                  <span className="font-semibold pb-1">State</span>
+                <label className="text-[#475367] flex flex-col" htmlFor="state">
+                  <span className="font-semibold text-white pb-1">State</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="state"
                       id="state"
                       value={State}
@@ -117,30 +129,31 @@ const AddTours = () => {
                       }}
                     >
                       <option value="">State(Optional)</option>
-                      {getState.map((item) => {
+                      {getState.map((item, index) => {
                         return (
-                          <option key={item} value={item}>
-                            {item}
+                          <option key={item.id} value={item.name}>
+                            {item.name}
                           </option>
                         );
                       })}
                     </select>
                   </div>
                 </label>
-                <label className="text-white flex flex-col" htmlFor="city">
-                  <span className="font-semibold pb-1">City</span>
+                <label className="text-[#475367] flex flex-col" htmlFor="city">
+                  <span className="font-semibold text-white pb-1">City</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="city"
                       id="city"
                       value={cities}
                       onChange={(e) => setCities(e.target.value)}
                     >
                       <option value="">City(Optional)</option>
-                      {getCities.map((item) => {
+
+                      {newCities.map((item) => {
                         return (
-                          <option key={item.name} value={item.name}>
+                          <option key={item.id} value={item.name}>
                             {item.name}
                           </option>
                         );

@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
 import EventItem from "../components/EventItem";
+import MyEventItem from "../components/MyEventItem";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -69,7 +70,7 @@ const MyEvents = () => {
               onClick={() => dispatch({ type: "Change1" })}
               className={`md:mr-10 cursor-pointer ${
                 state.open1 &&
-                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[45px] md:before:w-[80px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[65px] md:before:w-[80px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
               }    `}
             >
               Attending
@@ -78,7 +79,7 @@ const MyEvents = () => {
               onClick={() => dispatch({ type: "Change2" })}
               className={`md:mr-10 cursor-pointer ${
                 state.open2 &&
-                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[50px] md:before:w-[56px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[45px] md:before:w-[56px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
               }    `}
             >
               Active
@@ -87,7 +88,7 @@ const MyEvents = () => {
               onClick={() => dispatch({ type: "Change3" })}
               className={`md:mr-10 cursor-pointer ${
                 state.open3 &&
-                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[50px] md:before:w-[75px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[65px] md:before:w-[75px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
               }    `}
             >
               Approved
@@ -121,7 +122,7 @@ const MyEvents = () => {
             </Link>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               <div className={`${!state.open1 && "hidden"}`}>
-                <EventItem />
+                <MyEventItem />
               </div>
             </div>
           </div>

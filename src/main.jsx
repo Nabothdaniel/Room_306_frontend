@@ -45,6 +45,7 @@ import NaughtyVideoView from "./pages/NaughtyVideoView.jsx";
 import EventsView from "./pages/EventsView.jsx";
 import MyEvents from "./pages/MyEvents.jsx";
 import MyRoom from "./pages/MyRoom.jsx";
+import AddEvents from "./pages/AddEvents.jsx";
 
 const router = createBrowserRouter([
   {
@@ -234,6 +235,10 @@ const router = createBrowserRouter([
       {
         path: "/my-room",
         element: <MyRoom />,
+      },
+      {
+        path: "/add-event",
+        element: <AddEvents />,
       },
     ],
   },

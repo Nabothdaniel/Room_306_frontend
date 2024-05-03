@@ -3,7 +3,7 @@ import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
-import EventItem from "../components/EventItem";
+import MyRoomItem from "../components/MyRoomItem";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -122,7 +122,7 @@ const MyRoom = () => {
             </Link>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               <div className={`${!state.open1 && "hidden"}`}>
-                <EventItem />
+              <MyRoomItem />
               </div>
             </div>
           </div>
