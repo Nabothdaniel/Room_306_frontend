@@ -6,7 +6,7 @@ import { BlogSwiper } from "../components/BlogSwiper";
 import Pagination from "../components/Pagination";
 
 const Blog = () => {
-  const names = ["James", "Paul", "John", "George", "Ringo", 1, 2, 3, 4, 5, 6];
+  
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />

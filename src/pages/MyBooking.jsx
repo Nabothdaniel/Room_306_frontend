@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
 import { useNavigate } from "react-router-dom";
+import BookingItem from "../components/BookingItem";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -49,7 +50,6 @@ const MyBooking = () => {
           textValue={"Explore our tours and activities"}
         />
 
-        <div className="md:py-5 pb-9 md:pb-12">
           <div className="md:pb-3 pt-2 md:pt-8">
             <h2
               onClick={() => navigate(-1)}
@@ -59,7 +59,8 @@ const MyBooking = () => {
               Back
             </h2>
           </div>
-          <div className="border-b-2 pt-8 flex md:overflow-auto overflow-x-scroll relative font-semibold items-center text-white border-[#393C49]">
+        <div className="md:py-5 pb-9 lg:overflow-auto overflow-x-scroll md:pb-12">
+          <div className="border-b-2 pt-8 flex relative font-semibold items-center text-white border-[#393C49]">
             <p
               onClick={() => dispatch({ type: "Change1" })}
               className={`cursor-pointer w-[250px] min-w-[200px] md:text-base text-[14px] text-center py-3 rounded-t-md text-black font-normal bg-yellow-300 `}
@@ -90,6 +91,17 @@ const MyBooking = () => {
             >
               Cancelled
             </p>
+          </div>
+
+          <div className="bg-yellow-300 min-w-[1300px] py-4 px-5 rounded-b-lg">
+            <div className="flex border-b border-[#7D6C6C] pb-4 items-center">
+              <p className="w-[300px] text-center">Client</p>
+              <p className="w-[300px] text-center">Time</p>
+              <p className="w-[300px] text-center">Date</p>
+              <p className="w-[300px] text-center">Message</p>
+              <p className="w-[300px] ml-4 text-center"></p>
+            </div>
+            <BookingItem />
           </div>
         </div>
       </div>

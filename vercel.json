@@ -25,6 +25,15 @@
       "dest": "/"
     },
     {
+      "src": "/naughty-videos/new",
+      "dest": "/"
+    },
+    {
+      "src": "/events/new",
+      "dest": "/"
+    },
+    
+    {
       "src": "/tours",
       "dest": "/"
     },

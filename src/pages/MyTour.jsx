@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
 import MyTourItem from "../components/MyTourItem";
 
@@ -69,16 +69,17 @@ const MyTour = () => {
               </p>
             </div>
             <div className="py-4 px-5 bg-[#1e1e1e] rounded-md">
-              <button className="bg-yellow-300 py-2 hover:bg-yellow-200 duration-500 font-semibold mb-4 px-4 text-[14px] rounded-3xl">
+              <Link
+                to={"/new-tours"}
+                className="bg-yellow-300 block text-center py-2 hover:bg-yellow-200 duration-500 font-semibold mb-4 w-[100px] text-[14px] rounded-3xl"
+              >
                 Add New
-              </button>
+              </Link>
               <div className="  grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4">
                 <MyTourItem tourClass={`${!state.open1 && "hidden"}`} />
 
-                              <div className={`${!state.open2 && "hidden"}`}>
-                                  <div>
-                                      
-                                  </div>
+                <div className={`${!state.open2 && "hidden"}`}>
+                  <div></div>
                 </div>
               </div>
             </div>

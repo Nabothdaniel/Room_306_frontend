@@ -41,6 +41,8 @@ import MyBooking from "./pages/MyBooking.jsx";
 import MyFavorite from "./pages/MyFavorite.jsx";
 import BlacklistedClients from "./pages/BlacklistedClients.jsx";
 import MyTour from "./pages/MyTour.jsx";
+import NaughtyVideoView from "./pages/NaughtyVideoView.jsx";
+import EventsView from "./pages/EventsView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -91,7 +93,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/events",
-        element: <Events />,
+        element: <App />,
+        children: [
+          {
+            index: true,
+            element: <Events />,
+          },
+          {
+            path: ":title",
+            element: <EventsView />,
+          },
+        ],
       },
       {
         path: "/faqs",
@@ -139,7 +151,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/naughty-videos",
-        element: <NaughtVideo />,
+        element: <App />,
+        children: [
+          {
+            index: true,
+            element: <NaughtVideo />,
+          },
+          {
+            path: ":title",
+            element: <NaughtyVideoView />,
+          },
+        ],
       },
       {
         path: "/channels",
