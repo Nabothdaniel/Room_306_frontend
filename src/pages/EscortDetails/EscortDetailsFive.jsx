@@ -70,7 +70,7 @@ const EscortDetailsFive = () => {
                   </li>
                 </ol>
                 <div className="grid xl:grid-cols-4 gap-5 mt-8 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-                  {item.map((is) => {
+                  {item.map((is, index) => {
                     return (
                       <div key={is}
                         onClick={() => document.querySelector(".input").click()}

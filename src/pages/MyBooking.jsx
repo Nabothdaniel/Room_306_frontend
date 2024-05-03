@@ -60,7 +60,7 @@ const MyBooking = () => {
           </h2>
         </div>
         <div className="md:py-5 pb-9 lg:overflow-auto overflow-x-scroll md:pb-12">
-          <div className="border-b-2 pt-8 flex relative font-semibold items-center text-white border-[#393C49]">
+          {/* <div className="border-b-2 pt-8 flex relative font-semibold items-center text-white border-[#393C49]">
             <p
               onClick={() => dispatch({ type: "Change1" })}
               className={`cursor-pointer w-[250px] min-w-[200px] md:text-base text-[14px] text-center py-3 rounded-t-md text-black font-normal bg-yellow-300 `}
@@ -91,9 +91,57 @@ const MyBooking = () => {
             >
               Cancelled
             </p>
+          </div> */}
+
+          <div className="border-b-2 pt-10 flex px-2 relative  font-semibold items-center text-white border-[#393C49] py-3">
+            <p
+              onClick={() => dispatch({ type: "Change1" })}
+              className={`w-[250px] min-w-[200px] text-center  text-[14px] md:text-base cursor-pointer duration-700 ${
+                state.open1 &&
+                "before:contents-[''] duration-500 before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[20px] md:before:w-[26px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+              }    `}
+            >
+              All
+            </p>
+            <p
+              onClick={() => dispatch({ type: "Change2" })}
+              className={`w-[250px] min-w-[200px] text-center text-[14px] md:text-base cursor-pointer duration-700 ${
+                state.open2 &&
+                "before:contents-[''] duration-500 text-[#E9CB50] before:absolute  before:-bottom-[2px] before:w-[55px] md:before:w-[65px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+              }    `}
+            >
+              Pending
+            </p>
+            <p
+              onClick={() => dispatch({ type: "Change3" })}
+              className={`w-[250px] min-w-[200px] text-center text-[14px] md:text-base cursor-pointer duration-700 ${
+                state.open3 &&
+                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[65px] md:before:w-[75px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+              }    `}
+            >
+              Accepted
+            </p>
+            <p
+              onClick={() => dispatch({ type: "Change4" })}
+              className={`w-[250px] min-w-[200px] text-center text-[14px] md:text-base cursor-pointer duration-700 ${
+                state.open4 &&
+                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[75px] md:before:w-[85px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+              }    `}
+            >
+              Completed
+            </p>
+            <p
+              onClick={() => dispatch({ type: "Change5" })}
+              className={`w-[250px] min-w-[200px] text-center text-[14px] md:text-base cursor-pointer duration-700 ${
+                state.open5 &&
+                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[70px] md:before:w-[85px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+              }    `}
+            >
+              Cancelled
+            </p>
           </div>
 
-          <div className="bg-yellow-300 min-w-[1300px] py-4 px-5 rounded-b-lg">
+          <div className="bg-[#1e1e1e] text-white min-w-[1300px] py-4 px-5 rounded-b-lg">
             <div className="flex border-b border-[#7D6C6C] pb-4 items-center">
               <p className="w-[300px] text-center">Client</p>
               <p className="w-[300px] text-center">Time</p>

@@ -9,6 +9,10 @@
       "dest": "/"
     },
     {
+      "src": "/my-booking",
+      "dest": "/"
+    },
+    {
       "src": "/signup",
       "dest": "/"
     },
