@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import User from "../../images/user.jpeg";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
+import Upload from "../../images/Upload.svg";
 
 const EscortDetailsSecFive = () => {
+  const [image, setImage] = useState("");
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -54,19 +56,43 @@ const EscortDetailsSecFive = () => {
                   Please strictly adhere to this instruction else your account
                   will be rejected.
                 </h2>
-                <div className=" flex flex-col pt-10 mx-auto gap-y-4 md:flex-row gap-x-4">
+                <div className=" flex items-center md:items-start flex-col pt-10 mx-auto gap-y-4 md:flex-row gap-x-4">
                   <img
-                    className="h-[330px]  md:max-w-[280px] rounded-xl"
+                    className="h-[330px]  max-w-[280px] rounded-xl"
                     src={User}
                     alt=""
                   />
-                  <div className="bg-[#676767] h-[330px] w-[100%] md:max-w-[280px] rounded-xl "></div>
+                  <div
+                    onClick={() => document.querySelector(".input").click()}
+                    className="w-[100%] cursor-pointer"
+                  >
+                    <input
+                      type="file"
+                      name="file"
+                      id="file"
+                      className="input"
+                      hidden
+                      onChange={({ target: { files } }) => {
+                        if (files) {
+                          setImage(URL.createObjectURL(files[0]));
+                        }
+                      }}
+                    />
+                    {image ? (
+                      <img className="rounded-lg" src={image} />
+                    ) : (
+                      <img className="w-[300px] mx-auto md:mx-0 " src={Upload} alt="" />
+                    )}
+                  </div>
                 </div>
                 <div className="mt-4 flex justify-between md:justify-start">
                   <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-4 md:w-[120px] font-semibold rounded-xl">
                     Delete
                   </button>
-                  <Link to={'/survey'} className="bg-[#E9CB50] text-center block w-[100%] text-[#171717] py-4 md:w-[120px] font-semibold rounded-xl">
+                  <Link
+                    to={"/survey"}
+                    className="bg-[#E9CB50] text-center block w-[100%] text-[#171717] py-4 md:w-[120px] font-semibold rounded-xl"
+                  >
                     Next
                   </Link>
                 </div>

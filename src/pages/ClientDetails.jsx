@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../components/Input";
 import Navbar from "../components/Navbar";
 import { countries } from "../components/COUNTRY_DATA.JS";
 import SideBar from "../components/SideBar";
+import Upload from "../images/Upload.svg";
 
 const ClientDetails = () => {
+  const [image, setImage] = useState("");
   return (
     <>
       <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -138,7 +140,28 @@ const ClientDetails = () => {
                 </div>
 
                 <div className="md:mx-auto md:grid md:gap-x-5 md:grid-cols-2 lg:grid-cols-1 lg:gap-y-0 pb-8 lg:max-w-[300px]">
-                  <div className="bg-[#676767]  mt-4 h-[280px] md:max-w-[300px]  rounded-xl "></div>
+                  <div
+                    onClick={() => document.querySelector(".input").click()}
+                    className="w-[100%] cursor-pointer"
+                  >
+                    <input
+                      type="file"
+                      name="file"
+                      id="file"
+                      className="input"
+                      hidden
+                      onChange={({ target: { files } }) => {
+                        if (files) {
+                          setImage(URL.createObjectURL(files[0]));
+                        }
+                      }}
+                    />
+                    {image ? (
+                      <img className="rounded-lg" src={image} />
+                    ) : (
+                      <img className=" " src={Upload} alt="" />
+                    )}
+                  </div>
                   <div>
                     <p className="text-[#DC3545] text-[14px] py-4">
                       Please upload your profile picture!
