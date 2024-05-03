@@ -77,10 +77,7 @@
       "src": "/faqs",
       "dest": "/"
     },
-    {
-      "src": "/signup/escort/1",
-      "dest": "/"
-    },
+
     {
       "src": "/testimonials",
       "dest": "/"
@@ -94,15 +91,11 @@
       "dest": "/"
     },
     {
-      "src": "/signup/escort/2",
+      "src": "/additional-details",
       "dest": "/"
     },
     {
-      "src": "/signup/escort/5",
-      "dest": "/"
-    },
-    {
-      "src": "/signup/escort/6",
+      "src": "/escort-details",
       "dest": "/"
     },
     {
