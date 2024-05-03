@@ -93,18 +93,18 @@ const ProfileMenu = ({ profileClass }) => {
           My Purchase
         </p>
       </div>
-      <div className="flex text-center flex-col items-center text-white py-3 px-1 rounded-lg ">
+      <Link to={'/my-room'} className="flex text-center flex-col items-center text-white py-3 px-1 rounded-lg ">
         <MdOutlineBedroomParent className="size-10 text-[#E9CB50] " />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
           My Rooms
         </p>
-      </div>
-      <div className="active text-center flex flex-col items-center text-white  py-3 px-1 rounded-lg">
+      </Link>
+      <Link to={'/my-events'} className="active text-center flex flex-col items-center text-white  py-3 px-1 rounded-lg">
         <img className="size-10 " src={Book} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
           My Events
         </p>
-      </div>
+      </Link>
       <div className=" text-white text-center flex flex-col items-center py-3 px-1 rounded-lg ">
         <img className="size-10" src={Like} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">

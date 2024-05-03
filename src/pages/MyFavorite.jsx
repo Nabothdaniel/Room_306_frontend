@@ -31,8 +31,8 @@ const MyFavorite = () => {
 
       <div className="flex-1 md:w-[80%] px-4 pt-6 md:pt-14 md:px-10">
         <Navbar
-          Headervalue={"Best Escort Tours"}
-          textValue={"Explore our tours and activities"}
+          Headervalue={"Welcome to Room 306"}
+          textValue={"Explore our escort at your own pace"}
         />
 
         <div className="md:py-5 pb-9 md:pb-12">
@@ -68,7 +68,7 @@ const MyFavorite = () => {
                     state.open2 && "bg-[#1e1e1e]"
                   } `}
                 >
-                  Video {" "}
+                  Video{" "}
                   <span className="bg-white px-2 rounded-full text-black">
                     1
                   </span>

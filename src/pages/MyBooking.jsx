@@ -46,19 +46,19 @@ const MyBooking = () => {
 
       <div className="flex-1 md:w-[80%] px-4 pt-6 md:pt-14 md:px-10">
         <Navbar
-          Headervalue={"Best Escort Tours"}
-          textValue={"Explore our tours and activities"}
+          Headervalue={"Welcome to Room 306"}
+          textValue={"Explore our escort at your own pace"}
         />
 
-          <div className="md:pb-3 pt-2 md:pt-8">
-            <h2
-              onClick={() => navigate(-1)}
-              className="text-white font-semibold cursor-pointer flex items-center"
-            >
-              <img className="size-5 mr-1" src={Arrow} alt="" />
-              Back
-            </h2>
-          </div>
+        <div className="md:pb-3 pt-2 md:pt-8">
+          <h2
+            onClick={() => navigate(-1)}
+            className="text-white font-semibold cursor-pointer flex items-center"
+          >
+            <img className="size-5 mr-1" src={Arrow} alt="" />
+            Back
+          </h2>
+        </div>
         <div className="md:py-5 pb-9 lg:overflow-auto overflow-x-scroll md:pb-12">
           <div className="border-b-2 pt-8 flex relative font-semibold items-center text-white border-[#393C49]">
             <p

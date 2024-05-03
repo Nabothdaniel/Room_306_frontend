@@ -13,8 +13,8 @@ const SingleBlog = () => {
       <SideBar />
       <div className="flex-1 md:w-[80%] pt-6 md:pt-14 px-6 lg:px-10">
         <Navbar
-          Headervalue={"Welcome to Room 306"}
-          textValue={"Explore our escort at your own pace"}
+          Headervalue={"Check Our Blogs"}
+          textValue={"Explore our escort at your own Pace"}
         />
 
         <div className="md:pt-14 pt-3">

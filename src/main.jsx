@@ -43,6 +43,8 @@ import BlacklistedClients from "./pages/BlacklistedClients.jsx";
 import MyTour from "./pages/MyTour.jsx";
 import NaughtyVideoView from "./pages/NaughtyVideoView.jsx";
 import EventsView from "./pages/EventsView.jsx";
+import MyEvents from "./pages/MyEvents.jsx";
+import MyRoom from "./pages/MyRoom.jsx";
 
 const router = createBrowserRouter([
   {
@@ -224,6 +226,14 @@ const router = createBrowserRouter([
       {
         path: "/my-tours",
         element: <MyTour />,
+      },
+      {
+        path: "/my-events",
+        element: <MyEvents />,
+      },
+      {
+        path: "/my-room",
+        element: <MyRoom />,
       },
     ],
   },

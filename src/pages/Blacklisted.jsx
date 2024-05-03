@@ -12,8 +12,8 @@ const Blacklisted = () => {
 
       <div className="flex-1 md:w-[80%] pt-4 md:pt-14 px-3 md:px-6 lg:px-10">
         <Navbar
-          Headervalue={"Best Escort Room"}
-          textValue={"Explore our rooms and activities"}
+          Headervalue={"Welcome to Room 306"}
+          textValue={"Explore our escort at your own Pace"}
         />
 
         <div className="pb-10 pt-4 md:pt-0 md:pl-2">
@@ -45,8 +45,8 @@ const Blacklisted = () => {
               <BlacklistedList />
               <BlacklistedList />
             </div>
-                  </div>
-                  <Pagination />
+          </div>
+          <Pagination />
         </div>
       </div>
     </div>

@@ -44,8 +44,8 @@ const EscortProfile = () => {
 
       <div className="flex-1 md:w-[80%] pt-4 md:pt-14 px-3 md:px-6 lg:px-10">
         <Navbar
-          Headervalue={"Best Escort Room"}
-          textValue={"Explore our rooms and activities"}
+          Headervalue={"Welcome to Room 306"}
+          textValue={"Explore our escort at your own pace"}
         />
         <div className="grid md:grid-cols-3 px-4 md:px-0 grid-cols-1 lg:grid-cols-4 gap-y-12 gap-x-8 pt-8 md:pt-14">
           <div className="flex items-start min-w-[600px] text-white">

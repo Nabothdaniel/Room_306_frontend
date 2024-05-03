@@ -21,7 +21,7 @@ const NaughtyVideoView = () => {
 
       <div className="flex-1 md:w-[80%] pt-6 md:pt-14 px-3 md:px-6 lg:px-10">
         <Navbar
-          Headervalue={"Check Our Blogs"}
+          Headervalue={"Welcome to Room 306"}
           textValue={"Explore our escort at your own Pace"}
         />
         <div
