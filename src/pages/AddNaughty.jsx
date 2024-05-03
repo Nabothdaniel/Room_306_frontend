@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
-import TextArea from "../components/TextArea";
+import Upload from "../images/video.webp";
 import Input from "../components/Input";
-import Upload from "../images/Upload.svg";
+import TextArea from "../components/TextArea";
 
-const AddEvents = () => {
-  const [image, setImage] = useState();
-
+const AddNaughty = () => {
+  const [video, setVideo] = useState();
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -21,12 +20,44 @@ const AddEvents = () => {
         <div className="md:py-5 pb-9 md:pb-12">
           <div className="md:pb-3 pt-2 md:pt-8">
             <h2 className="text-white py-4 md:text-2xl font-semibold">
-              Add New Events
+              Add Naughty Videos
             </h2>
           </div>
           <div className="px-4 py-6 rounded-xl md:px-8 md:py-14 bg-[#1E1E1E]">
             <div className=" grid lg:grid-cols-2 md:gap-x-4 gap-4 md:gap-y-6  ">
-              <div>
+              <div
+                onClick={() => document.querySelector(".input").click()}
+                className="w-[100%] cursor-pointer"
+              >
+                <h2 className="text-white font-semibold text-center pb-4 text-[20px]">
+                  Upload Video Here
+                </h2>
+                <input
+                  type="file"
+                  name="file"
+                  id="file"
+                  className="input"
+                  hidden
+                  onChange={({ target: { files } }) => {
+                    if (files) {
+                      setVideo(URL.createObjectURL(files[0]));
+                    }
+                  }}
+                />
+                {video ? (
+                  <video
+                    className="rounded-lg object-cover lg:w-[80%]"
+                    src={video}
+                  ></video>
+                ) : (
+                  <img
+                    className="lg:w-[80%] object-cover bg-white rounded-xl  mx-auto "
+                    src={Upload}
+                    alt=""
+                  />
+                )}
+              </div>
+              <div className="pt-16 lg:pt-0">
                 <div className="lg:col-span-2">
                   <TextArea
                     labelValue={"Description"}
@@ -36,68 +67,46 @@ const AddEvents = () => {
                     inputClass={
                       "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
                     }
-                    holder={"In short, tell us about your Event"}
+                    holder={"In short, tell us about your video"}
                     col={""}
                     row={"7"}
                   />
                 </div>
                 <div className="w-full">
                   <Input
-                    labelValue={"Event Date"}
-                    inputType={"date"}
+                    labelValue={"Title"}
                     labelClass={"font-semibold md:text-base text-[14px] py-2"}
-                    required={""}
-                    inputName={"date"}
+                    inputType={"text"}
+                    required={"*"}
+                    inputName={"title"}
                     inputClass={
                       " rounded-xl text-[#102127] placeholder-[#102127]"
                     }
-                    holder={""}
+                    holder={"Enter Here"}
                   />
                 </div>
                 <Input
-                  labelValue={"Location"}
+                  labelValue={"Category"}
                   labelClass={"font-semibold md:text-base text-[14px] py-2"}
                   inputType={"text"}
                   required={"*"}
-                  inputName={"Location"}
+                  inputName={"category"}
                   inputClass={
                     " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
-                  holder={"Enter Event Location"}
+                  holder={"Enter Here"}
                 />
                 <Input
-                  labelValue={"Capacity"}
+                  labelValue={"Tags"}
                   labelClass={"font-semibold md:text-base text-[14px] py-2"}
                   inputType={"text"}
                   required={"*"}
-                  inputName={"Capacity"}
+                  inputName={"tags"}
                   inputClass={
                     " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
-                  holder={"Enter Available Capacity"}
+                  holder={"Enter Tags Here"}
                 />
-              </div>
-              <div
-                onClick={() => document.querySelector(".input").click()}
-                className="w-[100%] cursor-pointer"
-              >
-                <input
-                  type="file"
-                  name="file"
-                  id="file"
-                  className="input"
-                  hidden
-                  onChange={({ target: { files } }) => {
-                    if (files) {
-                      setImage(URL.createObjectURL(files[0]));
-                    }
-                  }}
-                />
-                {image ? (
-                  <img className="rounded-lg lg:w-[80%]" src={image} />
-                ) : (
-                  <img className="lg:w-[80%] mx-auto " src={Upload} alt="" />
-                )}
               </div>
             </div>
             <div className="flex justify-end mt-6">
@@ -112,4 +121,4 @@ const AddEvents = () => {
   );
 };
 
-export default AddEvents;
+export default AddNaughty;

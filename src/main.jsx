@@ -46,6 +46,9 @@ import EventsView from "./pages/EventsView.jsx";
 import MyEvents from "./pages/MyEvents.jsx";
 import MyRoom from "./pages/MyRoom.jsx";
 import AddEvents from "./pages/AddEvents.jsx";
+import AddNaughty from "./pages/AddNaughty.jsx";
+import RoomView from "./pages/RoomView.jsx";
+import AddRoom from "./pages/AddRoom.jsx";
 
 const router = createBrowserRouter([
   {
@@ -138,7 +141,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/rooms",
-        element: <Rooms />,
+        element: <App />,
+        children: [
+          {
+            index: true,
+            element: <Rooms />,
+          },
+          {
+            path: ":title",
+            element: <RoomView />,
+          },
+        ],
       },
       {
         path: "/testimonials",
@@ -239,6 +252,14 @@ const router = createBrowserRouter([
       {
         path: "/add-event",
         element: <AddEvents />,
+      },
+      {
+        path: "/add-naughty",
+        element: <AddNaughty />,
+      },
+      {
+        path: "/add-room",
+        element: <AddRoom />,
       },
     ],
   },

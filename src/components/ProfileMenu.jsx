@@ -20,7 +20,7 @@ const ProfileMenu = ({ profileClass }) => {
       className={`grid grid-cols-3 bg-[#1E1E1E] ${profileClass} pr-2 pl-1 rounded-xl py-6 md:px-12 gap-x-2 md:gap-x-4 gap-y-6 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7`}
     >
       <Link
-        to={"/profile"}
+        to={"/escort-profile"}
         className={`text-center active flex flex-col items-center text-white  py-3 px-1 rounded-lg ${location == '/profile' ? 'bg-black' : ''}`}
       >
         <img className="size-10" src={User} alt="" />
@@ -29,12 +29,12 @@ const ProfileMenu = ({ profileClass }) => {
         </p>
       </Link>
 
-      <div className="text-center flex flex-col items-center active text-white  py-3 px-1 rounded-lg">
+      <Link to={'/edit-escort'} className="text-center flex flex-col items-center active text-white  py-3 px-1 rounded-lg">
         <img className="size-10 md:mx-auto" src={Book} alt="" />
         <p className="md:text-[14px] text-[12px] font-semibold pt-1">
           Edit My Profile
         </p>
-      </div>
+      </Link>
 
       <Link to={'/my-booking'} className={`flex flex-col items-center text-white  py-3 px-1 rounded-lg ${location == '/my-booking' ? 'bg-black' : ''} `}>
         <img className="size-10" src={Tag} alt="" />

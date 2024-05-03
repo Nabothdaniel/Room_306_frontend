@@ -5,7 +5,7 @@ import TextArea from "../components/TextArea";
 import Input from "../components/Input";
 import Upload from "../images/Upload.svg";
 
-const AddEvents = () => {
+const AddRoom = () => {
   const [image, setImage] = useState();
 
   return (
@@ -21,7 +21,7 @@ const AddEvents = () => {
         <div className="md:py-5 pb-9 md:pb-12">
           <div className="md:pb-3 pt-2 md:pt-8">
             <h2 className="text-white py-4 md:text-2xl font-semibold">
-              Add New Events
+              Add New Room
             </h2>
           </div>
           <div className="px-4 py-6 rounded-xl md:px-8 md:py-14 bg-[#1E1E1E]">
@@ -36,24 +36,33 @@ const AddEvents = () => {
                     inputClass={
                       "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
                     }
-                    holder={"In short, tell us about your Event"}
+                    holder={"In short, tell us about your Room"}
                     col={""}
                     row={"7"}
                   />
                 </div>
-                <div className="w-full">
-                  <Input
-                    labelValue={"Event Date"}
-                    inputType={"date"}
-                    labelClass={"font-semibold md:text-base text-[14px] py-2"}
-                    required={""}
-                    inputName={"date"}
-                    inputClass={
-                      " rounded-xl text-[#102127] placeholder-[#102127]"
-                    }
-                    holder={""}
-                  />
-                </div>
+                <Input
+                  labelValue={"Title"}
+                  labelClass={"font-semibold md:text-base text-[14px] py-2"}
+                  inputType={"text"}
+                  required={"*"}
+                  inputName={"Title"}
+                  inputClass={
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
+                  }
+                  holder={"Enter Here"}
+                />
+                <Input
+                  labelValue={"Rate"}
+                  labelClass={"font-semibold md:text-base text-[14px] py-2"}
+                  inputType={"text"}
+                  required={"*"}
+                  inputName={"rate"}
+                  inputClass={
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
+                  }
+                  holder={"Enter Here"}
+                />
                 <Input
                   labelValue={"Location"}
                   labelClass={"font-semibold md:text-base text-[14px] py-2"}
@@ -63,18 +72,65 @@ const AddEvents = () => {
                   inputClass={
                     " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
-                  holder={"Enter Event Location"}
+                  holder={"Enter Room Location"}
                 />
+                <div className="lg:col-span-2">
+                  <TextArea
+                    labelValue={"Policy"}
+                    labelClass={"md:text-base text-[14px]"}
+                    required={"*"}
+                    inputName={"policy"}
+                    inputClass={
+                      "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
+                    }
+                    holder={"Your Policies on the Room..."}
+                    col={""}
+                    row={"7"}
+                  />
+                </div>
                 <Input
-                  labelValue={"Capacity"}
+                  labelValue={"Services"}
                   labelClass={"font-semibold md:text-base text-[14px] py-2"}
                   inputType={"text"}
                   required={"*"}
-                  inputName={"Capacity"}
+                  inputName={"services"}
                   inputClass={
                     " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
-                  holder={"Enter Available Capacity"}
+                  holder={"Enter Here"}
+                />
+                <Input
+                  labelValue={"Contacts"}
+                  labelClass={"font-semibold md:text-base text-[14px] py-2"}
+                  inputType={"tel"}
+                  required={"*"}
+                  inputName={"contacts"}
+                  inputClass={
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
+                  }
+                  holder={"E.g +2348145267233"}
+                />
+                <Input
+                  labelValue={"Amenities"}
+                  labelClass={"font-semibold md:text-base text-[14px] py-2"}
+                  inputType={"text"}
+                  required={"*"}
+                  inputName={"amenities"}
+                  inputClass={
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
+                  }
+                  holder={"Enter Here"}
+                />
+                <Input
+                  labelValue={"Property Type"}
+                  labelClass={"font-semibold md:text-base text-[14px] py-2"}
+                  inputType={"text"}
+                  required={"*"}
+                  inputName={"property"}
+                  inputClass={
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
+                  }
+                  holder={"Enter Here"}
                 />
               </div>
               <div
@@ -112,4 +168,4 @@ const AddEvents = () => {
   );
 };
 
-export default AddEvents;
+export default AddRoom;

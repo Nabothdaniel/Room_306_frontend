@@ -115,7 +115,7 @@ const MyEvents = () => {
 
           <div className="mt-10 px-5  rounded-xl py-4 bg-[#1e1e1e]">
             <Link
-              //   to={"/new-tours"}
+              to={"/add-event"}
               className="bg-yellow-300 block text-center py-2 hover:bg-yellow-200 duration-500 font-semibold mb-4 w-[100px] text-[14px] rounded-3xl"
             >
               Add New

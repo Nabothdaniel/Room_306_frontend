@@ -8,8 +8,14 @@ import Video from "../images/video.svg";
 import Wallet from "../images/wallet-2.svg";
 import Book from "../images/book-saved.svg";
 import Frame from "../images/Frame.svg";
+import { useNavigate } from "react-router-dom";
 
 const Media = ({ mediaClass }) => {
+  const navigate = useNavigate();
+
+  const handleVideo = () => {
+     navigate('/add-naughty')
+  }
   return (
     <div className={`bg-[#1E1E1E] rounded-xl ${mediaClass} py-8 px-5 md:px-12`}>
       <div className="flex pb-[15px] md:text-base text-[14px] font-semibold text-white items-center">
@@ -27,7 +33,7 @@ const Media = ({ mediaClass }) => {
       <div className="flex pb-[15px] md:text-base text-[14px] pt-4 font-semibold text-white items-center">
         <img className="size-8 mr-2" src={Video} alt="" />
         Naughty Video
-        <img className="size-7 cursor-pointer ml-3" src={Frame} alt="" />
+        <img onClick={handleVideo} className="size-7 cursor-pointer ml-3" src={Frame} alt="" />
       </div>
       <hr />
     </div>
