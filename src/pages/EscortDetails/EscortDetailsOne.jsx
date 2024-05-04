@@ -3,7 +3,7 @@ import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRegisterEscortMutation } from "../../redux/EscortApi";
 import Loading from "../../components/Loading";
 import { useGetCountryQuery } from "../../redux/CountryApi";
@@ -14,73 +14,61 @@ const EscortDetailsOne = () => {
   const open = useSelector((state) => state.Util.userDetails);
   const dispatch = useDispatch();
 
-  const [register] = useRegisterEscortMutation();
+  const navigate = useNavigate();
 
-  const [password, setPassword] = useState("");
+  const [register] = useRegisterEscortMutation();
   const [confirmPwd, setConfirmPwd] = useState("");
-  const [username, setUsername] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState({});
   const [code, setCode] = useState("");
+  const [pwdError, setPwdError] = useState("");
   const [currency, setCurrency] = useState("");
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
-  const [country, setCountry] = useState("");
-  const [State, setState] = useState("");
-  const [cities, setCities] = useState("");
-  const [match, setMatch] = useState(false);
   const [correct, setCorrect] = useState(false);
-  const [gender, setGender] = useState("");
-  const [dob, setDob] = useState("");
-  const [heading, setHeading] = useState("");
-  const [display_name, setName] = useState("");
-  const [mobile_number, setNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const { data, isLoading } = useGetCountryQuery();
+
+  const [formData, setFormData] = useState({
+    country: "",
+    state: "",
+    code: "",
+    cities: "",
+    gender: "",
+    dob: "",
+    display_name: "",
+    heading: "",
+    mobile_number: "",
+    email: "",
+    password: "",
+    username: "",
+  });
 
   useEffect(() => {
-    if (!(password == confirmPwd)) {
-      setError("Password does not match");
-      setMatch(false);
+    if (formData.password !== confirmPwd) {
+      setPwdError("Password doesn't match");
     } else {
-      setError("");
-      setMatch(true);
+      setPwdError("");
     }
   }, [confirmPwd]);
 
   useEffect(() => {
-    if (
-      (username ||
-        match ||
-        email ||
-        country ||
-        State ||
-        cities ||
-        gender ||
-        currency ||
-        heading ||
-        display_name ||
-        dob,
-      mobile_number,
-      code)
-    ) {
-      setCorrect(true);
-    } else {
-      setCorrect(false);
+    const validationErrors = validateFormData(formData);
+    setError(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      dispatch(
+        details({
+          ...formData,
+          currency,
+          code,
+        })
+      );
     }
-  }, [
-    username,
-    match,
-    email,
-    State,
-    cities,
-    gender,
-    currency,
-    heading,
-    display_name,
-    dob,
-    mobile_number,
-    code,
-  ]);
+  }, [formData]);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const { data, isLoading } = useGetCountryQuery();
 
   if (isLoading) {
     return <Loading />;
@@ -112,23 +100,79 @@ const EscortDetailsOne = () => {
     });
   });
 
-
   const handleEscortOne = () => {
-    dispatch(
-      details({
-        username,
-        email,
-        State,
-        cities,
-        gender,
-        currency,
-        heading,
-        display_name,
-        dob,
-        mobile_number,
-        code,
-      })
-    );
+    const validationErrors = validateFormData(formData);
+    setError(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      dispatch(
+        details({
+          ...formData,
+          currency,
+          code,
+        })
+      );
+
+      navigate("/additional-details");
+
+      setFormData({
+        country: "",
+        state: "",
+        code: "",
+        cities: "",
+        gender: "",
+        dob: "",
+        display_name: "",
+        heading: "",
+        mobile_number: "",
+        email: "",
+        password: "",
+        username: "",
+      });
+    }
+  };
+
+  const validateFormData = (data) => {
+    let errors = {};
+    if (!data.email) {
+      errors.email = "Email is required";
+    }
+    if (!data.password.trim()) {
+      errors.password = "Password is required";
+    } else {
+      if (data.password !== confirmPwd) {
+        errors.confirmPwd = "Password doesn't match";
+      }
+    }
+    if (!data.username.trim()) {
+      errors.username = "Username is required";
+    }
+    if (!data.state) {
+      errors.state = "State is required";
+    }
+    if (!data.country) {
+      errors.country = "Country is required";
+    }
+    if (!data.cities) {
+      errors.cities = "City is required";
+    }
+    if (!data.gender) {
+      errors.gender = "Gender is required";
+    }
+    if (!data.dob) {
+      errors.dob = "Date of Birth is required";
+    }
+    if (!data.heading) {
+      errors.heading = "Heading is required";
+    }
+    if (!data.display_name) {
+      errors.name = "Display name is required";
+    }
+    if (!data.mobile_number) {
+      errors.number = "Mobile Number is required";
+    }
+
+    return errors;
   };
 
   return (
@@ -157,52 +201,65 @@ const EscortDetailsOne = () => {
           <div className="rounded-xl lg:px-10 md:px-7 px-4 py-6 md:pl-12 md:py-14 bg-[#1E1E1E] ">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-4 lg:gap-y-0 lg:gap-x-12 md:gap-x-5">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-x-12 md:gap-x-4 gap-y-3 md:gap-y-8 lg:col-span-2">
-                <Input
-                  labelValue={"Username"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"text"}
-                  required={"*"}
-                  inputName={"username"}
-                  inputClass={
-                    " rounded-xl text-[#102127] placeholder-[#102127]"
-                  }
-                  holder={"Enter username"}
-                  value={username}
-                  onchange={(e) => setUsername(e.target.value)}
-                />
-                <Input
-                  labelValue={"Email"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"email"}
-                  required={""}
-                  inputName={"email"}
-                  inputClass={
-                    " rounded-xl text-[#102127]  placeholder-[#102127]"
-                  }
-                  holder={"Enter Email"}
-                  value={email}
-                  onchange={(e) => setEmail(e.target.value)}
-                />
-                <Input
-                  labelValue={"Password"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"password"}
-                  required={"*"}
-                  inputName={"password"}
-                  inputClass={
-                    " rounded-xl text-[#102127] placeholder-[#102127]"
-                  }
-                  holder={"Enter Password"}
-                  value={password}
-                  onchange={(e) => setPassword(e.target.value)}
-                />
+                <div>
+                  <Input
+                    labelValue={"Username"}
+                    labelClass={"font-semibold py-2"}
+                    inputType={"text"}
+                    required={"*"}
+                    inputName={"username"}
+                    inputClass={
+                      " rounded-xl text-[#102127] placeholder-[#102127]"
+                    }
+                    holder={"Enter username"}
+                    value={formData.username}
+                    onchange={handleChange}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.username}
+                  </p>
+                </div>
+                <div>
+                  <Input
+                    labelValue={"Email"}
+                    labelClass={"font-semibold py-2"}
+                    inputType={"email"}
+                    required={""}
+                    inputName={"email"}
+                    inputClass={
+                      " rounded-xl text-[#102127]  placeholder-[#102127]"
+                    }
+                    holder={"Enter Email"}
+                    value={formData.email}
+                    onchange={handleChange}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">{error.email}</p>
+                </div>
+                <div>
+                  <Input
+                    labelValue={"Password"}
+                    labelClass={"font-semibold py-2"}
+                    inputType={"password"}
+                    required={"*"}
+                    inputName={"password"}
+                    inputClass={
+                      " rounded-xl text-[#102127] placeholder-[#102127]"
+                    }
+                    holder={"Enter Password"}
+                    value={formData.password}
+                    onchange={handleChange}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.password}
+                  </p>
+                </div>
                 <div>
                   <Input
                     labelValue={"Re-Enter Password"}
                     labelClass={"font-semibold py-2"}
                     inputType={"password"}
                     required={"*"}
-                    inputName={"password"}
+                    inputName={"confirmPwd"}
                     inputClass={
                       " rounded-xl text-[#102127]  placeholder-[#102127]"
                     }
@@ -210,21 +267,24 @@ const EscortDetailsOne = () => {
                     value={confirmPwd}
                     onchange={(e) => setConfirmPwd(e.target.value)}
                   />
-                  <p className="py-1 text-[12px] text-red-500">{error}</p>
+                  <p className="py-1 text-[12px] text-red-500">{pwdError}</p>
                 </div>
-                <Input
-                  labelValue={"Display Name"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"text"}
-                  required={"*"}
-                  inputName={"name"}
-                  inputClass={
-                    " rounded-xl text-[#102127] placeholder-[#102127]"
-                  }
-                  holder={"Enter Display Name"}
-                  value={display_name}
-                  onchange={(e) => setName(e.target.value)}
-                />
+                <div>
+                  <Input
+                    labelValue={"Display Name"}
+                    labelClass={"font-semibold py-2"}
+                    inputType={"text"}
+                    required={"*"}
+                    inputName={"display_name"}
+                    inputClass={
+                      " rounded-xl text-[#102127] placeholder-[#102127]"
+                    }
+                    holder={"Enter Display Name"}
+                    value={formData.display_name}
+                    onchange={handleChange}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">{error.name}</p>
+                </div>
 
                 <label
                   className="text-[#475367] flex flex-col"
@@ -236,10 +296,10 @@ const EscortDetailsOne = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="country"
                       id="country"
-                      value={country}
+                      value={formData.country}
                       onChange={(e) => {
                         handleCountry(e);
-                        setCountry(e.target.value);
+                        handleChange(e);
                       }}
                     >
                       <option value="">All Country</option>
@@ -252,6 +312,9 @@ const EscortDetailsOne = () => {
                       })}
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.country}
+                  </p>
                 </label>
 
                 <label className="text-[#475367] flex flex-col" htmlFor="state">
@@ -261,10 +324,10 @@ const EscortDetailsOne = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="state"
                       id="state"
-                      value={State}
+                      value={formData.state}
                       onChange={(e) => {
                         handleState(e);
-                        setState(e.target.value);
+                        handleChange(e);
                       }}
                     >
                       <option value="">State(Optional)</option>
@@ -277,6 +340,7 @@ const EscortDetailsOne = () => {
                       })}
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">{error.state}</p>
                 </label>
                 <label className="text-[#475367] flex flex-col" htmlFor="city">
                   <span className="font-semibold text-white pb-1">City</span>
@@ -285,8 +349,8 @@ const EscortDetailsOne = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="city"
                       id="city"
-                      value={cities}
-                      onChange={(e) => setCities(e.target.value)}
+                      value={formData.cities}
+                      onChange={handleChange}
                     >
                       <option value="">City(Optional)</option>
 
@@ -299,43 +363,55 @@ const EscortDetailsOne = () => {
                       })}
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.cities}
+                  </p>
                 </label>
 
-                <Input
-                  labelValue={"Date of Birth"}
-                  inputType={"date"}
-                  labelClass={"font-semibold py-2"}
-                  required={""}
-                  inputName={"state-date"}
-                  inputClass={
-                    " rounded-xl text-[#102127] placeholder-[#102127]"
-                  }
-                  holder={""}
-                  value={dob}
-                  onchange={(e) => setDob(e.target.value)}
-                />
-                <div className="text-white flex pt-10 items-center">
-                  <label className="container ">
-                    Male
-                    <input
-                      type="radio"
-                      name="gender"
-                      value={"male"}
-                      onChange={(e) => setGender(e.target.value)}
-                    />
-                    <span className="checkmark"></span>
-                  </label>
+                <div>
+                  <Input
+                    labelValue={"Date of Birth"}
+                    inputType={"date"}
+                    labelClass={"font-semibold py-2"}
+                    required={""}
+                    inputName={"dob"}
+                    inputClass={
+                      " rounded-xl text-[#102127] placeholder-[#102127]"
+                    }
+                    holder={""}
+                    value={formData.dob}
+                    onchange={handleChange}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">{error.dob}</p>
+                </div>
 
-                  <label className="container">
-                    Female
-                    <input
-                      type="radio"
-                      name="gender"
-                      value={"female"}
-                      onChange={(e) => setGender(e.target.value)}
-                    />
-                    <span className="checkmark"></span>
-                  </label>
+                <div>
+                  <div className="text-white flex pt-10 items-center">
+                    <label className="container ">
+                      Male
+                      <input
+                        type="radio"
+                        name="gender"
+                        value={"male"}
+                        onChange={handleChange}
+                      />
+                      <span className="checkmark"></span>
+                    </label>
+
+                    <label className="container">
+                      Female
+                      <input
+                        type="radio"
+                        name="gender"
+                        value={"female"}
+                        onChange={handleChange}
+                      />
+                      <span className="checkmark"></span>
+                    </label>
+                  </div>
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.gender}
+                  </p>
                 </div>
 
                 <div className="md:col-span-2">
@@ -349,9 +425,12 @@ const EscortDetailsOne = () => {
                     holder={"In short, tell your clients what you offer"}
                     col={""}
                     row={"7"}
-                    value={heading}
-                    onchange={(e) => setHeading(e.target.value)}
+                    value={formData.heading}
+                    onchange={handleChange}
                   />
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.heading}
+                  </p>
                 </div>
 
                 <label
@@ -374,19 +453,24 @@ const EscortDetailsOne = () => {
                   </div>
                 </label>
 
-                <Input
-                  labelValue={"Mobile Number"}
-                  labelClass={"font-semibold py-2"}
-                  inputType={"tel"}
-                  required={"*"}
-                  inputName={"number"}
-                  inputClass={
-                    "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
-                  }
-                  holder={"E.g 12345678881"}
-                  value={mobile_number}
-                  onchange={(e) => setNumber(e.target.value)}
-                />
+                <div>
+                  <Input
+                    labelValue={"Mobile Number"}
+                    labelClass={"font-semibold py-2"}
+                    inputType={"tel"}
+                    required={"*"}
+                    inputName={"mobile_number"}
+                    inputClass={
+                      "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
+                    }
+                    holder={"E.g 12345678881"}
+                    value={formData.mobile_number}
+                    onchange={handleChange}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.number}
+                  </p>
+                </div>
               </div>
 
               <div className="  pt-4 pb-8 lg:max-w-[300px]">
@@ -415,22 +499,13 @@ const EscortDetailsOne = () => {
                 </div>
               </div>
             </div>
-            {correct ? (
-              <Link
-                onClick={handleEscortOne}
-                to={"/additional-details"}
-                className="text-center block hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
-              >
-                Next
-              </Link>
-            ) : (
-              <button
-                disabled
-                className="text-center block hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
-              >
-                Next
-              </button>
-            )}
+
+            <button
+              onClick={handleEscortOne}
+              className="text-center block hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>

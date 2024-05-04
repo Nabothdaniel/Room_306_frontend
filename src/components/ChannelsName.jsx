@@ -31,16 +31,6 @@ const ChannelsName = () => {
         to={"/channels/naughty-room"}
         className="flex  rounded-[12px] hover:bg-[#202D2C] duration-700 p-[12px] text-white items-center"
       >
-        <img className="size-[32px]" src={Lgb} alt="" />
-        <div className="pl-4 md:block md:w-auto flex justify-between items-center w-full">
-          <p className="font-semibold">LGBTQ+</p>
-          <p className="text-[12px]  text-[#DADADA]">15 hrs ago</p>
-        </div>
-      </NavLink>
-      <NavLink
-        to={"/channels/naughty-room"}
-        className="flex  rounded-[12px] hover:bg-[#202D2C] duration-700 p-[12px] text-white items-center"
-      >
         <img className="size-[32px]" src={Discussion} alt="" />
         <div className="pl-4 md:block md:w-auto flex justify-between items-center w-full">
           <p className="font-semibold">Discussion</p>
