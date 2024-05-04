@@ -41,6 +41,49 @@ const EscortDetailsOne = () => {
     username: "",
   });
 
+  const validateFormData = (data) => {
+    let errors = {};
+    if (!data.email) {
+      errors.email = "Email is required";
+    }
+    if (!data.password.trim()) {
+      errors.password = "Password is required";
+    } else {
+      if (data.password !== confirmPwd) {
+        errors.confirmPwd = "Password doesn't match";
+      }
+    }
+    if (!data.username.trim()) {
+      errors.username = "Username is required";
+    }
+    if (!data.state) {
+      errors.state = "State is required";
+    }
+    if (!data.country) {
+      errors.country = "Country is required";
+    }
+    if (!data.cities) {
+      errors.cities = "City is required";
+    }
+    if (!data.gender) {
+      errors.gender = "Gender is required";
+    }
+    if (!data.dob) {
+      errors.dob = "Date of Birth is required";
+    }
+    if (!data.heading) {
+      errors.heading = "Heading is required";
+    }
+    if (!data.display_name) {
+      errors.name = "Display name is required";
+    }
+    if (!data.mobile_number) {
+      errors.number = "Mobile Number is required";
+    }
+
+    return errors;
+  };
+
   useEffect(() => {
     if (formData.password !== confirmPwd) {
       setPwdError("Password doesn't match");
@@ -132,48 +175,7 @@ const EscortDetailsOne = () => {
     }
   };
 
-  const validateFormData = (data) => {
-    let errors = {};
-    if (!data.email) {
-      errors.email = "Email is required";
-    }
-    if (!data.password.trim()) {
-      errors.password = "Password is required";
-    } else {
-      if (data.password !== confirmPwd) {
-        errors.confirmPwd = "Password doesn't match";
-      }
-    }
-    if (!data.username.trim()) {
-      errors.username = "Username is required";
-    }
-    if (!data.state) {
-      errors.state = "State is required";
-    }
-    if (!data.country) {
-      errors.country = "Country is required";
-    }
-    if (!data.cities) {
-      errors.cities = "City is required";
-    }
-    if (!data.gender) {
-      errors.gender = "Gender is required";
-    }
-    if (!data.dob) {
-      errors.dob = "Date of Birth is required";
-    }
-    if (!data.heading) {
-      errors.heading = "Heading is required";
-    }
-    if (!data.display_name) {
-      errors.name = "Display name is required";
-    }
-    if (!data.mobile_number) {
-      errors.number = "Mobile Number is required";
-    }
-
-    return errors;
-  };
+  
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
