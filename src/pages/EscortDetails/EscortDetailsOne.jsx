@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { details } from "../../redux/UtilSlice";
 
 const EscortDetailsOne = () => {
+  const { data, isLoading } = useGetCountryQuery();
   const open = useSelector((state) => state.Util.userDetails);
   const dispatch = useDispatch();
 
@@ -24,7 +25,6 @@ const EscortDetailsOne = () => {
   const [currency, setCurrency] = useState("");
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
-  const [correct, setCorrect] = useState(false);
 
   const [formData, setFormData] = useState({
     country: "",
@@ -39,6 +39,7 @@ const EscortDetailsOne = () => {
     email: "",
     password: "",
     username: "",
+    country_code: "",
   });
 
   const validateFormData = (data) => {
@@ -48,10 +49,6 @@ const EscortDetailsOne = () => {
     }
     if (!data.password.trim()) {
       errors.password = "Password is required";
-    } else {
-      if (data.password !== confirmPwd) {
-        errors.confirmPwd = "Password doesn't match";
-      }
     }
     if (!data.username.trim()) {
       errors.username = "Username is required";
@@ -71,14 +68,17 @@ const EscortDetailsOne = () => {
     if (!data.dob) {
       errors.dob = "Date of Birth is required";
     }
-    if (!data.heading) {
+    if (!data.heading.trim()) {
       errors.heading = "Heading is required";
     }
-    if (!data.display_name) {
+    if (!data.display_name.trim()) {
       errors.name = "Display name is required";
     }
-    if (!data.mobile_number) {
+    if (!data.mobile_number.trim()) {
       errors.number = "Mobile Number is required";
+    }
+    if (!data.country_code) {
+      errors.code = "Country code is required";
     }
 
     return errors;
@@ -95,23 +95,11 @@ const EscortDetailsOne = () => {
   useEffect(() => {
     const validationErrors = validateFormData(formData);
     setError(validationErrors);
-
-    if (Object.keys(validationErrors).length === 0) {
-      dispatch(
-        details({
-          ...formData,
-          currency,
-          code,
-        })
-      );
-    }
   }, [formData]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const { data, isLoading } = useGetCountryQuery();
 
   if (isLoading) {
     return <Loading />;
@@ -147,7 +135,7 @@ const EscortDetailsOne = () => {
     const validationErrors = validateFormData(formData);
     setError(validationErrors);
 
-    if (Object.keys(validationErrors).length === 0) {
+    if (Object.keys(validationErrors).length === 0 && confirmPwd) {
       dispatch(
         details({
           ...formData,
@@ -174,8 +162,6 @@ const EscortDetailsOne = () => {
       });
     }
   };
-
-  
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -270,6 +256,9 @@ const EscortDetailsOne = () => {
                     onchange={(e) => setConfirmPwd(e.target.value)}
                   />
                   <p className="py-1 text-[12px] text-red-500">{pwdError}</p>
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.confirm}
+                  </p>
                 </div>
                 <div>
                   <Input
@@ -289,7 +278,7 @@ const EscortDetailsOne = () => {
                 </div>
 
                 <label
-                  className="text-[#475367] flex flex-col"
+                  className="text-[#475367] pt-2 flex flex-col"
                   htmlFor="country"
                 >
                   <span className="font-semibold text-white pb-1">Country</span>
@@ -349,8 +338,8 @@ const EscortDetailsOne = () => {
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
-                      name="city"
-                      id="city"
+                      name="cities"
+                      id="cities"
                       value={formData.cities}
                       onChange={handleChange}
                     >
@@ -445,14 +434,19 @@ const EscortDetailsOne = () => {
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
-                      name="city"
-                      id="city"
+                      name="country_code"
+                      id="country_code"
+                      value={formData.country_code}
+                      onChange={handleChange}
                     >
                       <option value="">Select</option>
 
-                      <option>+{code}</option>
+                      {code && (
+                        <option>{`${formData.country} +${code}`}</option>
+                      )}
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">{error.code}</p>
                 </label>
 
                 <div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import SideBar from "../../components/SideBar";
@@ -8,34 +8,119 @@ import { details } from "../../redux/UtilSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const EscortDetailsTwo = () => {
+  const open = useSelector((state) => state.Util.userDetails);
+  const dispatch = useDispatch();
 
-   const open = useSelector((state) => state.Util.userDetails);
-   const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+    education: "",
+    occupation: "",
+    about: "",
+    ethnicity: "",
+    bust_size: "",
+    height: "",
+    weight: "",
+    build: "",
+    looks: "",
+    sexual_orientation: "",
+    language_spoken: "",
+    language_influence: "",
+  });
+  const [is_smoker, setSmoker] = useState(false);
+  const [available_incall, setIncall] = useState(false);
+  const [available_outcall, setOutcall] = useState(false);
+  const [error, setError] = useState("");
 
-  const [formData, setFormData] = useState({});
-  const [is_smoker, setSmoker] = useState(false)
-  const [available_incall, setIncall] = useState(false)
-  const [available_outcall, setOutcall] = useState(false)
+  const validateFormData = (data) => {
+    let errors = {};
+    if (!data.education.trim()) {
+      errors.education = "Education is required";
+    }
+    if (!data.occupation.trim()) {
+      errors.occupation = "Occupation is required";
+    }
+    if (!data.about.trim()) {
+      errors.about = "About is required";
+    }
+    if (!data.ethnicity) {
+      errors.ethnicity = "Ethnicity is required";
+    }
+    if (!data.bust_size) {
+      errors.bust_size = "Bust Size is required";
+    }
+    if (!data.height) {
+      errors.height = "Height is required";
+    }
+    if (!data.weight) {
+      errors.weight = "Weight is required";
+    }
+    if (!data.build) {
+      errors.build = "Build is required";
+    }
+    if (!data.looks) {
+      errors.looks = "Looks is required";
+    }
+    if (!data.language_spoken) {
+      errors.language = "Your Language name is required";
+    }
+    if (!data.sexual_orientation) {
+      errors.sexual = "Sexual Orientation is required";
+    }
+    if (!data.language_influence) {
+      errors.level = "Language Level is required";
+    }
+    if (!(available_incall && available_outcall)) {
+      errors.call = "In Call or Outcall is required";
+    }
+    if (!is_smoker) {
+      errors.smoker = "This field is required";
+    }
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    return errors;
   };
 
+  useEffect(() => {
+    const validationErrors = validateFormData(formData);
+    setError(validationErrors);
+  }, [formData]);
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleEscortTwo = () => {
-    dispatch(
-      details({
-        ...formData,
-        available_incall,
-        available_outcall,
-        is_smoker
-      })
-    );
+    const validationErrors = validateFormData(formData);
+    setError(validationErrors);
+
+    if (Object.keys(validationErrors).length == 0) {
+      dispatch(
+        details({
+          ...formData,
+          available_incall,
+          available_outcall,
+          is_smoker,
+        })
+      );
+
+      navigate("/additional-details");
+
+      setFormData({
+        education: "",
+        occupation: "",
+        about: "",
+        ethnicity: "",
+        bust_size: "",
+        height: "",
+        weight: "",
+        build: "",
+        looks: "",
+        sexual_orientation: "",
+        language_spoken: "",
+        language_influence: "",
+      });
+    }
   };
 
   console.log(open);
-  
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -66,24 +151,38 @@ const EscortDetailsTwo = () => {
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-x-16 md:gap-x-6 gap-y-4 md:gap-y-8">
-              <Input
-                labelValue={"Education"}
-                inputType={"text"}
-                required={"*"}
-                inputName={"education"}
-                inputClass={" rounded-xl text-[#102127] placeholder-[#102127]"}
-                holder={"Select"}
-                onchange={handleChange}
-              />
-              <Input
-                labelValue={"Occupation"}
-                inputType={"text"}
-                required={"*"}
-                inputName={"occupation"}
-                inputClass={" rounded-xl text-[#102127]  placeholder-[#102127]"}
-                holder={"Enter Here"}
-                onchange={handleChange}
-              />
+              <div>
+                <Input
+                  labelValue={"Education"}
+                  inputType={"text"}
+                  required={"*"}
+                  inputName={"education"}
+                  inputClass={
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
+                  }
+                  holder={"Select"}
+                  onchange={handleChange}
+                />
+                <p className="py-1 text-[12px] text-red-500">
+                  {error.education}
+                </p>
+              </div>
+              <div>
+                <Input
+                  labelValue={"Occupation"}
+                  inputType={"text"}
+                  required={"*"}
+                  inputName={"occupation"}
+                  inputClass={
+                    " rounded-xl text-[#102127]  placeholder-[#102127]"
+                  }
+                  holder={"Enter Here"}
+                  onchange={handleChange}
+                />
+                <p className="py-1 text-[12px] text-red-500">
+                  {error.occupation}
+                </p>
+              </div>
               <div className="md:col-span-2">
                 <TextArea
                   labelValue={"About"}
@@ -97,6 +196,7 @@ const EscortDetailsTwo = () => {
                   row={"6"}
                   onchange={handleChange}
                 />
+                <p className="py-1 text-[12px] text-red-500">{error.about}</p>
               </div>
 
               <h3 className="text-xl font-semibold  text-white pt-3">
@@ -127,16 +227,19 @@ const EscortDetailsTwo = () => {
                       <option value="white">White</option>
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.ethnicity}
+                  </p>
                 </label>
-                <label className="text-white flex flex-col" htmlFor="bust-size">
+                <label className="text-white flex flex-col" htmlFor="bust_size">
                   <span className="font-semibold pb-1">
                     Bust Size<span className="text-[#E9CB50]">*</span>
                   </span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
                       className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-                      name="bust-size"
-                      id="bust-size"
+                      name="bust_size"
+                      id="bust_size"
                       onChange={handleChange}
                     >
                       <option value="">Choose here</option>
@@ -151,6 +254,9 @@ const EscortDetailsTwo = () => {
                       <option>Very Small</option>
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.bust_size}
+                  </p>
                 </label>
                 <label className="text-white flex flex-col" htmlFor="height">
                   <span className="font-semibold pb-1">
@@ -171,6 +277,9 @@ const EscortDetailsTwo = () => {
                       <option>Very Tall</option>
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.height}
+                  </p>
                 </label>
                 <label className="text-white flex flex-col" htmlFor="weight">
                   <span className="font-semibold pb-1">
@@ -193,6 +302,9 @@ const EscortDetailsTwo = () => {
                       <option>SSBBW</option>
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.weight}
+                  </p>
                 </label>
                 <label className="text-white flex flex-col" htmlFor="build">
                   <span className="font-semibold pb-1">
@@ -224,6 +336,7 @@ const EscortDetailsTwo = () => {
                       <option>Slim</option>
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">{error.build}</p>
                 </label>
                 <label className="text-white flex flex-col" htmlFor="looks">
                   <span className="font-semibold pb-1">
@@ -252,6 +365,7 @@ const EscortDetailsTwo = () => {
                       <option>Stripper</option>
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">{error.looks}</p>
                 </label>
                 <div className=" ">
                   <h4 className="text-white font-semibold pb-3">
@@ -280,10 +394,13 @@ const EscortDetailsTwo = () => {
                       <span className="checkmark"></span>
                     </label>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.smoker}
+                  </p>
                 </div>
                 <label
                   className="text-white flex flex-col"
-                  htmlFor="sexual-orientation"
+                  htmlFor="sexual_orientation"
                 >
                   <span className="font-semibold pb-1">
                     Sexual Orientation<span className="text-[#E9CB50]">*</span>
@@ -291,8 +408,8 @@ const EscortDetailsTwo = () => {
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
                       className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-                      name="sexual-orientation"
-                      id="sexual-orientation"
+                      name="sexual_orientation"
+                      id="sexual_orientation"
                       onChange={handleChange}
                     >
                       <option value="">Sexual Orientation</option>
@@ -305,6 +422,9 @@ const EscortDetailsTwo = () => {
                       <option>Master(Domination)</option>
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.sexual}
+                  </p>
                 </label>
                 <div className=" ">
                   <h4 className="text-white font-semibold pb-3">
@@ -334,6 +454,9 @@ const EscortDetailsTwo = () => {
                       <span className="checkmark"></span>
                     </label>
                   </div>
+                    <p className="py-1 text-[12px] text-red-500">
+                      {error.call}
+                    </p>
                 </div>
                 <div className=" ">
                   <h4 className="text-white font-semibold pb-3">
@@ -363,22 +486,30 @@ const EscortDetailsTwo = () => {
                       <span className="checkmark"></span>
                     </label>
                   </div>
+                    <p className="py-1 text-[12px] text-red-500">
+                      {error.call}
+                    </p>
                 </div>
-                <Input
-                  labelValue={"Language Spoken"}
-                  required={"*"}
-                  labelClass={"text-white pb-2 font-semibold text-[16px]"}
-                  inputType={"text"}
-                  inputName={"language"}
-                  inputClass={
-                    "bg-[#F0F2F5] py-3 px-4 md:mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
-                  }
-                  holder={"Enter Here"}
-                  onchange={handleChange}
-                />
+                <div>
+                  <Input
+                    labelValue={"Language Spoken"}
+                    required={"*"}
+                    labelClass={"text-white pb-2 font-semibold text-[16px]"}
+                    inputType={"text"}
+                    inputName={"language_spoken"}
+                    inputClass={
+                      "bg-[#F0F2F5] py-3 px-4 md:mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
+                    }
+                    holder={"Enter Here"}
+                    onchange={handleChange}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.language}
+                  </p>
+                </div>
                 <label
                   className="text-white flex pt-7 flex-col"
-                  htmlFor="level"
+                  htmlFor="language_influence"
                 >
                   <span className="font-semibold pb-1">
                     {/* <span className="text-[#E9CB50]">*</span> */}
@@ -386,8 +517,8 @@ const EscortDetailsTwo = () => {
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
                       className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-                      name="level"
-                      id="level"
+                      name="language_influence"
+                      id="language_influence"
                       onChange={handleChange}
                     >
                       <option value="">Select Level</option>
@@ -396,6 +527,7 @@ const EscortDetailsTwo = () => {
                       <option>Fluent</option>
                     </select>
                   </div>
+                  <p className="py-1 text-[12px] text-red-500">{error.level}</p>
                 </label>
               </div>
             </div>
