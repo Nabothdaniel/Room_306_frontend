@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { details } from "../../redux/UtilSlice";
+import { useNavigate } from "react-router-dom";
 
 const EscortDetailsThree = () => {
+  const [formData, setFormData] = useState({});
+  const [error, setError] = useState("");
+  const dispatch = useDispatch();
+const navigate = useNavigate()
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.checked });
+  };
+  const trueKeys = Object.keys(formData).filter(
+    (key) => formData[key] === true
+  );
+
+  const handleEscortThree = () => {
+    if (trueKeys.length >= 5) {
+      dispatch(
+        details({
+          ...formData,
+        })
+      );
+      navigate('/rates')
+      setError("");
+      setFormData({});
+    } else {
+      setError("Select at least five services");
+    }
+  };
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -38,380 +66,608 @@ const EscortDetailsThree = () => {
             <div className="grid md:grid-cols-2 text-white lg:grid-cols-3 gap-x-1 gap-y-3">
               <label className="checkContainer">
                 69 (69 sex Position)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="sixty_nine"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer ">
                 Anal Rimming (Licking Anus)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="anal_rimming"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 BDMS (receiving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="bdms_receiving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Body Worship
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="body_worship"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 CIM (Cum in Mouth)
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="cim" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 COF (Cum on Face)
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="cof" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 DFK(Deep French Kissing)
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="dfk" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Domination (receiving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="domination_receiving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer  flex items-center">
                 Erotic Massage
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="erotic_massage"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Face Sitting
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="face_sitting"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Fisting (giving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="fisting_giving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Foot fetish
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="foot_fetish"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Gang Bang
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="gang_bang"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Golden Shower
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="golden_shower"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Scat (giving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="scat_giving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Humiliation(giving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="humiliation"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Lap dancing
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="lap_dancing"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Massage
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="massage" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Modeling
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="modeling"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Smoking (Fetish)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="smoking_fetish"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 A-Level(Anal Sex)
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="a_level" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 BDMS (giving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="bdms_giving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Being Filmed
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="being_filmed"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Couples
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="couples" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
-                DFK(Deep French Kissing)
-                <input type="radio" name="" />
-                <span className="checkmate"></span>
-              </label>
-              <label className="checkContainer flex items-center">
-                Domination (receiving)
-                <input type="radio" name="" />
+                Domination (giving)
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="domination_giving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Double Penetration
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="double_penetration"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Fisting (receiving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="fisting_receiving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 French Kissing
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="french_kissing"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 GFE (Girlfriend experience)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="girlfriend_experience"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Hand Job
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="hand_job"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Attending corporate parties
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="attending_corporate_parties"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Beach parties
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="beach_parties"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Bondage
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="bondage" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 COB (Cum on body)
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="cob" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Domestic carer
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="domestic_carer"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Fetish
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="fetish" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Humiliation (receiving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="humiliation_receiving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 MMF 3somes
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="mmf_3somes"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 O-Level (Oral sex)
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="o_level" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 OWO (Oral without condom)
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="owo" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 PSE (Porn Star Experience)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="porn_star_experience"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Parties (Mandatory sex parties)
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="parties" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Preparing a meal
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="preparing_a_meal"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Prostrate Massage
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="prostrate_massage"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Receiving Oral
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="receiving_oral"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Rimming (receiving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="rimming_receiving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Role Play & Fantasy
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="role_play"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Sex Toys
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="sex_toys"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Erotic Spanking (giving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="erotic_spanking_giving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Erotic Spanking (receiving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="erotic_spanking_receiving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Pegging
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="pegging" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Sub games
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="sub_games"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Swallow
-                <input type="radio" name="" />
+                <input onChange={handleChange} type="checkbox" name="swallow" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Swallow (at discretion)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="swallow_at_discretion"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Tantric Massage
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="tantric_massage"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Threesome
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="threesome"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Tie & Tease
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="tie_tease"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Travel Companion
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="travel_companion"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Watersports (giving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="watersports_giving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Watersports (receiving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="watersports_receiving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Oral with condom
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="oral_with_condom"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Rimming (giving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="rimming_giving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 INSEMINATION
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="insemination"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Period Play
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="period_play"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Pregnant
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="pregnant"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Swinging
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="swinging"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 SURROGATE
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="surrogate"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Male Stripper
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="male_stripper"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Scat (receiving)
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="scat_receiving"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Female Stripper
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="female_stripper"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Food Play
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="food_play"
+                />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
                 Blow Job
-                <input type="radio" name="" />
+                <input
+                  onChange={handleChange}
+                  type="checkbox"
+                  name="blow_job"
+                />
                 <span className="checkmate"></span>
               </label>
+              <p className="py-1 text-[12px] text-red-500">{error}</p>
             </div>
             <div className="mt-8 flex justify-between md:w-[15%]">
               <button className="bg-[#CD2727] mr-5 w-[100%] py-3 md:w-[120px] font-medium rounded-xl">
                 Delete
               </button>
-              <Link
-                to={"/rates"}
+              <button
+                onClick={handleEscortThree}
                 className="bg-[#E9CB50] text-center block w-[100%] text-[#171717] py-3 md:w-[120px] font-medium rounded-xl"
               >
                 Next
-              </Link>
+              </button>
             </div>
           </div>
           {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-x-16 md:gap-x-6 gap-y-8"></div> */}

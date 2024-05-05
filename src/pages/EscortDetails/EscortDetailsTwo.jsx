@@ -3,13 +3,14 @@ import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
-import { Link } from "react-router-dom";
 import { details } from "../../redux/UtilSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const EscortDetailsTwo = () => {
   const open = useSelector((state) => state.Util.userDetails);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     education: "",
@@ -68,7 +69,7 @@ const EscortDetailsTwo = () => {
     if (!data.language_influence) {
       errors.level = "Language Level is required";
     }
-    if (!(available_incall && available_outcall)) {
+    if (!(available_incall) && !(available_outcall)) {
       errors.call = "In Call or Outcall is required";
     }
     if (!is_smoker) {
@@ -81,7 +82,7 @@ const EscortDetailsTwo = () => {
   useEffect(() => {
     const validationErrors = validateFormData(formData);
     setError(validationErrors);
-  }, [formData]);
+  }, [formData, available_incall, available_outcall, is_smoker]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -101,7 +102,7 @@ const EscortDetailsTwo = () => {
         })
       );
 
-      navigate("/additional-details");
+      navigate("/services");
 
       setFormData({
         education: "",
@@ -119,8 +120,6 @@ const EscortDetailsTwo = () => {
       });
     }
   };
-
-  console.log(open);
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -351,7 +350,7 @@ const EscortDetailsTwo = () => {
                     >
                       <option value="">Choose here</option>
                       <option>All</option>
-                      <option>Average</option>
+                      <option>Average</option>console.log(available_incall);
                       <option>Corporate type</option>
                       <option>Dominatrix</option>
                       <option>Eye Candy</option>
@@ -375,7 +374,7 @@ const EscortDetailsTwo = () => {
                     <label className="container text-white ">
                       Yes
                       <input
-                        value={"true"}
+                        value={true}
                         onChange={(e) => setSmoker(e.target.value)}
                         type="radio"
                         name="smoker"
@@ -386,7 +385,7 @@ const EscortDetailsTwo = () => {
                     <label className="container text-white">
                       No
                       <input
-                        value={"false"}
+                        value={false}
                         onChange={(e) => setSmoker(e.target.value)}
                         type="radio"
                         name="smoker"
@@ -435,8 +434,8 @@ const EscortDetailsTwo = () => {
                     <label className="container text-white ">
                       Yes
                       <input
-                        onChange={(e) => setIncall(e.target.value)}
-                        value={"true"}
+                        onChange={(e) => setIncall(true)}
+                        value={true}
                         type="radio"
                         name="incall"
                       />
@@ -446,17 +445,15 @@ const EscortDetailsTwo = () => {
                     <label className="container text-white">
                       No
                       <input
-                        onChange={(e) => setIncall(e.target.value)}
-                        value={"false"}
+                        onChange={(e) => setIncall(false)}
+                        value={false}
                         type="radio"
                         name="incall"
                       />
                       <span className="checkmark"></span>
                     </label>
                   </div>
-                    <p className="py-1 text-[12px] text-red-500">
-                      {error.call}
-                    </p>
+                  <p className="py-1 text-[12px] text-red-500">{error.call}</p>
                 </div>
                 <div className=" ">
                   <h4 className="text-white font-semibold pb-3">
@@ -467,8 +464,8 @@ const EscortDetailsTwo = () => {
                     <label className="container text-white ">
                       Yes
                       <input
-                        onChange={(e) => setOutcall(e.target.value)}
-                        value={"true"}
+                        onChange={(e) => setOutcall(true)}
+                        value={true}
                         type="radio"
                         name="outcall"
                       />
@@ -478,17 +475,15 @@ const EscortDetailsTwo = () => {
                     <label className="container text-white">
                       No
                       <input
-                        onChange={(e) => setOutcall(e.target.value)}
-                        value={"false"}
+                        onChange={(e) => setOutcall(false)}
+                        value={false}
                         type="radio"
                         name="outcall"
                       />
                       <span className="checkmark"></span>
                     </label>
                   </div>
-                    <p className="py-1 text-[12px] text-red-500">
-                      {error.call}
-                    </p>
+                  <p className="py-1 text-[12px] text-red-500">{error.call}</p>
                 </div>
                 <div>
                   <Input
@@ -532,13 +527,12 @@ const EscortDetailsTwo = () => {
               </div>
             </div>
 
-            <Link
+            <button
               onClick={handleEscortTwo}
-              to={"/services"}
               className="bg-[#E9CB50] block text-center w-[100%] py-3 md:py-4 md:w-[120px] font-semibold mt-12 rounded-xl"
             >
               Next
-            </Link>
+            </button>
           </div>
         </div>
       </div>

@@ -4,11 +4,13 @@ import TextArea from "../../components/TextArea";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
-import { useRegisterEscortMutation } from "../../redux/EscortApi";
+
 import Loading from "../../components/Loading";
 import { useGetCountryQuery } from "../../redux/CountryApi";
 import { useDispatch, useSelector } from "react-redux";
 import { details } from "../../redux/UtilSlice";
+import { differenceInYears, parse } from "date-fns";
+import { useRegisterEscortMutation } from "../../redux/ApiSlice";
 
 const EscortDetailsOne = () => {
   const { data, isLoading } = useGetCountryQuery();
@@ -17,7 +19,8 @@ const EscortDetailsOne = () => {
 
   const navigate = useNavigate();
 
-  const [register] = useRegisterEscortMutation();
+  const [register] = useRegisterEscortMutation() 
+  
   const [confirmPwd, setConfirmPwd] = useState("");
   const [error, setError] = useState({});
   const [code, setCode] = useState("");
@@ -42,10 +45,26 @@ const EscortDetailsOne = () => {
     country_code: "",
   });
 
+  const birthDate = parse(formData.dob, "yyyy-MM-dd", new Date());
+  const currentDate = new Date();
+  const age = differenceInYears(currentDate, birthDate);
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  };
+
   const validateFormData = (data) => {
     let errors = {};
+    if (!isValidEmail(data.email)) {
+      errors.email = "Email is not valid";
+    }
     if (!data.email) {
       errors.email = "Email is required";
+    }
+
+    if (data.password.trim().length < 6) {
+      errors.password = "Password must be 6 digit long";
     }
     if (!data.password.trim()) {
       errors.password = "Password is required";
@@ -68,34 +87,37 @@ const EscortDetailsOne = () => {
     if (!data.dob) {
       errors.dob = "Date of Birth is required";
     }
+    if (age < 18) {
+      errors.dob = "Only Age from 18years and above";
+    }
     if (!data.heading.trim()) {
       errors.heading = "Heading is required";
     }
     if (!data.display_name.trim()) {
       errors.name = "Display name is required";
     }
+
+    if (!Number(data.mobile_number) || data.mobile_number.length < 11) {
+      errors.number = "Mobile Number is invalid";
+    }
+
     if (!data.mobile_number.trim()) {
       errors.number = "Mobile Number is required";
     }
     if (!data.country_code) {
       errors.code = "Country code is required";
     }
+    if (formData.password !== confirmPwd) {
+      errors.conpwd = "Password doesn't match";
+    }
 
     return errors;
   };
 
   useEffect(() => {
-    if (formData.password !== confirmPwd) {
-      setPwdError("Password doesn't match");
-    } else {
-      setPwdError("");
-    }
-  }, [confirmPwd]);
-
-  useEffect(() => {
     const validationErrors = validateFormData(formData);
     setError(validationErrors);
-  }, [formData]);
+  }, [formData, confirmPwd]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -131,18 +153,25 @@ const EscortDetailsOne = () => {
     });
   });
 
-  const handleEscortOne = () => {
+  const handleEscortOne = async () => {
     const validationErrors = validateFormData(formData);
     setError(validationErrors);
-
+    
+    // try {
+    //   const hello = await register( ...formData ).unwrap();
+    //   console.log(hello);
+    // } catch (err) {
+    //   console.log(err);
+    // }
     if (Object.keys(validationErrors).length === 0 && confirmPwd) {
       dispatch(
-        details({
-          ...formData,
-          currency,
-          code,
-        })
-      );
+          details({
+              ...formData,
+              currency,
+              code,
+            })
+          );
+          
 
       navigate("/additional-details");
 
@@ -255,9 +284,8 @@ const EscortDetailsOne = () => {
                     value={confirmPwd}
                     onchange={(e) => setConfirmPwd(e.target.value)}
                   />
-                  <p className="py-1 text-[12px] text-red-500">{pwdError}</p>
                   <p className="py-1 text-[12px] text-red-500">
-                    {error.confirm}
+                    {error.conpwd}
                   </p>
                 </div>
                 <div>

@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import SideBar from "../../components/SideBar";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const EscortDetailsFour = () => {
+  const currency = useSelector(
+    (state) => state.Util.userDetails.currency
+  )
+  const incall = useSelector(
+    (state) => state.Util.userDetails.available_incall
+  );
+  const outcall = useSelector(
+    (state) => state.Util.userDetails.available_outcall
+  );
+
+
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -33,7 +46,7 @@ const EscortDetailsFour = () => {
             </h3>
             <label
               className="text-white pt-5 flex flex-col"
-              htmlFor="ethnicity"
+              htmlFor="currency"
             >
               <span className="font-semibold text-[14px] md:text-base pb-1">
                 Currency<span className="text-[#E9CB50]">*</span>
@@ -45,183 +58,188 @@ const EscortDetailsFour = () => {
                   id="currency"
                 >
                   <option value="">Choose Here</option>
+                  <option value={currency}>{ currency}</option>
                 </select>
               </div>
             </label>
-            <div className="grid md:grid-cols-2">
-              <div className="pt-9">
-                <h3 className="text-[18px] pb-3 font-semibold text-white">
-                  Incall
-                </h3>
-                <label
-                  className="text-white pb-2 pt-5 md:items-center md:flex-row flex-col md:justify-between  flex max-w-[700px]"
-                  htmlFor="1-hour"
-                >
-                  <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
-                    1 hours
-                  </span>
-                  <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
-                    <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-                      name="1-hour"
-                      id="1-hour"
-                    >
-                      <option value="">Choose here</option>
-                      <option value="all">All</option>
-                      <option value="asian">Asian</option>
-                      <option value="black">Black</option>
-                      <option value="indian">Indian</option>
-                      <option value="latino">Latino</option>
-                      <option value="middle eastern">Mid Eastern</option>
-                      <option value="mix-race">Mix Race</option>
-                      <option value="other">Other</option>
-                      <option value="others">Others</option>
-                      <option value="white">White</option>
-                    </select>
-                  </div>
-                </label>
-                <label
-                  className="text-white pb-2 pt-5 md:items-center md:flex-row flex-col md:justify-between flex max-w-[700px]"
-                  htmlFor="overnight"
-                >
-                  <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
-                    Over Night
-                  </span>
-                  <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
-                    <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-                      name="overnight"
-                      id="overnight"
-                    >
-                      <option value="">Choose here</option>
-                      <option value="all">All</option>
-                      <option value="asian">Asian</option>
-                      <option value="black">Black</option>
-                      <option value="indian">Indian</option>
-                      <option value="latino">Latino</option>
-                      <option value="middle eastern">Mid Eastern</option>
-                      <option value="mix-race">Mix Race</option>
-                      <option value="other">Other</option>
-                      <option value="others">Others</option>
-                      <option value="white">White</option>
-                    </select>
-                  </div>
-                </label>
-                <label
-                  className="text-white pt-5 md:items-center md:flex-row flex-col md:justify-between flex max-w-[700px]"
-                  htmlFor="weekend"
-                >
-                  <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
-                    Weekend
-                  </span>
-                  <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
-                    <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-                      name="weekend"
-                      id="weekend"
-                    >
-                      <option value="">Choose here</option>
-                      <option value="all">All</option>
-                      <option value="asian">Asian</option>
-                      <option value="black">Black</option>
-                      <option value="indian">Indian</option>
-                      <option value="latino">Latino</option>
-                      <option value="middle eastern">Mid Eastern</option>
-                      <option value="mix-race">Mix Race</option>
-                      <option value="other">Other</option>
-                      <option value="others">Others</option>
-                      <option value="white">White</option>
-                    </select>
-                  </div>
-                </label>
-              </div>
+            <div className="grid gap-x-4 md:gap-x-8 md:grid-cols-2">
+              {incall && (
+                <div className="pt-9">
+                  <h3 className="text-[18px] pb-3 font-semibold text-white">
+                    Incall
+                  </h3>
+                  <label
+                    className="text-white pb-2 pt-5 md:items-center md:flex-row flex-col md:justify-between  flex max-w-[700px]"
+                    htmlFor="1-hour"
+                  >
+                    <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
+                      1 hours
+                    </span>
+                    <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                      <select
+                        className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                        name="1-hour"
+                        id="1-hour"
+                      >
+                        <option value="">Choose here</option>
+                        <option value="all">All</option>
+                        <option value="asian">Asian</option>
+                        <option value="black">Black</option>
+                        <option value="indian">Indian</option>
+                        <option value="latino">Latino</option>
+                        <option value="middle eastern">Mid Eastern</option>
+                        <option value="mix-race">Mix Race</option>
+                        <option value="other">Other</option>
+                        <option value="others">Others</option>
+                        <option value="white">White</option>
+                      </select>
+                    </div>
+                  </label>
+                  <label
+                    className="text-white pb-2 pt-5 md:items-center md:flex-row flex-col md:justify-between flex max-w-[700px]"
+                    htmlFor="overnight"
+                  >
+                    <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
+                      Over Night
+                    </span>
+                    <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                      <select
+                        className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                        name="overnight"
+                        id="overnight"
+                      >
+                        <option value="">Choose here</option>
+                        <option value="all">All</option>
+                        <option value="asian">Asian</option>
+                        <option value="black">Black</option>
+                        <option value="indian">Indian</option>
+                        <option value="latino">Latino</option>
+                        <option value="middle eastern">Mid Eastern</option>
+                        <option value="mix-race">Mix Race</option>
+                        <option value="other">Other</option>
+                        <option value="others">Others</option>
+                        <option value="white">White</option>
+                      </select>
+                    </div>
+                  </label>
+                  <label
+                    className="text-white pt-5 md:items-center md:flex-row flex-col md:justify-between flex max-w-[700px]"
+                    htmlFor="weekend"
+                  >
+                    <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
+                      Weekend
+                    </span>
+                    <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                      <select
+                        className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                        name="weekend"
+                        id="weekend"
+                      >
+                        <option value="">Choose here</option>
+                        <option value="all">All</option>
+                        <option value="asian">Asian</option>
+                        <option value="black">Black</option>
+                        <option value="indian">Indian</option>
+                        <option value="latino">Latino</option>
+                        <option value="middle eastern">Mid Eastern</option>
+                        <option value="mix-race">Mix Race</option>
+                        <option value="other">Other</option>
+                        <option value="others">Others</option>
+                        <option value="white">White</option>
+                      </select>
+                    </div>
+                  </label>
+                </div>
+              )}
 
-              <div className="pt-9">
-                <h3 className="text-[18px] pb-3 font-semibold text-white">
-                  Outcall
-                </h3>
-                <label
-                  className="text-white pb-2 pt-5 md:items-center md:flex-row flex-col md:justify-between  flex max-w-[700px]"
-                  htmlFor="1-hour"
-                >
-                  <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
-                    1 hours
-                  </span>
-                  <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
-                    <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-                      name="1-hour"
-                      id="1-hour"
-                    >
-                      <option value="">Choose here</option>
-                      <option value="all">All</option>
-                      <option value="asian">Asian</option>
-                      <option value="black">Black</option>
-                      <option value="indian">Indian</option>
-                      <option value="latino">Latino</option>
-                      <option value="middle eastern">Mid Eastern</option>
-                      <option value="mix-race">Mix Race</option>
-                      <option value="other">Other</option>
-                      <option value="others">Others</option>
-                      <option value="white">White</option>
-                    </select>
-                  </div>
-                </label>
-                <label
-                  className="text-white pb-2 pt-5 md:items-center md:flex-row flex-col md:justify-between flex max-w-[700px]"
-                  htmlFor="overnight"
-                >
-                  <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
-                    Over Night
-                  </span>
-                  <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
-                    <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-                      name="overnight"
-                      id="overnight"
-                    >
-                      <option value="">Choose here</option>
-                      <option value="all">All</option>
-                      <option value="asian">Asian</option>
-                      <option value="black">Black</option>
-                      <option value="indian">Indian</option>
-                      <option value="latino">Latino</option>
-                      <option value="middle eastern">Mid Eastern</option>
-                      <option value="mix-race">Mix Race</option>
-                      <option value="other">Other</option>
-                      <option value="others">Others</option>
-                      <option value="white">White</option>
-                    </select>
-                  </div>
-                </label>
-                <label
-                  className="text-white pt-5 md:items-center md:flex-row flex-col md:justify-between flex max-w-[700px]"
-                  htmlFor="weekend"
-                >
-                  <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
-                    Weekend
-                  </span>
-                  <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
-                    <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-                      name="weekend"
-                      id="weekend"
-                    >
-                      <option value="">Choose here</option>
-                      <option value="all">All</option>
-                      <option value="asian">Asian</option>
-                      <option value="black">Black</option>
-                      <option value="indian">Indian</option>
-                      <option value="latino">Latino</option>
-                      <option value="middle eastern">Mid Eastern</option>
-                      <option value="mix-race">Mix Race</option>
-                      <option value="other">Other</option>
-                      <option value="others">Others</option>
-                      <option value="white">White</option>
-                    </select>
-                  </div>
-                </label>
-              </div>
+              {outcall && (
+                <div className="pt-9">
+                  <h3 className="text-[18px] pb-3 font-semibold text-white">
+                    Outcall
+                  </h3>
+                  <label
+                    className="text-white pb-2 pt-5 md:items-center md:flex-row flex-col md:justify-between  flex max-w-[700px]"
+                    htmlFor="1-hour"
+                  >
+                    <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
+                      1 hours
+                    </span>
+                    <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                      <select
+                        className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                        name="1-hour"
+                        id="1-hour"
+                      >
+                        <option value="">Choose here</option>
+                        <option value="all">All</option>
+                        <option value="asian">Asian</option>
+                        <option value="black">Black</option>
+                        <option value="indian">Indian</option>
+                        <option value="latino">Latino</option>
+                        <option value="middle eastern">Mid Eastern</option>
+                        <option value="mix-race">Mix Race</option>
+                        <option value="other">Other</option>
+                        <option value="others">Others</option>
+                        <option value="white">White</option>
+                      </select>
+                    </div>
+                  </label>
+                  <label
+                    className="text-white pb-2 pt-5 md:items-center md:flex-row flex-col md:justify-between flex max-w-[700px]"
+                    htmlFor="overnight"
+                  >
+                    <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
+                      Over Night
+                    </span>
+                    <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                      <select
+                        className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                        name="overnight"
+                        id="overnight"
+                      >
+                        <option value="">Choose here</option>
+                        <option value="all">All</option>
+                        <option value="asian">Asian</option>
+                        <option value="black">Black</option>
+                        <option value="indian">Indian</option>
+                        <option value="latino">Latino</option>
+                        <option value="middle eastern">Mid Eastern</option>
+                        <option value="mix-race">Mix Race</option>
+                        <option value="other">Other</option>
+                        <option value="others">Others</option>
+                        <option value="white">White</option>
+                      </select>
+                    </div>
+                  </label>
+                  <label
+                    className="text-white pt-5 md:items-center md:flex-row flex-col md:justify-between flex max-w-[700px]"
+                    htmlFor="weekend"
+                  >
+                    <span className="font-semibold text-[14px] md:text-base pb-2 md:pb-1 ">
+                      Weekend
+                    </span>
+                    <div className=" md:w-[80%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                      <select
+                        className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                        name="weekend"
+                        id="weekend"
+                      >
+                        <option value="">Choose here</option>
+                        <option value="all">All</option>
+                        <option value="asian">Asian</option>
+                        <option value="black">Black</option>
+                        <option value="indian">Indian</option>
+                        <option value="latino">Latino</option>
+                        <option value="middle eastern">Mid Eastern</option>
+                        <option value="mix-race">Mix Race</option>
+                        <option value="other">Other</option>
+                        <option value="others">Others</option>
+                        <option value="white">White</option>
+                      </select>
+                    </div>
+                  </label>
+                </div>
+              )}
             </div>
 
             <div className="mt-12 flex md:justify-start justify-between">
