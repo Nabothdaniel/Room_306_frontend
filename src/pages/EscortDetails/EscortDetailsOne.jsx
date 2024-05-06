@@ -4,7 +4,7 @@ import TextArea from "../../components/TextArea";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
-
+import axios from "axios"
 import Loading from "../../components/Loading";
 import { useGetCountryQuery } from "../../redux/CountryApi";
 import { useDispatch, useSelector } from "react-redux";
@@ -157,39 +157,44 @@ const EscortDetailsOne = () => {
     const validationErrors = validateFormData(formData);
     setError(validationErrors);
     
-    // try {
-    //   const hello = await register( ...formData ).unwrap();
-    //   console.log(hello);
-    // } catch (err) {
-    //   console.log(err);
-    // }
-    if (Object.keys(validationErrors).length === 0 && confirmPwd) {
-      dispatch(
-          details({
-              ...formData,
-              currency,
-              code,
-            })
-          );
+    try {
+      const hello = await register( formData ).unwrap();
+      console.log(hello);
+    } catch (err) {
+      console.log(err);
+    }
+
+    
+     
+
+
+    // if (Object.keys(validationErrors).length === 0 && confirmPwd) {
+    //   dispatch(
+    //       details({
+    //           ...formData,
+    //           currency,
+    //           code,
+    //         })
+    //       );
           
 
-      navigate("/additional-details");
+      // navigate("/additional-details");
 
-      setFormData({
-        country: "",
-        state: "",
-        code: "",
-        cities: "",
-        gender: "",
-        dob: "",
-        display_name: "",
-        heading: "",
-        mobile_number: "",
-        email: "",
-        password: "",
-        username: "",
-      });
-    }
+      // setFormData({
+      //   country: "",
+      //   state: "",
+      //   code: "",
+      //   cities: "",
+      //   gender: "",
+      //   dob: "",
+      //   display_name: "",
+      //   heading: "",
+      //   mobile_number: "",
+      //   email: "",
+      //   password: "",
+      //   username: "",
+      // });
+    // }
   };
 
   return (

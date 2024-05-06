@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-
 export const ApiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://room35backend.onrender.com/api/",
@@ -9,11 +8,11 @@ export const ApiSlice = createApi({
     registerEscort: build.mutation({
       query: (body) => ({
         url: "auth/register_escort/",
-        method: POST,
+        method: "POST",
         body,
       }),
     }),
   }),
 });
 
-export const {useRegisterEscortMutation} = ApiSlice
+export const { useRegisterEscortMutation } = ApiSlice;
