@@ -1,39 +1,84 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Input from "../components/Input";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import Upload from "../images/Upload.svg";
 import TextArea from "../components/TextArea";
+import Loading from "../components/Loading";
+import { useUpdateClientMutation } from "../redux/ApiSlice";
+import { useNavigate } from "react-router-dom";
 
 const EditClient = () => {
+  let users = JSON.parse(localStorage.getItem("details"));
+const navigate = useNavigate()
+  const [formData, setformData] = useState({
+    country: users.country,
+    state: users.state,
+    city: users.city,
+    user_type: "client",
+    display_name: users.display_name,
+    mobile_number: users.mobile_number,
+    email: users.email,
+    username: users.username,
+    country_code: "",
+    image: null,
+  });
+
+  const [success, setSuccess] = useState('')
+
+  const [update] = useUpdateClientMutation();
+
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
-  const [country, setCountry] = useState("");
-  const [State, setState] = useState("");
-  const [cities, setCities] = useState("");
   const { data, isLoading } = useGetCountryQuery();
   const [image, setImage] = useState("");
 
+  const handleChange = (e) => {
+    setformData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   if (isLoading) {
-    return <p>loading</p>;
+    return <Loading />;
   }
 
-  const countries = [...new Set(data.map((item) => item.country))];
-
-  countries.sort();
-
+  let states;
   const handleCountry = (e) => {
-    let states = data.filter((state) => state.country === e.target.value);
+    states = data.filter((state) => state.name === e.target.value);
 
-    states = [...new Set(states.map((item) => item.subcountry))];
+    states = states.map((item) => item.states);
+
     states.sort();
-    setGetState(states);
+    setGetState(states[0]);
   };
 
   const handleState = (e) => {
-    const cities = data.filter((item) => item.subcountry === e.target.value);
-    setGetCities(cities);
+    let city = getState.filter((item) => item.name === e.target.value);
+    city = city.map((item) => item);
+
+    setGetCities(city);
+  };
+
+  let newCities = [];
+
+  getCities.forEach((childArray) => {
+    childArray.cities.forEach((item) => {
+      newCities.push(item);
+    });
+  });
+
+  const handleEdit = async () => {
+    try {
+      const res = await update(formData).unwrap();
+     
+      if (res.message == "Profile updated successfully") {
+        navigate('/profile')
+        window.location.reload(true)
+      }
+
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -89,100 +134,106 @@ const EditClient = () => {
               />
               <Input
                 labelValue={"Email"}
-                labelClass={"pt-3 font-semibold"}
+                labelClass={"font-semibold py-2"}
                 inputType={"email"}
                 required={""}
                 inputName={"email"}
-                inputClass={
-                  "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
-                }
-                holder={""}
+                inputClass={" rounded-xl text-[#102127]  placeholder-[#102127]"}
+                holder={"Enter Email"}
+                value={formData.email}
+                onchange={handleChange}
               />
               <Input
-                labelValue={"Date Of Birth"}
+                labelValue={"Date of Birth"}
                 inputType={"date"}
                 labelClass={"font-semibold py-2"}
                 required={""}
-                inputName={"date-of-birth"}
-                inputClass={
-                  "p-3 rounded-xl w-[100%] text-[#102127] placeholder-[#102127]"
-                }
+                inputName={"dob"}
+                inputClass={" rounded-xl text-[#102127] placeholder-[#102127]"}
                 holder={""}
+                value={formData.dob}
+                onchange={handleChange}
               />
               <Input
                 labelValue={"Mobile Number"}
-                labelClass={"pt-3 font-semibold"}
+                labelClass={"font-semibold py-2"}
                 inputType={"tel"}
-                required={""}
-                inputName={"number"}
+                required={"*"}
+                inputName={"mobile_number"}
                 inputClass={
                   "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
                 }
                 holder={"E.g 12345678881"}
+                value={formData.mobile_number}
+                onchange={handleChange}
               />
               <div className="grid md:grid-cols-2 gap-y-3 gap-x-3 pt-5">
-                <label className="text-white flex flex-col" htmlFor="country">
-                  <span className="font-semibold pb-1">Country</span>
+                <label
+                  className="text-[#475367] flex flex-col"
+                  htmlFor="country"
+                >
+                  <span className="font-semibold text-white pb-1">Country</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="country"
                       id="country"
-                      value={country}
+                      value={formData.country}
                       onChange={(e) => {
                         handleCountry(e);
-                        setCountry(e.target.value);
+                        handleChange(e);
                       }}
                     >
                       <option value="">All Country</option>
-                      {countries.map((item) => {
+                      {data.map((item) => {
                         return (
-                          <option key={item} value={item}>
-                            {item}
+                          <option key={item.id} value={item.name}>
+                            {item.name}
                           </option>
                         );
                       })}
                     </select>
                   </div>
                 </label>
-                <label className="text-white flex flex-col" htmlFor="state">
-                  <span className="font-semibold pb-1">State</span>
+                <label className="text-[#475367]  flex flex-col" htmlFor="state">
+                  <span className="font-semibold text-white pb-1">State</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="state"
                       id="state"
-                      value={State}
+                      value={formData.state}
                       onChange={(e) => {
                         handleState(e);
-                        setState(e.target.value);
+                        handleChange(e);
                       }}
                     >
                       <option value="">State(Optional)</option>
-                      {getState.map((item) => {
+                      {getState.map((item, index) => {
                         return (
-                          <option key={item} value={item}>
-                            {item}
+                          <option key={item.id} value={item.name}>
+                            {item.name}
                           </option>
                         );
                       })}
                     </select>
                   </div>
                 </label>
-                <label className="text-white flex flex-col" htmlFor="city">
-                  <span className="font-semibold pb-1">City</span>
+                <label className="text-[#475367] flex flex-col" htmlFor="city">
+                  <span className="font-semibold text-white pb-1">City</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
-                      className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
+                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="city"
                       id="city"
-                      value={cities}
-                      onChange={(e) => setCities(e.target.value)}
+                      value={formData.city}
+                      onChange={handleChange}
                     >
                       <option value="">City(Optional)</option>
-                      {getCities.map((item) => {
+
+                      {newCities.map((item) => {
                         return (
-                          <option key={item.name} value={item.name}>
+                          <option key={item.id} value={item.name}>
                             {item.name}
                           </option>
                         );
@@ -193,7 +244,10 @@ const EditClient = () => {
               </div>
             </div>
 
-            <button className="bg-[#E9CB50] float-right mb-8 text-[#171717] mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl">
+            <button
+              onClick={handleEdit}
+              className="bg-[#E9CB50] float-right mb-8 text-[#171717] mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl"
+            >
               Update
             </button>
           </div>

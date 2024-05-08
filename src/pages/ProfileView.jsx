@@ -9,16 +9,13 @@ import { useNavigate } from "react-router-dom";
 import BookingModel from "../components/BookingModel";
 
 const ProfileView = () => {
-  const [openBook, setOpenBook] = useState(false)
+  const [openBook, setOpenBook] = useState(false);
 
+  const navigate = useNavigate();
 
-   const navigate = useNavigate();
-
-
-  
   const handleBook = () => {
-    setOpenBook(!openBook)
-  }
+    setOpenBook(!openBook);
+  };
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />

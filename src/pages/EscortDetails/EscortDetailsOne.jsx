@@ -4,13 +4,12 @@ import TextArea from "../../components/TextArea";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 import Loading from "../../components/Loading";
 import { useGetCountryQuery } from "../../redux/CountryApi";
 import { useDispatch, useSelector } from "react-redux";
 import { details } from "../../redux/UtilSlice";
 import { differenceInYears, parse } from "date-fns";
-import { useRegisterEscortMutation } from "../../redux/ApiSlice";
 
 const EscortDetailsOne = () => {
   const { data, isLoading } = useGetCountryQuery();
@@ -19,8 +18,8 @@ const EscortDetailsOne = () => {
 
   const navigate = useNavigate();
 
-  const [register] = useRegisterEscortMutation() 
-  
+  //const [register] = useRegisterEscortMutation()
+
   const [confirmPwd, setConfirmPwd] = useState("");
   const [error, setError] = useState({});
   const [code, setCode] = useState("");
@@ -156,19 +155,15 @@ const EscortDetailsOne = () => {
   const handleEscortOne = async () => {
     const validationErrors = validateFormData(formData);
     setError(validationErrors);
-    
+
     try {
-      const hello = await register( formData ).unwrap();
-      console.log(hello);
+      // const hello = await register( formData ).unwrap();
+      // console.log(hello);
     } catch (err) {
       console.log(err);
     }
 
-    
-     
-
-
-    // if (Object.keys(validationErrors).length === 0 && confirmPwd) {
+    // if (Object.keys(validationErrors).length === 0) {
     //   dispatch(
     //       details({
     //           ...formData,
@@ -176,24 +171,23 @@ const EscortDetailsOne = () => {
     //           code,
     //         })
     //       );
-          
 
-      // navigate("/additional-details");
+    navigate("/additional-details");
 
-      // setFormData({
-      //   country: "",
-      //   state: "",
-      //   code: "",
-      //   cities: "",
-      //   gender: "",
-      //   dob: "",
-      //   display_name: "",
-      //   heading: "",
-      //   mobile_number: "",
-      //   email: "",
-      //   password: "",
-      //   username: "",
-      // });
+    // setFormData({
+    //   country: "",
+    //   state: "",
+    //   code: "",
+    //   cities: "",
+    //   gender: "",
+    //   dob: "",
+    //   display_name: "",
+    //   heading: "",
+    //   mobile_number: "",
+    //   email: "",
+    //   password: "",
+    //   username: "",
+    // });
     // }
   };
 

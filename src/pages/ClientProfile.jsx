@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Arrow from "../images/arrow-left.svg";
 import User from "../images/profile.jpeg";
 import ProfileAbout from "../components/ProfileAbout";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useProfileQuery } from "../redux/ApiSlice";
+import Loading from "../components/Loading";
 
 const ClientProfile = () => {
+  const { data, isLoading } = useProfileQuery();
   const navigate = useNavigate();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  const client = data;
+
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -39,17 +51,19 @@ const ClientProfile = () => {
               <div className="md:w-[30%]">
                 <img
                   className="lg:size-[268px] ml-14 md:ml-0 object-cover md:size-[170px] sm:size-[140px] size-[130px] rounded-full "
-                  src={User}
+                  //src={client.image}
                   alt=""
                 />
               </div>
               <div className="md:w-[65%] md:ml-6 mt-8 grid grid-cols-3 md:mt-44 lg:mt-28">
                 <div className="col-span-2 grid gap-y-4 text-white">
-                  <h3 className="text-[20px] font-semibold">Alex Fresh</h3>
-                  <p className="text-[#DADADA] md:w-[70%] text-[12px] lg:text-[14px]">
+                  <h3 className="text-[20px] font-semibold">
+                    {client.display_name}
+                  </h3>
+                  {/* <p className="text-[#DADADA] md:w-[70%] text-[12px] lg:text-[14px]">
                     Am here to satisfy ur pleasure I love sex most especially
                     blow job (cum in my mouth) AVAILABLE FOR INCALL
-                  </p>
+                  </p> */}
                   <div className="md:flex hidden justify-between text-white">
                     <div className="flex flex-col items-center">
                       <p className="text-[24px] font-semibold">27</p>
@@ -99,7 +113,7 @@ const ClientProfile = () => {
           </p>
           <p className="">Review</p>
         </div>
-        <ProfileAbout />
+        <ProfileAbout client={client} />
       </div>
     </div>
   );

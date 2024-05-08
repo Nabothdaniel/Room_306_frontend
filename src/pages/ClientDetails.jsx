@@ -7,18 +7,22 @@ import axios from "axios";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
+import { useRegisterClientMutation } from "../redux/ClientApi";
+import { setCredentials } from "../redux/UtilSlice";
+import { useDispatch } from "react-redux";
 
 const ClientDetails = () => {
   const { data, isLoading } = useGetCountryQuery();
   const navigate = useNavigate();
   const [image, setImage] = useState("");
-
+  const [register] = useRegisterClientMutation();
   const [confirmPwd, setConfirmPwd] = useState("");
   const [error, setError] = useState({});
   const [code, setCode] = useState("");
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
   const [apiError, setApiError] = useState("");
+  const dispatch = useDispatch();
 
   const [Data, setData] = useState({
     country: "",
@@ -31,8 +35,9 @@ const ClientDetails = () => {
     password: "",
     username: "",
     country_code: "",
-    image: null,
+    // image: null,
   });
+
 
   const isValidEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -66,9 +71,9 @@ const ClientDetails = () => {
     if (!data.city) {
       errors.cities = "City is required";
     }
-    if (!data.image) {
-      errors.image = "Please upload your profile picture!";
-    }
+    // if (!data.image) {
+    //   errors.image = "Please upload your profile picture!";
+    // }
 
     if (!data.display_name.trim()) {
       errors.name = "Display name is required";
@@ -137,11 +142,15 @@ const ClientDetails = () => {
       try {
         const res = await axios.post(
           "https://room35backend.onrender.com/api/auth/register_client/",
-          Data,
+          { ...Data, image },
           {
-            headers: { "Content-Type": "multipart/form-data" },
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
           }
         );
+
+        dispatch(setCredentials(res.data?.token));
 
         if (res.status == 200) {
           navigate("/");
@@ -149,23 +158,22 @@ const ClientDetails = () => {
 
         setApiError("");
       } catch (err) {
-        console.log(err);
-        setApiError(err.response.data.message);
+        setApiError(err.response?.data?.message);
       }
 
-      // setData({
-      //   country: "",
-      //   state: "",
-      //   country_code: "",
-      //   city: "",
-      //   image: "",
-      //   display_name: "",
-      //   mobile_number: "",
-      //   email: "",
-      //   password: "",
-      //   username: "",
-      // });
-      // setImage('')
+      setData({
+        country: "",
+        state: "",
+        country_code: "",
+        city: "",
+        image: "",
+        display_name: "",
+        mobile_number: "",
+        email: "",
+        password: "",
+        username: "",
+      });
+      setImage("");
     }
   };
 

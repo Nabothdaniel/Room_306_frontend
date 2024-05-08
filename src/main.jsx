@@ -49,6 +49,7 @@ import AddEvents from "./pages/AddEvents.jsx";
 import AddNaughty from "./pages/AddNaughty.jsx";
 import RoomView from "./pages/RoomView.jsx";
 import AddRoom from "./pages/AddRoom.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -117,11 +118,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <ClientProfile />,
-      },
-      {
-        path: "/escort-profile",
-        element: <EscortProfile />,
+        element: <Profile />
       },
       {
         path: "/edit-client",

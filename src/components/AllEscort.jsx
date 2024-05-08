@@ -3,12 +3,10 @@ import AllEscortTags from "./AllEscortTags";
 import Pagination from "./Pagination";
 import EscortItems from "./EscortItems";
 import { useGetAllEscortsQuery } from "../redux/EscortApi";
+import Loading from "./Loading";
 
 const AllEscort = () => {
-
-  const {data} = useGetAllEscortsQuery()
-
-  console.log(data);
+  const { data, isLoading } = useGetAllEscortsQuery();
 
   const [escort, setEscort] = useState(data);
   const [currentPage, setCurrentPage] = useState(0);
@@ -23,6 +21,10 @@ const AllEscort = () => {
 
   // const pageCount = Math.ceil(data.length / usersPage);
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="py-14 bg-[#121212] px-2">
       <div className="flex pb-4 justify-between px-2 items-center">
@@ -34,8 +36,7 @@ const AllEscort = () => {
         </p>
       </div>
       <div className="overflow-x-scroll md:overflow-x-auto">
-
-      <AllEscortTags />
+        <AllEscortTags />
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-8">
         {/* {displayUsers} */}

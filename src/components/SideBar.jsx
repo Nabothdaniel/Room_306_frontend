@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { navClick } from "../redux/UtilSlice";
+import { logout, navClick } from "../redux/UtilSlice";
 import Logo from "../images/logo.png";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import Home from "../images/home-hashtag.svg";
@@ -23,10 +23,19 @@ const SideBar = () => {
   const location = useLocation().pathname;
   const open = useSelector((state) => state.Util.navOpen);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [openAdmin, setOpenAdmin] = useState(false);
 
   const handleAdmin = () => {
     setOpenAdmin(!openAdmin);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(navClick(false));
+    navigate("/");
+    window.location.reload(true);
   };
 
   return (
@@ -80,9 +89,7 @@ const SideBar = () => {
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
                   } font-semibold gap-x-4 duration-700 ${
-                    location == "/"
-                      ? "bg-[#1B1717] text-[#FDF2C5]"
-                      : ""
+                    location == "/" ? "bg-[#1B1717] text-[#FDF2C5]" : ""
                   } cursor-pointer `}
                 >
                   <img src={Home} className=" size-6 md:size-8" />
@@ -280,7 +287,9 @@ const SideBar = () => {
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "pl-8" : "justify-center"
                   }  gap-x-4 duration-700 cursor-pointer ${
-                    location == "/blacklisted" ? "bg-[#1B1717] text-[#FDF2C5]" : ""
+                    location == "/blacklisted"
+                      ? "bg-[#1B1717] text-[#FDF2C5]"
+                      : ""
                   }`}
                 >
                   <img src={Wallet} className=" size-6 md:size-8" />
@@ -404,15 +413,7 @@ const SideBar = () => {
           </div>
           <div>
             <div className="relative">
-              <NavLink
-                onClick={() => dispatch(navClick(false))}
-                to={"/"}
-                className={({ isActive }) =>
-                  isActive
-                    ? " active  before:contents-[''] before:top-[13px] before:absolute md:before:left-3 before:left-5 before:h-5  before:bg-[#FDF2C5] before:w-[6px] before:rounded-xl"
-                    : ""
-                }
-              >
+              <div onClick={handleLogout}>
                 <li
                   className={`flex text-lg items-center px-4 py-[9px] md:py-[14px] ${
                     open ? "md:pl-8 pl-9" : "justify-center"
@@ -427,7 +428,7 @@ const SideBar = () => {
                     Logouts
                   </span>
                 </li>
-              </NavLink>
+              </div>
             </div>
           </div>
         </ul>

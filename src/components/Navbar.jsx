@@ -4,23 +4,25 @@ import { RiSearchLine } from "react-icons/ri";
 import { TbBell } from "react-icons/tb";
 import Avatar from "../images/avatar.png";
 import Login from "../pages/Login";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Menu from "../images/Featured-icon.svg";
 import Logo from "../images/logo.png";
 import { useSelector, useDispatch } from "react-redux";
-import { navClick } from "../redux/UtilSlice";
+import { logout, navClick } from "../redux/UtilSlice";
 import SearchModel from "./SearchModel";
 import ProfileModel from "./ProfileModel";
+import useAuth from "../Hooks/useAuth";
 
 const Navbar = ({ Headervalue, textValue }) => {
-  const [user, setUser] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const open = useSelector((state) => state.Util.navOpen);
+  const { user_id } = useAuth();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSearch = () => {
     setOpenSearch(!openSearch);
@@ -32,6 +34,12 @@ const Navbar = ({ Headervalue, textValue }) => {
 
   const handleMenu = () => {
     setOpenMenu(!openMenu);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+    window.location.reload(true);
   };
 
   return (
@@ -60,7 +68,7 @@ const Navbar = ({ Headervalue, textValue }) => {
           <div
             onClick={handleSearch}
             className={`bg-[#0A0A0A] ${
-              !user && "hidden"
+              !user_id && "hidden"
             } p-2 md:py-3 md:px-4 rounded-full md:rounded-lg md:w-[40%] lg:w-[45%] md:flex`}
           >
             <RiSearchLine className="text-[#DADADA] size-8 md:size-6" />
@@ -72,7 +80,7 @@ const Navbar = ({ Headervalue, textValue }) => {
               placeholder="Search for Escort"
             />
           </div>
-          {user && (
+          {user_id && (
             <button className="bg-[#E9CB50] hidden lg:block text-[#171717] font-medium rounded-xl py-3 px-4">
               See Coins
             </button>
@@ -81,7 +89,7 @@ const Navbar = ({ Headervalue, textValue }) => {
             <TbBell className=" text-[#DADADA] size-7" />
           </div>
 
-          {user && (
+          {user_id && (
             <div className="relative">
               <img
                 onClick={handleProfile}
@@ -109,14 +117,17 @@ const Navbar = ({ Headervalue, textValue }) => {
                 <p className="cursor-pointer hover:text-[#E9CB50] duration-300">
                   Switch Account
                 </p>
-                <p className="cursor-pointer hover:text-[#E9CB50] duration-300">
+                <p
+                  onClick={handleLogout}
+                  className="cursor-pointer hover:text-[#E9CB50] duration-300"
+                >
                   Logout
                 </p>
               </div>
             </div>
           )}
 
-          {!user && (
+          {!user_id && (
             <div className="flex ">
               <Link
                 to={"/signup"}
