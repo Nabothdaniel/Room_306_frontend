@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Arrow from "../images/arrow-left.svg";
 import User from "../images/profile.jpeg";
 import ProfileAbout from "../components/ProfileAbout";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { useProfileQuery } from "../redux/ApiSlice";
 import Loading from "../components/Loading";
 
@@ -18,7 +17,6 @@ const ClientProfile = () => {
   }
 
   const client = data;
-
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
