@@ -8,8 +8,16 @@ import EscortItems from "../components/EscortItems";
 import Pagination from "../components/Pagination";
 import Frame from "../images/Frame.svg";
 import { Link } from "react-router-dom";
+import { useGetAllTourQuery } from "../redux/tourApi";
+import Loading from "../components/Loading";
 
 const Tours = () => {
+  const { data, isLoading } = useGetAllTourQuery();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />

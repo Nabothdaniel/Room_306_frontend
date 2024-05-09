@@ -4,9 +4,16 @@ import Navbar from "../components/Navbar";
 import BlogItems from "../components/BlogItems";
 import { BlogSwiper } from "../components/BlogSwiper";
 import Pagination from "../components/Pagination";
+import { useGetAllBlogQuery } from "../redux/BlogApi";
+import Loading from "../components/Loading";
 
 const Blog = () => {
-  
+  const { data, isLoading } = useGetAllBlogQuery();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />

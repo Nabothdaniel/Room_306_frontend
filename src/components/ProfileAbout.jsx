@@ -12,7 +12,7 @@ const ProfileAbout = ({ client }) => {
           <h4 className="text-[#B29A9A] text-[13px]">Username</h4>
           <p className="font-semibold">{client.username}</p>
         </div>
-        <div className="flex flex-col md:col-span-3 justify-center">
+        <div className="flex flex-col col-span-2 md:col-span-3 justify-center">
           <h4 className="text-[#B29A9A] text-[13px]">Display Name</h4>
           <p className="font-semibold">{client.display_name}</p>
         </div>

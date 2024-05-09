@@ -7,7 +7,6 @@ import axios from "axios";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
-import { useRegisterClientMutation } from "../redux/ClientApi";
 import { setCredentials } from "../redux/UtilSlice";
 import { useDispatch } from "react-redux";
 
@@ -15,7 +14,6 @@ const ClientDetails = () => {
   const { data, isLoading } = useGetCountryQuery();
   const navigate = useNavigate();
   const [image, setImage] = useState("");
-  const [register] = useRegisterClientMutation();
   const [confirmPwd, setConfirmPwd] = useState("");
   const [error, setError] = useState({});
   const [code, setCode] = useState("");
@@ -35,7 +33,7 @@ const ClientDetails = () => {
     password: "",
     username: "",
     country_code: "",
-    // image: null,
+    image: null,
   });
 
 
@@ -71,9 +69,9 @@ const ClientDetails = () => {
     if (!data.city) {
       errors.cities = "City is required";
     }
-    // if (!data.image) {
-    //   errors.image = "Please upload your profile picture!";
-    // }
+    if (!data.image) {
+      errors.image = "Please upload your profile picture!";
+    }
 
     if (!data.display_name.trim()) {
       errors.name = "Display name is required";
@@ -142,7 +140,7 @@ const ClientDetails = () => {
       try {
         const res = await axios.post(
           "https://room35backend.onrender.com/api/auth/register_client/",
-          { ...Data, image },
+          Data,
           {
             headers: {
               "Content-Type": "multipart/form-data",
