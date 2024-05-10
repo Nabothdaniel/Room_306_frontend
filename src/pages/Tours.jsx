@@ -12,6 +12,8 @@ import { useGetAllTourQuery } from "../redux/tourApi";
 import Loading from "../components/Loading";
 
 const Tours = () => {
+  const users = JSON.parse(localStorage.getItem("details"));
+
   const { data, isLoading } = useGetAllTourQuery();
 
   if (isLoading) {
@@ -40,11 +42,13 @@ const Tours = () => {
             <p className="text-white md:min-w-[230px] flex items-center md:py-4 py-2 lg:text-[20px] font-semibold">
               <span className="hidden md:block"> Tours Happening Now </span>
               <Link to={"/new-tours"}>
-                <img
-                  className="size-10 cursor-pointer md:ml-2 flex items-center"
-                  src={Frame}
-                  alt=""
-                />
+                {users?.user?.user_type == "escort" && (
+                  <img
+                    className="size-10 cursor-pointer md:ml-2 flex items-center"
+                    src={Frame}
+                    alt=""
+                  />
+                )}
               </Link>
             </p>
             <div className="flex md:gap-x-3 gap-x-2 justify-end">
@@ -55,15 +59,9 @@ const Tours = () => {
           </div>
           <div className=" bg-[#121212]">
             <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-              <EscortItems />
-              <EscortItems />
-              <EscortItems />
-              <EscortItems />
-              <EscortItems />
-              <EscortItems />
-              <EscortItems />
-              <EscortItems />
-              <EscortItems />
+              {data.map((item, index) => {
+                return <EscortItems key={index} items={item} />;
+              })}
             </div>
             <Pagination />
           </div>

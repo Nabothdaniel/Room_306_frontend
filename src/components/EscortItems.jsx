@@ -5,24 +5,26 @@ import User from "../images/user-tick.svg";
 import { FaStar } from "react-icons/fa";
 import Slider1 from "../images/slider1.png";
 
-const EscortItems = () => {
+const EscortItems = ({items}) => {
   return (
     <>
       <div className="bg-[#1E1E1E] text-white  p-3 rounded-lg">
         <img
           className="rounded-lg h-[200px] object-cover"
-          src={Slider1}
+          src={`https://room35backend.onrender.com/${items.cover_image}`}
           alt=""
         />
         <div className="flex justify-between py-3">
           <div>
-            <h4 className="font-semibold pb-2">Sandra Kiss</h4>
+            <h4 className="font-semibold pb-2">{}</h4>
             <p className="pb-1 text-[12px] lg:text-[14px]">
               <span className="font-semibold">#7,500</span> short time
             </p>
             <p className="flex items-center text-[12px] lg:text-[14px]">
               <img src={Location} className="mr-1 size-5" />
-              <span>lagos, Nigeria</span>
+              <span>
+                {items.city}, {items.country}
+              </span>
             </p>
           </div>
           <img src={Love} className="size-12" />

@@ -4,6 +4,8 @@ import SideBar from "../components/SideBar";
 import { Link, useNavigate } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
 import MyTourItem from "../components/MyTourItem";
+import { useGetMyTourQuery } from "../redux/tourApi";
+import Loading from "../components/Loading";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -19,11 +21,24 @@ const reducer = (state, action) => {
 };
 
 const MyTour = () => {
+  const navigate = useNavigate();
+  const users = JSON.parse(localStorage.getItem("token"));
+
+  if (!users) {
+    navigate("/");
+  }
+
+  const { data, isLoading } = useGetMyTourQuery();
+
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
   });
-  const navigate = useNavigate();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -56,7 +71,9 @@ const MyTour = () => {
                 } `}
               >
                 Active{" "}
-                <span className="bg-white px-2 rounded-full text-black">1</span>
+                <span className="bg-white px-2 rounded-full text-black">
+                  {data.length}
+                </span>
               </p>
               <p
                 onClick={() => dispatch({ type: "Change2" })}
@@ -75,8 +92,14 @@ const MyTour = () => {
               >
                 Add New
               </Link>
-              <div className="  grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4">
-                <MyTourItem tourClass={`${!state.open1 && "hidden"}`} />
+              <div
+                className={`${
+                  !state.open1 && "hidden"
+                }  grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
+              >
+                {data.map((item, index) => {
+                  return <MyTourItem key={index} item={item} />;
+                })}
 
                 <div className={`${!state.open2 && "hidden"}`}>
                   <div></div>

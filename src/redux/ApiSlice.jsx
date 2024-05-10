@@ -1,8 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-
-
-
 export const ApiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://room35backend.onrender.com/api/",
@@ -46,4 +43,9 @@ export const ApiSlice = createApi({
   }),
 });
 
-export const { useRegisterEscortMutation, useProfileQuery, useUpdateClientMutation, useLoginMutation } = ApiSlice;
+export const {
+  useRegisterEscortMutation,
+  useProfileQuery,
+  useUpdateClientMutation,
+  useLoginMutation,
+} = ApiSlice;

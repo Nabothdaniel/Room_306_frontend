@@ -2,9 +2,9 @@ import React from "react";
 import Location from "../images/location-tick.svg";
 import Slider1 from "../images/slider1.png";
 
-const MyTourItem = ({ tourClass }) => {
+const MyTourItem = ({item} ) => {
   return (
-    <div className={`bg-black text-white  p-3 rounded-lg ${tourClass}`}>
+    <div className={`bg-black text-white  p-3 rounded-lg`}>
       <img className="rounded-lg h-[200px] object-cover" src={Slider1} alt="" />
       <div className="flex justify-between py-3">
         <div>
@@ -14,9 +14,9 @@ const MyTourItem = ({ tourClass }) => {
 
           <p className="flex items-center text-[12px] lg:text-[14px]">
             <img src={Location} className="mr-1 size-5" />
-            <span>lagos, Nigeria</span>
+            <span>{item.city}, {item.country}</span>
           </p>
-          <p className="text-white text-[13px] pt-3">I'm Available and Ready</p>
+          <p className="text-white text-[13px] pt-3">{ item.title}</p>
         </div>
         <div>
           <p className="bg-yellow-300 text-[12px] py-1 text-black px-2 rounded-3xl cursor-pointer font-semibold">

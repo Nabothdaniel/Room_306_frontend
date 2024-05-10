@@ -107,6 +107,20 @@ const ClientDetails = () => {
     return <Loading />;
   }
 
+   
+const formData = new FormData();
+formData.append("username", Data.username);
+formData.append("mobile_number", Data.mobile_number);
+formData.append("image", image);
+formData.append("country", Data.country);
+formData.append("user_type", Data.user_type);
+formData.append("city", Data.city);
+formData.append("email", Data.email);
+formData.append("password", Data.password);
+formData.append("display_name", Data.display_name);
+formData.append("state", Data.state);
+
+
   let states;
   const handleCountry = (e) => {
     states = data.filter((state) => state.name === e.target.value);
@@ -140,7 +154,7 @@ const ClientDetails = () => {
       try {
         const res = await axios.post(
           "https://room35backend.onrender.com/api/auth/register_client/",
-          Data,
+          formData,
           {
             headers: {
               "Content-Type": "multipart/form-data",
@@ -172,6 +186,14 @@ const ClientDetails = () => {
         username: "",
       });
       setImage("");
+
+
+
+      
+
+
+
+
     }
   };
 

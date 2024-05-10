@@ -1,51 +1,144 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Input from "../components/Input";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import Upload from "../images/Upload.svg";
 import Loading from "../components/Loading";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddTours = () => {
-  const [getState, setGetState] = useState([]);
-  const [getCities, setGetCities] = useState([]);
-  const [country, setCountry] = useState("");
-  const [State, setState] = useState("");
-  const [cities, setCities] = useState("");
-  const { data, isLoading } = useGetCountryQuery();
-  const [image, setImage] = useState("");
+  const navigate = useNavigate();
+  const users = JSON.parse(localStorage.getItem("details"));
 
-  if (isLoading) {
-    return <Loading />
+  if (users?.user_type == "client") {
+    navigate("/");
   }
 
- 
+  const [getState, setGetState] = useState([]);
+  const [getCities, setGetCities] = useState([]);
+  const { data, isLoading } = useGetCountryQuery();
+  const [image, setImage] = useState("");
+  const [error, setError] = useState("");
+  const [apiError, setApiError] = useState("");
 
- let states;
- const handleCountry = (e) => {
-   states = data.filter((state) => state.name === e.target.value);
-   setCode(states[0].phone_code);
-   setCurrency(states[0].currency);
-   states = states.map((item) => item.states);
+  const [Data, setData] = useState({
+    country: "",
+    title: "",
+    city: "",
+    state: "",
+    start_date: "",
+    user: users.id,
+    
+  });
 
-   states.sort();
-   setGetState(states[0]);
- };
+  const validateFormData = (data) => {
+    let errors = {};
+    if (!data.title) {
+      errors.title = "Title is required";
+    }
 
- const handleState = (e) => {
-   let city = getState.filter((item) => item.name === e.target.value);
-   city = city.map((item) => item);
+    if (!data.start_date) {
+      errors.date = "Date is Required";
+    }
+    if (!data.country) {
+      errors.country = "Country is required";
+    }
+    if (!data.state) {
+      errors.state = "State is required";
+    }
+    if (!data.city) {
+      errors.city = "City is required";
+    }
+     if (!image) {
+       errors.image = "An Image is required";
+     }
+    return errors;
+  };
 
-   setGetCities(city);
- };
+  useEffect(() => {
+    const validationErrors = validateFormData(Data);
+    setError(validationErrors);
+  }, [Data]);
 
- let newCities = [];
+  const handleChange = (e) => {
+    setData({ ...Data, [e.target.name]: e.target.value });
+  };
 
- getCities.forEach((childArray) => {
-   childArray.cities.forEach((item) => {
-     newCities.push(item);
-   });
- });
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  const formData = new FormData();
+  formData.append("title", Data.title);
+  formData.append("start_date", Data.start_date);
+  formData.append("cover_image", image);
+  formData.append("country", Data.country);
+  formData.append("user", Data.user);
+  formData.append("city", Data.city);
+  formData.append("state", Data.state);
+
+  let states;
+  const handleCountry = (e) => {
+    states = data.filter((state) => state.name === e.target.value);
+    states = states.map((item) => item.states);
+
+    states.sort();
+    setGetState(states[0]);
+  };
+
+  const handleState = (e) => {
+    let city = getState.filter((item) => item.name === e.target.value);
+    city = city.map((item) => item);
+
+    setGetCities(city);
+  };
+
+  let newCities = [];
+
+  getCities.forEach((childArray) => {
+    childArray.cities.forEach((item) => {
+      newCities.push(item);
+    });
+  });
+
+  const handleSubmit = async () => {
+    const validationErrors = validateFormData(Data);
+    setError(validationErrors);
+    if (Object.keys(validationErrors).length === 0) {
+      try {
+        const res = await axios.post(
+          "https://room35backend.onrender.com/api/tour/create/",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+
+              Authorization:
+                "Bearer " + JSON.parse(localStorage.getItem("token")),
+            },
+          }
+        );
+        console.log(res);
+        if (res.status == 200) {
+          navigate("/tours");
+        }
+
+        setData({
+          country: "",
+          title: "",
+          city: "",
+          start_date: "",
+        });
+
+        setApiError("");
+      } catch (err) {
+        console.log(err);
+        setApiError(err.response.data.detail);
+      }
+    }
+  };
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -63,131 +156,174 @@ const AddTours = () => {
               Add New Tour
             </h2>
           </div>
-          <div className="rounded-xl lg:px-10 grid lg:grid-cols-2 gap-x-5 gap-y-6 px-4 py-6 md:px-12 md:py-14 bg-[#1E1E1E] ">
-            <div>
-              <Input
-                labelValue={"Title"}
-                required={"*"}
-                labelClass={"text-white pb-2 font-semibold text-[16px]"}
-                inputType={"text"}
-                inputName={"name"}
-                inputClass={
-                  "bg-[#F0F2F5] py-3 px-4 md:mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
-                }
-                holder={"Enter Tour Title Here"}
-              />
-              <Input
-                labelValue={"Start Date"}
-                inputType={"date"}
-                labelClass={"font-semibold py-2"}
-                required={"*"}
-                inputName={"state-date"}
-                inputClass={
-                  "p-3 rounded-xl w-[100%] text-[#102127] placeholder-[#102127]"
-                }
-                holder={""}
-              />
-              <div className="grid md:grid-cols-3 gap-y-3 gap-x-3 pt-5">
-                <label
-                  className="text-[#475367] flex flex-col"
-                  htmlFor="country"
-                >
-                  <span className="font-semibold text-white pb-1">Country</span>
-                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
-                    <select
-                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
-                      name="country"
-                      id="country"
-                      value={country}
-                      onChange={(e) => {
-                        handleCountry(e);
-                        setCountry(e.target.value);
-                      }}
-                    >
-                      <option value="">All Country</option>
-                      {data.map((item) => {
-                        return (
-                          <option key={item.id} value={item.name}>
-                            {item.name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                </label>
-                <label className="text-[#475367] flex flex-col" htmlFor="state">
-                  <span className="font-semibold text-white pb-1">State</span>
-                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
-                    <select
-                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
-                      name="state"
-                      id="state"
-                      value={State}
-                      onChange={(e) => {
-                        handleState(e);
-                        setState(e.target.value);
-                      }}
-                    >
-                      <option value="">State(Optional)</option>
-                      {getState.map((item, index) => {
-                        return (
-                          <option key={item.id} value={item.name}>
-                            {item.name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                </label>
-                <label className="text-[#475367] flex flex-col" htmlFor="city">
-                  <span className="font-semibold text-white pb-1">City</span>
-                  <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
-                    <select
-                      className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
-                      name="city"
-                      id="city"
-                      value={cities}
-                      onChange={(e) => setCities(e.target.value)}
-                    >
-                      <option value="">City(Optional)</option>
 
-                      {newCities.map((item) => {
-                        return (
-                          <option key={item.id} value={item.name}>
-                            {item.name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                </label>
+          <div className="bg-[#1E1E1E] rounded-xl">
+            {apiError && (
+              <p className=" bg-red-300 mb-3 py-4 px-5 text-center rounded-lg md:text-base text-[14px] font-semibold text-black/80">
+                {apiError}
+              </p>
+            )}
+            <div className=" lg:px-10 grid lg:grid-cols-2 gap-x-5 gap-y-6 px-4 py-6 md:px-12 md:py-14 ">
+              <div>
+                <div>
+                  <Input
+                    labelValue={"Title"}
+                    required={"*"}
+                    labelClass={"text-white pb-2 font-semibold text-[16px]"}
+                    inputType={"text"}
+                    inputName={"title"}
+                    inputClass={
+                      "bg-[#F0F2F5] py-3 px-4 rounded-xl placeholder-[#102127] text-[#102127]"
+                    }
+                    holder={"Enter Tour Title Here"}
+                    value={Data.title}
+                    onchange={handleChange}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">{error.title}</p>
+                </div>
+                <div>
+                  <Input
+                    labelValue={"Start Date"}
+                    inputType={"date"}
+                    labelClass={"font-semibold py-2"}
+                    required={"*"}
+                    inputName={"start_date"}
+                    inputClass={
+                      " rounded-xl text-[#102127] placeholder-[#102127]"
+                    }
+                    holder={""}
+                    value={Data.start_date}
+                    onchange={handleChange}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">{error.date}</p>
+                </div>
+                <div className="grid md:grid-cols-3 gap-y-3 gap-x-3 pt-5">
+                  <label
+                    className="text-[#475367] flex flex-col"
+                    htmlFor="country"
+                  >
+                    <span className="font-semibold text-white pb-1">
+                      Country
+                    </span>
+                    <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                      <select
+                        className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                        name="country"
+                        id="country"
+                        value={Data.country}
+                        onChange={(e) => {
+                          handleCountry(e);
+                          handleChange(e);
+                        }}
+                      >
+                        <option value="">All Country</option>
+                        {data.map((item) => {
+                          return (
+                            <option key={item.id} value={item.name}>
+                              {item.name}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                    <p className="py-1 text-[12px] text-red-500">
+                      {error.country}
+                    </p>
+                  </label>
+                  <label
+                    className="text-[#475367] flex flex-col"
+                    htmlFor="state"
+                  >
+                    <span className="font-semibold text-white pb-1">State</span>
+                    <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                      <select
+                        className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                        name="state"
+                        id="state"
+                        value={Data.state}
+                        onChange={(e) => {
+                          handleState(e);
+                          handleChange(e);
+                        }}
+                      >
+                        <option value="">State(Optional)</option>
+                        {getState.map((item, index) => {
+                          return (
+                            <option key={item.id} value={item.name}>
+                              {item.name}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                    <p className="py-1 text-[12px] text-red-500">
+                      {error.state}
+                    </p>
+                  </label>
+                  <label
+                    className="text-[#475367] flex flex-col"
+                    htmlFor="city"
+                  >
+                    <span className="font-semibold text-white pb-1">City</span>
+                    <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
+                      <select
+                        className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
+                        name="city"
+                        id="city"
+                        value={Data.city}
+                        onChange={handleChange}
+                      >
+                        <option value="">City(Optional)</option>
+
+                        {newCities.map((item) => {
+                          return (
+                            <option key={item.id} value={item.name}>
+                              {item.name}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                    <p className="py-1 text-[12px] text-red-500">
+                      {error.city}
+                    </p>
+                  </label>
+                </div>
               </div>
+              <div>
+                <div
+                  onClick={() => document.querySelector(".input").click()}
+                  className="w-[100%] cursor-pointer"
+                >
+                  <input
+                    type="file"
+                    name="image"
+                    id="file"
+                    className="input"
+                    hidden
+                    onChange={(e) => {
+                      setImage(e.target.files[0]);
+                      handleChange(e);
+                    }}
+                  />
+                  {image ? (
+                    <img
+                      className="rounded-lg"
+                      src={URL.createObjectURL(image)}
+                    />
+                  ) : (
+                    <img className=" " src={Upload} alt="" />
+                  )}
+                </div>
+                <p className="py-1 text-[12px] text-red-500">{error.image}</p>
+              </div>
+              <button
+                onClick={handleSubmit}
+                className="bg-[#E9CB50] text-[#171717] mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl"
+              >
+                Submit
+              </button>
             </div>
-            <div
-              onClick={() => document.querySelector(".input").click()}
-              className="w-[100%] cursor-pointer"
-            >
-              <input
-                type="file"
-                name="file"
-                id="file"
-                className="input"
-                hidden
-                onChange={({ target: { files } }) => {
-                  if (files) {
-                    setImage(URL.createObjectURL(files[0]));
-                  }
-                }}
-              />
-              {image ? (
-                <img className="rounded-lg w-[80%]" src={image} />
-              ) : (
-                <img className="w-[80%] mx-auto " src={Upload} alt="" />
-              )}
-            </div>
-            <button className="bg-[#E9CB50] text-[#171717] mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl">
-              Submit
-            </button>
           </div>
         </div>
       </div>

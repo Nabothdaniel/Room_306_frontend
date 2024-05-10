@@ -5,7 +5,6 @@ const escortApi = ApiSlice.injectEndpoints({
     getAllEscorts: build.query({
       query: () => "escort/escorts/all/",
     }),
-   
   }),
 });
 
