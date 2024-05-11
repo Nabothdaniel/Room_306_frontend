@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
 import MyRoomItem from "../components/MyRoomItem";
+import { useGetMyRoomsQuery } from "../redux/roomApi";
+import Loading from "../components/Loading";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -31,6 +33,15 @@ const reducer = (state, action) => {
 };
 
 const MyRoom = () => {
+  const navigate = useNavigate()
+  const users = JSON.parse(localStorage.getItem("token"));
+
+  // if (!users) {
+  //   navigate("/");
+  // }
+
+  const { data, isLoading } = useGetMyRoomsQuery();
+
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
@@ -38,7 +49,12 @@ const MyRoom = () => {
     open4: false,
     open5: false,
   });
-  const navigate = useNavigate();
+ 
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -115,14 +131,16 @@ const MyRoom = () => {
 
           <div className="mt-10 px-5  rounded-xl py-4 bg-[#1e1e1e]">
             <Link
-             to={"/add-room"}
+              to={"/add-room"}
               className="bg-yellow-300 block text-center py-2 hover:bg-yellow-200 duration-500 font-semibold mb-4 w-[100px] text-[14px] rounded-3xl"
             >
               Add New
             </Link>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               <div className={`${!state.open1 && "hidden"}`}>
-              <MyRoomItem />
+                {data.map((item, index) => {
+                  return <MyRoomItem key={index} item={item} />;
+                })}
               </div>
             </div>
           </div>
