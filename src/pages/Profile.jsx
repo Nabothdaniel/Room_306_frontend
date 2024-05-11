@@ -26,7 +26,7 @@ const Profile = () => {
   return (
     <div>
       {data.user_type == "client" && <ClientProfile />}
-      {data.user_type == "escort" && <EscortProfile />}
+      {data.user.user_type == "escort" && <EscortProfile />}
     </div>
   );
 };

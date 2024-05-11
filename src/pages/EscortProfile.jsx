@@ -12,6 +12,7 @@ import Media from "../components/Media";
 import { ProfileSwiper } from "../components/ProfileSwiper";
 import { Link } from "react-router-dom";
 import ProfileViewItems from "../components/ProfileViewItems";
+import { parseISO, format } from "date-fns";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -31,6 +32,11 @@ const reducer = (state, action) => {
 };
 
 const EscortProfile = () => {
+  const user = JSON.parse(localStorage.getItem("details"));
+
+  const parsedDate = parseISO(user.user.createdAt);
+  const formattedDate = format(parsedDate, "MMMM d, yyyy");
+
   const [animationParent] = useAutoAnimate();
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
@@ -52,10 +58,10 @@ const EscortProfile = () => {
             <img className="size-[60px] rounded-full" src={Blog} alt="" />
             <div className="ml-3">
               <h2 className="md:text-2xl font-semibold text-[18px]">
-                Adam Fresh
+                {user.user.display_name}
               </h2>
               <p className="text-white/80 md:text-[14px] text-[12px]">
-                @adamfresh
+                @{user.user.username}
               </p>
             </div>
           </div>
@@ -63,19 +69,23 @@ const EscortProfile = () => {
             <div>
               <p className="flex items-center pb-4">
                 <IoPhonePortraitOutline className="text-xl mr-2" />
-                <span className="md:text-base text-[14px]">+2348123456789</span>
+                <span className="md:text-base text-[14px]">
+                  +{user.user.mobile_number}
+                </span>
               </p>
               <p className="flex items-center">
                 <FiMail className="text-xl mr-2" />
                 <span className="md:text-base text-[14px]">
-                  adamfresh@gmail.com
+                  {user.user.email}
                 </span>
               </p>
             </div>
             <div>
-              <p className="bg-[#E9CB50] text-black/70 text-[12px] md:text-base font-semibold rounded-xl py-1 text-center min-w-[100px] md:min-w-[130px]">
-                Under Review
-              </p>
+              {user.user.is_verified || (
+                <p className="bg-[#E9CB50] text-black/70 text-[12px] md:text-base font-semibold rounded-xl py-1 text-center min-w-[100px] md:min-w-[130px]">
+                  Under Review
+                </p>
+              )}
             </div>
           </div>
           <div className="text-[#E9CB50] flex flex-col gap-y-3">
@@ -83,7 +93,8 @@ const EscortProfile = () => {
               Last Login at <span className="font-semibold">2:40 PM Sun</span>
             </p>
             <p className="text-white/70 text-[12px]">
-              Registered on <span className="font-semibold">Apr 28, 2024</span>
+              Registered on{" "}
+              <span className="font-semibold">{formattedDate}</span>
             </p>
             {/* */}
           </div>
@@ -96,7 +107,9 @@ const EscortProfile = () => {
                 <p className="md:text-[20px] text-[15px] font-semibold">
                   My Wallet
                 </p>
-                <p className="md:text-[26px] text-[18px] font-semibold">0</p>
+                <p className="md:text-[26px] text-[18px] font-semibold">
+                  {user.user.available_coin}
+                </p>
               </div>
             </div>
 
@@ -190,10 +203,10 @@ const EscortProfile = () => {
             <div className="md:col-span-2 flex justify-between pt-4 text-white ">
               <div>
                 <p className="md:text-2xl text-[20px] font-semibold">
-                  Adam Fresh
+                  {user.user.display_name}
                 </p>
                 <p className="font-semibold text-white/70 md:text-[18px] pt-3">
-                  Hey, I'm curvy
+                  {user.heading}
                 </p>
                 <div className="flex text-white pt-6">
                   <div className="flex mr-5 flex-col items-center">
@@ -207,13 +220,13 @@ const EscortProfile = () => {
                   </div>
                   <div className="flex mr-5 flex-col items-center">
                     <p className="md:text-[24px] text-[18px] font-semibold">
-                      Avg
+                      {user.weight}
                     </p>
                     <p className="text-[#B29A9A]">Weight</p>
                   </div>
                   <div className="flex flex-col items-center">
                     <p className="md:text-[24px] text-[18px] font-semibold">
-                      Avg
+                      {user.height}
                     </p>
                     <p className="text-[#B29A9A]">Height</p>
                   </div>
