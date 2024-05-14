@@ -37,10 +37,10 @@ const EditEscort = () => {
   const users = JSON.parse(localStorage.getItem("details"));
 
   const [formData, setformData] = useState({
-    country: users.country,
-    state: users.state,
-    city: users.city,
-    user_type: "client",
+    country: users.user.country,
+    state: users.user.state,
+    city: users.user.city,
+    user_type: "escort",
     display_name: users.display_name,
     mobile_number: users.user.mobile_number,
     email: users.user.email,
@@ -48,7 +48,7 @@ const EditEscort = () => {
     country_code: users.user.country_code,
     about: users.about,
     image: null,
-    headline: users.heading,
+    heading: users.heading,
     is_smoker: users.is_smoker,
     isMale: users.isMale,
     isFemale: users.isFemale,
@@ -116,14 +116,14 @@ const EditEscort = () => {
                 <TextArea
                   labelValue={"Headline"}
                   required={"*"}
-                  inputName={"headline"}
+                  inputName={"heading"}
                   inputClass={
                     "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={""}
                   col={""}
                   row={"5"}
-                  value={formData.headline}
+                  value={formData.heading}
                   onchange={handleChange}
                 />
               </div>
@@ -174,7 +174,11 @@ const EditEscort = () => {
                 formData={formData}
                 handleChange={handleChange}
               />
-              <EscortBioEdit bioClass={`${!state.open2 ? "hidden" : ""}`} />
+              <EscortBioEdit
+                bioClass={`${!state.open2 ? "hidden" : ""}`}
+                formData={formData}
+                handleChange={handleChange}
+              />
               <EscortServicesEdit
                 serviceClass={`${!state.open4 ? "hidden" : ""}`}
               />
