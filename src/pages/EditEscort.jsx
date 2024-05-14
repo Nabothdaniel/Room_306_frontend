@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
@@ -34,6 +34,32 @@ const reducer = (state, action) => {
 
 const EditEscort = () => {
   const navigate = useNavigate();
+  const users = JSON.parse(localStorage.getItem("details"));
+
+  const [formData, setformData] = useState({
+    country: users.country,
+    state: users.state,
+    city: users.city,
+    user_type: "client",
+    display_name: users.display_name,
+    mobile_number: users.user.mobile_number,
+    email: users.user.email,
+    username: users.username,
+    country_code: users.user.country_code,
+    about: users.about,
+    image: null,
+    headline: users.heading,
+    is_smoker: users.is_smoker,
+    isMale: users.isMale,
+    isFemale: users.isFemale,
+    sexual_orientation: users.sexual_orientation,
+    education: users.education,
+    occupation: users.occupation,
+  });
+
+  const handleChange = (e) => {
+    setformData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
@@ -67,7 +93,9 @@ const EditEscort = () => {
               </div>
               <div className="lg:col-span-3 col-span-1 md:col-span-2 text-white gap-4">
                 <div className="flex items-center justify-between">
-                  <p className="font-semibold pb-3 md:pb-0">AdamFresh</p>
+                  <p className="font-semibold pb-3 md:pb-0">
+                    {users.user.username}
+                  </p>
                   <button className="bg-[#E9CB50] float-right text-[#171717] text-[14px] h-[35px] md:h-[48px] w-[120px] font-semibold rounded-xl">
                     Save Changes
                   </button>
@@ -82,6 +110,8 @@ const EditEscort = () => {
                     "p-3 rounded-xl text-[#102127]  placeholder-[#102127]"
                   }
                   holder={""}
+                  value={formData.email}
+                  onchange={handleChange}
                 />
                 <TextArea
                   labelValue={"Headline"}
@@ -93,6 +123,8 @@ const EditEscort = () => {
                   holder={""}
                   col={""}
                   row={"5"}
+                  value={formData.headline}
+                  onchange={handleChange}
                 />
               </div>
             </div>
@@ -137,7 +169,11 @@ const EditEscort = () => {
             </div>
 
             <div className="pt-5">
-              <EditAbout aboutClass={`${!state.open1 ? "hidden" : ""}`} />
+              <EditAbout
+                aboutClass={`${!state.open1 ? "hidden" : ""}`}
+                formData={formData}
+                handleChange={handleChange}
+              />
               <EscortBioEdit bioClass={`${!state.open2 ? "hidden" : ""}`} />
               <EscortServicesEdit
                 serviceClass={`${!state.open4 ? "hidden" : ""}`}

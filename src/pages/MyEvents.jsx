@@ -32,6 +32,18 @@ const reducer = (state, action) => {
 };
 
 const MyEvents = () => {
+
+   const navigate = useNavigate();
+   const users = JSON.parse(localStorage.getItem("token"));
+
+   if (!users) {
+     navigate("/");
+   }
+
+ 
+
+
+
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
@@ -40,7 +52,7 @@ const MyEvents = () => {
     open5: false,
   });
   
-  const navigate = useNavigate();
+ 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />

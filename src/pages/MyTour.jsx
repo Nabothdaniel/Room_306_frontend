@@ -100,11 +100,11 @@ const MyTour = () => {
                 {data.map((item, index) => {
                   return <MyTourItem key={index} item={item} />;
                 })}
+              </div>
 
                 <div className={`${!state.open2 && "hidden"}`}>
                   <div></div>
                 </div>
-              </div>
             </div>
           </div>
         </div>

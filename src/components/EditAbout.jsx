@@ -3,7 +3,9 @@ import TextArea from "./TextArea";
 import Input from "./Input";
 import { useGetCountryQuery } from "../redux/CountryApi";
 
-const EditAbout = ({ aboutClass }) => {
+const EditAbout = ({ aboutClass, formData, handleChange }) => {
+  const users = JSON.parse(localStorage.getItem("details"));
+
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
   const [country, setCountry] = useState("");
@@ -42,6 +44,7 @@ const EditAbout = ({ aboutClass }) => {
         holder={""}
         col={""}
         row={"6"}
+        value={formData.about}
       />
       <p className="py-3 font-semibold text-white">About You</p>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -62,11 +65,13 @@ const EditAbout = ({ aboutClass }) => {
             <input
               type="tel"
               className="rounded-xl text-[#102127] placeholder-[#102127] p-3"
+              value={formData.country_code}
             />
             <input
               type="tel"
               className="rounded-xl text-[#102127] placeholder-[#102127] p-3"
               placeholder="e.g 0812346789"
+              value={formData.mobile_number}
             />
           </div>
         </label>
@@ -75,13 +80,13 @@ const EditAbout = ({ aboutClass }) => {
           <div className="text-white lg:w-[50%] items-center flex ">
             <label className="container ">
               Male
-              <input type="radio" name="gender" />
+              <input type="radio" checked={formData.isMale} name="gender" />
               <span className="checkmark"></span>
             </label>
 
             <label className="container">
               Female
-              <input type="radio" name="gender" />
+              <input type="radio" checked={formData.isFemale} name="gender" />
               <span className="checkmark"></span>
             </label>
           </div>
@@ -94,13 +99,25 @@ const EditAbout = ({ aboutClass }) => {
             <div className="flex lg:w-[50%]">
               <label className="container text-white ">
                 Yes
-                <input type="radio" name="smoker" />
+                <input
+                  onChange={handleChange}
+                  type="radio"
+                  checked={formData.is_smoker}
+                  name="is_smoker"
+                  value={true}
+                />
                 <span className="checkmark"></span>
               </label>
 
               <label className="container text-white">
                 No
-                <input type="radio" name="smoker" />
+                <input
+                  onChange={handleChange}
+                  value={false}
+                  type="radio"
+                  name="is_smoker"
+                  checked={!formData.is_smoker}
+                />
                 <span className="checkmark"></span>
               </label>
             </div>
@@ -116,6 +133,8 @@ const EditAbout = ({ aboutClass }) => {
             inputName={"education"}
             inputClass={" rounded-xl text-[#102127] placeholder-[#102127]"}
             holder={""}
+            value={formData.education}
+            onchange={handleChange}
           />
         </div>
         <div className="md:col-span-2">
@@ -126,7 +145,9 @@ const EditAbout = ({ aboutClass }) => {
             required={"*"}
             inputName={"education"}
             inputClass={" rounded-xl text-[#102127] placeholder-[#102127]"}
-            holder={"Select"}
+            holder={""}
+            value={formData.occupation}
+            onchange={handleChange}
           />
         </div>
         <label
@@ -139,8 +160,10 @@ const EditAbout = ({ aboutClass }) => {
           <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
             <select
               className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-              name="sexual-orientation"
-              id="sexual-orientation"
+              name="sexual_orientation"
+              id="sexual_orientation"
+              value={formData.sexual_orientation}
+              onChange={handleChange}
             >
               <option value="">Sexual Orientation</option>
               <option>HetroSexual(Straight)</option>
@@ -165,7 +188,7 @@ const EditAbout = ({ aboutClass }) => {
                 value={country}
                 onChange={(e) => {
                   handleCountry(e);
-                  setCountry(e.target.value);
+                  handleChange(e);
                 }}
               >
                 <option value="">All Country</option>
