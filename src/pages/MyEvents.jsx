@@ -39,6 +39,7 @@ const MyEvents = () => {
     open4: false,
     open5: false,
   });
+  
   const navigate = useNavigate();
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">

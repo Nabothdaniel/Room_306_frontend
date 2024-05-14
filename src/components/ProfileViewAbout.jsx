@@ -100,7 +100,8 @@ const ProfileViewAbout = ({ aboutClass }) => {
         {user.available_outcall ? (
           <p className="text-[#B29A9A] text-[14px]">Out call</p>
         ) : (
-          <div></div>
+            <div></div>
+            
         )}
         <p className="text-[#B29A9A] text-[14px]">Short Time</p>
         <p className="font-semibold">80000</p>
