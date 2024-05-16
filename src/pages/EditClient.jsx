@@ -38,13 +38,21 @@ const navigate = useNavigate()
     setformData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  let handleCountry = () => {};
+  let handleState = () => {};
+
+  useEffect(() => {
+    handleCountry();
+    handleState();
+  }, [formData, data]);
+
   if (isLoading) {
     return <Loading />;
   }
 
   let states;
-  const handleCountry = (e) => {
-    states = data.filter((state) => state.name === e.target.value);
+   handleCountry = (e) => {
+    states = data.filter((state) => state.name === formData.country);
 
     states = states.map((item) => item.states);
 
@@ -52,8 +60,8 @@ const navigate = useNavigate()
     setGetState(states[0]);
   };
 
-  const handleState = (e) => {
-    let city = getState.filter((item) => item.name === e.target.value);
+   handleState = (e) => {
+    let city = getState.filter((item) => item.name === formData.state);
     city = city.map((item) => item);
 
     setGetCities(city);

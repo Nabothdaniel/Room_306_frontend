@@ -14,6 +14,10 @@ import ProfileModel from "./ProfileModel";
 import useAuth from "../Hooks/useAuth";
 
 const Navbar = ({ Headervalue, textValue }) => {
+
+  let users = JSON.parse(localStorage.getItem("details"));
+
+
   const [openLogin, setOpenLogin] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
@@ -108,12 +112,14 @@ const Navbar = ({ Headervalue, textValue }) => {
                 >
                   Profile
                 </Link>
-                <p
-                  onClick={handleMenu}
-                  className="cursor-pointer hover:text-[#E9CB50] duration-300"
-                >
-                  Profile Menu
-                </p>
+                {users.user_type == "client" && (
+                  <p
+                    onClick={handleMenu}
+                    className="cursor-pointer hover:text-[#E9CB50] duration-300"
+                  >
+                    Profile Menu
+                  </p>
+                )}
                 <p className="cursor-pointer hover:text-[#E9CB50] duration-300">
                   Switch Account
                 </p>

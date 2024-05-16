@@ -1,6 +1,16 @@
 import React from "react";
 
-const EscortRateEdit = ({ rateClass }) => {
+const EscortRateEdit = ({
+  rateClass,
+  formData,
+  handleChange,
+  setFormData,
+  currency,
+}) => {
+  const handleCheck = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.checked });
+  };
+
   return (
     <div className={`bg-[#1E1E1E] ${rateClass} rounded-xl pb-8 py-5 px-7`}>
       <h2 className="md:text-2xl text-[18px] text-white font-semibold">Rate</h2>
@@ -13,21 +23,34 @@ const EscortRateEdit = ({ rateClass }) => {
             className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
             name="currency"
             id="currency"
+            value={currency}
+            onChange={handleChange}
           >
             <option value="">Choose Here</option>
+            <option>{currency}</option>
           </select>
         </div>
       </label>
       <div className="text-white flex pt-10 items-center">
         <label className="checkContainer w-[50%] ">
           Incall
-          <input type="radio" name="incall" />
+          <input
+            onChange={handleCheck}
+            type="checkbox"
+            name="available_incall"
+            checked={formData.available_incall}
+          />
           <span className="checkmate"></span>
         </label>
 
         <label className="checkContainer  w-[50%]">
           Outcall
-          <input type="radio" name="outcall" />
+          <input
+            onChange={handleCheck}
+            checked={formData.available_outcall}
+            type="checkbox"
+            name="available_outcall"
+          />
           <span className="checkmate"></span>
         </label>
       </div>

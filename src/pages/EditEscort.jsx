@@ -33,6 +33,7 @@ const reducer = (state, action) => {
 };
 
 const EditEscort = () => {
+   const [currency, setCurrency] = useState("");
   const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem("details"));
 
@@ -55,6 +56,15 @@ const EditEscort = () => {
     sexual_orientation: users.sexual_orientation,
     education: users.education,
     occupation: users.occupation,
+    weight: users.weight,
+    looks: users.looks,
+    height: users.height,
+    build: users.build,
+    bust_size: users.bust_size,
+    ethnicity: users.ethnicity,
+    currency: users.currency,
+    available_incall: users.available_incall,
+    available_outcall: users.available_outcall,
   });
 
   const handleChange = (e) => {
@@ -173,6 +183,7 @@ const EditEscort = () => {
                 aboutClass={`${!state.open1 ? "hidden" : ""}`}
                 formData={formData}
                 handleChange={handleChange}
+                setCurrency={setCurrency}
               />
               <EscortBioEdit
                 bioClass={`${!state.open2 ? "hidden" : ""}`}
@@ -182,7 +193,13 @@ const EditEscort = () => {
               <EscortServicesEdit
                 serviceClass={`${!state.open4 ? "hidden" : ""}`}
               />
-              <EscortRateEdit rateClass={`${!state.open3 ? "hidden" : ""}`} />
+              <EscortRateEdit
+                rateClass={`${!state.open3 ? "hidden" : ""}`}
+                formData={formData}
+                setFormData={setformData}
+                handleChange={handleChange}
+                currency={currency}
+              />
             </div>
           </div>
         </div>

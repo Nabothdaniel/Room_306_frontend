@@ -1,6 +1,6 @@
 import React from "react";
 
-const EscortBioEdit = ({bioClass}) => {
+const EscortBioEdit = ({ bioClass, formData, handleChange }) => {
   return (
     <div className={`bg-[#1E1E1E] ${bioClass} rounded-xl pb-8 py-5 px-7`}>
       <h2 className="md:text-2xl text-[18px] text-white font-semibold">
@@ -17,6 +17,7 @@ const EscortBioEdit = ({bioClass}) => {
               className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
               name="Weight"
               id="Weight"
+              value={formData.weight}
             >
               <option value=""></option>
               <option>HetroSexual(Straight)</option>
@@ -29,18 +30,15 @@ const EscortBioEdit = ({bioClass}) => {
             </select>
           </div>
         </label>
-        <label
-          className="text-white flex flex-col"
-          htmlFor="sexual-orientation"
-        >
+        <label className="text-white flex flex-col" htmlFor="height">
           <span className="font-semibold pb-1">
             Height<span className="text-[#E9CB50]">*</span>
           </span>
           <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
             <select
               className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-              name="sexual-orientation"
-              id="sexual-orientation"
+              name="height"
+              id="height"
             >
               <option value=""></option>
               <option>HetroSexual(Straight)</option>
@@ -62,18 +60,19 @@ const EscortBioEdit = ({bioClass}) => {
               className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
               name="ethnicity"
               id="ethnicity"
+              value={formData.ethnicity}
             >
               <option value="">Your Ethnicity</option>
-              <option value="all">All</option>
-              <option value="asian">Asian</option>
-              <option value="black">Black</option>
-              <option value="indian">Indian</option>
-              <option value="latino">Latino</option>
-              <option value="middle eastern">Mid Eastern</option>
-              <option value="mix-race">Mix Race</option>
-              <option value="other">Other</option>
-              <option value="others">Others</option>
-              <option value="white">White</option>
+              <option>All</option>
+              <option>Asian</option>
+              <option>Black</option>
+              <option>Indian</option>
+              <option>Latino</option>
+              <option>Mid Eastern</option>
+              <option>Mix Race</option>
+              <option>Other</option>
+              <option>Others</option>
+              <option>White</option>
             </select>
           </div>
         </label>
@@ -86,6 +85,7 @@ const EscortBioEdit = ({bioClass}) => {
               className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
               name="bust-size"
               id="bust-size"
+              value={formData.bust_size}
             >
               <option value="">Choose here</option>
               <option>All</option>
@@ -109,6 +109,7 @@ const EscortBioEdit = ({bioClass}) => {
               className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
               name="looks"
               id="looks"
+              value={formData.looks}
             >
               <option value="">Choose here</option>
               <option>All</option>
@@ -136,6 +137,7 @@ const EscortBioEdit = ({bioClass}) => {
               className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
               name="build"
               id="build"
+              value={formData.build}
             >
               <option value="">Choose here</option>
               <option>All</option>

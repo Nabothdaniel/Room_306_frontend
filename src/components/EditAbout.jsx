@@ -4,37 +4,39 @@ import Input from "./Input";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import Loading from "./Loading";
 
-const EditAbout = ({ aboutClass, formData, handleChange }) => {
+const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
-  
+
   const { data, isLoading } = useGetCountryQuery();
   const [image, setImage] = useState("");
+ 
+  const [code, setCode] = useState("");
 
-  let handleCountry = () => {}
+  let handleCountry = () => {};
   let handleState = () => {};
 
   useEffect(() => {
-    handleCountry()
-    handleState()
-  }, [formData, data])
-
+    handleCountry();
+    handleState();
+  }, [formData, data]);
 
   if (isLoading) {
     return <Loading />;
   }
 
   let states;
-   handleCountry = (e) => {
+  handleCountry = (e) => {
     states = data.filter((state) => state.name === formData.country);
-
+    setCode(states[0].phone_code);
+    setCurrency(states[0].currency);
     states = states.map((item) => item.states);
 
     states.sort();
     setGetState(states[0]);
   };
 
-   handleState = (e) => {
+  handleState = (e) => {
     let city = getState.filter((item) => item.name === formData.state);
     city = city.map((item) => item);
 
@@ -48,8 +50,6 @@ const EditAbout = ({ aboutClass, formData, handleChange }) => {
       newCities.push(item);
     });
   });
-
-  
 
   return (
     <div className={`bg-[#1E1E1E] ${aboutClass} rounded-xl py-5 px-7`}>
@@ -83,7 +83,7 @@ const EditAbout = ({ aboutClass, formData, handleChange }) => {
             <input
               type="tel"
               className="rounded-xl text-[#102127] placeholder-[#102127] p-3"
-              value={formData.country_code}
+              value={`+${code}`}
               onChange={handleChange}
             />
             <input
