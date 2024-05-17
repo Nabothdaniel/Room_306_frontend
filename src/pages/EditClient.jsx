@@ -147,7 +147,11 @@ const EditClient = () => {
               {image ? (
                 <img className="rounded-lg" src={URL.createObjectURL(image)} />
               ) : (
-                <img className=" rounded-lg" src={users.image} alt="" />
+                <img
+                  className=" rounded-lg"
+                  src={`https://room35backend.onrender.com${users.image}`}
+                  alt=""
+                />
               )}
             </div>
             <div className="col-span-2">

@@ -96,7 +96,9 @@ const Navbar = ({ Headervalue, textValue }) => {
               <img
                 onClick={handleProfile}
                 className="size-[48px] object-cover rounded-full cursor-pointer"
-                src={users?.image ?? users?.user?.image}
+                src={`https://room35backend.onrender.com${
+                  users?.image ?? users?.user?.image
+                }`}
                 alt=""
               />
               <div
