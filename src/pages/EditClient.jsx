@@ -174,7 +174,7 @@ const EditClient = () => {
                 inputName={"email"}
                 inputClass={" rounded-xl text-[#102127]  placeholder-[#102127]"}
                 holder={"Enter Email"}
-                value={formData.email}
+                value={Data.email}
                 onchange={handleChange}
               />
               <Input
@@ -185,7 +185,7 @@ const EditClient = () => {
                 inputName={"dob"}
                 inputClass={" rounded-xl text-[#102127] placeholder-[#102127]"}
                 holder={""}
-                value={formData.dob}
+                value={Data.dob}
                 onchange={handleChange}
               />
               <Input
@@ -198,7 +198,7 @@ const EditClient = () => {
                   "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
                 }
                 holder={"E.g 12345678881"}
-                value={formData.mobile_number}
+                value={Data.mobile_number}
                 onchange={handleChange}
               />
               <div className="grid md:grid-cols-2 gap-y-3 gap-x-3 pt-5">
