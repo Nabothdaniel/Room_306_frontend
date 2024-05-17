@@ -112,7 +112,7 @@ const Navbar = ({ Headervalue, textValue }) => {
                 >
                   Profile
                 </Link>
-                {users.user_type == "client" && (
+                {users?.user_type == "client" && (
                   <p
                     onClick={handleMenu}
                     className="cursor-pointer hover:text-[#E9CB50] duration-300"

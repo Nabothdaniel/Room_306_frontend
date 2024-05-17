@@ -8,11 +8,12 @@ import TextArea from "../components/TextArea";
 import Loading from "../components/Loading";
 import { useUpdateClientMutation } from "../redux/ApiSlice";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const EditClient = () => {
   let users = JSON.parse(localStorage.getItem("details"));
-const navigate = useNavigate()
-  const [formData, setformData] = useState({
+  const navigate = useNavigate();
+  const [Data, setformData] = useState({
     country: users.country,
     state: users.state,
     city: users.city,
@@ -25,7 +26,7 @@ const navigate = useNavigate()
     image: null,
   });
 
-  const [success, setSuccess] = useState('')
+  const [success, setSuccess] = useState("");
 
   const [update] = useUpdateClientMutation();
 
@@ -35,7 +36,7 @@ const navigate = useNavigate()
   const [image, setImage] = useState("");
 
   const handleChange = (e) => {
-    setformData({ ...formData, [e.target.name]: e.target.value });
+    setformData({ ...Data, [e.target.name]: e.target.value });
   };
 
   let handleCountry = () => {};
@@ -44,15 +45,27 @@ const navigate = useNavigate()
   useEffect(() => {
     handleCountry();
     handleState();
-  }, [formData, data]);
+  }, [Data, data]);
 
   if (isLoading) {
     return <Loading />;
   }
 
+  const formData = new FormData();
+  formData.append("username", Data.username);
+  formData.append("mobile_number", Data.mobile_number);
+  formData.append("image", image);
+  formData.append("country", Data.country);
+  formData.append("user_type", Data.user_type);
+  formData.append("city", Data.city);
+  formData.append("email", Data.email);
+  formData.append("password", Data.password);
+  formData.append("display_name", Data.display_name);
+  formData.append("state", Data.state);
+
   let states;
-   handleCountry = (e) => {
-    states = data.filter((state) => state.name === formData.country);
+  handleCountry = (e) => {
+    states = data.filter((state) => state.name === Data.country);
 
     states = states.map((item) => item.states);
 
@@ -60,8 +73,8 @@ const navigate = useNavigate()
     setGetState(states[0]);
   };
 
-   handleState = (e) => {
-    let city = getState.filter((item) => item.name === formData.state);
+  handleState = (e) => {
+    let city = getState.filter((item) => item.name === Data.state);
     city = city.map((item) => item);
 
     setGetCities(city);
@@ -77,13 +90,22 @@ const navigate = useNavigate()
 
   const handleEdit = async () => {
     try {
-      const res = await update(formData).unwrap();
-     
-      if (res.message == "Profile updated successfully") {
-        navigate('/profile')
-        window.location.reload(true)
-      }
+      const res = await axios.put(
+        "https://room35backend.onrender.com/api/profile/edit/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              "Bearer " + JSON.parse(localStorage.getItem("token")),
+          },
+        }
+      );
 
+      if (res.data.message == "Profile updated successfully") {
+        navigate("/profile");
+        window.location.reload(true);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -112,20 +134,20 @@ const navigate = useNavigate()
             >
               <input
                 type="file"
-                name="file"
+                name="image"
                 id="file"
                 className="input"
                 hidden
-                onChange={({ target: { files } }) => {
-                  if (files) {
-                    setImage(URL.createObjectURL(files[0]));
-                  }
+                onChange={(e) => {
+                  setImage(e.target.files[0]);
+
+                  handleChange(e);
                 }}
               />
               {image ? (
-                <img className="rounded-lg" src={image} />
+                <img className="rounded-lg" src={URL.createObjectURL(image)} />
               ) : (
-                <img className=" md:float-start " src={Upload} alt="" />
+                <img className=" rounded-lg" src={users.image} alt="" />
               )}
             </div>
             <div className="col-span-2">
@@ -186,7 +208,7 @@ const navigate = useNavigate()
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="country"
                       id="country"
-                      value={formData.country}
+                      value={Data.country}
                       onChange={(e) => {
                         handleCountry(e);
                         handleChange(e);
@@ -203,14 +225,17 @@ const navigate = useNavigate()
                     </select>
                   </div>
                 </label>
-                <label className="text-[#475367]  flex flex-col" htmlFor="state">
+                <label
+                  className="text-[#475367]  flex flex-col"
+                  htmlFor="state"
+                >
                   <span className="font-semibold text-white pb-1">State</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="state"
                       id="state"
-                      value={formData.state}
+                      value={Data.state}
                       onChange={(e) => {
                         handleState(e);
                         handleChange(e);
@@ -234,7 +259,7 @@ const navigate = useNavigate()
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="city"
                       id="city"
-                      value={formData.city}
+                      value={Data.city}
                       onChange={handleChange}
                     >
                       <option value="">City(Optional)</option>
