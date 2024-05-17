@@ -33,9 +33,7 @@ const ClientDetails = () => {
     password: "",
     username: "",
     country_code: "",
-    image: null,
   });
-
 
   const isValidEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -107,19 +105,18 @@ const ClientDetails = () => {
     return <Loading />;
   }
 
-   
-const formData = new FormData();
-formData.append("username", Data.username);
-formData.append("mobile_number", Data.mobile_number);
-formData.append("image", image);
-formData.append("country", Data.country);
-formData.append("user_type", Data.user_type);
-formData.append("city", Data.city);
-formData.append("email", Data.email);
-formData.append("password", Data.password);
-formData.append("display_name", Data.display_name);
-formData.append("state", Data.state);
-
+  const formData = new FormData();
+  formData.append("username", Data.username);
+  formData.append("mobile_number", Data.mobile_number);
+  formData.append("image", image);
+  formData.append("country", Data.country);
+  formData.append("user_type", Data.user_type);
+  formData.append("city", Data.city);
+  formData.append("email", Data.email);
+  formData.append("password", Data.password);
+  formData.append("display_name", Data.display_name);
+  formData.append("state", Data.state);
+  formData.append("country_code", Data.country_code);
 
   let states;
   const handleCountry = (e) => {
@@ -166,7 +163,7 @@ formData.append("state", Data.state);
 
         if (res.status == 200) {
           navigate("/");
-          window.location.reload(true)
+          window.location.reload(true);
         }
 
         setApiError("");
@@ -187,14 +184,6 @@ formData.append("state", Data.state);
         username: "",
       });
       setImage("");
-
-
-
-      
-
-
-
-
     }
   };
 

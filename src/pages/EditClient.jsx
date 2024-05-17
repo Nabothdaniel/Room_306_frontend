@@ -3,7 +3,6 @@ import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Input from "../components/Input";
 import { useGetCountryQuery } from "../redux/CountryApi";
-import Upload from "../images/Upload.svg";
 import TextArea from "../components/TextArea";
 import Loading from "../components/Loading";
 import { useUpdateClientMutation } from "../redux/ApiSlice";
@@ -14,10 +13,6 @@ const EditClient = () => {
   let users = JSON.parse(localStorage.getItem("details"));
   const navigate = useNavigate();
 
- 
-
-  
-
   const [Data, setformData] = useState({
     country: users.country,
     state: users.state,
@@ -27,15 +22,10 @@ const EditClient = () => {
     mobile_number: users.mobile_number,
     email: users.email,
     username: users.username,
-    country_code: "",
-    image: null,
+    country_code: users.country_code,
   });
 
-   
-
-  const [success, setSuccess] = useState("");
-
-  const [update] = useUpdateClientMutation();
+  
 
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
@@ -61,7 +51,6 @@ const EditClient = () => {
   const formData = new FormData();
   formData.append("username", Data.username);
   formData.append("mobile_number", Data.mobile_number);
-  formData.append("image", image);
   formData.append("country", Data.country);
   formData.append("user_type", Data.user_type);
   formData.append("city", Data.city);
@@ -69,6 +58,11 @@ const EditClient = () => {
   formData.append("password", Data.password);
   formData.append("display_name", Data.display_name);
   formData.append("state", Data.state);
+  formData.append("country_code", Data.country_code);
+
+  if (image) {
+    formData.append("image", image);
+  }
 
   let states;
   handleCountry = (e) => {

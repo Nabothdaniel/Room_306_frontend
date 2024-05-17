@@ -136,7 +136,7 @@ const Navbar = ({ Headervalue, textValue }) => {
             <div className="flex ">
               <Link
                 to={"/signup"}
-                className="bg-[#1B1717] text-center block text-white font-medium h-[40px] md:h-auto rounded-xl py-3 w-[90px] mr-3"
+                className="bg-[#1B1717] text-center block text-white font-medium md:h-auto rounded-xl py-3 w-[90px] mr-3"
               >
                 Sign Up
               </Link>

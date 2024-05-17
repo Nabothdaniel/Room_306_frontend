@@ -18,7 +18,7 @@ const useAuth = () => {
 
     if (expire < now) {
       const user_id = "";
-      dispatch(setCredentials(""));
+      localStorage.removeItem("token");
       localStorage.removeItem("details");
 
       return user_id;
@@ -29,6 +29,7 @@ const useAuth = () => {
         return { user_id };
       } else {
         if (!data) {
+          
           localStorage.removeItem("details");
         } else {
           localStorage.setItem("details", JSON.stringify(data));
