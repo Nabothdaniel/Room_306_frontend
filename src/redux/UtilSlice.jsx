@@ -23,8 +23,8 @@ export const UtilSlice = createSlice({
       state.userDetails = { ...action.payload, ...state.userDetails };
     },
     logout: (state) =>  {
-      localStorage.removeItem("token")
       localStorage.removeItem("details")
+      localStorage.removeItem("token")
     },
   },
 });

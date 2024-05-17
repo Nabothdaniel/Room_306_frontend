@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { RiSearchLine } from "react-icons/ri";
 import { TbBell } from "react-icons/tb";
-import Avatar from "../images/avatar.png";
 import Login from "../pages/Login";
 import { Link, useNavigate } from "react-router-dom";
 import Menu from "../images/Featured-icon.svg";
@@ -12,11 +11,9 @@ import { logout, navClick } from "../redux/UtilSlice";
 import SearchModel from "./SearchModel";
 import ProfileModel from "./ProfileModel";
 import useAuth from "../Hooks/useAuth";
-import useDetails from "../Hooks/Details";
 
 const Navbar = ({ Headervalue, textValue }) => {
   let users = JSON.parse(localStorage.getItem("details"));
-  let token = JSON.parse(localStorage.getItem("token"));
 
   const [openLogin, setOpenLogin] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
@@ -93,7 +90,7 @@ const Navbar = ({ Headervalue, textValue }) => {
             <TbBell className=" text-[#DADADA] size-7" />
           </div>
 
-          {user_id && (
+          {users && (
             <div className="relative">
               <img
                 onClick={handleProfile}

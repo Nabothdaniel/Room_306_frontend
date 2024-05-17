@@ -166,6 +166,7 @@ formData.append("state", Data.state);
 
         if (res.status == 200) {
           navigate("/");
+          window.location.reload(true)
         }
 
         setApiError("");

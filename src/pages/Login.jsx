@@ -7,7 +7,7 @@ import { useLoginMutation } from "../redux/ApiSlice";
 import { setCredentials } from "../redux/UtilSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import useDetails from "../Hooks/Details";
+
 
 const Login = ({ loginControl, loginClass }) => {
   const navigate = useNavigate();

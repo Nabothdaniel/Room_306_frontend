@@ -2,8 +2,10 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import { setCredentials } from "../redux/UtilSlice";
+import { useProfileQuery } from "../redux/ApiSlice";
 
 const useAuth = () => {
+  const { data, isLoading } = useProfileQuery();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.Util.token);
 
@@ -17,15 +19,28 @@ const useAuth = () => {
     if (expire < now) {
       const user_id = "";
       dispatch(setCredentials(""));
+      localStorage.removeItem("details");
 
       return user_id;
     } else {
-      const { user_id } = decode;
+      if (isLoading) {
+        const { user_id } = decode;
 
-      return { user_id };
+        return { user_id };
+      } else {
+        if (!data) {
+          localStorage.removeItem("details");
+        } else {
+          localStorage.setItem("details", JSON.stringify(data));
+        }
+        const { user_id } = decode;
+
+        return { user_id };
+      }
     }
   }
 
+  localStorage.removeItem("details");
   const user_id = "";
   return user_id;
 };

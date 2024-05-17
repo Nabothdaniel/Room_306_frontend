@@ -5,24 +5,24 @@ import Loading from "../components/Loading";
 
 const Details = () => {
   const token = JSON.parse(localStorage.getItem("token"));
- 
 
-  if (token) {
+ 
     const { data, isLoading } = useProfileQuery();
 
     if (isLoading) {
-      return 
+      return;
     }
 
     if (!data) {
       localStorage.removeItem("details");
     } else {
-      
       localStorage.setItem("details", JSON.stringify(data));
     }
-  }
-    const dat = ''
-    return dat
+   
+  
+
+  const dat = "";
+  return dat;
 };
 
 export default Details;

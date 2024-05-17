@@ -16,7 +16,7 @@ const EditClient = () => {
 
  
 
-  useEffect(() => {}, []);
+  
 
   const [Data, setformData] = useState({
     country: users.country,
@@ -31,9 +31,7 @@ const EditClient = () => {
     image: null,
   });
 
-   if (users?.user?.user_type !== "escort" || users?.user_type !== "client") {
-     return navigate("/");
-   }
+   
 
   const [success, setSuccess] = useState("");
 
