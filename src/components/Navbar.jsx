@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { RiSearchLine } from "react-icons/ri";
 import { TbBell } from "react-icons/tb";
@@ -12,11 +12,11 @@ import { logout, navClick } from "../redux/UtilSlice";
 import SearchModel from "./SearchModel";
 import ProfileModel from "./ProfileModel";
 import useAuth from "../Hooks/useAuth";
-import useDetails from "../Hooks/useDetails";
+import useDetails from "../Hooks/Details";
 
 const Navbar = ({ Headervalue, textValue }) => {
-  useDetails()
   let users = JSON.parse(localStorage.getItem("details"));
+  let token = JSON.parse(localStorage.getItem("token"));
 
   const [openLogin, setOpenLogin] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
@@ -25,7 +25,6 @@ const Navbar = ({ Headervalue, textValue }) => {
   const open = useSelector((state) => state.Util.navOpen);
   const { user_id } = useAuth();
 
-  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -115,7 +114,7 @@ const Navbar = ({ Headervalue, textValue }) => {
                 >
                   Profile
                 </Link>
-                {(users?.user_type == "client" ?? users) && (
+                {users?.user_type == "client" && (
                   <p
                     onClick={handleMenu}
                     className="cursor-pointer hover:text-[#E9CB50] duration-300"

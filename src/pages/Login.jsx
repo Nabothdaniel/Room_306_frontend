@@ -7,6 +7,7 @@ import { useLoginMutation } from "../redux/ApiSlice";
 import { setCredentials } from "../redux/UtilSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import useDetails from "../Hooks/Details";
 
 const Login = ({ loginControl, loginClass }) => {
   const navigate = useNavigate();
@@ -27,8 +28,8 @@ const Login = ({ loginControl, loginClass }) => {
         dispatch(setCredentials(res.token));
         navigate("/");
         setError("");
-        window.location.reload(true)
-        loginControl()
+        window.location.reload(true);
+        loginControl();
       }
     } catch (err) {
       setError(err.data.detail);
