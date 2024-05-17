@@ -14,9 +14,7 @@ import ProfileModel from "./ProfileModel";
 import useAuth from "../Hooks/useAuth";
 
 const Navbar = ({ Headervalue, textValue }) => {
-
   let users = JSON.parse(localStorage.getItem("details"));
-
 
   const [openLogin, setOpenLogin] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
@@ -42,8 +40,8 @@ const Navbar = ({ Headervalue, textValue }) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/");
     window.location.reload(true);
+    navigate("/");
   };
 
   return (
@@ -97,8 +95,8 @@ const Navbar = ({ Headervalue, textValue }) => {
             <div className="relative">
               <img
                 onClick={handleProfile}
-                className="w-[48px] rounded-full cursor-pointer"
-                src={Avatar}
+                className="size-[48px] object-cover rounded-full cursor-pointer"
+                src={users?.image ?? users?.user?.image}
                 alt=""
               />
               <div

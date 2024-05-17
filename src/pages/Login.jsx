@@ -27,6 +27,7 @@ const Login = ({ loginControl, loginClass }) => {
         dispatch(setCredentials(res.token));
         navigate("/");
         setError("");
+        window.location.reload(true)
         loginControl()
       }
     } catch (err) {
