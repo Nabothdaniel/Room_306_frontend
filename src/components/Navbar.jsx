@@ -12,8 +12,10 @@ import { logout, navClick } from "../redux/UtilSlice";
 import SearchModel from "./SearchModel";
 import ProfileModel from "./ProfileModel";
 import useAuth from "../Hooks/useAuth";
+import useDetails from "../Hooks/useDetails";
 
 const Navbar = ({ Headervalue, textValue }) => {
+  useDetails()
   let users = JSON.parse(localStorage.getItem("details"));
 
   const [openLogin, setOpenLogin] = useState(false);
@@ -23,6 +25,7 @@ const Navbar = ({ Headervalue, textValue }) => {
   const open = useSelector((state) => state.Util.navOpen);
   const { user_id } = useAuth();
 
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,8 +43,8 @@ const Navbar = ({ Headervalue, textValue }) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    window.location.reload(true);
     navigate("/");
+    window.location.reload(true);
   };
 
   return (
@@ -112,7 +115,7 @@ const Navbar = ({ Headervalue, textValue }) => {
                 >
                   Profile
                 </Link>
-                {users?.user_type == "client" && (
+                {(users?.user_type == "client" ?? users) && (
                   <p
                     onClick={handleMenu}
                     className="cursor-pointer hover:text-[#E9CB50] duration-300"

@@ -20,11 +20,6 @@ const Profile = () => {
   }
 
 
-
-  if (data !== null) {
-    localStorage.setItem("details", JSON.stringify(data));
-  }
-
   return (
     <div>
       {data?.user_type == "client" && <ClientProfile />}

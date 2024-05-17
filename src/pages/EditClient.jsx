@@ -13,6 +13,11 @@ import axios from "axios";
 const EditClient = () => {
   let users = JSON.parse(localStorage.getItem("details"));
   const navigate = useNavigate();
+
+ 
+
+  useEffect(() => {}, []);
+
   const [Data, setformData] = useState({
     country: users.country,
     state: users.state,
@@ -25,6 +30,10 @@ const EditClient = () => {
     country_code: "",
     image: null,
   });
+
+   if (users?.user?.user_type !== "escort" || users?.user_type !== "client") {
+     return navigate("/");
+   }
 
   const [success, setSuccess] = useState("");
 

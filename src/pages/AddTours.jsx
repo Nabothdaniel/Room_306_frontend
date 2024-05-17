@@ -12,9 +12,8 @@ const AddTours = () => {
   const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem("details"));
 
-  if (users?.user_type == "client") {
-    navigate("/");
-  }
+
+ 
 
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
@@ -23,6 +22,13 @@ const AddTours = () => {
   const [error, setError] = useState("");
   const [apiError, setApiError] = useState("");
 
+
+
+  if (!(users?.user?.user_type == "escort") || users.id == null) {
+    navigate("/");
+    return;
+  }
+
   const [Data, setData] = useState({
     country: "",
     title: "",
@@ -30,7 +36,6 @@ const AddTours = () => {
     state: "",
     start_date: "",
     user: users.id,
-    
   });
 
   const validateFormData = (data) => {
@@ -51,11 +56,12 @@ const AddTours = () => {
     if (!data.city) {
       errors.city = "City is required";
     }
-     if (!image) {
-       errors.image = "An Image is required";
-     }
+    if (!image) {
+      errors.image = "An Image is required";
+    }
     return errors;
   };
+  
 
   useEffect(() => {
     const validationErrors = validateFormData(Data);
