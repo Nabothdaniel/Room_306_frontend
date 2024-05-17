@@ -1,9 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import Close from "../images/icon.svg";
 import Input from "./Input";
 import TextArea from "./TextArea";
+import axios from "axios";
 
 const BookingModel = ({ bookClass, handleBook }) => {
+  const [Data, setData] = useState({
+    time: "",
+    date: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setData({ ...Data, [e.target.name]: e.target.value });
+  };
+
+  const formData = new FormData();
+  formData.append("time", Data.time);
+  formData.append("message", Data.message);
+  formData.append("date", Data.date);
+
+  const handleSubmit = async () => {
+    try {
+      const res = await axios.post(
+        `https://room35backend.onrender.com/api/booking/book/${1}/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              "Bearer " + JSON.parse(localStorage.getItem("token")),
+          },
+        }
+      );
+
+      handleBook()
+      console.log(res)
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div
       className={`bg-black/40 duration-500 ${bookClass}  fixed top-0 z-[999999] left-0 w-[100%] h-screen flex justify-center items-center`}
@@ -26,32 +63,28 @@ const BookingModel = ({ bookClass, handleBook }) => {
             inputType={"date"}
             labelClass={"font-semibold text-black py-2"}
             required={""}
-            inputName={"from-date"}
+            inputName={"date"}
             inputClass={
               " rounded-xl bg-[#F0F2F5]  text-[#102127] placeholder-[#102127]"
             }
             holder={""}
+            value={Data.date}
+            onchange={handleChange}
           />
-          <label
-            className="text-black pb-2 pt-5 flex-col   flex  rounded-xl"
-            htmlFor="time-slot"
-          >
-            <span className="font-semibold text-[14px] md:text-base pb-2  ">
-              Time Slot
-            </span>
-            <div className="w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none">
-              <select
-                className="w-[100%] px-4 bg-transparent rounde-xl py-[10px] md:py-[14px] outline-none"
-                name="time-slot"
-                id="time-slot"
-              >
-                <option value="">Choose</option>
-                <option>One Hour</option>
-                <option>Over Night</option>
-                <option>Weekend</option>
-              </select>
-            </div>
-          </label>
+          <Input
+            labelValue={"Time"}
+            inputType={"time"}
+            labelClass={"font-semibold text-black py-2"}
+            required={""}
+            inputName={"time"}
+            inputClass={
+              " rounded-xl bg-[#F0F2F5]  text-[#102127] placeholder-[#102127]"
+            }
+            holder={""}
+            value={Data.time}
+            onchange={handleChange}
+          />
+
           <TextArea
             labelValue={"Message"}
             labelClass={"text-black"}
@@ -63,10 +96,12 @@ const BookingModel = ({ bookClass, handleBook }) => {
             holder={""}
             col={""}
             row={"7"}
+            value={Data.message}
+            onchange={handleChange}
           />
 
           <div>
-            <button className="bg-[#E9CB50] float-right text-[#171717] mt-4 text-[14px] h-[48px] w-[150px] font-semibold rounded-xl">
+            <button onClick={handleSubmit} className="bg-[#E9CB50] float-right text-[#171717] mt-4 text-[14px] h-[48px] w-[150px] font-semibold rounded-xl">
               Send Booking
             </button>
           </div>

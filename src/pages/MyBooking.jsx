@@ -4,6 +4,8 @@ import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
 import { useNavigate } from "react-router-dom";
 import BookingItem from "../components/BookingItem";
+import { useGetBookingQuery } from "../redux/BookApi";
+import Loading from "../components/Loading";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -31,6 +33,10 @@ const reducer = (state, action) => {
 };
 
 const MyBooking = () => {
+  const { data, isLoading } = useGetBookingQuery();
+
+  
+
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
@@ -38,8 +44,12 @@ const MyBooking = () => {
     open4: false,
     open5: false,
   });
-
   const navigate = useNavigate();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -129,7 +139,6 @@ const MyBooking = () => {
               }    `}
             >
               Completed
-              
             </p>
             <p
               onClick={() => dispatch({ type: "Change5" })}
@@ -150,7 +159,39 @@ const MyBooking = () => {
               <p className="w-[300px] text-center">Message</p>
               <p className="w-[300px] ml-4 text-center"></p>
             </div>
-            <BookingItem />
+            <div className={`${!state.open1 && "hidden"}`}>
+              {data.map((item, index) => {
+                return <BookingItem key={index} book={item} />;
+              })}
+            </div>
+            <div className={`${!state.open2 && "hidden"}`}>
+              {data
+                .filter((item) => item.status == "pending")
+                .map((item, index) => {
+                  return <BookingItem key={index} book={item} />;
+                })}
+            </div>
+            <div className={`${!state.open3 && "hidden"}`}>
+              {data
+                .filter((item) => item.status == "accepted")
+                .map((item, index) => {
+                  return <BookingItem key={index} book={item} />;
+                })}
+            </div>
+            <div className={`${!state.open4 && "hidden"}`}>
+              {data
+                .filter((item) => item.status == "completed")
+                .map((item, index) => {
+                  return <BookingItem key={index} book={item} />;
+                })}
+            </div>
+            <div className={`${!state.open5 && "hidden"}`}>
+              {data
+                .filter((item) => item.status == "decline")
+                .map((item, index) => {
+                  return <BookingItem key={index} book={item} />;
+                })}
+            </div>
           </div>
         </div>
       </div>

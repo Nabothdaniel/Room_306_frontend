@@ -38,7 +38,7 @@ const ProfileView = () => {
               Back
             </h2>
             <ProfileViewItem handleBook={handleBook} />
-            <ProfileViewItems />
+            {/* <ProfileViewItems /> */}
           </div>
 
           <div className="mt-5 lg:mt-0">
