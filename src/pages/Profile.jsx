@@ -19,14 +19,16 @@ const Profile = () => {
     return navigate("/");
   }
 
+
+
   if (data !== null) {
     localStorage.setItem("details", JSON.stringify(data));
   }
 
   return (
     <div>
-      {data.user_type == "client" && <ClientProfile />}
-      {data.user.user_type == "escort" && <EscortProfile />}
+      {data?.user_type == "client" && <ClientProfile />}
+      {data?.user?.user_type == "escort" && <EscortProfile />}
     </div>
   );
 };
