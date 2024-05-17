@@ -9,7 +9,7 @@ export default defineConfig({
       "/media": {
         target: "https://room35backend.onrender.com",
         changeOrigin: true,
-        secure: false,
+        secure: true,
         rewrite: (path) => path.replace(/^\/images/, ""),
       },
     },

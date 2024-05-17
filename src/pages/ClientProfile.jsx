@@ -49,7 +49,7 @@ const ClientProfile = () => {
               <div className="md:w-[30%]">
                 <img
                   className="lg:size-[268px] ml-14 md:ml-0 object-cover md:size-[170px] sm:size-[140px] size-[130px] rounded-full "
-                  src={`https://room35backend.onrender.com${client.image}`}
+                  src={client.image}
                   alt=""
                 />
               </div>
