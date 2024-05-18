@@ -55,7 +55,11 @@ const EscortProfile = () => {
         />
         <div className="grid md:grid-cols-3 px-4 md:px-0 grid-cols-1 lg:grid-cols-4 gap-y-12 gap-x-8 pt-8 md:pt-14">
           <div className="flex items-start min-w-[600px] text-white">
-            <img className="size-[60px] rounded-full" src={Blog} alt="" />
+            <img
+              className="size-[60px] rounded-full"
+              src={`https://room35backend.onrender.com${user.user.image}`}
+              alt=""
+            />
             <div className="ml-3">
               <h2 className="md:text-2xl font-semibold text-[18px]">
                 {user.user.display_name}
@@ -210,7 +214,7 @@ const EscortProfile = () => {
                 </p>
                 <div className="flex text-white pt-6">
                   <div className="flex mr-5 flex-col items-center">
-                    <p className="md:text-[24px] flex items-center text-[18px] font-semibold">
+                    <p className="md:text-[24px] flex items-center text-[16px] font-semibold">
                       27{" "}
                       <span className="text-[#B29A9A] text-[14px] md:text-base">
                         yrs
@@ -219,13 +223,13 @@ const EscortProfile = () => {
                     <p className="text-[#B29A9A]">Age</p>
                   </div>
                   <div className="flex mr-5 flex-col items-center">
-                    <p className="md:text-[24px] text-[18px] font-semibold">
+                    <p className="md:text-[24px] text-[16px] font-semibold">
                       {user.weight}
                     </p>
                     <p className="text-[#B29A9A]">Weight</p>
                   </div>
                   <div className="flex flex-col items-center">
-                    <p className="md:text-[24px] text-[18px] font-semibold">
+                    <p className="md:text-[24px] text-[16px] font-semibold">
                       {user.height}
                     </p>
                     <p className="text-[#B29A9A]">Height</p>

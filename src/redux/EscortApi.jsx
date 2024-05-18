@@ -15,7 +15,17 @@ const escortApi = ApiSlice.injectEndpoints({
         body,
       }),
     }),
+
+    getGallery: build.query({
+      query: () => ({
+        url: "/escort/myphotos/",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetAllEscortsQuery, useRegisterEscortMutation, useUpdateEscortMutation } = escortApi;
+export const { useGetAllEscortsQuery, useRegisterEscortMutation, useUpdateEscortMutation, useGetGalleryQuery } = escortApi;

@@ -15,3 +15,7 @@ const NaughtyProfile = ({ naughtClass }) => {
 };
 
 export default NaughtyProfile;
+
+
+
+

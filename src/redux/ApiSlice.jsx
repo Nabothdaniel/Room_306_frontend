@@ -33,6 +33,16 @@ export const ApiSlice = createApi({
         body,
       }),
     }),
+    UploadImage: build.mutation({
+      query: (body) => ({
+        url: "/profile/upload-photo/",
+        method: "PUT",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+        body,
+      }),
+    }),
     login: build.mutation({
       query: (body) => ({
         url: "/auth/login/",
@@ -48,4 +58,7 @@ export const {
   useProfileQuery,
   useUpdateClientMutation,
   useLoginMutation,
+  useUploadImageMutation
 } = ApiSlice;
+
+

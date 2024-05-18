@@ -75,14 +75,10 @@ const AddAdverts = () => {
                   name="looking"
                   id="looking"
                 >
-                  <option value="">Looking</option>
-                  <option>HetroSexual(Straight)</option>
-                  <option>Bisexual</option>
-                  <option>Lesian</option>
-                  <option>Gay</option>
-                  <option>Trans-Sexual</option>
-                  <option>Mistress(Domination)</option>
-                  <option>Master(Domination)</option>
+                  <option value="">Select</option>
+                  <option>Looking</option>
+                  <option>Offering</option>
+                  
                 </select>
               </div>
             </label>

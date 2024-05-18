@@ -18,7 +18,7 @@ const BookingItem = ({ book }) => {
   const handleAccept = async () => {
     try {
       const res = await axios.put(
-        `https://room35backend.onrender.com/api/booking/accept/${book.id}/`,
+        `https://room35backend.onrender.com/api/booking/accept_decline/${book.id}/`,
         accept,
         {
           headers: {
@@ -29,7 +29,6 @@ const BookingItem = ({ book }) => {
       );
 
       window.location.reload(true);
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -38,7 +37,7 @@ const BookingItem = ({ book }) => {
   const handleDecline = async () => {
     try {
       const res = await axios.put(
-        `https://room35backend.onrender.com/api/booking/accept/${book.id}/`,
+        `https://room35backend.onrender.com/api/booking/accept_decline/${book.id}/`,
         cancel,
         {
           headers: {
@@ -49,7 +48,6 @@ const BookingItem = ({ book }) => {
       );
 
       window.location.reload(true);
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -69,7 +67,6 @@ const BookingItem = ({ book }) => {
       );
 
       window.location.reload(true);
-      console.log(res);
     } catch (err) {
       console.log(err);
     }

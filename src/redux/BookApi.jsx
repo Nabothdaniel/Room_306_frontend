@@ -11,7 +11,16 @@ const blogApi = ApiSlice.injectEndpoints({
         },
       }),
     }),
+    getEscortBooking: build.query({
+      query: () => ({
+        url: "/booking/escort_bookings/",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetBookingQuery } = blogApi;
+export const { useGetBookingQuery, useGetEscortBookingQuery } = blogApi;

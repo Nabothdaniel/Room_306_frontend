@@ -92,26 +92,53 @@ const ProfileViewAbout = ({ aboutClass }) => {
       </div>
       <div className="grid grid-cols-3 pt-8 gap-y-6">
         <div></div>
-        {user.available_incall ? (
+        {user.incall_short_time ||
+        user.incall_overnight ||
+        user.incall_weekend ? (
           <p className="text-[#B29A9A] text-[14px]">In call</p>
         ) : (
           <div></div>
         )}
-        {user.available_outcall ? (
+        {user.outcall_short_time ||
+        user.outcall_overnight ||
+        user.outcall_weekend ? (
           <p className="text-[#B29A9A] text-[14px]">Out call</p>
         ) : (
-            <div></div>
-            
+          <div></div>
         )}
         <p className="text-[#B29A9A] text-[14px]">Short Time</p>
-        <p className="font-semibold">80000</p>
-        <p className="font-semibold">150000</p>
+        {user.incall_short_time ? (
+          <p className="font-semibold">{user.incall_short_time}</p>
+        ) : (
+          <div></div>
+        )}
+        {user.outcall_short_time ? (
+          <p className="font-semibold">{user.outcall_short_time}</p>
+        ) : (
+          <div></div>
+        )}
         <p className="text-[#B29A9A] text-[14px]">Over Night</p>
-        <p className="font-semibold">100000</p>
-        <p className="font-semibold">150000</p>
+        {user.incall_overnight ? (
+          <p className="font-semibold">{user.incall_overnight}</p>
+        ) : (
+          <div></div>
+        )}
+        {user.outcall_overnight ? (
+          <p className="font-semibold">{user.outcall_overnight}</p>
+        ) : (
+          <div></div>
+        )}
         <p className="text-[#B29A9A] text-[14px]">Weekend</p>
-        <p className="font-semibold">150000</p>
-        <p className="font-semibold">200000</p>
+        {user.incall_weekend ? (
+          <p className="font-semibold">{user.incall_weekend}</p>
+        ) : (
+          <div></div>
+        )}
+        {user.outcall_weekend ? (
+          <p className="font-semibold">{user.outcall_weekend}</p>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

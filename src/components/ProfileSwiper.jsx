@@ -4,9 +4,24 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { useGetGalleryQuery } from "../redux/EscortApi";
+import Loading from "./Loading";
 
 export const ProfileSwiper = () => {
-  const names = ["James", "Paul", "John", "George", "Ringo", 1, 2, 3, 4, 5, 6];
+  const { data, isLoading } = useGetGalleryQuery();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (data.length <= 0) {
+    return (
+      <p className="text-white text-xl flex justify-center items-center font-semibold">
+        No Photos
+      </p>
+    );
+  }
+
   return (
     <>
       <Swiper
@@ -23,12 +38,12 @@ export const ProfileSwiper = () => {
         modules={[Autoplay, Pagination]}
         className="mySwiper max-w-[1024px] text-white"
       >
-        {names.map((item) => {
+        {data.map((item, index) => {
           return (
-            <SwiperSlide className="mb-10 swiper-1" key={item}>
+            <SwiperSlide className="mb-10 swiper-1" key={index}>
               <img
-                className="md:w-[100%]  object-fill h-[403px] rounded-xl "
-                src={Profile}
+                className="md:w-[100%]  object-cover h-[403px] rounded-xl "
+                src={`https://room35backend.onrender.com${item.photo}`}
                 alt=""
               />
             </SwiperSlide>

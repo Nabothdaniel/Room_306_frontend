@@ -4,7 +4,6 @@ import App from "./App.jsx";
 import "./tailwind.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Dashboard from "./pages/Dashboard.jsx";
-import ClientProfile from "./pages/ClientProfile.jsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.jsx";
 import ClientDetails from "./pages/ClientDetails.jsx";
@@ -33,11 +32,9 @@ import Channels from "./pages/Channels.jsx";
 import NaughtyRoom from "./pages/NaughtyRoom.jsx";
 import Blacklisted from "./pages/Blacklisted.jsx";
 import BlacklistedView from "./pages/BlacklistedView.jsx";
-import EscortProfile from "./pages/EscortProfile.jsx";
 import EditClient from "./pages/EditClient.jsx";
 import EditEscort from "./pages/EditEscort.jsx";
 import ChangePassword from "./pages/ChangePassword.jsx";
-import MyBooking from "./pages/MyBooking.jsx";
 import MyFavorite from "./pages/MyFavorite.jsx";
 import BlacklistedClients from "./pages/BlacklistedClients.jsx";
 import MyTour from "./pages/MyTour.jsx";
@@ -50,6 +47,7 @@ import AddNaughty from "./pages/AddNaughty.jsx";
 import RoomView from "./pages/RoomView.jsx";
 import AddRoom from "./pages/AddRoom.jsx";
 import Profile from "./pages/Profile.jsx";
+import Booking from "./pages/Booking.jsx";
 
 const router = createBrowserRouter([
   {
@@ -224,7 +222,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-booking",
-        element: <MyBooking />,
+        element: <Booking />,
       },
       {
         path: "/my-favourites",
