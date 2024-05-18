@@ -79,7 +79,7 @@ const EscortOne = () => {
         >
           {data.map((item, index) => {
             return (
-              <SwiperSlide className="w-[30px] swiper-1" key={index}>
+              <SwiperSlide className="w-[30px] mb-10 swiper-1" key={index}>
                 <EscortItems items={item} />
               </SwiperSlide>
             );
