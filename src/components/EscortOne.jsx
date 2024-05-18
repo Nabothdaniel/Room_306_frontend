@@ -6,10 +6,37 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
-import EscortOneItems from "./EscortOneItems";
+import { useGetAllEscortsQuery } from "../redux/EscortApi";
+import Loading from "./Loading";
+import EscortItems from "./EscortItems";
 
 const EscortOne = () => {
-  const names = ["James", "Paul", "John", "George", "Ringo", 1, 2, 3, 4, 5, 6];
+  const { data, isLoading } = useGetAllEscortsQuery();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (data.length == 0) {
+    return (
+      <div className="flex-1 max-w-[1530px] pt-2 py-8 md:pt-12 px-2">
+        <div className="flex pb-4 justify-between items-center">
+          <h1 className="text-white font-semibold text-[18px] md:text-[24px]">
+            Top Escort
+          </h1>
+          <p className="text-white cursor-pointer text-[14px] lg:text-base">
+            See all
+          </p>
+        </div>
+        <div className="flex justify-center items-center h-[20vh]">
+          <p className="text-xl font-semibold text-white">
+            No Escort Available
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex-1 max-w-[1530px] pt-2 py-8 md:pt-12 px-2">
       <div className="flex pb-4 justify-between items-center">
@@ -50,10 +77,10 @@ const EscortOne = () => {
           modules={[Pagination, Autoplay]}
           className="mySwiper"
         >
-          {names.map((item) => {
+          {data.map((item, index) => {
             return (
-              <SwiperSlide className="w-[30px] swiper-1" key={item}>
-                <EscortOneItems />
+              <SwiperSlide className="w-[30px] swiper-1" key={index}>
+                <EscortItems items={item} />
               </SwiperSlide>
             );
           })}
