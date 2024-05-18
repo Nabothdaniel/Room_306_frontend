@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Message from "../images/message.svg";
-import Faqs from "../images/message-question.svg";
-import Like from "../images/like.svg";
-import Profile from "../images/personalcard.svg";
 import Users from "../images/user-square.svg";
 import Video from "../images/video.svg";
-import Wallet from "../images/wallet-2.svg";
 import Book from "../images/book-saved.svg";
 import Frame from "../images/Frame.svg";
 import { useNavigate } from "react-router-dom";
 import { useUploadImageMutation } from "../redux/ApiSlice";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Media = ({ mediaClass }) => {
   const user = JSON.parse(localStorage.getItem("details"));
-  const [upload] = useUploadImageMutation();
   const [image, setImage] = useState("");
 
   const formData = new FormData();
@@ -38,7 +33,7 @@ const Media = ({ mediaClass }) => {
           },
         }
       );
-      console.log(res);
+      toast.success(res.data)
     } catch (err) {
       console.log(err);
     }

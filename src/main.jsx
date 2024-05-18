@@ -48,6 +48,7 @@ import RoomView from "./pages/RoomView.jsx";
 import AddRoom from "./pages/AddRoom.jsx";
 import Profile from "./pages/Profile.jsx";
 import Booking from "./pages/Booking.jsx";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -264,6 +265,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
+      <Toaster position="top-right"/>
     </Provider>
   </React.StrictMode>
 );
