@@ -27,7 +27,7 @@ const AllEscort = () => {
         <div className="overflow-x-scroll md:overflow-x-auto">
           <AllEscortTags />
         </div>
-        <div className="grid lg:grid-cols-4 h-[20vh] md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-8">
+        <div className="h-[30vh] flex justify-center items-center">
           <p className="text-xl font-semibold text-white">
             No Escort Available
           </p>
