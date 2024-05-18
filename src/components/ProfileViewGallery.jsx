@@ -10,7 +10,13 @@ const ProfileViewGallery = ({ galleryClass }) => {
   }
 
   if (data.length <= 0) {
-    return <p className="text-white text-xl flex justify-center items-center font-semibold">No Photos</p>
+    return (
+      <p
+        className={`text-white text-xl flex justify-center h-[20vh] items-center font-semibold ${galleryClass}`}
+      >
+        No Photos
+      </p>
+    );
   }
 
   return (

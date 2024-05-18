@@ -16,7 +16,7 @@ export const ProfileSwiper = () => {
 
   if (data.length <= 0) {
     return (
-      <p className="text-white text-xl flex justify-center items-center font-semibold">
+      <p className="text-white h-[403px] border rounded-xl border-white text-xl flex justify-center items-center font-semibold">
         No Photos
       </p>
     );

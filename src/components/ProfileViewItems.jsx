@@ -89,8 +89,8 @@ const ProfileViewItems = () => {
       </div>
       <NaughtyProfile naughtClass={`${!state.open4 ? "hidden" : ""}`} />
       <ProfileViewAbout aboutClass={`${!state.open1 ? "hidden" : ""}`} />
-      <ProfileViewGallery galleryClass={`${!state.open2 ? "hidden" : ""}`} />
       <ProfileViewReview reviewClass={`${!state.open3 ? "hidden" : ""}`} />
+      <ProfileViewGallery galleryClass={`${!state.open2 ? "hidden" : ""}`} />
 
       <div
         className={`${

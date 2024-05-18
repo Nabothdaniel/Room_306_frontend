@@ -43,6 +43,8 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
     setGetCities(city);
   };
 
+  console.log(formData)
+
   let newCities = [];
 
   getCities.forEach((childArray) => {
@@ -175,7 +177,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
             labelClass={"font-semibold"}
             inputType={"text"}
             required={"*"}
-            inputName={"education"}
+            inputName={"occupation"}
             inputClass={" rounded-xl text-[#102127] placeholder-[#102127]"}
             holder={""}
             value={formData.occupation}

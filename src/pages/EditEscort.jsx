@@ -33,7 +33,7 @@ const reducer = (state, action) => {
 };
 
 const EditEscort = () => {
-   const [currency, setCurrency] = useState("");
+  const [currency, setCurrency] = useState("");
   const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem("details"));
 
@@ -41,14 +41,13 @@ const EditEscort = () => {
     country: users.user.country,
     state: users.user.state,
     city: users.user.city,
-    user_type: "escort",
-    display_name: users.display_name,
+
     mobile_number: users.user.mobile_number,
     email: users.user.email,
     username: users.username,
     country_code: users.user.country_code,
     about: users.about,
-    image: null,
+
     heading: users.heading,
     is_smoker: users.is_smoker,
     isMale: users.isMale,
