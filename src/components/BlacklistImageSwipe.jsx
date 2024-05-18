@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const BlacklistImageSwipe = () => {
+  
   const names = ["James", "Paul", "John", "George", "Ringo", 1, 2, 3, 4, 5, 6];
   return (
     <>
