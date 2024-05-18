@@ -3,7 +3,7 @@ import Blog from "../images/blog.jpeg";
 import axios from "axios";
 
 const BookingItem = ({ book }) => {
-  const [formData, setformData] = useState({
+  const [accept, setAccept] = useState({
     status: "accepted",
   });
 
@@ -11,11 +11,15 @@ const BookingItem = ({ book }) => {
     status: "completed",
   });
 
+  const [cancel, setCancel] = useState({
+    status: "cancelled",
+  });
+
   const handleAccept = async () => {
     try {
       const res = await axios.put(
         `https://room35backend.onrender.com/api/booking/accept/${book.id}/`,
-        formData,
+        accept,
         {
           headers: {
             Authorization:
@@ -33,9 +37,9 @@ const BookingItem = ({ book }) => {
 
   const handleDecline = async () => {
     try {
-      const res = await axios.delete(
-        `https://room35backend.onrender.com/api/booking/delete/${book.id}/`,
-
+      const res = await axios.put(
+        `https://room35backend.onrender.com/api/booking/accept/${book.id}/`,
+        cancel,
         {
           headers: {
             Authorization:
@@ -70,7 +74,6 @@ const BookingItem = ({ book }) => {
       console.log(err);
     }
   };
-  
 
   return (
     <div className="flex pt-5 duration-500 pb-4 items-center">
@@ -81,6 +84,15 @@ const BookingItem = ({ book }) => {
       <p className="w-[300px] text-center">{book.time}</p>
       <p className="w-[300px] text-center">{book.date}</p>
       <p className="w-[300px] text-center">{book.message}</p>
+      <p
+        className={` ${book.status == "cancelled" && "text-red-400"} ${
+          book.status == "completed" && "text-green-400"
+        } ${book.status == "accepted" && "text-blue-400"} ${
+          book.status == "pending" && "text-yellow-400"
+        } w-[300px] text-center font-semibold`}
+      >
+        {book.status}
+      </p>
       <div className="w-[300px] text-center flex justify-center gap-x-3">
         {book.status == "pending" && (
           <p
@@ -99,7 +111,7 @@ const BookingItem = ({ book }) => {
             Complete
           </p>
         )}
-        {book.status !== "completed" && (
+        {book.status != "completed" && book.status != "cancelled" && (
           <p
             onClick={handleDecline}
             className="bg-red-400 text-[12px] shadow-2xl py-1 text-black px-2 rounded-3xl cursor-pointer font-semibold"

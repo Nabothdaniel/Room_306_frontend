@@ -119,7 +119,10 @@ const Navbar = ({ Headervalue, textValue }) => {
                     Profile Menu
                   </p>
                 )}
-                <p className="cursor-pointer hover:text-[#E9CB50] duration-300">
+                <p
+                  onClick={() => setOpenLogin(!openLogin)}
+                  className="cursor-pointer hover:text-[#E9CB50] duration-300"
+                >
                   Switch Account
                 </p>
                 <p

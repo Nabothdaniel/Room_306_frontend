@@ -35,8 +35,6 @@ const reducer = (state, action) => {
 const MyBooking = () => {
   const { data, isLoading } = useGetBookingQuery();
 
-  
-
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
@@ -48,6 +46,10 @@ const MyBooking = () => {
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (!data) {
+    navigate("/");
   }
 
   return (
@@ -70,39 +72,6 @@ const MyBooking = () => {
           </h2>
         </div>
         <div className="md:py-5 pb-9 lg:overflow-auto overflow-x-scroll md:pb-12">
-          {/* <div className="border-b-2 pt-8 flex relative font-semibold items-center text-white border-[#393C49]">
-            <p
-              onClick={() => dispatch({ type: "Change1" })}
-              className={`cursor-pointer w-[250px] min-w-[200px] md:text-base text-[14px] text-center py-3 rounded-t-md text-black font-normal bg-yellow-300 `}
-            >
-              All
-            </p>
-            <p
-              onClick={() => dispatch({ type: "Change2" })}
-              className={` cursor-pointer w-[250px] min-w-[200px] md:text-base text-[14px] text-center py-3 rounded-t-md text-black font-normal bg-orange-300 `}
-            >
-              Pending
-            </p>
-            <p
-              onClick={() => dispatch({ type: "Change3" })}
-              className={` cursor-pointer w-[250px] min-w-[200px] md:text-base text-[14px]  text-center py-3 rounded-t-md text-black font-normal bg-green-300`}
-            >
-              Accepted
-            </p>
-            <p
-              onClick={() => dispatch({ type: "Change4" })}
-              className={` cursor-pointer w-[250px] min-w-[200px] md:text-base text-[14px]  text-center py-3 rounded-t-md text-black font-normal bg-blue-200  `}
-            >
-              Completed
-            </p>
-            <p
-              onClick={() => dispatch({ type: "Change5" })}
-              className={` cursor-pointer w-[250px] min-w-[200px] md:text-base text-[14px]  text-center py-3 rounded-t-md text-black font-normal bg-red-400/90`}
-            >
-              Cancelled
-            </p>
-          </div> */}
-
           <div className="border-b-2 pt-10 flex px-2 relative  font-semibold items-center text-white border-[#393C49] py-3">
             <p
               onClick={() => dispatch({ type: "Change1" })}
@@ -157,14 +126,26 @@ const MyBooking = () => {
               <p className="w-[300px] text-center">Time</p>
               <p className="w-[300px] text-center">Date</p>
               <p className="w-[300px] text-center">Message</p>
+              <p className="w-[300px] ml-4 text-center">Status</p>
               <p className="w-[300px] ml-4 text-center"></p>
             </div>
             <div className={`${!state.open1 && "hidden"}`}>
+              {data.length == 0 && (
+                <p className="w-full pt-5 pb-3 font-semibold text-xl">
+                  NO BOOKING
+                </p>
+              )}
               {data.map((item, index) => {
                 return <BookingItem key={index} book={item} />;
               })}
             </div>
             <div className={`${!state.open2 && "hidden"}`}>
+              {data.filter((item) => item.status == "pending").length == 0 && (
+                <p className="w-full pt-5 pb-3 font-semibold text-xl">
+                  NO PENDING BOOKING
+                </p>
+              )}
+
               {data
                 .filter((item) => item.status == "pending")
                 .map((item, index) => {
@@ -172,6 +153,11 @@ const MyBooking = () => {
                 })}
             </div>
             <div className={`${!state.open3 && "hidden"}`}>
+              {data.filter((item) => item.status == "accepted").length == 0 && (
+                <p className="w-full pt-5 pb-3 font-semibold text-xl">
+                  NO ACCEPTED BOOKING
+                </p>
+              )}
               {data
                 .filter((item) => item.status == "accepted")
                 .map((item, index) => {
@@ -179,6 +165,12 @@ const MyBooking = () => {
                 })}
             </div>
             <div className={`${!state.open4 && "hidden"}`}>
+              {data.filter((item) => item.status == "completed").length ==
+                0 && (
+                <p className="w-full pt-5 pb-3 font-semibold text-xl">
+                  NO COMPLETED BOOKING
+                </p>
+              )}
               {data
                 .filter((item) => item.status == "completed")
                 .map((item, index) => {
@@ -186,8 +178,14 @@ const MyBooking = () => {
                 })}
             </div>
             <div className={`${!state.open5 && "hidden"}`}>
+              {data.filter((item) => item.status == "cancelled").length ==
+                0 && (
+                <p className="w-full pt-5 pb-3 font-semibold text-xl">
+                  NO CANCELLED BOOKING
+                </p>
+              )}
               {data
-                .filter((item) => item.status == "decline")
+                .filter((item) => item.status == "cancelled")
                 .map((item, index) => {
                   return <BookingItem key={index} book={item} />;
                 })}
