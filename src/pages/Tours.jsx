@@ -13,7 +13,7 @@ import EscortOneItems from "../components/EscortOneItems";
 
 const Tours = () => {
   const users = JSON.parse(localStorage.getItem("details"));
-   const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const { data, isLoading } = useGetAllTourQuery();
 
@@ -34,7 +34,7 @@ const Tours = () => {
           <div className="pb-10 px-3 md:pl-2">
             <div className="flex pb-2 pt-3 md:pt-6 md:hidden justify-between items-center">
               <h1 className="text-white font-semibold text-[18px] md:text-[24px]">
-                Top Escort
+                Tours Happening Now
               </h1>
               <p className="text-white cursor-pointer text-[14px] md:text-base">
                 See all
@@ -53,10 +53,10 @@ const Tours = () => {
                   )}
                 </Link>
               </p>
-              <div className="flex md:gap-x-3 gap-x-2 justify-end">
-                <img className="w-[32%] lg:w-auto" src={Latest} alt="" />
-                <img className="w-[32%] lg:w-auto" src={Expire} alt="" />
-                <img className="w-[32%] lg:w-auto" src={Filter} alt="" />
+              <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
+                <img className="w-auto " src={Latest} alt="" />
+                <img className=" w-auto" src={Expire} alt="" />
+                <img className=" w-auto" src={Filter} alt="" />
               </div>
             </div>
             <div className=" bg-[#121212]">
@@ -85,7 +85,7 @@ const Tours = () => {
           <div className="pb-10 px-3 md:pl-2">
             <div className="flex pb-2 pt-3 md:pt-6 md:hidden justify-between items-center">
               <h1 className="text-white font-semibold text-[18px] md:text-[24px]">
-                Top Escort
+                Tours Happening Now
               </h1>
               <p className="text-white cursor-pointer text-[14px] md:text-base">
                 See all
@@ -104,10 +104,10 @@ const Tours = () => {
                   )}
                 </Link>
               </p>
-              <div className="flex md:gap-x-3 gap-x-2 justify-end">
-                <img className="w-[32%] lg:w-auto" src={Latest} alt="" />
-                <img className="w-[32%] lg:w-auto" src={Expire} alt="" />
-                <img className="w-[32%] lg:w-auto" src={Filter} alt="" />
+              <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
+                <img className="w-auto " src={Latest} alt="" />
+                <img className=" w-auto" src={Expire} alt="" />
+                <img className=" w-auto" src={Filter} alt="" />
               </div>
             </div>
             <div className=" bg-[#121212]">
@@ -123,21 +123,15 @@ const Tours = () => {
     );
   }
 
+  const usersPage = 12;
 
-   const usersPage = 12;
+  const page = currentPage * usersPage;
 
-   const page = currentPage * usersPage;
+  const displayUsers = data.slice(page, page + usersPage).map((item, index) => {
+    return <EscortOneItems key={index} items={item} />;
+  });
 
-   const displayUsers = data
-     .slice(page, page + usersPage)
-     .map((item, index) => {
-       return <EscortOneItems key={index} items={item} />;
-     });
-
-   const pageCount = Math.ceil(data.length / usersPage);
-
-
-
+  const pageCount = Math.ceil(data.length / usersPage);
 
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
@@ -151,7 +145,7 @@ const Tours = () => {
         <div className="pb-10 px-3 md:pl-2">
           <div className="flex pb-2 pt-3 md:pt-6 md:hidden justify-between items-center">
             <h1 className="text-white font-semibold text-[18px] md:text-[24px]">
-              Top Escort
+              Tours Happening Now
             </h1>
             <p className="text-white cursor-pointer text-[14px] md:text-base">
               See all
@@ -170,10 +164,10 @@ const Tours = () => {
                 )}
               </Link>
             </p>
-            <div className="flex md:gap-x-3 gap-x-2 justify-end">
-              <img className="w-[32%] lg:w-auto" src={Latest} alt="" />
-              <img className="w-[32%] lg:w-auto" src={Expire} alt="" />
-              <img className="w-[32%] lg:w-auto" src={Filter} alt="" />
+            <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
+              <img className="w-auto" src={Latest} alt="" />
+              <img className="w-auto" src={Expire} alt="" />
+              <img className="w-auto" src={Filter} alt="" />
             </div>
           </div>
           <div className=" bg-[#121212]">
