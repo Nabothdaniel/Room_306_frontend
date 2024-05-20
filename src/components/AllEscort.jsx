@@ -13,7 +13,30 @@ const AllEscort = () => {
     return <Loading />;
   }
 
-  if (data.length == 0  || !data) {
+  if (!data) {
+    return (
+      <div className="py-14 bg-[#121212] px-2">
+        <div className="flex pb-4 justify-between px-2 items-center">
+          <h1 className="text-white font-semibold text-[18px] md:text-[24px]">
+            All Escort
+          </h1>
+          <p className="text-white cursor-pointer text-[14px] md:text-base">
+            See all
+          </p>
+        </div>
+        <div className="overflow-x-scroll md:overflow-x-auto">
+          <AllEscortTags />
+        </div>
+        <div className="h-[30vh] flex justify-center items-center">
+          <p className="text-xl font-semibold text-white">
+            No Escort Available
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (data.length == 0) {
     return (
       <div className="py-14 bg-[#121212] px-2">
         <div className="flex pb-4 justify-between px-2 items-center">
@@ -46,6 +69,8 @@ const AllEscort = () => {
 
   const pageCount = Math.ceil(data.length / usersPage);
 
+ 
+
   return (
     <div className="py-14 bg-[#121212] px-2">
       <div className="flex pb-4 justify-between px-2 items-center">
@@ -62,7 +87,7 @@ const AllEscort = () => {
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-8">
         {displayUsers}
       </div>
-      {/* <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} /> */}
+      <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
     </div>
   );
 };

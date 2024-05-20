@@ -17,7 +17,27 @@ const EscortOne = () => {
     return <Loading />;
   }
 
-  if (data.length == 0 || !data) {
+  if (!data) {
+    return (
+      <div className="flex-1 max-w-[1530px] pt-2 py-8 md:pt-12 px-2">
+        <div className="flex pb-4 justify-between items-center">
+          <h1 className="text-white font-semibold text-[18px] md:text-[24px]">
+            Top Escort
+          </h1>
+          <p className="text-white cursor-pointer text-[14px] lg:text-base">
+            See all
+          </p>
+        </div>
+        <div className="flex justify-center items-center h-[20vh]">
+          <p className="text-xl font-semibold text-white">
+            No Escort Available
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (data.length == 0) {
     return (
       <div className="flex-1 max-w-[1530px] pt-2 py-8 md:pt-12 px-2">
         <div className="flex pb-4 justify-between items-center">

@@ -11,7 +11,7 @@ const EscortOneItems = ({ items }) => {
 
   return (
     <>
-      <div className="bg-[#1E1E1E] text-white mb-14  p-3 rounded-lg">
+      <div className="bg-[#1E1E1E] text-white p-3 rounded-lg">
         <img
           className="rounded-lg h-[200px] object-cover"
           src={`https://room35backend.onrender.com${items.cover_image}`}

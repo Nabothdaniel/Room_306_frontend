@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Expire from "../images/Expire.svg";
@@ -13,6 +13,7 @@ import EscortOneItems from "../components/EscortOneItems";
 
 const Tours = () => {
   const users = JSON.parse(localStorage.getItem("details"));
+   const [currentPage, setCurrentPage] = useState(0);
 
   const { data, isLoading } = useGetAllTourQuery();
 
@@ -122,6 +123,22 @@ const Tours = () => {
     );
   }
 
+
+   const usersPage = 12;
+
+   const page = currentPage * usersPage;
+
+   const displayUsers = data
+     .slice(page, page + usersPage)
+     .map((item, index) => {
+       return <EscortOneItems key={index} items={item} />;
+     });
+
+   const pageCount = Math.ceil(data.length / usersPage);
+
+
+
+
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />
@@ -161,11 +178,9 @@ const Tours = () => {
           </div>
           <div className=" bg-[#121212]">
             <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-              {data.map((item, index) => {
-                return <EscortOneItems key={index} items={item} />;
-              })}
+              {displayUsers}
             </div>
-            <Pagination />
+            <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
           </div>
         </div>
       </div>

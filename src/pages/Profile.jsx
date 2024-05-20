@@ -11,17 +11,16 @@ const Profile = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.Util.token);
   const navigate = useNavigate();
+  const { data, isLoading } = useProfileQuery();
 
-  if (token) {
-    const { data, isLoading } = useProfileQuery();
-    if (isLoading) {
-      return <Loading />;
-    }
-
-    if (!data) {
-      return navigate("/");
-    }
+  if (isLoading) {
+    return <Loading />;
   }
+
+  if (!data) {
+    return navigate("/");
+  }
+
   return (
     <div>
       {data?.user_type == "client" && <ClientProfile />}

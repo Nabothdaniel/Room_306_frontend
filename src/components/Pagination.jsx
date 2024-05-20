@@ -16,16 +16,16 @@ const Pagination = ({ PageCount, setCurrentPage }) => {
           </span>
         }
         nextLabel={
-          <span className="flex items-center text-[#60656E]">
+          <span className="flex text-[14px] md:text-base items-center text-[#60656E]">
             Next
             <img className="size-5 md:ml-1" src={ChevronRight} alt="" />
           </span>
         }
         onPageChange={handleChange}
         pageRangeDisplayed={1}
-        pageCount={10}
+        pageCount={PageCount}
         previousLabel={
-          <span className="flex mr-3 items-center text-[#A0A8B5]">
+          <span className="flex mr-3 text-[14px] md:text-base items-center text-[#A0A8B5]">
             <img className="size-5 mr-0 md:mr-1" src={ChevronLeft} alt="" />
             Prev
           </span>

@@ -15,15 +15,18 @@ const AddTours = () => {
 
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
-  const { data, isLoading } = useGetCountryQuery();
+
+  useEffect(() => {
+    if (users?.user?.user_type !== "escort") {
+      navigate("/");
+      return;
+    }
+  }, []);
+
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
   const [apiError, setApiError] = useState("");
-
-  if (!(users?.user?.user_type == "escort") || users.id == null) {
-    navigate("/");
-    return;
-  }
+  const { data, isLoading } = useGetCountryQuery();
 
   const [Data, setData] = useState({
     country: "",
@@ -31,7 +34,7 @@ const AddTours = () => {
     city: "",
     state: "",
     start_date: "",
-    user: users.id,
+    user: users?.id,
   });
 
   const validateFormData = (data) => {
@@ -123,6 +126,7 @@ const AddTours = () => {
         );
         toast.success("Tour Created Succesfully");
         navigate("/tours");
+        window.location.reload(true)
 
         setData({
           country: "",

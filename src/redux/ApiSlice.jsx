@@ -4,7 +4,7 @@ export const ApiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://room35backend.onrender.com/api/",
   }),
-  tagTypes: ["Post"],
+  tagTypes: ["Post", "User"],
   endpoints: (build) => ({
     registerEscort: build.mutation({
       query: (body) => ({
@@ -58,7 +58,5 @@ export const {
   useProfileQuery,
   useUpdateClientMutation,
   useLoginMutation,
-  useUploadImageMutation
+  useUploadImageMutation,
 } = ApiSlice;
-
-

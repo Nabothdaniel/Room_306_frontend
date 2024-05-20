@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import Arrow from "../images/arrow-left.svg";
 import MyTourItem from "../components/MyTourItem";
 import { useGetMyTourQuery } from "../redux/tourApi";
 import Loading from "../components/Loading";
+import { formatISO } from "date-fns";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -24,7 +25,15 @@ const MyTour = () => {
   const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem("token"));
 
-  
+  const details = JSON.parse(localStorage.getItem("details"));
+
+
+  useEffect(() => {
+    if (details?.user?.user_type !== "escort") {
+      navigate("/");
+      return;
+    }
+  }, []);
 
   const { data, isLoading } = useGetMyTourQuery();
 
@@ -33,14 +42,21 @@ const MyTour = () => {
     open2: false,
   });
 
+  const date = new Date();
+
+  const dateISO = formatISO(date);
+
   if (isLoading) {
     return <Loading />;
   }
 
-  if (!data) {
-    navigate("/");
-  }
+  
 
+  const past = data.filter((item) => item.start_date < dateISO);
+  const present = data.filter((item) => item.start_date >= dateISO);
+
+
+  
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -74,7 +90,7 @@ const MyTour = () => {
               >
                 Active{" "}
                 <span className="bg-white px-2 rounded-full text-black">
-                  {data.length}
+                  {present.length}
                 </span>
               </p>
               <p
@@ -84,30 +100,40 @@ const MyTour = () => {
                 } `}
               >
                 History{" "}
-                {/* <span className="bg-white px-2 rounded-full text-black">1</span> */}
+                <span className="bg-white px-2 rounded-full text-black">
+                  {past.length}
+                </span>
               </p>
             </div>
-            <div className="py-4 px-5 bg-[#1e1e1e] rounded-md">
-              <Link
-                to={"/new-tours"}
-                className="bg-yellow-300 block text-center py-2 hover:bg-yellow-200 duration-500 font-semibold mb-4 w-[100px] text-[14px] rounded-3xl"
-              >
-                Add New
-              </Link>
-              <div
-                className={`${
-                  !state.open1 && "hidden"
-                }  grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
-              >
-                {data.map((item, index) => {
-                  return <MyTourItem key={index} item={item} />;
-                })}
-              </div>
-
-                <div className={`${!state.open2 && "hidden"}`}>
-                  <div></div>
+            {data && (
+              <div className="py-4 px-5 bg-[#1e1e1e] rounded-md">
+                <Link
+                  to={"/new-tours"}
+                  className="bg-yellow-300 block text-center py-2 hover:bg-yellow-200 duration-500 font-semibold mb-4 w-[100px] text-[14px] rounded-3xl"
+                >
+                  Add New
+                </Link>
+                <div
+                  className={`${
+                    !state.open1 && "hidden"
+                  }  grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
+                >
+                  {present.map((item, index) => {
+                    return <MyTourItem key={index} item={item} />;
+                  })}
                 </div>
-            </div>
+
+                <div
+                  className={`${
+                    !state.open2 && "hidden"
+                  }  grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
+                >
+                  {past.map((item, index) => {
+                    return <MyTourItem key={index} item={item} />;
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
