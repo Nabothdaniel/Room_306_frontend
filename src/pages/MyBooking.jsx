@@ -33,7 +33,7 @@ const reducer = (state, action) => {
 };
 
 const MyBooking = () => {
-  const { data, isLoading } = useGetBookingQuery();
+  const { data, isLoading, isError } = useGetBookingQuery();
 
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
@@ -48,8 +48,9 @@ const MyBooking = () => {
     return <Loading />;
   }
 
-  if (!data) {
+  if (!data || isError) {
     navigate("/");
+    return
   }
 
   return (

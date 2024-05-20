@@ -1,13 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
-import { setCredentials } from "../redux/UtilSlice";
 import { useProfileQuery } from "../redux/ApiSlice";
 
 const useAuth = () => {
-  const { data, isLoading } = useProfileQuery();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.Util.token);
+  const { data, isLoading } = useProfileQuery();
 
   if (token) {
     const decode = jwtDecode(token);
@@ -29,7 +28,6 @@ const useAuth = () => {
         return { user_id };
       } else {
         if (!data) {
-          
           localStorage.removeItem("details");
         } else {
           localStorage.setItem("details", JSON.stringify(data));

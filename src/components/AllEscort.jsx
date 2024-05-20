@@ -13,7 +13,7 @@ const AllEscort = () => {
     return <Loading />;
   }
 
-  if (data.length == 0) {
+  if (data.length == 0  || !data) {
     return (
       <div className="py-14 bg-[#121212] px-2">
         <div className="flex pb-4 justify-between px-2 items-center">

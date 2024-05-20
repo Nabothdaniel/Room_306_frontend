@@ -17,7 +17,7 @@ const EscortOne = () => {
     return <Loading />;
   }
 
-  if (data.length == 0) {
+  if (data.length == 0 || !data) {
     return (
       <div className="flex-1 max-w-[1530px] pt-2 py-8 md:pt-12 px-2">
         <div className="flex pb-4 justify-between items-center">

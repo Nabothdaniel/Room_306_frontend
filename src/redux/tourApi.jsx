@@ -6,9 +6,6 @@ const tourApi = ApiSlice.injectEndpoints({
       query: () => ({
         url: "/tour/all/",
         method: "GET",
-        headers: {
-          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
-        },
       }),
     }),
     getMyTour: build.query({
@@ -20,7 +17,6 @@ const tourApi = ApiSlice.injectEndpoints({
         },
       }),
     }),
-
   }),
 });
 

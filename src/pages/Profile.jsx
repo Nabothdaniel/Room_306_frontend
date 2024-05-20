@@ -4,22 +4,24 @@ import EscortProfile from "./EscortProfile";
 import { useProfileQuery } from "../redux/ApiSlice";
 import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { users } from "../redux/UtilSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { data, isLoading } = useProfileQuery();
+  const token = useSelector((state) => state.Util.token);
   const navigate = useNavigate();
-  if (isLoading) {
-    return <Loading />;
+
+  if (token) {
+    const { data, isLoading } = useProfileQuery();
+    if (isLoading) {
+      return <Loading />;
+    }
+
+    if (!data) {
+      return navigate("/");
+    }
   }
-
-  if (!data) {
-    return navigate("/");
-  }
-
-
   return (
     <div>
       {data?.user_type == "client" && <ClientProfile />}

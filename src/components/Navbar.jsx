@@ -20,6 +20,7 @@ const Navbar = ({ Headervalue, textValue }) => {
   const [openProfile, setOpenProfile] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const open = useSelector((state) => state.Util.navOpen);
+
   const { user_id } = useAuth();
 
   const dispatch = useDispatch();

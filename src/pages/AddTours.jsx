@@ -7,13 +7,11 @@ import Upload from "../images/Upload.svg";
 import Loading from "../components/Loading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const AddTours = () => {
   const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem("details"));
-
-
- 
 
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
@@ -21,8 +19,6 @@ const AddTours = () => {
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
   const [apiError, setApiError] = useState("");
-
-
 
   if (!(users?.user?.user_type == "escort") || users.id == null) {
     navigate("/");
@@ -61,7 +57,6 @@ const AddTours = () => {
     }
     return errors;
   };
-  
 
   useEffect(() => {
     const validationErrors = validateFormData(Data);
@@ -126,10 +121,8 @@ const AddTours = () => {
             },
           }
         );
-        console.log(res);
-        if (res.status == 200) {
-          navigate("/tours");
-        }
+        toast.success("Tour Created Succesfully");
+        navigate("/tours");
 
         setData({
           country: "",
@@ -325,7 +318,7 @@ const AddTours = () => {
               </div>
               <button
                 onClick={handleSubmit}
-                className="bg-[#E9CB50] text-[#171717] mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl"
+                className="bg-[#E9CB50] hover:bg-yellow-300 text-[#171717] mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl"
               >
                 Submit
               </button>

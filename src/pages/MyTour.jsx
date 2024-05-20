@@ -24,9 +24,7 @@ const MyTour = () => {
   const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem("token"));
 
-  if (!users) {
-    navigate("/");
-  }
+  
 
   const { data, isLoading } = useGetMyTourQuery();
 
@@ -37,6 +35,10 @@ const MyTour = () => {
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (!data) {
+    navigate("/");
   }
 
   return (

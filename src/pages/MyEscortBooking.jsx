@@ -52,8 +52,6 @@ const MyEscortBooking = () => {
     navigate("/");
   }
 
-    console.log(data);
-
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
