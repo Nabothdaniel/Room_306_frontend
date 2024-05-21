@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ClientProfile from "./ClientProfile";
 import EscortProfile from "./EscortProfile";
 import { useProfileQuery } from "../redux/ApiSlice";
@@ -13,13 +13,23 @@ const Profile = () => {
   const navigate = useNavigate();
   const { data, isLoading } = useProfileQuery();
 
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+      return;
+    }
+  },[])
+
   if (isLoading) {
     return <Loading />;
   }
 
   if (!data) {
-    return navigate("/");
+    navigate("/");
+    return;
   }
+
+  
 
   return (
     <div>

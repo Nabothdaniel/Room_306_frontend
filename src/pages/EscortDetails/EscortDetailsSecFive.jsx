@@ -4,9 +4,43 @@ import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 import Upload from "../../images/Upload.svg";
+import { useSelector } from "react-redux";
 
 const EscortDetailsSecFive = () => {
   const [image, setImage] = useState("");
+  const data = useSelector((state) => state.Util.userDetails);
+
+  const formData = new FormData();
+  formData.append("verfication_image", image);
+  formData.append("image", data.image);
+
+  const handleSubmit = async () => {
+    if (image) {
+      try {
+        const res = await axios.post(
+          "https://room35backend.onrender.com/api/auth/register_escort/",
+          { ...data, formData },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        dispatch(setCredentials(res.data?.token));
+
+        if (res.status == 200) {
+          navigate("/survey");
+          window.location.reload(true);
+        }
+
+        setApiError("");
+      } catch (err) {
+        setApiError(err.response?.data?.message);
+      }
+    }
+  };
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -74,14 +108,21 @@ const EscortDetailsSecFive = () => {
                       hidden
                       onChange={({ target: { files } }) => {
                         if (files) {
-                          setImage(URL.createObjectURL(files[0]));
+                          setImage(files[0]);
                         }
                       }}
                     />
                     {image ? (
-                      <img className="rounded-lg" src={image} />
+                      <img
+                        className="rounded-lg h-[330px] object-cover max-w-[280px]"
+                        src={URL.createObjectURL(image)}
+                      />
                     ) : (
-                      <img className="w-[300px] mx-auto md:mx-0 " src={Upload} alt="" />
+                      <img
+                        className="w-[300px] mx-auto md:mx-0 "
+                        src={Upload}
+                        alt=""
+                      />
                     )}
                   </div>
                 </div>
@@ -89,12 +130,9 @@ const EscortDetailsSecFive = () => {
                   <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-4 md:w-[120px] font-semibold rounded-xl">
                     Delete
                   </button>
-                  <Link
-                    to={"/survey"}
-                    className="bg-[#E9CB50] text-center block w-[100%] text-[#171717] py-4 md:w-[120px] font-semibold rounded-xl"
-                  >
+                  <button onClick={handleSubmit} className="bg-[#E9CB50] text-center block w-[100%] text-[#171717] py-4 md:w-[120px] font-semibold rounded-xl">
                     Next
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>

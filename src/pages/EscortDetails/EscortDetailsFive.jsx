@@ -4,19 +4,27 @@ import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 import Upload from "../../images/Upload.svg";
+import { useDispatch } from "react-redux";
+
 
 const EscortDetailsFive = () => {
   const [image, setImage] = useState("");
+  const dispatch = useDispatch();
 
   const [count, setCount] = useState(1);
 
-  const item = [];
+  // const item = [];
 
-  for (let i = 0; i < count; i++) {
-    item.push(i);
-  }
+  // for (let i = 0; i < count; i++) {
+  //   item.push(i);
+  // }
+ 
 
-
+  // const handleImage = () => {
+  //   if (image) {
+  //     dispatch(AddImage({...image}));
+  //   }
+  // };
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -70,55 +78,58 @@ const EscortDetailsFive = () => {
                   </li>
                 </ol>
                 <div className="grid xl:grid-cols-4 gap-5 mt-8 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-                  {item.map((is, index) => {
-                    return (
-                      <div key={is}
-                        onClick={() => document.querySelector(".input").click()}
-                        className="w-[100%] cursor-pointer"
-                      >
-                        <input
-                          type="file"
-                          name="file"
-                          id="file"
-                          className="input"
-                          hidden
-                          onChange={({ target: { files } }) => {
-                            if (files) {
-                              setImage(URL.createObjectURL(files[0]));
-                            }
-                          }}
-                        />
-                        {image ? (
-                          <img className="rounded-lg" src={image} />
-                        ) : (
-                          <img
-                            className="w-[300px] mx-auto md:mx-0 "
-                            src={Upload}
-                            alt=""
-                          />
-                        )}
-                      </div>
-                    );
-                  })}
-
+                  {/* {item.map((is, index) => {
+                    return ( */}
                   <div
+                    onClick={() => document.querySelector(".input").click()}
+                    className="w-[100%] cursor-pointer"
+                  >
+                    <input
+                      type="file"
+                      name="file"
+                      id="file"
+                      className="input"
+                      hidden
+                      onChange={({ target: { files } }) => {
+                        if (files) {
+                          setImage(files[0]);
+                        }
+                      }}
+                    />
+                    {image ? (
+                      <img
+                        className="rounded-lg h-[280px] object-cover"
+                        src={URL.createObjectURL(image)}
+                      />
+                    ) : (
+                      <img
+                        className="w-[300px] mx-auto md:mx-0 "
+                        src={Upload}
+                        alt=""
+                      />
+                    )}
+                  </div>
+
+                  {/* })} */}
+
+                  {/* <div
                     onClick={() => setCount(count + 1)}
                     className="bg-[#676767] h-[280px] md:max-w-[300px] flex justify-center items-center text-[20px] rounded-xl "
                   >
                     {" "}
                     Click Me
-                  </div>
+                  </div> */}
                 </div>
                 <div className="mt-4 flex md:justify-start justify-between">
                   <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-4 md:w-[120px] text font-medium rounded-xl">
                     Delete
                   </button>
-                  <Link
-                    to={"/verification"}
+                  <button
+                    onClick={handleImage}
                     className="bg-[#E9CB50] block text-center w-[100%] text-[#171717] py-4 md:w-[120px] font-medium rounded-xl"
                   >
                     Next
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>

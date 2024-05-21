@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   navOpen: false,
   userDetails: {},
+
   token: localStorage.getItem("token")
     ? JSON.parse(localStorage.getItem("token"))
     : "",
@@ -22,12 +23,14 @@ export const UtilSlice = createSlice({
     details: (state, action) => {
       state.userDetails = { ...action.payload, ...state.userDetails };
     },
-    logout: (state) =>  {
-      localStorage.removeItem("details")
-      localStorage.removeItem("token")
+
+    logout: (state) => {
+      localStorage.removeItem("details");
+      localStorage.removeItem("token");
     },
   },
 });
 
-export const { users, setCredentials, navClick, details, logout } = UtilSlice.actions;
+export const { users, setCredentials, navClick, details, logout } =
+  UtilSlice.actions;
 export default UtilSlice.reducer;

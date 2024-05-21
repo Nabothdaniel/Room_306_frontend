@@ -92,6 +92,7 @@ const EscortDetailsTwo = () => {
     const validationErrors = validateFormData(formData);
     setError(validationErrors);
 
+    navigate("/services");
     if (Object.keys(validationErrors).length == 0) {
       dispatch(
         details({
@@ -102,7 +103,6 @@ const EscortDetailsTwo = () => {
         })
       );
 
-      navigate("/services");
 
       setFormData({
         education: "",
@@ -493,7 +493,7 @@ const EscortDetailsTwo = () => {
                     inputType={"text"}
                     inputName={"language_spoken"}
                     inputClass={
-                      "bg-[#F0F2F5] py-3 px-4 md:mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
+                      "bg-[#F0F2F5] py-3 px-4 rounded-xl placeholder-[#102127] text-[#102127]"
                     }
                     holder={"Enter Here"}
                     onchange={handleChange}
