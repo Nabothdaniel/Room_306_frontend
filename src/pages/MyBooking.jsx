@@ -123,7 +123,7 @@ const MyBooking = () => {
 
           <div className="bg-[#1e1e1e] text-white min-w-[1300px] py-4 px-5 rounded-b-lg">
             <div className="flex border-b border-[#7D6C6C] pb-4 items-center">
-              <p className="w-[300px] text-center">Client</p>
+              <p className="w-[300px] text-center">Escort</p>
               <p className="w-[300px] text-center">Time</p>
               <p className="w-[300px] text-center">Date</p>
               <p className="w-[300px] text-center">Message</p>

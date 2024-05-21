@@ -7,7 +7,7 @@ import { ProfileSwiper } from "./ProfileSwiper";
 const ProfileViewItem = ({ handleBook }) => {
   return (
     <div className="grid md:grid-cols-2 md:px-4 md:pt-4 py-4 px-6 gap-x-6 h-fit pb-7 md:pb-0  rounded-xl bg-[#1E1E1E] ">
-      <ProfileSwiper />
+      {/* <ProfileSwiper /> */}
 
       <div className="md:pr-10 md:px-0 px-4">
         <div className="flex justify-between border-b pt-4 pb-3 border-[#23262A] text-white">

@@ -10,7 +10,7 @@ const EscortItems = ({ items }) => {
     <>
       <div className="bg-[#1E1E1E] text-white  p-3 rounded-lg">
         <img
-          className="rounded-lg h-[200px] object-cover"
+          className="rounded-lg h-[200px]"
           src={`https://room35backend.onrender.com${items.user.image}`}
           alt=""
         />
@@ -40,7 +40,8 @@ const EscortItems = ({ items }) => {
             4.9
           </p>
           <p className="flex justify-between items-center">
-            <img src={User} /> <span className="font-semibold pl-1">({ items.reviews.length})</span>
+            <img src={User} />{" "}
+            <span className="font-semibold pl-1">({items.reviews.length})</span>
           </p>
         </div>
       </div>

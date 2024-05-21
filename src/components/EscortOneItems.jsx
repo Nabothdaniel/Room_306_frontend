@@ -19,7 +19,7 @@ const EscortOneItems = ({ items }) => {
         />
         <div className="flex justify-between py-3">
           <div>
-            <h4 className="font-semibold pb-2">Sandra Kiss</h4>
+            <h4 className="font-semibold pb-2">{ items.user.display_name}</h4>
             <p className="pb-1 text-[12px] md:text-[13px]">
               <span className="font-semibold">{formattedDate}</span> short time
             </p>

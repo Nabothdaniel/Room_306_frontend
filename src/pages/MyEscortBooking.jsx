@@ -3,9 +3,9 @@ import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
 import { useNavigate } from "react-router-dom";
-import BookingItem from "../components/BookingItem";
-import { useGetBookingQuery, useGetEscortBookingQuery } from "../redux/BookApi";
+import { useGetEscortBookingQuery } from "../redux/BookApi";
 import Loading from "../components/Loading";
+import EscortBookItem from "../components/EscortBookItem";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -136,7 +136,7 @@ const MyEscortBooking = () => {
                 </p>
               )}
               {data.map((item, index) => {
-                return <BookingItem key={index} book={item} />;
+                return <EscortBookItem key={index} book={item} />;
               })}
             </div>
             <div className={`${!state.open2 && "hidden"}`}>
@@ -149,7 +149,7 @@ const MyEscortBooking = () => {
               {data
                 .filter((item) => item.status == "pending")
                 .map((item, index) => {
-                  return <BookingItem key={index} book={item} />;
+                  return <EscortBookItem key={index} book={item} />;
                 })}
             </div>
             <div className={`${!state.open3 && "hidden"}`}>
@@ -161,7 +161,7 @@ const MyEscortBooking = () => {
               {data
                 .filter((item) => item.status == "accepted")
                 .map((item, index) => {
-                  return <BookingItem key={index} book={item} />;
+                  return <EscortBookItem key={index} book={item} />;
                 })}
             </div>
             <div className={`${!state.open4 && "hidden"}`}>
@@ -174,7 +174,7 @@ const MyEscortBooking = () => {
               {data
                 .filter((item) => item.status == "completed")
                 .map((item, index) => {
-                  return <BookingItem key={index} book={item} />;
+                  return <EscortBookItem key={index} book={item} />;
                 })}
             </div>
             <div className={`${!state.open5 && "hidden"}`}>
@@ -187,7 +187,7 @@ const MyEscortBooking = () => {
               {data
                 .filter((item) => item.status == "cancelled")
                 .map((item, index) => {
-                  return <BookingItem key={index} book={item} />;
+                  return <EscortBookItem key={index} book={item} />;
                 })}
             </div>
           </div>

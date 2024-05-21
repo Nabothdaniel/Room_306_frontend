@@ -23,8 +23,6 @@ const MyTourItem = ({ item }) => {
     }
   };
 
-  
-
   return (
     <div className={`bg-black text-white  p-3 rounded-lg`}>
       <img
@@ -34,8 +32,8 @@ const MyTourItem = ({ item }) => {
       />
       <div>
         <div className="flex justify-between py-2">
-          <h4 className="font-semibold pb-2">
-            {item?.escort_name}
+          <h4 className="font-semibold text-white pb-2">
+            {item?.user?.display_name}
           </h4>
           <div>
             <p
