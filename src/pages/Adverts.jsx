@@ -10,7 +10,7 @@ import Loading from "../components/Loading";
 import { useGetAllAdvertsQuery } from "../redux/AdvertSlice";
 
 const Adverts = () => {
-   const users = JSON.parse(localStorage.getItem("details"));
+  const users = JSON.parse(localStorage.getItem("details"));
   const { data, isLoading } = useGetAllAdvertsQuery();
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -28,7 +28,7 @@ const Adverts = () => {
             textValue={"Advert for best escorts and activities"}
           />
 
-          <div className="px-4 md:px-0 pb-10">
+          <div className="px-2 md:px-0 pb-10">
             <div className="flex pb-4 justify-between items-center pt-2 md:pt-10">
               <h1 className="text-white font-semibold md:text-[24px] flex items-center">
                 Classified Ads{" "}
@@ -53,7 +53,6 @@ const Adverts = () => {
     );
   }
 
-
   if (data.length == 0) {
     return (
       <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
@@ -64,11 +63,11 @@ const Adverts = () => {
             textValue={"Advert for best escorts and activities"}
           />
 
-          <div className="px-4 md:px-0 pb-10">
+          <div className="px-2 md:px-0 pb-10">
             <div className="flex pb-4 justify-between items-center pt-2 md:pt-10">
               <h1 className="text-white font-semibold md:text-[24px] flex items-center">
                 Classified Ads{" "}
-                {users?.user?.user_type == "escort" && !users && (
+                {users?.user?.user_type == "escort" && (
                   <Link to={"/new-adverts"}>
                     <img className="size-9 ml-3" src={Frame} alt="" />
                   </Link>
@@ -110,13 +109,15 @@ const Adverts = () => {
           textValue={"Advert for best escorts and activities"}
         />
 
-        <div className="px-4 md:px-0 pb-10">
+        <div className="px-2 md:px-0 pb-10">
           <div className="flex pb-4 justify-between items-center pt-2 md:pt-10">
             <h1 className="text-white font-semibold md:text-[24px] flex items-center">
               Classified Ads{" "}
-              <Link to={"/new-adverts"}>
-                <img className="size-9 ml-3" src={Frame} alt="" />
-              </Link>
+              {users?.user?.user_type == "escort" && (
+                <Link to={"/new-adverts"}>
+                  <img className="size-9 ml-3" src={Frame} alt="" />
+                </Link>
+              )}
             </h1>
             <p className="text-white cursor-pointer">
               <img className="" src={Input} alt="" />

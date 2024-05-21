@@ -44,7 +44,7 @@ const Tours = () => {
               <p className="text-white md:min-w-[230px] flex items-center md:py-4 py-2 lg:text-[20px] font-semibold">
                 <span className="hidden md:block"> Tours Happening Now </span>
                 <Link to={"/new-tours"}>
-                  {users?.user?.user_type == "escort" && !users && (
+                  {users?.user?.user_type == "escort" && (
                     <img
                       className="size-10 cursor-pointer md:ml-2 flex items-center"
                       src={Frame}

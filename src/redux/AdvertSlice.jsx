@@ -15,7 +15,16 @@ const advertApi = ApiSlice.injectEndpoints({
         body,
       }),
     }),
+    advertFavorite: build.mutation({
+      query: (id) => ({
+        url: `/advert/adverts/favorite/${id}/`,
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetAllAdvertsQuery, useCreateAdvertMutation } = advertApi;
+export const { useGetAllAdvertsQuery, useCreateAdvertMutation, useAdvertFavoriteMutation } = advertApi;

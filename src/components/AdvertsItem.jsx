@@ -3,8 +3,21 @@ import Profile from "../images/profile.jpeg";
 import House from "../images/house.svg";
 import Calender from "../images/calendar-tick.svg";
 import Love from "../images/Love.svg";
+import { useAdvertFavoriteMutation } from "../redux/AdvertSlice";
+import toast from "react-hot-toast";
 
 const AdvertsItem = ({ items }) => {
+  const [favorite] = useAdvertFavoriteMutation();
+
+  const handleFavorite = async () => {
+    try {
+      const res = await favorite(items.id);
+      toast.success(res.data.message);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="bg-[#1E1E1E] flex flex-col relative rounded-3xl p-4 md:p-7 ">
       <div className="flex items-center sm:items-start  ">
@@ -42,7 +55,7 @@ const AdvertsItem = ({ items }) => {
             <button className="bg-[#E9CB50]  w-[100%] text-[#171717] h-[40px]  font-medium rounded-xl">
               Chat Now
             </button>
-            <img src={Love} className="size-11 ml-2" />
+            <img onClick={handleFavorite} src={Love} className="size-11 cursor-pointer ml-2" />
           </div>
         </div>
       </div>
@@ -75,7 +88,7 @@ const AdvertsItem = ({ items }) => {
           <button className="bg-[#E9CB50]  w-[100%] text-[#171717] h-[40px] font-medium rounded-xl">
             Chat Now
           </button>
-          <img src={Love} className="size-11 ml-2" />
+          <img onClick={handleFavorite} src={Love} className="size-11 cursor-pointer ml-2" />
         </div>
       </div>
       <p className="text-[#DADADA] text-[12px] sm:hidden block pt-4">

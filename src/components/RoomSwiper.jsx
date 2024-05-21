@@ -37,7 +37,7 @@ export const RoomSwiper = () => {
         {names.map((item) => {
           return (
             <SwiperSlide className=" swiper-1" key={item}>
-              <RoomsItem />
+              {/* <RoomsItem /> */}
             </SwiperSlide>
           );
         })}
