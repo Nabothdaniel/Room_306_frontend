@@ -4,17 +4,31 @@ import Navbar from "../components/Navbar";
 import { BlogSwiper } from "../components/BlogSwiper";
 import Arrow from "../images/arrow-left.svg";
 import ProfileViewItem from "../components/ProfileViewItem";
-import ProfileViewItems from "../components/ProfileViewItems";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import BookingModel from "../components/BookingModel";
+import { useGetProfileByIdQuery } from "../redux/ApiSlice";
+import Loading from "../components/Loading";
+import ProfileEscort from "../components/ProfileEscort";
+import { users } from "../redux/UtilSlice";
 
 const ProfileView = () => {
+  const user = JSON.parse(localStorage.getItem("details"));
+  const { id } = useParams();
+  const { data, isLoading } = useGetProfileByIdQuery(id);
   const [openBook, setOpenBook] = useState(false);
 
   const navigate = useNavigate();
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   const handleBook = () => {
-    setOpenBook(!openBook);
+    if (users?.user_type == "client") {
+      setOpenBook(!openBook);
+    } else {
+      
+    }
   };
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
@@ -37,8 +51,8 @@ const ProfileView = () => {
               <img className="size-5 mr-1" src={Arrow} alt="" />
               Back
             </h2>
-            <ProfileViewItem handleBook={handleBook} />
-            {/* <ProfileViewItems /> */}
+            <ProfileViewItem user={data} handleBook={handleBook} />
+            <ProfileEscort user={data} />
           </div>
 
           <div className="mt-5 lg:mt-0">
@@ -53,6 +67,7 @@ const ProfileView = () => {
       </div>
       <BookingModel
         handleBook={handleBook}
+        user={data}
         bookClass={`${!openBook ? "translate-x-[120vw]" : "translate-x-0"}`}
       />
     </div>

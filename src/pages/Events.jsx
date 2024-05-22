@@ -14,28 +14,46 @@ const Events = () => {
 
   const [currentPage, setCurrentPage] = useState(0);
 
-
   if (isLoading) {
     return <Loading />;
   }
 
   if (!data) {
     return (
-      <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[630px] rounded-2xl">
-        <div className="">
-          <button className="bg-[#E9CB50] text-[14px] md:text-base mr-3 py-4 w-[141px] md:w-[175px] rounded-xl">
-            Upcoming Events
-          </button>
-          <button className="bg-[#121212] text-white text-[14px] md:text-base py-4 w-[111px] md:w-[144px] rounded-xl">
-            Past Events
-          </button>
-        </div>
-        <div className="h-[85%] flex justify-center items-center">
-          <div className="  ">
-            <img className="w-[260px]" src={Vector} alt="" />
-            <p className="font-semibold text-center pt-8 text-white">
-              No Events Found
-            </p>
+      <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
+        <SideBar />
+
+        <div className="flex-1 md:w-[80%] pt-4 md:pt-14 px-3 md:px-6 lg:px-10">
+          <Navbar
+            Headervalue={"Best Escort Room"}
+            textValue={"Explore our rooms and activities"}
+          />
+          <div className="pb-10 md:pl-2">
+            <div className="flex md:pt-10 pb-2 pl-1 justify-between pt-2 items-center">
+              <h2 className="text-white md:py-6 text-[16px] md:text-[20px] font-semibold">
+                All Events
+              </h2>
+
+              <img className="w-40" src={Filter} alt="" />
+            </div>
+            <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[630px] rounded-2xl">
+              <div className="">
+                <button className="bg-[#E9CB50] text-[14px] md:text-base mr-3 py-4 w-[141px] md:w-[175px] rounded-xl">
+                  Upcoming Events
+                </button>
+                <button className="bg-[#121212] text-white text-[14px] md:text-base py-4 w-[111px] md:w-[144px] rounded-xl">
+                  Past Events
+                </button>
+              </div>
+              <div className="h-[85%] flex justify-center items-center">
+                <div className="  ">
+                  <img className="w-[260px]" src={Vector} alt="" />
+                  <p className="font-semibold text-center pt-8 text-white">
+                    No Events Found
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -44,21 +62,40 @@ const Events = () => {
 
   if (data.length == 0) {
     return (
-      <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[630px] rounded-2xl">
-        <div className="">
-          <button className="bg-[#E9CB50] text-[14px] md:text-base mr-3 py-4 w-[141px] md:w-[175px] rounded-xl">
-            Upcoming Events
-          </button>
-          <button className="bg-[#121212] text-white text-[14px] md:text-base py-4 w-[111px] md:w-[144px] rounded-xl">
-            Past Events
-          </button>
-        </div>
-        <div className="h-[85%] flex justify-center items-center">
-          <div className="  ">
-            <img className="w-[260px]" src={Vector} alt="" />
-            <p className="font-semibold text-center pt-8 text-white">
-              No Events Found
-            </p>
+      <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
+        <SideBar />
+
+        <div className="flex-1 md:w-[80%] pt-4 md:pt-14 px-3 md:px-6 lg:px-10">
+          <Navbar
+            Headervalue={"Best Escort Room"}
+            textValue={"Explore our rooms and activities"}
+          />
+          <div className="pb-10 md:pl-2">
+            <div className="flex md:pt-10 pb-2 pl-1 justify-between pt-2 items-center">
+              <h2 className="text-white md:py-6 text-[16px] md:text-[20px] font-semibold">
+                All Events
+              </h2>
+
+              <img className="w-40" src={Filter} alt="" />
+            </div>
+            <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[630px] rounded-2xl">
+              <div className="">
+                <button className="bg-[#E9CB50] text-[14px] md:text-base mr-3 py-4 w-[141px] md:w-[175px] rounded-xl">
+                  Upcoming Events
+                </button>
+                <button className="bg-[#121212] text-white text-[14px] md:text-base py-4 w-[111px] md:w-[144px] rounded-xl">
+                  Past Events
+                </button>
+              </div>
+              <div className="h-[85%] flex justify-center items-center">
+                <div className="  ">
+                  <img className="w-[260px]" src={Vector} alt="" />
+                  <p className="font-semibold text-center pt-8 text-white">
+                    No Events Found
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -69,9 +106,11 @@ const Events = () => {
 
   const page = currentPage * usersPage;
 
-  const displayEvents = data.slice(page, page + usersPage).map((item, index) => {
-    return <EventItem key={index} items={item} />;
-  });
+  const displayEvents = data
+    .slice(page, page + usersPage)
+    .map((item, index) => {
+      return <EventItem key={index} items={item} />;
+    });
 
   const pageCount = Math.ceil(data.length / usersPage);
 

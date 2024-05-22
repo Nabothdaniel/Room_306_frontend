@@ -33,6 +33,9 @@ export const ApiSlice = createApi({
         body,
       }),
     }),
+    getProfileById: build.query({
+      query: (id) => `/profile/profile/${id}/`,
+    }),
     UploadImage: build.mutation({
       query: (body) => ({
         url: "/profile/upload-photo/",
@@ -59,4 +62,5 @@ export const {
   useUpdateClientMutation,
   useLoginMutation,
   useUploadImageMutation,
+  useGetProfileByIdQuery
 } = ApiSlice;

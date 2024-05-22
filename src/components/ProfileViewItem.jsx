@@ -2,12 +2,12 @@ import React from "react";
 import Whatsapp from "../images/whatsapp.svg";
 import Youtube from "../images/youtube.svg";
 import Messenger from "../images/messenger.svg";
-import { ProfileSwiper } from "./ProfileSwiper";
+import { EscortProfileSwiper } from "./EscortProfileSwiper";
 
-const ProfileViewItem = ({ handleBook }) => {
+const ProfileViewItem = ({ handleBook, user }) => {
   return (
-    <div className="grid md:grid-cols-2 md:px-4 md:pt-4 py-4 px-6 gap-x-6 h-fit pb-7 md:pb-0  rounded-xl bg-[#1E1E1E] ">
-      {/* <ProfileSwiper /> */}
+    <div className="grid md:grid-cols-2 md:px-4 md:pt-4 py-4 px-6 gap-x-6 h-fit pb-7 md:pb-4  rounded-xl bg-[#1E1E1E] ">
+      <EscortProfileSwiper data={user.gallery} />
 
       <div className="md:pr-10 md:px-0 px-4">
         <div className="flex justify-between border-b pt-4 pb-3 border-[#23262A] text-white">
@@ -16,38 +16,49 @@ const ProfileViewItem = ({ handleBook }) => {
             <p className="text-[#B29A9A]">Posts</p>
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-[24px] font-semibold">306</p>
+            <p className="text-[24px] font-semibold">
+              {user.escort_details.user.followers_count}
+            </p>
             <p className="text-[#B29A9A]">Followers</p>
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-[24px] font-semibold">69</p>
+            <p className="text-[24px] font-semibold">
+              {" "}
+              {user.escort_details.user.following_count}
+            </p>
             <p className="text-[#B29A9A]">Following</p>
           </div>
         </div>
         <div className="pb-4 pt-3 text-white">
-          <p className="text-[20px] font-semibold">Sandra Kiss</p>
+          <p className="text-[20px] font-semibold">
+            {user.profile.display_name}
+          </p>
           <div className="flex items-center my-2 rounded-md w-fit mr-3 px-3 py-1 text-white bg-[#0A0A0A]">
             <img className="size-5 mr-1" src={Whatsapp} alt="" />
-            <p>0802234567</p>
+            <p>{user.profile.mobile_number}</p>
           </div>
           <p className="text-[#DADADA] lg:text-[14px] text-[12px]">
-            Am here to satisfy ur pleasure I love sex most especially blow job
-            (cum in my mouth) AVAILABLE FOR INCALL
+            {user.escort_details.about}
           </p>
         </div>
         <div className="flex justify-around text-white">
           <div className="flex flex-col items-center">
             <p className="text-[24px] font-semibold">
-              27 <span className="text-[#B29A9A]">yrs</span>
+              {" "}
+              <span className="text-[#B29A9A]">yrs</span>
             </p>
             <p className="text-[#B29A9A]">Age</p>
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-[24px] font-semibold">Avg</p>
+            <p className="text-[24px] font-semibold">
+              {user.escort_details.weight}
+            </p>
             <p className="text-[#B29A9A]">Weight</p>
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-[24px] font-semibold">Avg</p>
+            <p className="text-[24px] font-semibold">
+              {user.escort_details.height}
+            </p>
             <p className="text-[#B29A9A]">Height</p>
           </div>
         </div>

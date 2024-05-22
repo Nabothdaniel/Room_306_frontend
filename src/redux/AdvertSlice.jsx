@@ -5,6 +5,7 @@ const advertApi = ApiSlice.injectEndpoints({
     getAllAdverts: build.query({
       query: () => "/advert/all/",
     }),
+
     createAdvert: build.mutation({
       query: (body) => ({
         url: "/advert/create/",
@@ -27,4 +28,8 @@ const advertApi = ApiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAllAdvertsQuery, useCreateAdvertMutation, useAdvertFavoriteMutation } = advertApi;
+export const {
+  useGetAllAdvertsQuery,
+  useCreateAdvertMutation,
+  useAdvertFavoriteMutation,
+} = advertApi;

@@ -4,7 +4,7 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import axios from "axios";
 
-const BookingModel = ({ bookClass, handleBook }) => {
+const BookingModel = ({ bookClass, handleBook, user }) => {
   const [Data, setData] = useState({
     time: "",
     date: "",
@@ -23,7 +23,7 @@ const BookingModel = ({ bookClass, handleBook }) => {
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
-        `https://room35backend.onrender.com/api/booking/book/${1}/`,
+        `https://room35backend.onrender.com/api/booking/book/${user.escort_details.id}/`,
         formData,
         {
           headers: {
@@ -34,8 +34,8 @@ const BookingModel = ({ bookClass, handleBook }) => {
         }
       );
 
-      handleBook()
-      console.log(res)
+      handleBook();
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -48,7 +48,10 @@ const BookingModel = ({ bookClass, handleBook }) => {
       <div className="md:w-[800px] w-[90%] rounded-xl py-6 bg-white">
         <div className="border-b-2 pb-4 flex justify-between items-center px-4 pr-7 md:px-8 font-semibold text-[20px] border-[#F1D6D6]">
           <h2 className="md:text-2xl text-[18px] font-semibold">
-            Booking Details <span>Escort name</span>
+            Booking Details{" "}
+            <span className="text-blue-300">
+              {user.escort_details.user.display_name}
+            </span>
           </h2>
           <img
             onClick={handleBook}
@@ -101,7 +104,10 @@ const BookingModel = ({ bookClass, handleBook }) => {
           />
 
           <div>
-            <button onClick={handleSubmit} className="bg-[#E9CB50] float-right text-[#171717] mt-4 text-[14px] h-[48px] w-[150px] font-semibold rounded-xl">
+            <button
+              onClick={handleSubmit}
+              className="bg-[#E9CB50] float-right text-[#171717] mt-4 text-[14px] h-[48px] w-[150px] font-semibold rounded-xl"
+            >
               Send Booking
             </button>
           </div>

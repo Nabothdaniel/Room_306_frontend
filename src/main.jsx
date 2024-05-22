@@ -82,7 +82,7 @@ const router = createBrowserRouter([
         element: <Adverts />,
       },
       {
-        path: "/profile-view",
+        path: "/escort/:id",
         element: <ProfileView />,
       },
       {
