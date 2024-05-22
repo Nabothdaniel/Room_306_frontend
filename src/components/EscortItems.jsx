@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 const EscortItems = ({ items }) => {
   return (
     <>
-      <div className="bg-[#1E1E1E] block text-white  p-3 rounded-lg">
-        <Link to={`/escort/${items.id}`}>
+      <div className="bg-[#1E1E1E] block text-white h-auto  p-3 rounded-lg">
+        <Link className="block" to={`/escort/${items.id}`}>
           <img
             className="rounded-lg h-[200px]"
             src={`https://room35backend.onrender.com${items.user.image}`}
@@ -19,7 +19,7 @@ const EscortItems = ({ items }) => {
         </Link>
 
         <div className="flex justify-between py-3">
-          <Link to={`/escort/${items.id}`}>
+          <Link className="block" to={`/escort/${items.id}`}>
             <div>
               <h4 className="font-semibold pb-2">{items.user.display_name}</h4>
               <p className="pb-1 text-[12px] lg:text-[14px]">
@@ -43,7 +43,7 @@ const EscortItems = ({ items }) => {
             className="size-12 cursor-pointer"
           />
         </div>
-        <Link to={`/escort/${items.id}`}>
+        <Link className="block" to={`/escort/${items.id}`}>
           <p className="lg:text-[15px] text-[12px] text-wrap  pb-2 text-[#DADADA]">
             {items.heading}
           </p>

@@ -7,9 +7,21 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import FreshEscort from "./FreshEscort";
+import EscortItems from "./EscortItems";
+import Loading from "./Loading";
+import { useGetAllEscortsQuery } from "../redux/EscortApi";
 
 export const BlogSwiper = () => {
-  const names = ["James", "Paul", "John", "George", "Ringo", 1, 2, 3, 4, 5, 6];
+  const { data, isLoading } = useGetAllEscortsQuery();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (!data || data.length == 0) {
+    return;
+  }
+
   return (
     <>
       <Swiper
@@ -17,14 +29,12 @@ export const BlogSwiper = () => {
           640: {
             slidesPerView: 2.8,
             spaceBetween: 10,
-           
           },
 
           1023: {
             slidesPerView: 3.4,
             spaceBetween: 290,
             direction: "vertical",
-          
           },
         }}
         speed={1200}
@@ -35,10 +45,10 @@ export const BlogSwiper = () => {
         modules={[Autoplay]}
         className="mySwiper max-w-[1024px] max-h-[1000px] text-white"
       >
-        {names.map((item) => {
+        {data.map((item) => {
           return (
             <SwiperSlide className=" swiper-1" key={item}>
-              <FreshEscort />
+              <FreshEscort items={item} />
             </SwiperSlide>
           );
         })}
