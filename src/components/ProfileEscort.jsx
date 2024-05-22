@@ -4,6 +4,7 @@ import ProfileViewReview from "./ProfileViewReview";
 import NaughtyProfile from "./NaughtyProfile";
 import ProfileService from "./ProfileService";
 import ProfileEscortAbout from "./ProfileEscortAbout";
+import ProfileEscortGallery from "./ProfileEscortGallery";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -90,7 +91,7 @@ const ProfileEscort = ({user}) => {
       <NaughtyProfile naughtClass={`${!state.open4 ? "hidden" : ""}`} />
       <ProfileEscortAbout user={user.escort_details} aboutClass={`${!state.open1 ? "hidden" : ""}`} />
       <ProfileViewReview reviewClass={`${!state.open3 ? "hidden" : ""}`} />
-      <ProfileViewGallery galleryClass={`${!state.open2 ? "hidden" : ""}`} />
+      <ProfileEscortGallery data={user.gallery} galleryClass={`${!state.open2 ? "hidden" : ""}`} />
 
       <div
         className={`${

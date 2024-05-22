@@ -23,11 +23,15 @@ const ProfileView = () => {
     return <Loading />;
   }
 
+  if (!data) {
+    navigate("/");
+    return;
+  }
+
   const handleBook = () => {
     if (users?.user_type == "client") {
       setOpenBook(!openBook);
     } else {
-      
     }
   };
   return (

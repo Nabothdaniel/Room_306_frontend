@@ -7,7 +7,13 @@ import { EscortProfileSwiper } from "./EscortProfileSwiper";
 const ProfileViewItem = ({ handleBook, user }) => {
   return (
     <div className="grid md:grid-cols-2 md:px-4 md:pt-4 py-4 px-6 gap-x-6 h-fit pb-7 md:pb-4  rounded-xl bg-[#1E1E1E] ">
-      <EscortProfileSwiper data={user.gallery} />
+      {/* <EscortProfileSwiper data={user.gallery} /> */}
+
+      <img
+        className="h-[400px] rounded-xl"
+        src={`https://room35backend.onrender.com${user.profile.image}`}
+        alt=""
+      />
 
       <div className="md:pr-10 md:px-0 px-4">
         <div className="flex justify-between border-b pt-4 pb-3 border-[#23262A] text-white">
@@ -34,8 +40,14 @@ const ProfileViewItem = ({ handleBook, user }) => {
             {user.profile.display_name}
           </p>
           <div className="flex items-center my-2 rounded-md w-fit mr-3 px-3 py-1 text-white bg-[#0A0A0A]">
-            <img className="size-5 mr-1" src={Whatsapp} alt="" />
-            <p>{user.profile.mobile_number}</p>
+            <a
+              className="flex items-center"
+              target="_blank"
+              href={`https://wa.me/${user.profile.mobile_number}`}
+            >
+              <img className="size-5 mr-1" src={Whatsapp} alt="" />
+              {user.profile.mobile_number}
+            </a>
           </div>
           <p className="text-[#DADADA] lg:text-[14px] text-[12px]">
             {user.escort_details.about}
