@@ -3,9 +3,12 @@ import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Blog from "../images/blog.jpeg";
 import { BlogSwiper } from "../components/BlogSwiper";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
 import Frame from "../images/Frame.svg";
+import { useGetEventByIdQuery } from "../redux/EventApi";
+import Loading from "../components/Loading";
+import { format, parseISO } from "date-fns";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -25,12 +28,27 @@ const reducer = (state, action) => {
 };
 
 const EventsView = () => {
+  const { id } = useParams();
+  const { data, isLoading } = useGetEventByIdQuery(id);
+
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
     open3: false,
   });
   const navigate = useNavigate();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  const parsedDate = parseISO(data.start_date);
+  const Start_Date = format(parsedDate, "d MMMM");
+
+  const parsedEndDate = parseISO(data.end_date);
+  const End_Date = format(parsedEndDate, "d MMMM");
+ 
+
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />
@@ -54,11 +72,11 @@ const EventsView = () => {
             </h2>
             <div className="pt-5">
               <h1 className="md:text-3xl font-semibold text-white pb-5 text-xl">
-                Orgy Party
+                {data.title}
               </h1>
               <img
-                className="h-[450px] object-cover rounded-md"
-                src={Blog}
+                className="h-[450px] object-fit rounded-md"
+                src={`https://room35backend.onrender.com${data.cover_image}`}
                 alt=""
               />
             </div>
@@ -98,15 +116,17 @@ const EventsView = () => {
             >
               <div className="grid grid-cols-2 gap-x-3 border-b border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Event Dates</h2>
-                <p className="text-[12px]">Nov 30 @ 13:00 - Nov 30 @ 0:00</p>
+                <p className="text-[12px]">{Start_Date} @ {data.start_time} - {End_Date} @ { data.end_time}</p>
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Event Location</h2>
-                <p className="text-[12px]">Kaduna, Kaduna, Nigeria</p>
+                <p className="text-[12px]">
+                  {data.city}, {data.state}, {data.country}
+                </p>
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Available Capacity</h2>
-                <p className="text-[12px]">10</p>
+                <p className="text-[12px]">{data.available_ticket}</p>
               </div>
             </div>
             <div
@@ -117,30 +137,7 @@ const EventsView = () => {
               <h2 className="md:text-3xl text-xl font-semibold pt-4 pb-3">
                 Description
               </h2>
-              <p className="md:text-base text-[14px]">
-                Kaduna Gang Bang Party Come and have extra fun with my tight
-                pussy. Rules of the Gangbang: Condoms must be worn anytime you
-                enter my pussy or ass. Lube must be applied liberally when
-                entering my ass. Please see username. No double penetration of
-                my ass. (No two cocks in my ass)* No cum in or on my pussy. No
-                cum in my ass. Nails must be filed to the absolute shortest
-                length possible. No ass to mouth. Condom must be changed when
-                going from anal to vaginal penetration. No bruises or sex wounds
-                above my shoulders. No blood! Be it from biting, pinching,
-                slapping, or fucking. No photos or videos. All cell phones and
-                devices are stored away. Must be showered, and pubic hair must
-                be trimmed. Safeword = BLUE or 3 times head shake. Things you
-                CAN do: Spank my ass and back of my legs. Pull my hair. (See
-                Rule 9) Spit on me, including pussy, ass, tits, face, and mouth.
-                Smack my face and tits. (See Rule 9) Finger me with up to 4
-                fingers. Choke me. (See Rule 9 and Rule 13) Double penetration
-                of pussy and ass. (One cock in pussy, one cock in ass)* Double
-                penetration of pussy. Triple penetration of pussyx2 and ass.
-                Facefuck, deepthroat, pinch my nose. (See Rule 13) Hold me down,
-                legs open, arms pinned. (See Rule 13) Cum on my face, mouth,
-                tits, stomach, back, ass. *13. Speak to me in your native
-                language. *14. Call me whore, slut, bitch, filth, etc.
-              </p>
+              <p className="md:text-base text-[14px]">{data.description}</p>
             </div>
             <div
               className={`bg-[#1e1e1e] text-white  py-4 px-4 md:px-8 h-[400px] rounded-lg mt-10 ${

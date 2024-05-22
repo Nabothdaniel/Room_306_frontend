@@ -106,7 +106,7 @@ const router = createBrowserRouter([
             element: <Events />,
           },
           {
-            path: ":title",
+            path: ":id",
             element: <EventsView />,
           },
         ],

@@ -1,12 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Filter from "../images/Input.svg";
 import Vector from "../images/Vector.svg";
 import EventItem from "../components/EventItem";
 import Pagination from "../components/Pagination";
+import { useGetAllEventsQuery } from "../redux/EventApi";
+import Loading from "../components/Loading";
 
 const Events = () => {
+  const users = JSON.parse(localStorage.getItem("details"));
+  const { data, isLoading } = useGetAllEventsQuery();
+
+  const [currentPage, setCurrentPage] = useState(0);
+
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (!data) {
+    return (
+      <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[630px] rounded-2xl">
+        <div className="">
+          <button className="bg-[#E9CB50] text-[14px] md:text-base mr-3 py-4 w-[141px] md:w-[175px] rounded-xl">
+            Upcoming Events
+          </button>
+          <button className="bg-[#121212] text-white text-[14px] md:text-base py-4 w-[111px] md:w-[144px] rounded-xl">
+            Past Events
+          </button>
+        </div>
+        <div className="h-[85%] flex justify-center items-center">
+          <div className="  ">
+            <img className="w-[260px]" src={Vector} alt="" />
+            <p className="font-semibold text-center pt-8 text-white">
+              No Events Found
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (data.length == 0) {
+    return (
+      <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[630px] rounded-2xl">
+        <div className="">
+          <button className="bg-[#E9CB50] text-[14px] md:text-base mr-3 py-4 w-[141px] md:w-[175px] rounded-xl">
+            Upcoming Events
+          </button>
+          <button className="bg-[#121212] text-white text-[14px] md:text-base py-4 w-[111px] md:w-[144px] rounded-xl">
+            Past Events
+          </button>
+        </div>
+        <div className="h-[85%] flex justify-center items-center">
+          <div className="  ">
+            <img className="w-[260px]" src={Vector} alt="" />
+            <p className="font-semibold text-center pt-8 text-white">
+              No Events Found
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const usersPage = 12;
+
+  const page = currentPage * usersPage;
+
+  const displayEvents = data.slice(page, page + usersPage).map((item, index) => {
+    return <EventItem key={index} items={item} />;
+  });
+
+  const pageCount = Math.ceil(data.length / usersPage);
+
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />
@@ -58,15 +126,10 @@ const Events = () => {
               </button>
             </div>
             <div className="grid pt-8 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              <EventItem />
-              <EventItem />
-              <EventItem />
-              <EventItem />
-              <EventItem />
-              <EventItem />
+              {displayEvents}
             </div>
           </div>
-          <Pagination />
+          <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
         </div>
       </div>
     </div>
