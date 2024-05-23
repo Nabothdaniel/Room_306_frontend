@@ -29,10 +29,9 @@ const ProfileView = () => {
   }
 
   const handleBook = () => {
-    if (users?.user_type == "client") {
+    if (user?.user_type == "client") {
       setOpenBook(!openBook);
-    } else {
-    }
+    } 
   };
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">

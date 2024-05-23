@@ -47,7 +47,7 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
     >
       <div className="md:w-[800px] w-[90%] rounded-xl py-6 bg-white">
         <div className="border-b-2 pb-4 flex justify-between items-center px-4 pr-7 md:px-8 font-semibold text-[20px] border-[#F1D6D6]">
-          <h2 className="md:text-2xl text-[18px] font-semibold">
+          <h2 className="md:text-2xl text-[16px] font-semibold">
             Booking Details{" "}
             <span className="text-blue-300">
               {user.escort_details.user.display_name}

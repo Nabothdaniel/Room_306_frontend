@@ -1,6 +1,7 @@
 import { ApiSlice } from "./ApiSlice";
 
 const escortApi = ApiSlice.injectEndpoints({
+  
   endpoints: (build) => ({
     getAllEscorts: build.query({
       query: () => "escort/escorts/all/",
@@ -13,6 +14,24 @@ const escortApi = ApiSlice.injectEndpoints({
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
         body,
+      }),
+    }),
+    follow: build.mutation({
+      query: (id) => ({
+        url: `/profile/follow_user/${id}/`,
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
+    favorite: build.mutation({
+      query: (id) => ({
+        url: `/profile/addfavorite/${id}/`,
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
       }),
     }),
 
@@ -28,4 +47,11 @@ const escortApi = ApiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAllEscortsQuery, useRegisterEscortMutation, useUpdateEscortMutation, useGetGalleryQuery } = escortApi;
+export const {
+  useGetAllEscortsQuery,
+  useRegisterEscortMutation,
+  useUpdateEscortMutation,
+  useGetGalleryQuery,
+  useFollowMutation,
+  useFavoriteMutation,
+} = escortApi;

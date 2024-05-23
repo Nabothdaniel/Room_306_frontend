@@ -5,8 +5,21 @@ import User from "../images/user-tick.svg";
 import { FaStar } from "react-icons/fa";
 import Slider1 from "../images/slider1.png";
 import { Link } from "react-router-dom";
+import { useFavoriteMutation, useFollowMutation } from "../redux/EscortApi";
+import toast from "react-hot-toast";
 
 const EscortItems = ({ items }) => {
+  const [favorite] = useFavoriteMutation();
+
+  const handleFavorite = async () => {
+    try {
+      const res = await favorite(items.id).unwrap();
+      toast.success(res.message);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div className="bg-[#1E1E1E] block text-white h-auto  p-3 rounded-lg">
@@ -36,9 +49,7 @@ const EscortItems = ({ items }) => {
             </div>
           </Link>
           <img
-            onClick={() => {
-              alert("hello");
-            }}
+            onClick={handleFavorite}
             src={Love}
             className="size-12 cursor-pointer"
           />

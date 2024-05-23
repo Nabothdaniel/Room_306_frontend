@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Blog from "../images/blog.jpeg";
 import axios from "axios";
 
+
 const EscortBookItem = ({ book }) => {
   const [accept, setAccept] = useState({
     status: "accepted",
@@ -74,14 +75,16 @@ const EscortBookItem = ({ book }) => {
 
   return (
     <div className="flex pt-5 duration-500 pb-4 items-center">
-      <p className="w-[300px] flex items-center justify-center gap-x-3 cursor-pointer font-semibold">
-        <img
-          className="size-[50px] rounded-full"
-          src={`https://room35backend.onrender.com${book?.client?.image}`}
-          alt=""
-        />
-        {book?.client?.display_name}
-      </p>
+    
+        <p className="w-[300px] flex items-center justify-center gap-x-3 cursor-pointer font-semibold">
+          <img
+            className="size-[50px] rounded-full"
+            src={`https://room35backend.onrender.com${book?.client?.image}`}
+            alt=""
+          />
+          {book?.client?.display_name}
+        </p>
+     
       <p className="w-[300px] text-center">{book.time}</p>
       <p className="w-[300px] text-center">{book.date}</p>
       <p className="w-[300px] text-center">{book.message}</p>
