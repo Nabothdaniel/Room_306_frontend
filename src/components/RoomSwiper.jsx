@@ -7,10 +7,16 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import RoomsItem from "./RoomsItem";
-
+import { useGetAllRoomsQuery } from "../redux/roomApi";
+import Loading from "./Loading";
 
 export const RoomSwiper = () => {
-  const names = ["James", "Paul", "John", "George", "Ringo", 1, 2, 3, 4, 5, 6];
+  const { data, isLoading } = useGetAllRoomsQuery();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
       <Swiper
@@ -32,12 +38,12 @@ export const RoomSwiper = () => {
           disableOnInteraction: false,
         }}
         modules={[Autoplay]}
-        className="mySwiper max-w-[1024px] max-h-[1000px] text-white"
+        className="mySwiper max-w-[1024px] max-h-[1000px] lg:h-[1000px] text-white"
       >
-        {names.map((item) => {
+        {data.map((item, index) => {
           return (
-            <SwiperSlide className=" swiper-1" key={item}>
-              {/* <RoomsItem /> */}
+            <SwiperSlide className=" swiper-1" key={index}>
+              <RoomsItem items={item} />
             </SwiperSlide>
           );
         })}

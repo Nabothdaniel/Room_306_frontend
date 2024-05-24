@@ -14,7 +14,13 @@ const roomApi = ApiSlice.injectEndpoints({
         },
       }),
     }),
+    getRoomById: build.query({
+      query: (id) => ({
+        url: `/room/${id}/`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllRoomsQuery, useGetMyRoomsQuery } = roomApi;
+export const { useGetAllRoomsQuery, useGetMyRoomsQuery, useGetRoomByIdQuery } = roomApi;

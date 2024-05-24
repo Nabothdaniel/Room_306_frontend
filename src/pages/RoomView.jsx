@@ -3,10 +3,12 @@ import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Blog from "../images/blog.jpeg";
 import { BlogSwiper } from "../components/BlogSwiper";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
 import Frame from "../images/Frame.svg";
 import { RoomSwiper } from "../components/RoomSwiper";
+import Loading from "../components/Loading";
+import { useGetRoomByIdQuery } from "../redux/roomApi";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -26,12 +28,20 @@ const reducer = (state, action) => {
 };
 
 const RoomView = () => {
+  const { id } = useParams();
+  const { data, isLoading } = useGetRoomByIdQuery(id);
+
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
     open3: false,
   });
   const navigate = useNavigate();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
       <SideBar />
@@ -55,11 +65,11 @@ const RoomView = () => {
             </h2>
             <div className="pt-5">
               <h1 className="md:text-3xl font-semibold text-white pb-5 text-xl">
-                1 BedRoom Apartment
+                {data.title}
               </h1>
               <img
                 className="h-[450px] object-cover md:object-contain rounded-md"
-                src={Blog}
+                src={`https://room35backend.onrender.com${data.cover_image}`}
                 alt=""
               />
             </div>
@@ -99,11 +109,11 @@ const RoomView = () => {
             >
               <div className="grid grid-cols-2 gap-x-3 border-b border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Property Type</h2>
-                <p className="text-[12px]">Apartment</p>
+                <p className="text-[12px]">{data.property_type}</p>
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Contacts</h2>
-                <p className="text-[12px]">+2348172722882</p>
+                <p className="text-[12px]">{data.contacts}</p>
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Rates</h2>
@@ -111,17 +121,17 @@ const RoomView = () => {
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Location</h2>
-                <p className="text-[12px]">Nigeria, Lagos, Lekki</p>
+                <p className="text-[12px]">
+                  {data.city}, {data.state}, {data.country}
+                </p>
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Services</h2>
-                <p className="text-[12px]"></p>
+                <p className="text-[12px]">{data.services}</p>
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Amenities</h2>
-                <p className="text-[12px]">
-                  LED Air-conditioning Swimming Pool Car Parking Furnished
-                </p>
+                <p className="text-[12px]">{data.amenities}</p>
               </div>
             </div>
             <div
@@ -132,9 +142,7 @@ const RoomView = () => {
               <h2 className="md:text-3xl text-xl font-semibold pt-4 pb-3">
                 Policy
               </h2>
-              <p className="md:text-base text-[14px]">
-                No smoking, no noise, no parties
-              </p>
+              <p className="md:text-base text-[14px]">{data.policy}</p>
             </div>
             <div
               className={`bg-[#1e1e1e] text-white  py-4 px-4 md:px-8 h-[400px] rounded-lg mt-10 ${

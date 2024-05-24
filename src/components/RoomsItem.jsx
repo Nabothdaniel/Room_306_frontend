@@ -4,12 +4,13 @@ import Location from "../images/location-tick.svg";
 import Love from "../images/Love.svg";
 import Sort from "../images/sort.svg";
 import { parseISO, format } from "date-fns";
+import { Link } from "react-router-dom";
 
 const RoomsItem = ({ items }) => {
   const parsedDate = parseISO(items.start_date);
   const formattedDate = format(parsedDate, "MMMM d, yyyy");
   return (
-    <div>
+    <Link to={`/rooms/${items.id}`}>
       <div className="bg-[#1E1E1E] text-white p-3 rounded-lg">
         <img
           className="rounded-lg h-[200px] object-cover"
@@ -49,7 +50,7 @@ const RoomsItem = ({ items }) => {
           </span>
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

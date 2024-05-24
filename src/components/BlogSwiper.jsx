@@ -43,7 +43,7 @@ export const BlogSwiper = () => {
           disableOnInteraction: false,
         }}
         modules={[Autoplay]}
-        className="mySwiper max-w-[1024px] max-h-[1000px] text-white"
+        className="mySwiper max-w-[1024px] max-h-[1000px] lg:h-[1000px] text-white"
       >
         {data.map((item) => {
           return (

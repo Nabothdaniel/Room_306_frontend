@@ -7,6 +7,8 @@ import EventItem from "../components/EventItem";
 import Pagination from "../components/Pagination";
 import { useGetAllEventsQuery } from "../redux/EventApi";
 import Loading from "../components/Loading";
+import Frame from "../images/Frame.svg";
+import { Link } from "react-router-dom";
 
 const Events = () => {
   const users = JSON.parse(localStorage.getItem("details"));
@@ -30,8 +32,13 @@ const Events = () => {
           />
           <div className="pb-10 md:pl-2">
             <div className="flex md:pt-10 pb-2 pl-1 justify-between pt-2 items-center">
-              <h2 className="text-white md:py-6 text-[16px] md:text-[20px] font-semibold">
+              <h2 className="text-white flex items-center md:py-6 text-[16px] md:text-[20px] font-semibold">
                 All Events
+                {users?.user?.user_type == "escort" && (
+                  <Link to={"/add-event"}>
+                    <img className="size-9 ml-3" src={Frame} alt="" />
+                  </Link>
+                )}
               </h2>
 
               <img className="w-40" src={Filter} alt="" />
@@ -72,8 +79,13 @@ const Events = () => {
           />
           <div className="pb-10 md:pl-2">
             <div className="flex md:pt-10 pb-2 pl-1 justify-between pt-2 items-center">
-              <h2 className="text-white md:py-6 text-[16px] md:text-[20px] font-semibold">
+              <h2 className="text-white flex items-center md:py-6 text-[16px] md:text-[20px] font-semibold">
                 All Events
+                {users?.user?.user_type == "escort" && (
+                  <Link to={"/add-event"}>
+                    <img className="size-9 ml-3" src={Frame} alt="" />
+                  </Link>
+                )}
               </h2>
 
               <img className="w-40" src={Filter} alt="" />
@@ -125,8 +137,13 @@ const Events = () => {
         />
         <div className="pb-10 md:pl-2">
           <div className="flex md:pt-10 pb-2 pl-1 justify-between pt-2 items-center">
-            <h2 className="text-white md:py-6 text-[16px] md:text-[20px] font-semibold">
+            <h2 className="text-white flex items-center md:py-6 text-[16px] md:text-[20px] font-semibold">
               All Events
+              {users?.user?.user_type == "escort" && (
+                <Link to={"/add-event"}>
+                  <img className="size-9 ml-3" src={Frame} alt="" />
+                </Link>
+              )}
             </h2>
 
             <img className="w-40" src={Filter} alt="" />
