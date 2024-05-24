@@ -5,7 +5,7 @@ import { useProfileQuery } from "../redux/ApiSlice";
 import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { users } from "../redux/UtilSlice";
+
 
 const Profile = () => {
   const dispatch = useDispatch();

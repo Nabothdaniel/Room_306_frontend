@@ -4,7 +4,7 @@ import Details from "./Hooks/Details";
 import { useSelector } from "react-redux";
 
 const App = () => {
-  const token = useSelector((state) => state.Util.token);
+ 
   Details();
 
   return (

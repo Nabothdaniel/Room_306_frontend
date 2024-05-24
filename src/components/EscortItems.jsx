@@ -16,7 +16,7 @@ const EscortItems = ({ items }) => {
       const res = await favorite(items.id).unwrap();
       toast.success(res.message);
     } catch (err) {
-      console.log(err);
+      toast.error(err.data.detail);
     }
   };
 

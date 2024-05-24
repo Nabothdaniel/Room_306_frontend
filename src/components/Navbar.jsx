@@ -11,6 +11,7 @@ import { logout, navClick } from "../redux/UtilSlice";
 import SearchModel from "./SearchModel";
 import ProfileModel from "./ProfileModel";
 import useAuth from "../Hooks/useAuth";
+import Purchase from "../pages/Purchase";
 
 const Navbar = ({ Headervalue, textValue }) => {
   let users = JSON.parse(localStorage.getItem("details"));
@@ -43,6 +44,10 @@ const Navbar = ({ Headervalue, textValue }) => {
     navigate("/");
     window.location.reload(true);
   };
+
+  const wallet = () => {
+    navigate('/my-wallet')
+  }
 
   return (
     <>
@@ -83,7 +88,7 @@ const Navbar = ({ Headervalue, textValue }) => {
             />
           </div>
           {user_id && (
-            <button className="bg-[#E9CB50] hidden lg:block text-[#171717] font-medium rounded-xl py-3 px-4">
+            <button onClick={wallet} className="bg-[#E9CB50] hidden lg:block text-[#171717] font-medium rounded-xl py-3 px-4">
               See Coins
             </button>
           )}
@@ -167,6 +172,7 @@ const Navbar = ({ Headervalue, textValue }) => {
         handleMenu={handleMenu}
         menuClass={`${!openMenu ? "translate-x-[120vw]" : "translate-x-0"}`}
       />
+      
     </>
   );
 };

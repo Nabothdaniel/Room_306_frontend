@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Arrow from "../images/arrow-left.svg";
 import Coin from "../images/coin.svg";
+import Purchase from "./Purchase";
 
 const Wallet = () => {
+  const user = JSON.parse(localStorage.getItem("details"));
+  const [openWallet, setWallet] = useState(false);
+
+  const handleWallet = () => {
+    setWallet(!openWallet);
+  };
+
+  useEffect(() => {
+    if (!user || user == null) {
+      navigate("/");
+      return;
+    }
+  }, []);
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -34,7 +49,10 @@ const Wallet = () => {
               </p>
             </div>
             <div className="flex items-end">
-              <button className="bg-[#E9CB50] text-[14px] font-medium w-[91px] h-[32px] rounded-lg">
+              <button
+                onClick={handleWallet}
+                className="bg-[#E9CB50] text-[14px] font-medium w-[91px] h-[32px] rounded-lg"
+              >
                 Buy Coin
               </button>
             </div>
@@ -73,6 +91,12 @@ const Wallet = () => {
           </div>
         </div>
       </div>
+
+      <Purchase
+        purchaseClass={`${
+          !openWallet ? "translate-x-[120vw]" : "translate-x-0"
+        }`}
+      />
     </div>
   );
 };
