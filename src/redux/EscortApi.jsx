@@ -1,10 +1,13 @@
 import { ApiSlice } from "./ApiSlice";
 
 const escortApi = ApiSlice.injectEndpoints({
-  
   endpoints: (build) => ({
+    getAllEscort: build.query({
+      query: ({ gender, country, sexual_orientation, display_name }) =>
+        `escort/filter/?sexual_orientation=${sexual_orientation}&country=${country}&display_name=${display_name}&gender=${gender}`,
+    }),
     getAllEscorts: build.query({
-      query: () => "escort/escorts/all/",
+      query: () => `/escort/escorts/all/`,
     }),
     updateEscort: build.mutation({
       query: (body) => ({
@@ -54,4 +57,5 @@ export const {
   useGetGalleryQuery,
   useFollowMutation,
   useFavoriteMutation,
+  useGetAllEscortQuery,
 } = escortApi;

@@ -8,11 +8,17 @@ import { useGetAllRoomsQuery } from "../redux/roomApi";
 import Loading from "../components/Loading";
 import Frame from "../images/Frame.svg";
 import { Link } from "react-router-dom";
+import RoomFilter from "../components/RoomFilter";
 
 const Rooms = () => {
   const users = JSON.parse(localStorage.getItem("details"));
   const { data, isLoading } = useGetAllRoomsQuery();
   const [currentPage, setCurrentPage] = useState(0);
+  const [filter, setFilter] = useState(false);
+
+  const handleFilter = () => {
+    setFilter(!filter);
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -39,7 +45,12 @@ const Rooms = () => {
                 )}
               </h2>
               <div className="flex gap-x-3 justify-end">
-                <img src={Filter} alt="" />
+                <img
+                  onClick={handleFilter}
+                  className="cursor-pointer"
+                  src={Filter}
+                  alt=""
+                />
               </div>
             </div>
             <div className=" bg-[#121212]">
@@ -51,6 +62,10 @@ const Rooms = () => {
             </div>
           </div>
         </div>
+        <RoomFilter
+          Filter={handleFilter}
+          RoomClass={`${!filter ? "translate-x-[120vw]" : "translate-x-0"}`}
+        />
       </div>
     );
   }
@@ -76,7 +91,12 @@ const Rooms = () => {
                 )}
               </h2>
               <div className="flex gap-x-3 justify-end">
-                <img src={Filter} alt="" />
+                <img
+                  onClick={handleFilter}
+                  className="cursor-pointer"
+                  src={Filter}
+                  alt=""
+                />
               </div>
             </div>
             <div className=" bg-[#121212]">
@@ -88,6 +108,10 @@ const Rooms = () => {
             </div>
           </div>
         </div>
+        <RoomFilter
+          Filter={handleFilter}
+          RoomClass={`${!filter ? "translate-x-[120vw]" : "translate-x-0"}`}
+        />
       </div>
     );
   }
@@ -122,7 +146,12 @@ const Rooms = () => {
               )}
             </h2>
             <div className="flex gap-x-3 justify-end">
-              <img src={Filter} alt="" />
+              <img
+                onClick={handleFilter}
+                className="cursor-pointer"
+                src={Filter}
+                alt=""
+              />
             </div>
           </div>
           <div className=" bg-[#121212]">
@@ -133,6 +162,10 @@ const Rooms = () => {
           </div>
         </div>
       </div>
+      <RoomFilter
+        Filter={handleFilter}
+        RoomClass={`${!filter ? "translate-x-[120vw]" : "translate-x-0"}`}
+      />
     </div>
   );
 };
