@@ -4,10 +4,12 @@ import Navbar from "../components/Navbar";
 import Arrow from "../images/arrow-left.svg";
 import Coin from "../images/coin.svg";
 import Purchase from "./Purchase";
+import { useNavigate } from "react-router-dom";
 
 const Wallet = () => {
   const user = JSON.parse(localStorage.getItem("details"));
   const [openWallet, setWallet] = useState(false);
+  const navigate = useNavigate()
 
   const handleWallet = () => {
     setWallet(!openWallet);
