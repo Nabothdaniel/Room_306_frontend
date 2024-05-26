@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Blog from "../images/blog.jpeg";
@@ -9,6 +9,7 @@ import Frame from "../images/Frame.svg";
 import { useGetEventByIdQuery } from "../redux/EventApi";
 import Loading from "../components/Loading";
 import { format, parseISO } from "date-fns";
+import Reviews from "../components/Reviews";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -29,6 +30,7 @@ const reducer = (state, action) => {
 
 const EventsView = () => {
   const { id } = useParams();
+  const [review, setReview] = useState(false);
   const { data, isLoading } = useGetEventByIdQuery(id);
 
   const [state, dispatch] = useReducer(reducer, {
@@ -42,12 +44,15 @@ const EventsView = () => {
     return <Loading />;
   }
 
+  const handleReview = () => {
+    setReview(!review);
+  };
+
   const parsedDate = parseISO(data.start_date);
   const Start_Date = format(parsedDate, "d MMMM");
 
   const parsedEndDate = parseISO(data.end_date);
   const End_Date = format(parsedEndDate, "d MMMM");
- 
 
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
@@ -116,7 +121,10 @@ const EventsView = () => {
             >
               <div className="grid grid-cols-2 gap-x-3 border-b border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Event Dates</h2>
-                <p className="text-[12px]">{Start_Date} @ {data.start_time} - {End_Date} @ { data.end_time}</p>
+                <p className="text-[12px]">
+                  {Start_Date} @ {data.start_time} - {End_Date} @{" "}
+                  {data.end_time}
+                </p>
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Event Location</h2>
@@ -152,6 +160,7 @@ const EventsView = () => {
                   </span>
                 </h2>
                 <img
+                  onClick={handleReview}
                   className="size-7 cursor-pointer ml-2"
                   src={Frame}
                   alt=""
@@ -181,6 +190,10 @@ const EventsView = () => {
           </div>
         </div>
       </div>
+      <Reviews
+        reviewClass={`${!review ? "translate-x-[120vw]" : "translate-x-0"}`}
+        handleReview={handleReview}
+      />
     </div>
   );
 };

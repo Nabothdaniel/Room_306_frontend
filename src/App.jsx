@@ -1,11 +1,10 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Details from "./Hooks/Details";
-import { useSelector } from "react-redux";
 import { useGetCountryQuery } from "./redux/CountryApi";
 
 const App = () => {
- // const { data, isLoading } = useGetCountryQuery();
+  const { data, isLoading } = useGetCountryQuery();
 
   Details();
 

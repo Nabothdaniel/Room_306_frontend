@@ -9,6 +9,9 @@ const EscortOneItems = ({ items }) => {
   const parsedDate = parseISO(items.start_date);
   const formattedDate = format(parsedDate, "MMMM d, yyyy");
 
+  const endDate = parseISO(items.end_date);
+  const EndDate = format(endDate, "MMMM d, yyyy");
+
   return (
     <>
       <div className="bg-[#1E1E1E] text-white p-3 rounded-lg">
@@ -19,9 +22,11 @@ const EscortOneItems = ({ items }) => {
         />
         <div className="flex justify-between py-3">
           <div>
-            <h4 className="font-semibold pb-2">{ items.user.display_name}</h4>
+            <h4 className="font-semibold pb-2">{items.user.display_name}</h4>
             <p className="pb-1 text-[12px] md:text-[13px]">
-              <span className="font-semibold">{formattedDate}</span> short time
+              <span className="font-semibold">
+                {formattedDate} - {EndDate}
+              </span>
             </p>
             <p className="flex items-center text-[12px] md:text-[14px]">
               <img src={Location} className="mr-1 size-5" />
