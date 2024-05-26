@@ -5,6 +5,10 @@ const roomApi = ApiSlice.injectEndpoints({
     getAllRooms: build.query({
       query: () => "room/all",
     }),
+    getFilteredRoom: build.query({
+      query: ({ country, city }) =>
+        `room/filter/?country=${country}&city=${city}`,
+    }),
     getMyRooms: build.query({
       query: () => ({
         url: "/room/my_rooms/",
@@ -23,4 +27,9 @@ const roomApi = ApiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAllRoomsQuery, useGetMyRoomsQuery, useGetRoomByIdQuery } = roomApi;
+export const {
+  useGetAllRoomsQuery,
+  useGetMyRoomsQuery,
+  useGetRoomByIdQuery,
+  useGetFilteredRoomQuery,
+} = roomApi;

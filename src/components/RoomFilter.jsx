@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Close from "../images/close-icon.svg";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import Loading from "./Loading";
+import { roomDetails } from "../redux/UtilSlice";
+import { useDispatch } from "react-redux";
 
 const RoomFilter = ({ RoomClass, Filter }) => {
   const { data, isLoading } = useGetCountryQuery();
@@ -10,9 +12,14 @@ const RoomFilter = ({ RoomClass, Filter }) => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
+  const dispatch = useDispatch();
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <div className={`${RoomClass}`}>
+        <Loading />;
+      </div>
+    );
   }
 
   let states;
@@ -39,6 +46,11 @@ const RoomFilter = ({ RoomClass, Filter }) => {
       newCities.push(item);
     });
   });
+
+  const handleSearch = () => {
+    dispatch(roomDetails({ country, state, city }));
+    Filter();
+  };
 
   return (
     <div
@@ -127,7 +139,10 @@ const RoomFilter = ({ RoomClass, Filter }) => {
               </select>
             </div>
           </label>
-          <button className="text-center hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4  font-semibold mt-12 rounded-xl">
+          <button
+            onClick={handleSearch}
+            className="text-center hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4  font-semibold mt-12 rounded-xl"
+          >
             Search
           </button>
         </div>

@@ -4,15 +4,18 @@ import SideBar from "../components/SideBar";
 import Filter from "../images/Input.svg";
 import Pagination from "../components/Pagination";
 import RoomsItem from "../components/RoomsItem";
-import { useGetAllRoomsQuery } from "../redux/roomApi";
+import { useGetAllRoomsQuery, useGetFilteredRoomQuery } from "../redux/roomApi";
 import Loading from "../components/Loading";
 import Frame from "../images/Frame.svg";
 import { Link } from "react-router-dom";
 import RoomFilter from "../components/RoomFilter";
+import { useSelector } from "react-redux";
 
 const Rooms = () => {
+  const country = useSelector((state) => state.Util.roomSearch.country);
+  const city = useSelector((state) => state.Util.roomSearch.city);
   const users = JSON.parse(localStorage.getItem("details"));
-  const { data, isLoading } = useGetAllRoomsQuery();
+  const { data, isLoading } = useGetFilteredRoomQuery({ country, city });
   const [currentPage, setCurrentPage] = useState(0);
   const [filter, setFilter] = useState(false);
 
