@@ -34,6 +34,7 @@ const AddTours = () => {
     city: "",
     state: "",
     start_date: "",
+    end_date: "",
     user: users?.id,
   });
 
@@ -54,6 +55,9 @@ const AddTours = () => {
     }
     if (!data.city) {
       errors.city = "City is required";
+    }
+    if (!data.end_date) {
+      errors.end_date = "End Date is required";
     }
     if (!image) {
       errors.image = "An Image is required";
@@ -77,6 +81,7 @@ const AddTours = () => {
   const formData = new FormData();
   formData.append("title", Data.title);
   formData.append("start_date", Data.start_date);
+  formData.append("end_date", Data.end_date);
   formData.append("cover_image", image);
   formData.append("country", Data.country);
   formData.append("user", Data.user);
@@ -126,7 +131,7 @@ const AddTours = () => {
         );
         toast.success("Tour Created Succesfully");
         navigate("/tours");
-        window.location.reload(true)
+        window.location.reload(true);
 
         setData({
           country: "",
@@ -199,6 +204,24 @@ const AddTours = () => {
                     onchange={handleChange}
                   />
                   <p className="py-1 text-[12px] text-red-500">{error.date}</p>
+                </div>
+                <div className="w-full">
+                  <Input
+                    labelValue={"End Date"}
+                    inputType={"date"}
+                    labelClass={"font-semibold md:text-base text-[14px] py-2"}
+                    required={""}
+                    inputName={"end_date"}
+                    inputClass={
+                      " rounded-xl text-[#102127] placeholder-[#102127]"
+                    }
+                    holder={""}
+                    value={Data.end_date}
+                    onchange={handleChange}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.end_date}
+                  </p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-y-3 gap-x-3 pt-5">
                   <label

@@ -8,13 +8,15 @@ const tourApi = ApiSlice.injectEndpoints({
         url: "/tour/all/",
         method: "GET",
       }),
-      providesTags: (result) =>
-        result
-          ? [
-              { type: "Post", id: "LIST" },
-              ...result.map(({ id }) => ({ type: "Post", id })),
-            ]
-          : [{ type: "Post", id: "LIST" }],
+    }),
+    tourFavorite: build.mutation({
+      query: (id) => ({
+        url: `tour/tours/favorite/${id}/`,
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
     }),
     getMyTour: build.query({
       query: () => ({
@@ -25,7 +27,15 @@ const tourApi = ApiSlice.injectEndpoints({
         },
       }),
     }),
+
+    getTourById: build.query({
+      query: (id) => ({
+        url: `/tour/${id}/`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllTourQuery, useGetMyTourQuery } = tourApi;
+export const { useGetAllTourQuery, useGetMyTourQuery, useGetTourByIdQuery, useTourFavoriteMutation } =
+  tourApi;

@@ -2,38 +2,80 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 
-const Purchase = ({ purchaseClass }) => {
+const Purchase = ({ purchaseClass, handleWallet }) => {
   const user = JSON.parse(localStorage.getItem("details"));
-  const [amount, setAmount] = useState(0);
   const [coin, setCoin] = useState("");
+  const [amount, setAmount] = useState(0);
+  const [mainAmount, setMainAmount] = useState(0);
+  const [amountCoin, setAmountCoin] = useState(0);
 
   const coinPer = 1;
   const coinAmount = 100;
 
+  const PurchaseAmount = {
+    method: "GET",
+    url: "https://currency-converter18.p.rapidapi.com/api/v1/convert",
+    params: {
+      from: user?.currency,
+      to: "USD",
+      amount,
+    },
+    headers: {
+      "X-RapidAPI-Key": "10fdec6f57msh54fc45c2a1b0635p1c25fbjsnb9d4f9d8b135",
+      "X-RapidAPI-Host": "currency-converter18.p.rapidapi.com",
+    },
+  };
+
+  const options = {
+    method: "GET",
+    url: "https://currency-converter18.p.rapidapi.com/api/v1/convert",
+    params: {
+      from: user?.currency,
+      to: "NGN",
+      amount,
+    },
+    headers: {
+      "X-RapidAPI-Key": "10fdec6f57msh54fc45c2a1b0635p1c25fbjsnb9d4f9d8b135",
+      "X-RapidAPI-Host": "currency-converter18.p.rapidapi.com",
+    },
+  };
+
   const currency = async () => {
     try {
-      const res = "";
+      const response = await axios.request(options);
+      setAmountCoin(response?.data?.result?.convertedAmount);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-      console.log(res);
+  const handlePurchaseAmount = async () => {
+    try {
+      const response = await axios.request(PurchaseAmount);
+      setMainAmount(response?.data?.result?.convertedAmount);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    const result = amount / coinAmount;
+    const result = amountCoin / coinAmount;
     setCoin(result * coinPer);
-  }, [amount]);
+  }, [amountCoin]);
 
   useEffect(() => {
     currency();
-  }, []);
+  }, [amount]);
+
+  useEffect(() => {
+    handlePurchaseAmount();
+  }, [amount]);
 
   const config = {
     public_key: "FLWPUBK_TEST-c0b57df8f3e8c9ce075538ebe6565d91-X",
     tx_ref: Date.now(),
-    amount,
-    currency: user?.currency,
+    amount: mainAmount,
+    currency: "USD",
     payment_options: "card,mobilemoney,ussd",
     customer: {
       email: user?.user?.email,
@@ -72,7 +114,9 @@ const Purchase = ({ purchaseClass }) => {
             <p>{user?.currency}</p>
 
             <input
-              onChange={(e) => setAmount(e.target.value)}
+              onChange={(e) => {
+                setAmount(e.target.value);
+              }}
               className="px-2 w-full"
               type="number"
             />
@@ -87,6 +131,13 @@ const Purchase = ({ purchaseClass }) => {
           className="text-center hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4  font-semibold mt-12 rounded-xl"
           {...fwConfig}
         />
+
+        <button
+          onClick={handleWallet}
+          className="text-center hover:bg-red-500/80 duration-500  bg-red-500 w-[100%] py-3 md:py-4  font-semibold mt-4 rounded-xl"
+        >
+          Cancel Purchase
+        </button>
       </div>
     </div>
   );

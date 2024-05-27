@@ -7,7 +7,6 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import FreshEscort from "./FreshEscort";
-import EscortItems from "./EscortItems";
 import Loading from "./Loading";
 import { useGetAllEscortsQuery } from "../redux/EscortApi";
 
@@ -45,9 +44,9 @@ export const BlogSwiper = () => {
         modules={[Autoplay]}
         className="mySwiper max-w-[1024px] max-h-[1000px] lg:h-[1000px] text-white"
       >
-        {data.map((item) => {
+        {data.map((item, index) => {
           return (
-            <SwiperSlide className=" swiper-1" key={item}>
+            <SwiperSlide className=" swiper-1" key={index}>
               <FreshEscort items={item} />
             </SwiperSlide>
           );

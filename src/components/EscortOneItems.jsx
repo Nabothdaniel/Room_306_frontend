@@ -4,22 +4,37 @@ import Location from "../images/location-tick.svg";
 import Love from "../images/Love.svg";
 import User from "../images/user-tick.svg";
 import { parseISO, format } from "date-fns";
+import { Link } from "react-router-dom";
+import { useTourFavoriteMutation } from "../redux/tourApi";
+import toast from "react-hot-toast";
 
 const EscortOneItems = ({ items }) => {
+  const [favorite] = useTourFavoriteMutation();
   const parsedDate = parseISO(items.start_date);
   const formattedDate = format(parsedDate, "MMMM d, yyyy");
 
   const endDate = parseISO(items.end_date);
   const EndDate = format(endDate, "MMMM d, yyyy");
 
+  const handleFavorite = async () => {
+    try {
+      const res = await favorite(items.id);
+      toast.success(res.data.message);
+    } catch (err) {
+     toast.error("Only Signed In User can add to Favorite");
+    }
+  };
+
   return (
     <>
       <div className="bg-[#1E1E1E] text-white p-3 rounded-lg">
-        <img
-          className="rounded-lg h-[200px] object-cover"
-          src={`https://room35backend.onrender.com${items.cover_image}`}
-          alt=""
-        />
+        <Link className="block" to={`/tours/${items.id}`}>
+          <img
+            className="rounded-lg h-[200px]"
+            src={`https://room35backend.onrender.com${items.cover_image}`}
+            alt=""
+          />
+        </Link>
         <div className="flex justify-between py-3">
           <div>
             <h4 className="font-semibold pb-2">{items.user.display_name}</h4>
@@ -35,7 +50,7 @@ const EscortOneItems = ({ items }) => {
               </span>
             </p>
           </div>
-          <img src={Love} className="size-12" />
+          <img onClick={handleFavorite} src={Love} className="size-12 cursor-pointer" />
         </div>
         <p className="lg:text-[15px] text-[12px] text-wrap  pb-2 text-[#DADADA]">
           {items.title}

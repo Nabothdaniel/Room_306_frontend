@@ -49,6 +49,7 @@ import AddRoom from "./pages/AddRoom.jsx";
 import Profile from "./pages/Profile.jsx";
 import Booking from "./pages/Booking.jsx";
 import { Toaster } from "react-hot-toast";
+import TourView from "./pages/TourView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -133,7 +134,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/tours",
-        element: <Tours />,
+        element: <App />,
+        children: [
+          {
+            index: true,
+            element: <Tours />,
+          },
+          {
+            path: ":id",
+            element: <TourView />,
+          },
+        ],
       },
       {
         path: "/rooms",

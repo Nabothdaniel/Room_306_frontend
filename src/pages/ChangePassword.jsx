@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Password from "../images/password.png";
 import Input from "../components/Input";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const ChangePassword = () => {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ const ChangePassword = () => {
             },
           }
         );
-
+          toast.success(res.data.message)
         if (res.status == 200) {
           navigate("/");
         }

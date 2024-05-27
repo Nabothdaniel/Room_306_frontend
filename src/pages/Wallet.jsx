@@ -95,6 +95,7 @@ const Wallet = () => {
       </div>
 
       <Purchase
+        handleWallet={handleWallet}
         purchaseClass={`${
           !openWallet ? "translate-x-[120vw]" : "translate-x-0"
         }`}

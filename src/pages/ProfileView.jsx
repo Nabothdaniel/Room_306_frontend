@@ -9,7 +9,7 @@ import BookingModel from "../components/BookingModel";
 import { useGetProfileByIdQuery } from "../redux/ApiSlice";
 import Loading from "../components/Loading";
 import ProfileEscort from "../components/ProfileEscort";
-import { users } from "../redux/UtilSlice";
+import toast from "react-hot-toast";
 
 const ProfileView = () => {
   const user = JSON.parse(localStorage.getItem("details"));
@@ -31,7 +31,9 @@ const ProfileView = () => {
   const handleBook = () => {
     if (user?.user_type == "client") {
       setOpenBook(!openBook);
-    } 
+    } else {
+      toast.error("Only Client can Book an Escort")
+    }
   };
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
