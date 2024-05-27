@@ -1,14 +1,15 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Blog from "../images/blog.jpeg";
-import { BlogSwiper } from "../components/BlogSwiper";
 import { useNavigate, useParams } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
 import Frame from "../images/Frame.svg";
 import { RoomSwiper } from "../components/RoomSwiper";
 import Loading from "../components/Loading";
-import { useGetRoomByIdQuery } from "../redux/roomApi";
+import { useGetRoomByIdQuery, useGetRoomReviewQuery } from "../redux/roomApi";
+import RoomReview from "../components/RoomReview";
+import { format, parseISO } from "date-fns";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -28,7 +29,9 @@ const reducer = (state, action) => {
 };
 
 const RoomView = () => {
+  const [review, setReview] = useState(false);
   const { id } = useParams();
+  const { data: reviews } = useGetRoomReviewQuery(id);
   const { data, isLoading } = useGetRoomByIdQuery(id);
 
   const [state, dispatch] = useReducer(reducer, {
@@ -41,6 +44,13 @@ const RoomView = () => {
   if (isLoading) {
     return <Loading />;
   }
+
+  const handleReview = () => {
+    setReview(!review);
+  };
+
+  // const postDate = parseISO(data.created_at);
+  // const formatDate = format(postDate, "MMMM dd, yyyy 'at' h:mm a");
 
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
@@ -145,7 +155,7 @@ const RoomView = () => {
               <p className="md:text-base text-[14px]">{data.policy}</p>
             </div>
             <div
-              className={`bg-[#1e1e1e] text-white  py-4 px-4 md:px-8 h-[400px] rounded-lg mt-10 ${
+              className={`bg-[#1e1e1e] text-white  py-4 px-4 md:px-8 pb-8 rounded-lg mt-10 ${
                 !state.open3 && "hidden"
               } `}
             >
@@ -153,14 +163,42 @@ const RoomView = () => {
                 <h2 className="md:text-3xl font-semibold">
                   Reviews{" "}
                   <span className="bg-yellow-300 px-2 py-1 text-base rounded-md text-black">
-                    0
+                    {reviews?.length}
                   </span>
                 </h2>
                 <img
+                  onClick={handleReview}
                   className="size-7 cursor-pointer ml-2"
                   src={Frame}
                   alt=""
                 />
+              </div>
+              <div className="flex flex-col gap-y-2 mt-8">
+                {reviews?.map((item, index) => {
+                  const reviewDate = parseISO(item.created_at);
+                  const formattedDate = format(
+                    reviewDate,
+                    "MMMM dd, yyyy 'at' h:mm a"
+                  );
+
+                  return (
+                    <div
+                      key={index}
+                      className="flex text-white bg-black rounded-xl px-5 py-4"
+                    >
+                      <img className="size-20 rounded-md" src={Blog} alt="" />
+                      <div className="ml-5">
+                        <h2 className="font-semibold md:text-xl text-base">
+                          Adam Fresh
+                        </h2>
+                        <p className="text-[12px] text-white/60">
+                          {formattedDate}
+                        </p>
+                        <p className="pt-2">{item.comment}</p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className="flex text-white pt-10 pb-4">
@@ -186,6 +224,11 @@ const RoomView = () => {
           </div>
         </div>
       </div>
+      <RoomReview
+        id={data.id}
+        reviewClass={`${!review ? "translate-x-[120vw]" : "translate-x-0"}`}
+        handleReview={handleReview}
+      />
     </div>
   );
 };

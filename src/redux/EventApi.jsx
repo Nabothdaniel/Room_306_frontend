@@ -8,7 +8,14 @@ const eventApi = ApiSlice.injectEndpoints({
     getEventById: build.query({
       query: (id) => `/events/${id}/`,
     }),
+    getEventReview: build.query({
+      query: (id) => `/events/reviews/${id}/`,
+    }),
   }),
 });
 
-export const { useGetAllEventsQuery, useGetEventByIdQuery } = eventApi;
+export const {
+  useGetAllEventsQuery,
+  useGetEventByIdQuery,
+  useGetEventReviewQuery,
+} = eventApi;

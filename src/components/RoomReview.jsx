@@ -4,11 +4,13 @@ import TextArea from "./TextArea";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const Reviews = ({ reviewClass, handleReview, id }) => {
+const RoomReview = ({ reviewClass, handleReview, id }) => {
+  let users = JSON.parse(localStorage.getItem("details"));
   const [formData, setFormData] = useState({
-    event: id,
+    room: id,
     rating: "",
     comment: "",
+    user: users.id,
   });
   const [error, setError] = useState("");
 
@@ -39,7 +41,7 @@ const Reviews = ({ reviewClass, handleReview, id }) => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         const res = await axios.post(
-          `https://room35backend.onrender.com/api/events/${id}/review/`,
+          `https://room35backend.onrender.com/api/room/addreview/${id}/`,
           formData,
           {
             headers: {
@@ -123,4 +125,4 @@ const Reviews = ({ reviewClass, handleReview, id }) => {
   );
 };
 
-export default Reviews;
+export default RoomReview;

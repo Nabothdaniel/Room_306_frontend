@@ -6,7 +6,10 @@ import { BlogSwiper } from "../components/BlogSwiper";
 import { useNavigate, useParams } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
 import Frame from "../images/Frame.svg";
-import { useGetEventByIdQuery } from "../redux/EventApi";
+import {
+  useGetEventByIdQuery,
+  useGetEventReviewQuery,
+} from "../redux/EventApi";
 import Loading from "../components/Loading";
 import { format, parseISO } from "date-fns";
 import Reviews from "../components/Reviews";
@@ -31,6 +34,7 @@ const reducer = (state, action) => {
 const EventsView = () => {
   const { id } = useParams();
   const [review, setReview] = useState(false);
+  const { data: reviews } = useGetEventReviewQuery(id);
   const { data, isLoading } = useGetEventByIdQuery(id);
 
   const [state, dispatch] = useReducer(reducer, {
@@ -47,6 +51,9 @@ const EventsView = () => {
   const handleReview = () => {
     setReview(!review);
   };
+
+  const postDate = parseISO(data.created_at);
+  const formatDate = format(postDate, "MMMM dd, yyyy 'at' h:mm a");
 
   const parsedDate = parseISO(data.start_date);
   const Start_Date = format(parsedDate, "d MMMM");
@@ -148,7 +155,7 @@ const EventsView = () => {
               <p className="md:text-base text-[14px]">{data.description}</p>
             </div>
             <div
-              className={`bg-[#1e1e1e] text-white  py-4 px-4 md:px-8 h-[400px] rounded-lg mt-10 ${
+              className={`bg-[#1e1e1e] text-white  py-4 px-4 pb-8 md:px-8 h-fit rounded-lg mt-10 ${
                 !state.open3 && "hidden"
               } `}
             >
@@ -156,7 +163,7 @@ const EventsView = () => {
                 <h2 className="md:text-3xl font-semibold">
                   Reviews{" "}
                   <span className="bg-yellow-300 px-2 py-1 text-base rounded-md text-black">
-                    0
+                    {reviews?.length}
                   </span>
                 </h2>
                 <img
@@ -166,6 +173,33 @@ const EventsView = () => {
                   alt=""
                 />
               </div>
+              <div className="flex flex-col gap-y-2 mt-8">
+                {reviews?.map((item, index) => {
+                  const reviewDate = parseISO(item.created_at);
+                  const formattedDate = format(
+                    reviewDate,
+                    "MMMM dd, yyyy 'at' h:mm a"
+                  );
+
+                  return (
+                    <div
+                      key={index}
+                      className="flex text-white bg-black rounded-xl px-5 py-4"
+                    >
+                      <img className="size-20 rounded-md" src={Blog} alt="" />
+                      <div className="ml-5">
+                        <h2 className="font-semibold md:text-xl text-base">
+                          Adam Fresh
+                        </h2>
+                        <p className="text-[12px] text-white/60">
+                          {formattedDate}
+                        </p>
+                        <p className="pt-2">{item.comment}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
             <div className="flex text-white pt-10 pb-4">
               <img className="size-20 rounded-md" src={Blog} alt="" />
@@ -173,9 +207,7 @@ const EventsView = () => {
                 <h2 className="font-semibold md:text-xl text-base">
                   Adam Fresh
                 </h2>
-                <p className="text-[12px] text-white/60">
-                  May 01, 2024 at 8:12 am
-                </p>
+                <p className="text-[12px] text-white/60">{formatDate}</p>
               </div>
             </div>
           </div>
@@ -191,6 +223,7 @@ const EventsView = () => {
         </div>
       </div>
       <Reviews
+        id={data.id}
         reviewClass={`${!review ? "translate-x-[120vw]" : "translate-x-0"}`}
         handleReview={handleReview}
       />

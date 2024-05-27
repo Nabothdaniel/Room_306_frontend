@@ -24,6 +24,9 @@ const roomApi = ApiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getRoomReview: build.query({
+      query: (id) => `room/room_reviews/${id}/`,
+    }),
   }),
 });
 
@@ -32,4 +35,5 @@ export const {
   useGetMyRoomsQuery,
   useGetRoomByIdQuery,
   useGetFilteredRoomQuery,
+  useGetRoomReviewQuery,
 } = roomApi;
