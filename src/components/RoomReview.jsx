@@ -10,7 +10,7 @@ const RoomReview = ({ reviewClass, handleReview, id }) => {
     room: id,
     rating: "",
     comment: "",
-    user: users.id,
+    user: users?.id,
   });
   const [error, setError] = useState("");
 

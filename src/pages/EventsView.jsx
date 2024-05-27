@@ -13,6 +13,7 @@ import {
 import Loading from "../components/Loading";
 import { format, parseISO } from "date-fns";
 import Reviews from "../components/Reviews";
+import toast from "react-hot-toast";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -32,6 +33,7 @@ const reducer = (state, action) => {
 };
 
 const EventsView = () => {
+  let users = JSON.parse(localStorage.getItem("details"));
   const { id } = useParams();
   const [review, setReview] = useState(false);
   const { data: reviews } = useGetEventReviewQuery(id);
@@ -49,7 +51,11 @@ const EventsView = () => {
   }
 
   const handleReview = () => {
-    setReview(!review);
+    if (users) {
+      setReview(!review);
+    } else {
+      toast.error("You're not a user, Sign In Or Sign Up");
+    }
   };
 
   const postDate = parseISO(data.created_at);

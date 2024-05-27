@@ -16,7 +16,7 @@ const EscortItems = ({ items }) => {
       const res = await favorite(items.id).unwrap();
       toast.success(res.message);
     } catch (err) {
-      toast.error(err.data.detail);
+      toast.error("Only Signed In User can add to Favorite");
     }
   };
 

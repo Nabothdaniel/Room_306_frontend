@@ -10,6 +10,7 @@ import Loading from "../components/Loading";
 import { useGetRoomByIdQuery, useGetRoomReviewQuery } from "../redux/roomApi";
 import RoomReview from "../components/RoomReview";
 import { format, parseISO } from "date-fns";
+import toast from "react-hot-toast";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -29,6 +30,7 @@ const reducer = (state, action) => {
 };
 
 const RoomView = () => {
+  let users = JSON.parse(localStorage.getItem("details"));
   const [review, setReview] = useState(false);
   const { id } = useParams();
   const { data: reviews } = useGetRoomReviewQuery(id);
@@ -46,7 +48,11 @@ const RoomView = () => {
   }
 
   const handleReview = () => {
-    setReview(!review);
+    if (users) {
+      setReview(!review);
+    } else {
+      toast.error("You're not a user, Sign In Or Sign Up");
+    }
   };
 
   // const postDate = parseISO(data.created_at);
