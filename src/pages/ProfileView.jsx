@@ -13,8 +13,8 @@ import toast from "react-hot-toast";
 
 const ProfileView = () => {
   const user = JSON.parse(localStorage.getItem("details"));
-  const { id } = useParams();
-  const { data, isLoading } = useGetProfileByIdQuery(id);
+  const { username } = useParams();
+  const { data, isLoading } = useGetProfileByIdQuery(username);
   const [openBook, setOpenBook] = useState(false);
 
   const navigate = useNavigate();

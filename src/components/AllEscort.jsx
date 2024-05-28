@@ -294,7 +294,7 @@ const AllEscort = () => {
           </label>
         </div>
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-8">
+      <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-8">
         {displayUsers}
       </div>
       <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />

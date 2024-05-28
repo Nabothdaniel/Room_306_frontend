@@ -34,7 +34,7 @@ export const ApiSlice = createApi({
       }),
     }),
     getProfileById: build.query({
-      query: (id) => `/profile/profile/${id}/`,
+      query: (username) => `/profile/username/${username}/`,
     }),
     UploadImage: build.mutation({
       query: (body) => ({

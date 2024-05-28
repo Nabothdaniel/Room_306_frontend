@@ -160,7 +160,7 @@ const Rooms = () => {
             </div>
           </div>
           <div className=" bg-[#121212]">
-            <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+            <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
               {displayRooms}
             </div>
             <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />

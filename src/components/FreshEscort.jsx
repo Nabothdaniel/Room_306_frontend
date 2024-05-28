@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const FreshEscort = ({ items }) => {
   return (
     <Link
-      to={`/escort/${items.id}`}
+      to={`/escort/${items.user.username}`}
       className="bg-[#1E1E1E] block text-white mb-14 p-3 rounded-lg"
     >
       <img

@@ -18,7 +18,7 @@ const reducer = (state, action) => {
   }
 };
 
-const ProfileViewReview = ({ reviewClass }) => {
+const ProfileViewReview = ({ reviewClass, review }) => {
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
@@ -56,8 +56,10 @@ const ProfileViewReview = ({ reviewClass }) => {
         </button>
       </div>
       <div className={`text-white pt-5 text-2xl ${!state.open1 && "hidden"} `}>
-        <h2 className="font-semibold pb-8">1 Reviews</h2>
-        <ReviewEscort />
+        <h2 className="font-semibold pb-8">{review.length} Reviews</h2>
+        {review?.map((item, index) => {
+          return <ReviewEscort key={index} items={item} />;
+        })}
       </div>
     </div>
   );

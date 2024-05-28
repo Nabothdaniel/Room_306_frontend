@@ -31,6 +31,7 @@ const reducer = (state, action) => {
 };
 
 const ProfileViewItems = () => {
+  const user = JSON.parse(localStorage.getItem("details"));
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
@@ -89,7 +90,7 @@ const ProfileViewItems = () => {
       </div>
       <NaughtyProfile naughtClass={`${!state.open4 ? "hidden" : ""}`} />
       <ProfileViewAbout aboutClass={`${!state.open1 ? "hidden" : ""}`} />
-      <ProfileViewReview reviewClass={`${!state.open3 ? "hidden" : ""}`} />
+      <ProfileViewReview review={user.reviews} reviewClass={`${!state.open3 ? "hidden" : ""}`} />
       <ProfileViewGallery galleryClass={`${!state.open2 ? "hidden" : ""}`} />
 
       <div

@@ -31,7 +31,7 @@ const reducer = (state, action) => {
   }
 };
 
-const ProfileEscort = ({user}) => {
+const ProfileEscort = ({ user }) => {
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
@@ -89,9 +89,18 @@ const ProfileEscort = ({user}) => {
         </p>
       </div>
       <NaughtyProfile naughtClass={`${!state.open4 ? "hidden" : ""}`} />
-      <ProfileEscortAbout user={user.escort_details} aboutClass={`${!state.open1 ? "hidden" : ""}`} />
-      <ProfileViewReview reviewClass={`${!state.open3 ? "hidden" : ""}`} />
-      <ProfileEscortGallery data={user.gallery} galleryClass={`${!state.open2 ? "hidden" : ""}`} />
+      <ProfileEscortAbout
+        user={user.escort_details}
+        aboutClass={`${!state.open1 ? "hidden" : ""}`}
+      />
+      <ProfileViewReview
+        review={user.escort_details.reviews}
+        reviewClass={`${!state.open3 ? "hidden" : ""}`}
+      />
+      <ProfileEscortGallery
+        data={user.gallery}
+        galleryClass={`${!state.open2 ? "hidden" : ""}`}
+      />
 
       <div
         className={`${

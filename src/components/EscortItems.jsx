@@ -23,7 +23,7 @@ const EscortItems = ({ items }) => {
   return (
     <>
       <div className="bg-[#1E1E1E] block text-white h-auto  p-3 rounded-lg">
-        <Link className="block" to={`/escort/${items.id}`}>
+        <Link className="block" to={`/escort/${items.user.username}`}>
           <img
             className="rounded-lg h-[200px]"
             src={`https://room35backend.onrender.com${items.user.image}`}
@@ -32,7 +32,7 @@ const EscortItems = ({ items }) => {
         </Link>
 
         <div className="flex justify-between py-3">
-          <Link className="block" to={`/escort/${items.id}`}>
+          <Link className="block" to={`/escort/${items.user.username}`}>
             <div>
               <h4 className="font-semibold pb-2">{items.user.display_name}</h4>
               <p className="pb-1 text-[12px] lg:text-[14px]">
@@ -54,7 +54,7 @@ const EscortItems = ({ items }) => {
             className="size-12 cursor-pointer"
           />
         </div>
-        <Link className="block" to={`/escort/${items.id}`}>
+        <Link className="block" to={`/escort/${items.user.username}`}>
           <p className="lg:text-[15px] text-[12px] text-wrap  pb-2 text-[#DADADA]">
             {items.heading}
           </p>
