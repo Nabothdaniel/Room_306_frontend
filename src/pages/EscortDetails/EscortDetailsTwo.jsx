@@ -92,7 +92,6 @@ const EscortDetailsTwo = () => {
     const validationErrors = validateFormData(formData);
     setError(validationErrors);
 
-    navigate("/services");
     if (Object.keys(validationErrors).length == 0) {
       dispatch(
         details({
@@ -101,23 +100,24 @@ const EscortDetailsTwo = () => {
           available_outcall,
           is_smoker,
         })
-      );
+        );
+        
+        navigate("/services");
 
-
-      setFormData({
-        education: "",
-        occupation: "",
-        about: "",
-        ethnicity: "",
-        bust_size: "",
-        height: "",
-        weight: "",
-        build: "",
-        looks: "",
-        sexual_orientation: "",
-        language_spoken: "",
-        language_influence: "",
-      });
+      // setFormData({
+      //   education: "",
+      //   occupation: "",
+      //   about: "",
+      //   ethnicity: "",
+      //   bust_size: "",
+      //   height: "",
+      //   weight: "",
+      //   build: "",
+      //   looks: "",
+      //   sexual_orientation: "",
+      //   language_spoken: "",
+      //   language_influence: "",
+      // });
     }
   };
 

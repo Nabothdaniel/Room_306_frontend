@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-
 const BookingItem = ({ book }) => {
   const [accept, setAccept] = useState({
     status: "accepted",
@@ -74,19 +73,18 @@ const BookingItem = ({ book }) => {
 
   return (
     <div className="flex pt-5 duration-500 pb-4 items-center">
-     
-        <p className="w-[290px] flex items-center gap-x-3 cursor-pointer font-semibold">
-          <img
-            className="size-[50px] rounded-full"
-            src={`https://room35backend.onrender.com${book.escort.image}`}
-            alt=""
-          />
-          {book.escort.display_name}
-        </p>
-    
-      <p className="w-[300px] ">{book.time}</p>
-      <p className="w-[290px] ">{book.date}</p>
-      <p className="w-[290px] ">{book.message}</p>
+      <p className="w-[290px] flex items-center gap-x-3 cursor-pointer font-semibold">
+        <img
+          className="size-[50px] rounded-full"
+          src={`https://room35backend.onrender.com${book.escort.image}`}
+          alt=""
+        />
+        {book.escort.display_name}
+      </p>
+
+      <p className="w-[300px] text-center">{book.time}</p>
+      <p className="w-[290px] text-center">{book.date}</p>
+      <p className="w-[290px] text-center ">{book.message}</p>
       <p
         className={` ${book.status == "cancelled" && "text-red-400"} ${
           book.status == "completed" && "text-green-400"

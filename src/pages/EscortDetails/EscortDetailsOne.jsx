@@ -163,32 +163,33 @@ const EscortDetailsOne = () => {
       console.log(err);
     }
 
-    // if (Object.keys(validationErrors).length === 0) {
-    //   dispatch(
-    //       details({
-    //           ...formData,
-    //           currency,
-    //           code,
-    //         })
-    //       );
+    if (Object.keys(validationErrors).length === 0) {
+      dispatch(
+        details({
+          ...formData,
+          currency,
+          code,
+        })
+      );
 
-    navigate("/additional-details");
+      navigate("/additional-details");
 
-    // setFormData({
-    //   country: "",
-    //   state: "",
-    //   code: "",
-    //   cities: "",
-    //   gender: "",
-    //   dob: "",
-    //   display_name: "",
-    //   heading: "",
-    //   mobile_number: "",
-    //   email: "",
-    //   password: "",
-    //   username: "",
-    // });
-    // }
+      // setFormData({
+      //   country: "",
+      //   state: "",
+      //   code: "",
+      //   cities: "",
+      //   gender: "",
+      //   dob: "",
+      //   display_name: "",
+      //   heading: "",
+      //   mobile_number: "",
+      //   email: "",
+      //   password: "",
+      //   username: "",
+      // });
+      // }
+    }
   };
 
   return (

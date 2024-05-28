@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import SideBar from "../../components/SideBar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { details } from "../../redux/UtilSlice";
 
 const EscortDetailsFour = () => {
   const currency = useSelector((state) => state.Util.userDetails.currency);
@@ -13,8 +14,27 @@ const EscortDetailsFour = () => {
     (state) => state.Util.userDetails.available_outcall
   );
 
-  
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const [formData, setFormData] = useState({
+    incall_short_time: "",
+    incall_weekend: "",
+    incall_overnight: "",
+    outcall_short_time: "",
+    outcall_weekend: "",
+    outcall_overnight: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    dispatch(details(formData));
+
+    navigate("/profile-upload");
+  };
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -76,6 +96,7 @@ const EscortDetailsFour = () => {
                         className="w-[100%] px-4 bg-[#F0F2F5] rounded-xl py-[10px] md:py-[14px] outline-none"
                         name="incall_short_time"
                         id="incall_short_time"
+                        onChange={handleChange}
                       >
                         <option value="">Choose here</option>
                         <option>1</option>
@@ -210,6 +231,7 @@ const EscortDetailsFour = () => {
                         className="w-[100%] px-4 rounded-xl bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                         name="incall_overnight"
                         id="incall_overnight"
+                        onChange={handleChange}
                       >
                         <option value="">Choose here</option>
                         <option>1</option>
@@ -344,6 +366,7 @@ const EscortDetailsFour = () => {
                         className="w-[100%] px-4 rounded-xl bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                         name="incall_weekend"
                         id="incall_weekend"
+                        onChange={handleChange}
                       >
                         <option value="">Choose here</option>
                         <option>1</option>
@@ -486,6 +509,7 @@ const EscortDetailsFour = () => {
                         className="w-[100%] px-4 rounded-xl bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                         name="outcall_short_time"
                         id="outcall_short_time"
+                        onChange={handleChange}
                       >
                         <option value="">Choose here</option>
                         <option>1</option>
@@ -620,6 +644,7 @@ const EscortDetailsFour = () => {
                         className="w-[100%] px-4 rounded-xl bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                         name="outcall_overnight"
                         id="outcall_overnight"
+                        onChange={handleChange}
                       >
                         <option value="">Choose here</option>
                         <option>1</option>
@@ -754,6 +779,7 @@ const EscortDetailsFour = () => {
                         className="w-[100%] px-4 rounded-xl bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
                         name="outcall_weekend"
                         id="outcall_weekend"
+                        onChange={handleChange}
                       >
                         <option value="">Choose here</option>
                         <option>1</option>
@@ -884,12 +910,12 @@ const EscortDetailsFour = () => {
               <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-3 md:py-4 md:w-[120px] font-medium rounded-xl">
                 Delete
               </button>
-              <Link
-                to={"/profile-upload"}
+              <button
+                onClick={handleSubmit}
                 className="bg-[#E9CB50] block text-center w-[100%] text-[#171717] py-3 md:py-4 md:w-[120px] font-medium rounded-xl"
               >
                 Next
-              </Link>
+              </button>
             </div>
           </div>
         </div>

@@ -3,10 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   navOpen: false,
   userDetails: {},
-  roomSearch: {country: "", city: ""},
+  roomSearch: { country: "", city: "" },
   token: localStorage.getItem("token")
     ? JSON.parse(localStorage.getItem("token"))
     : "",
+  image: [],
 };
 
 export const UtilSlice = createSlice({
@@ -30,9 +31,19 @@ export const UtilSlice = createSlice({
       localStorage.removeItem("details");
       localStorage.removeItem("token");
     },
+    Image: (state, action) => {
+      state.image.push(action.payload);
+    },
   },
 });
 
-export const { users, setCredentials, navClick, details, logout, roomDetails } =
-  UtilSlice.actions;
+export const {
+  users,
+  setCredentials,
+  navClick,
+  details,
+  logout,
+  roomDetails,
+  Image,
+} = UtilSlice.actions;
 export default UtilSlice.reducer;

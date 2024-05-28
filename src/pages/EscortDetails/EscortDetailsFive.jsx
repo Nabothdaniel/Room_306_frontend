@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 import Upload from "../../images/Upload.svg";
 import { useDispatch } from "react-redux";
-
+import { Image, details } from "../../redux/UtilSlice";
 
 const EscortDetailsFive = () => {
   const [image, setImage] = useState("");
@@ -18,13 +18,12 @@ const EscortDetailsFive = () => {
   // for (let i = 0; i < count; i++) {
   //   item.push(i);
   // }
- 
 
-  // const handleImage = () => {
-  //   if (image) {
-  //     dispatch(AddImage({...image}));
-  //   }
-  // };
+  const handleImage = () => {
+    if (image) {
+      dispatch(Image(image));
+    }
+  };
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">

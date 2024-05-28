@@ -179,15 +179,15 @@ const EditClient = () => {
                 value={Data.email}
                 onchange={handleChange}
               />
-              <div className="w-full pr-4">
+              <div className="w-full rounded-xl">
                 <Input
                   labelValue={"Date of Birth"}
                   inputType={"date"}
-                  labelClass={"font-semibold w-full py-2"}
+                  labelClass={"font-semibold pr-2 w-full py-2"}
                   required={""}
                   inputName={"dob"}
                   inputClass={
-                    " rounded-xl w-full text-[#102127] placeholder-[#102127]"
+                    " rounded-xl w-full text-[#102127] pr-2 placeholder-[#102127]"
                   }
                   holder={""}
                   value={Data.dob}

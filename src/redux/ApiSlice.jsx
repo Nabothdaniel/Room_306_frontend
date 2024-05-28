@@ -4,6 +4,9 @@ export const ApiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://room35backend.onrender.com/api/",
   }),
+  refetchOnReconnect: true,
+  refetchOnFocus: true,
+  keepUnusedDataFor: 60,
   tagTypes: ["Post", "User"],
   endpoints: (build) => ({
     registerEscort: build.mutation({

@@ -36,9 +36,11 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
       );
 
       handleBook();
-      toast.success(`Booking Sent to ${user.escort_details.user.display_name} Successfully`);
+      toast.success(
+        `Booking Sent to ${user.escort_details.user.display_name} Successfully`
+      );
     } catch (err) {
-      toast.error("Booking not sent")
+      toast.error("Booking not sent");
     }
   };
 
@@ -62,30 +64,30 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
           />
         </div>
         <div className="px-4 w-full py-5">
-          <div className="w-full pr-4">
+          <div className="w-full">
             <Input
               labelValue={"From Date"}
               inputType={"date"}
-              labelClass={"font-semibold w-full text-black py-2"}
+              labelClass={"font-semibold w-full pr-2 text-black py-2"}
               required={""}
               inputName={"date"}
               inputClass={
-                " rounded-xl bg-[#F0F2F5] w-full text-[#102127] placeholder-[#102127]"
+                " rounded-xl bg-[#F0F2F5] w-full text-[#102127] pr-2 placeholder-[#102127]"
               }
               holder={""}
               value={Data.date}
               onchange={handleChange}
             />
           </div>
-          <div className="w-full pr-4">
+          <div className="w-full ">
             <Input
               labelValue={"Time"}
               inputType={"time"}
-              labelClass={"font-semibold w-full text-black py-2"}
+              labelClass={"font-semibold w-full pr-2 text-black py-2"}
               required={""}
               inputName={"time"}
               inputClass={
-                " rounded-xl bg-[#F0F2F5] w-full  text-[#102127] placeholder-[#102127]"
+                " rounded-xl bg-[#F0F2F5] w-full pr-2  text-[#102127] placeholder-[#102127]"
               }
               holder={""}
               value={Data.time}
