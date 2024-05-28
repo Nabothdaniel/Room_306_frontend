@@ -60,7 +60,7 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
             alt=""
           />
         </div>
-        <div className="px-4 py-5">
+        <div className="px-4 w-full py-5">
           <Input
             labelValue={"From Date"}
             inputType={"date"}

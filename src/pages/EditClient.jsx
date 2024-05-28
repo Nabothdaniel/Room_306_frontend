@@ -144,7 +144,10 @@ const EditClient = () => {
                 }}
               />
               {image ? (
-                <img className="rounded-lg h-[300px]" src={URL.createObjectURL(image)} />
+                <img
+                  className="rounded-lg h-[300px]"
+                  src={URL.createObjectURL(image)}
+                />
               ) : (
                 <img
                   className="h-[300px] w-full rounded-lg"
@@ -176,17 +179,21 @@ const EditClient = () => {
                 value={Data.email}
                 onchange={handleChange}
               />
-              <Input
-                labelValue={"Date of Birth"}
-                inputType={"date"}
-                labelClass={"font-semibold py-2"}
-                required={""}
-                inputName={"dob"}
-                inputClass={" rounded-xl text-[#102127] placeholder-[#102127]"}
-                holder={""}
-                value={Data.dob}
-                onchange={handleChange}
-              />
+              <div className="w-full">
+                <Input
+                  labelValue={"Date of Birth"}
+                  inputType={"date"}
+                  labelClass={"font-semibold py-2"}
+                  required={""}
+                  inputName={"dob"}
+                  inputClass={
+                    " rounded-xl text-[#102127] placeholder-[#102127]"
+                  }
+                  holder={""}
+                  value={Data.dob}
+                  onchange={handleChange}
+                />
+              </div>
               <Input
                 labelValue={"Mobile Number"}
                 labelClass={"font-semibold py-2"}
