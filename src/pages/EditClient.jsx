@@ -25,8 +25,6 @@ const EditClient = () => {
     country_code: users.country_code,
   });
 
-  
-
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
   const { data, isLoading } = useGetCountryQuery();
@@ -146,10 +144,10 @@ const EditClient = () => {
                 }}
               />
               {image ? (
-                <img className="rounded-lg" src={URL.createObjectURL(image)} />
+                <img className="rounded-lg h-[300px]" src={URL.createObjectURL(image)} />
               ) : (
                 <img
-                  className=" rounded-lg"
+                  className="h-[300px] w-full rounded-lg"
                   src={`https://room35backend.onrender.com${users.image}`}
                   alt=""
                 />

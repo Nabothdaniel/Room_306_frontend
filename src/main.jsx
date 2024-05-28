@@ -50,6 +50,7 @@ import Profile from "./pages/Profile.jsx";
 import Booking from "./pages/Booking.jsx";
 import { Toaster } from "react-hot-toast";
 import TourView from "./pages/TourView.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/reset-password",
+        element: <ResetPassword />,
       },
       {
         path: "/edit-client",

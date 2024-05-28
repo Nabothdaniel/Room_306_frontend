@@ -33,7 +33,8 @@ const Media = ({ mediaClass }) => {
           },
         }
       );
-      toast.success(res.data)
+      toast.success(res.data);
+      window.location.reload(true);
     } catch (err) {
       console.log(err);
     }

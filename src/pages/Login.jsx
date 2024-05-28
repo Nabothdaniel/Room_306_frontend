@@ -5,9 +5,8 @@ import { CiMail, CiLock } from "react-icons/ci";
 import { LiaTimesSolid } from "react-icons/lia";
 import { useLoginMutation } from "../redux/ApiSlice";
 import { setCredentials } from "../redux/UtilSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
 
 const Login = ({ loginControl, loginClass }) => {
   const navigate = useNavigate();
@@ -85,9 +84,13 @@ const Login = ({ loginControl, loginClass }) => {
             />
           </div>
         </label>
-        <p className="text-end py-4 text-[#D8D8D8] text-[17px] pr-4">
+        <Link
+          onClick={loginControl}
+          to={"/reset-password"}
+          className="text-end py-4 text-[#D8D8D8] text-[17px] pr-4"
+        >
           Forgot Password?
-        </p>
+        </Link>
         <button
           onClick={handleLogin}
           className="bg-[#E9CB50] w-[100%] text-[18px] md:py-5 py-3 font-semibold text-[#171717] mb-10 rounded-xl"

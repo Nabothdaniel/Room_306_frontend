@@ -53,6 +53,22 @@ export const ApiSlice = createApi({
         body,
       }),
     }),
+
+    ResetPassword: build.mutation({
+      query: (body) => ({
+        url: "auth/forgot-password/",
+        method: "POST",
+        body,
+      }),
+    }),
+
+    NewPassword: build.mutation({
+      query: (body) => ({
+        url: "/auth/reset-password/",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -62,5 +78,7 @@ export const {
   useUpdateClientMutation,
   useLoginMutation,
   useUploadImageMutation,
-  useGetProfileByIdQuery
+  useGetProfileByIdQuery,
+  useResetPasswordMutation,
+  useNewPasswordMutation,
 } = ApiSlice;
