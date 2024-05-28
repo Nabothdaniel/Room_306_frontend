@@ -3,6 +3,7 @@ import Close from "../images/icon.svg";
 import Input from "./Input";
 import TextArea from "./TextArea";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const BookingModel = ({ bookClass, handleBook, user }) => {
   const [Data, setData] = useState({
@@ -35,9 +36,9 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
       );
 
       handleBook();
-      console.log(res);
+      toast.success(`Booking Sent to ${user.escort_details.user.display_name} Successfully`);
     } catch (err) {
-      console.log(err);
+      toast.error("Booking not sent")
     }
   };
 
@@ -61,7 +62,7 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
           />
         </div>
         <div className="px-4 w-full py-5">
-          <div className="w-full">
+          <div className="w-full pr-4">
             <Input
               labelValue={"From Date"}
               inputType={"date"}
@@ -76,7 +77,7 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
               onchange={handleChange}
             />
           </div>
-          <div className="w-full">
+          <div className="w-full pr-4">
             <Input
               labelValue={"Time"}
               inputType={"time"}

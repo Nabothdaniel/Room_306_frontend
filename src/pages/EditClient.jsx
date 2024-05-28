@@ -179,7 +179,7 @@ const EditClient = () => {
                 value={Data.email}
                 onchange={handleChange}
               />
-              <div className="w-full">
+              <div className="w-full pr-4">
                 <Input
                   labelValue={"Date of Birth"}
                   inputType={"date"}
