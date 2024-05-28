@@ -61,32 +61,36 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
           />
         </div>
         <div className="px-4 w-full py-5">
-          <Input
-            labelValue={"From Date"}
-            inputType={"date"}
-            labelClass={"font-semibold text-black py-2"}
-            required={""}
-            inputName={"date"}
-            inputClass={
-              " rounded-xl bg-[#F0F2F5]  text-[#102127] placeholder-[#102127]"
-            }
-            holder={""}
-            value={Data.date}
-            onchange={handleChange}
-          />
-          <Input
-            labelValue={"Time"}
-            inputType={"time"}
-            labelClass={"font-semibold text-black py-2"}
-            required={""}
-            inputName={"time"}
-            inputClass={
-              " rounded-xl bg-[#F0F2F5]  text-[#102127] placeholder-[#102127]"
-            }
-            holder={""}
-            value={Data.time}
-            onchange={handleChange}
-          />
+          <div className="w-full">
+            <Input
+              labelValue={"From Date"}
+              inputType={"date"}
+              labelClass={"font-semibold text-black py-2"}
+              required={""}
+              inputName={"date"}
+              inputClass={
+                " rounded-xl bg-[#F0F2F5]  text-[#102127] placeholder-[#102127]"
+              }
+              holder={""}
+              value={Data.date}
+              onchange={handleChange}
+            />
+          </div>
+          <div className="w-full">
+            <Input
+              labelValue={"Time"}
+              inputType={"time"}
+              labelClass={"font-semibold text-black py-2"}
+              required={""}
+              inputName={"time"}
+              inputClass={
+                " rounded-xl bg-[#F0F2F5]  text-[#102127] placeholder-[#102127]"
+              }
+              holder={""}
+              value={Data.time}
+              onchange={handleChange}
+            />
+          </div>
 
           <TextArea
             labelValue={"Message"}
