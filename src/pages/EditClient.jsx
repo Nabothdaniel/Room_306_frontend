@@ -183,11 +183,11 @@ const EditClient = () => {
                 <Input
                   labelValue={"Date of Birth"}
                   inputType={"date"}
-                  labelClass={"font-semibold py-2"}
+                  labelClass={"font-semibold w-full py-2"}
                   required={""}
                   inputName={"dob"}
                   inputClass={
-                    " rounded-xl text-[#102127] placeholder-[#102127]"
+                    " rounded-xl w-full text-[#102127] placeholder-[#102127]"
                   }
                   holder={""}
                   value={Data.dob}

@@ -65,11 +65,11 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
             <Input
               labelValue={"From Date"}
               inputType={"date"}
-              labelClass={"font-semibold text-black py-2"}
+              labelClass={"font-semibold w-full text-black py-2"}
               required={""}
               inputName={"date"}
               inputClass={
-                " rounded-xl bg-[#F0F2F5]  text-[#102127] placeholder-[#102127]"
+                " rounded-xl bg-[#F0F2F5] w-full text-[#102127] placeholder-[#102127]"
               }
               holder={""}
               value={Data.date}
@@ -80,11 +80,11 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
             <Input
               labelValue={"Time"}
               inputType={"time"}
-              labelClass={"font-semibold text-black py-2"}
+              labelClass={"font-semibold w-full text-black py-2"}
               required={""}
               inputName={"time"}
               inputClass={
-                " rounded-xl bg-[#F0F2F5]  text-[#102127] placeholder-[#102127]"
+                " rounded-xl bg-[#F0F2F5] w-full  text-[#102127] placeholder-[#102127]"
               }
               holder={""}
               value={Data.time}
