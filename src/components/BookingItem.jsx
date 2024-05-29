@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const BookingItem = ({ book }) => {
   const [accept, setAccept] = useState({
@@ -74,12 +75,16 @@ const BookingItem = ({ book }) => {
   return (
     <div className="flex pt-5 duration-500 pb-4 items-center">
       <p className="w-[290px] flex items-center gap-x-3 cursor-pointer font-semibold">
-        <img
-          className="size-[50px] rounded-full"
-          src={`https://room35backend.onrender.com${book.escort.image}`}
-          alt=""
-        />
-        {book.escort.display_name}
+        <Link to={`/escort/${book.escort.username}`}>
+          <img
+            className="size-[50px] rounded-full"
+            src={`https://room35backend.onrender.com${book.escort.image}`}
+            alt=""
+          />
+        </Link>
+        <Link to={`/escort/${book.escort.username}`}>
+          {book.escort.display_name}
+        </Link>
       </p>
 
       <p className="w-[300px] text-center">{book.time}</p>
@@ -95,7 +100,7 @@ const BookingItem = ({ book }) => {
         {book.status}
       </p>
       <div className="w-[300px] text-center flex justify-center gap-x-3">
-        {book.status == "pending" && (
+        {/* {book.status == "pending" && (
           <p
             onClick={handleAccept}
             className="bg-green-300 text-[12px] shadow-2xl  py-1 text-black px-2 rounded-3xl cursor-pointer font-semibold"
@@ -111,7 +116,7 @@ const BookingItem = ({ book }) => {
           >
             Complete
           </p>
-        )}
+        )} */}
         {book.status != "completed" && book.status != "cancelled" && (
           <p
             onClick={handleDecline}
