@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Bdsm from "../images/Bdsm.svg";
@@ -8,8 +8,29 @@ import Filter from "../images/Input.svg";
 import Recent from "../images/Recent.svg";
 import NaugthyItems from "../components/NaugthyItems";
 import Pagination from "../components/Pagination";
+import { useGetAllVideosQuery } from "../redux/EscortApi";
+import Loading from "../components/Loading";
 
 const NaughtVideo = () => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const { data, isLoading } = useGetAllVideosQuery();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  const usersPage = 12;
+
+  const page = currentPage * usersPage;
+
+  const displayVideos = data
+    .slice(page, page + usersPage)
+    .map((item, index) => {
+      return <NaugthyItems key={index} items={item} />;
+    });
+
+  const pageCount = Math.ceil(data.length / usersPage);
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -56,19 +77,10 @@ const NaughtVideo = () => {
           </div>
 
           <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-6">
-            <NaugthyItems />
-            <NaugthyItems />
-            <NaugthyItems />
-            <NaugthyItems />
-            <NaugthyItems />
-            <NaugthyItems />
-            <NaugthyItems />
-            <NaugthyItems />
-            <NaugthyItems />
-            <NaugthyItems />
+            {displayVideos}
           </div>
         </div>
-        <Pagination />
+        <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
       </div>
     </div>
   );

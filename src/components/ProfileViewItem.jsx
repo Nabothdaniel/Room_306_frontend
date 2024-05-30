@@ -3,8 +3,15 @@ import Whatsapp from "../images/whatsapp.svg";
 import Youtube from "../images/youtube.svg";
 import Messenger from "../images/messenger.svg";
 import { EscortProfileSwiper } from "./EscortProfileSwiper";
+import { differenceInYears, parse } from "date-fns";
 
 const ProfileViewItem = ({ handleBook, user }) => {
+  
+
+  const birthDate = parse(user?.escort_details.date_of_birth, "yyyy-MM-dd", new Date());
+  const currentDate = new Date();
+  const age = differenceInYears(currentDate, birthDate);
+
   return (
     <div className="grid md:grid-cols-2 md:px-4 md:pt-4 py-4 px-6 gap-x-6 h-fit pb-7 md:pb-4  rounded-xl bg-[#1E1E1E] ">
       {/* <EscortProfileSwiper data={user.gallery} /> */}
@@ -56,7 +63,7 @@ const ProfileViewItem = ({ handleBook, user }) => {
         <div className="flex justify-around text-white">
           <div className="flex flex-col items-center">
             <p className="text-[24px] font-semibold">
-              {" "}
+              {age}
               <span className="text-[#B29A9A]">yrs</span>
             </p>
             <p className="text-[#B29A9A]">Age</p>

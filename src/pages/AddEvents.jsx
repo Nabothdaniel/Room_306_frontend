@@ -8,10 +8,13 @@ import Loading from "../components/Loading";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
+
 
 const AddEvents = () => {
   const user = JSON.parse(localStorage.getItem("details"));
+  const events = JSON.parse(localStorage.getItem("events"));
+
   const { data, isLoading } = useGetCountryQuery();
   const [image, setImage] = useState();
   const [getState, setGetState] = useState([]);
@@ -20,16 +23,16 @@ const AddEvents = () => {
   const navigate = useNavigate();
 
   const [Data, setData] = useState({
-    country: "",
-    state: "",
-    city: "",
-    start_date: "",
-    available_ticket: "",
-    end_date: "",
-    start_time: "",
-    end_time: "",
-    title: "",
-    description: "",
+    country: events?.country || "",
+    state: events?.state || "",
+    city: events?.city || "",
+    start_date: events?.start_date || "",
+    available_ticket: events?.available_ticket || "",
+    end_date: events?.end_date || "",
+    start_time: events?.start_time || "",
+    end_time: events?.end_time || "",
+    title: events?.title || "",
+    description: events?.description || "",
   });
 
   const validateData = (data) => {
@@ -54,8 +57,10 @@ const AddEvents = () => {
     if (!data.city) {
       errors.cities = "City is required";
     }
-    if (!image) {
-      errors.image = "Please upload Event Cover picture!";
+    if (!events) {
+      if (!image) {
+        errors.image = "Please upload Event Cover picture!";
+      }
     }
 
     if (!data.start_date) {
@@ -88,7 +93,15 @@ const AddEvents = () => {
   const formData = new FormData();
   formData.append("title", Data.title);
   formData.append("start_date", Data.start_date);
-  formData.append("cover_image", image);
+
+  if (image) {
+    formData.append("cover_image", image);
+  }
+
+  if (events) {
+    formData.append("cover_image", events.image);
+  }
+
   formData.append("country", Data.country);
   formData.append("user", user.id);
   formData.append("city", Data.city);
@@ -132,37 +145,76 @@ const AddEvents = () => {
     const validationErrors = validateData(Data);
     setError(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
-      try {
-        const res = await axios.post(
-          "https://room35backend.onrender.com/api/events/create/",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Authorization:
-                "Bearer " + JSON.parse(localStorage.getItem("token")),
-            },
-          }
-        );
+      if (!events) {
+        try {
+          const res = await axios.post(
+            "https://room35backend.onrender.com/api/events/create/",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization:
+                  "Bearer " + JSON.parse(localStorage.getItem("token")),
+              },
+            }
+          );
 
-        toast.success("Event Created Succesfully");
-        setData({
-          country: "",
-          state: "",
-          city: "",
-          start_date: "",
-          available_ticket: "",
-          end_date: "",
-          start_time: "",
-          end_time: "",
-          title: "",
-          description: "",
-        });
-        setImage("");
-        navigate("/events");
-        window.location.reload(true);
-      } catch (err) {
-        console.log(err);
+          console.log(res);
+          toast.success("Event Created Succesfully");
+          setData({
+            country: "",
+            state: "",
+            city: "",
+            start_date: "",
+            available_ticket: "",
+            end_date: "",
+            start_time: "",
+            end_time: "",
+            title: "",
+            description: "",
+          });
+          setImage("");
+          navigate("/events");
+          window.location.reload(true);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      if (events) {
+        try {
+          const res = await axios.put(
+            `https://room35backend.onrender.com/api/events/${events.id}/update/`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization:
+                  "Bearer " + JSON.parse(localStorage.getItem("token")),
+              },
+            }
+          );
+
+          console.log(res);
+          toast.success("Event Updated Succesfully");
+          setData({
+            country: "",
+            state: "",
+            city: "",
+            start_date: "",
+            available_ticket: "",
+            end_date: "",
+            start_time: "",
+            end_time: "",
+            title: "",
+            description: "",
+          });
+          setImage("");
+          navigate("/events");
+          window.location.reload(true);
+        } catch (err) {
+          console.log(err);
+        }
       }
     }
   };
@@ -425,13 +477,25 @@ const AddEvents = () => {
                       handleChange(e);
                     }}
                   />
-                  {image ? (
-                    <img
-                      className="rounded-lg max-h-[500px]"
-                      src={URL.createObjectURL(image)}
-                    />
+                  {events && !image ? (
+                    <span>
+                      <img
+                        className="rounded-xl "
+                        src={`https://room35backend.onrender.com${events.cover_image}`}
+                        alt=""
+                      />
+                    </span>
                   ) : (
-                    <img className=" " src={Upload} alt="" />
+                    <span>
+                      {image ? (
+                        <img
+                          className="rounded-lg max-h-[500px]"
+                          src={URL.createObjectURL(image)}
+                        />
+                      ) : (
+                        <img className="rounded-xl " src={Upload} alt="" />
+                      )}
+                    </span>
                   )}
                 </div>
                 <p className="py-1 text-[12px] text-red-500">{error.image}</p>
@@ -442,7 +506,7 @@ const AddEvents = () => {
                 onClick={handleSubmit}
                 className="bg-[#E9CB50] text-[#171717] mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl"
               >
-                Submit
+                {isLoading ? <LoaderIcon /> : "Submit"}
               </button>
             </div>
           </div>

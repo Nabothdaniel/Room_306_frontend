@@ -1,10 +1,12 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
 import EventItem from "../components/EventItem";
 import MyEventItem from "../components/MyEventItem";
+import { useMyEventQuery } from "../redux/EventApi";
+import Loading from "../components/Loading";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -32,17 +34,18 @@ const reducer = (state, action) => {
 };
 
 const MyEvents = () => {
+  const navigate = useNavigate();
+  const users = JSON.parse(localStorage.getItem("token"));
+  const details = JSON.parse(localStorage.getItem("details"));
 
-   const navigate = useNavigate();
-   const users = JSON.parse(localStorage.getItem("token"));
+  const { data, isLoading } = useMyEventQuery();
 
-   if (!users) {
-     navigate("/");
-   }
-
- 
-
-
+  useEffect(() => {
+    if (details?.user?.user_type !== "escort") {
+      navigate("/");
+      return;
+    }
+  }, []);
 
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
@@ -51,8 +54,11 @@ const MyEvents = () => {
     open4: false,
     open5: false,
   });
-  
- 
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -133,9 +139,15 @@ const MyEvents = () => {
             >
               Add New
             </Link>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              <div className={`${!state.open1 && "hidden"}`}>
-                <MyEventItem />
+            <div className="">
+              <div
+                className={`${
+                  !state.open1 && "hidden"
+                }  grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4   `}
+              >
+                {data.map((item, index) => {
+                  return <MyEventItem key={index} item={item} />;
+                })}
               </div>
             </div>
           </div>

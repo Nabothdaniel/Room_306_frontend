@@ -3,36 +3,36 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const BookingItem = ({ book }) => {
-  const [accept, setAccept] = useState({
-    status: "accepted",
-  });
+  // const [accept, setAccept] = useState({
+  //   status: "accepted",
+  // });
 
-  const [complete, setComplete] = useState({
-    status: "completed",
-  });
+  // const [complete, setComplete] = useState({
+  //   status: "completed",
+  // });
 
   const [cancel, setCancel] = useState({
     status: "cancelled",
   });
 
-  const handleAccept = async () => {
-    try {
-      const res = await axios.put(
-        `https://room35backend.onrender.com/api/booking/accept_decline/${book.id}/`,
-        accept,
-        {
-          headers: {
-            Authorization:
-              "Bearer " + JSON.parse(localStorage.getItem("token")),
-          },
-        }
-      );
+  // const handleAccept = async () => {
+  //   try {
+  //     const res = await axios.put(
+  //       `https://room35backend.onrender.com/api/booking/accept_decline/${book.id}/`,
+  //       accept,
+  //       {
+  //         headers: {
+  //           Authorization:
+  //             "Bearer " + JSON.parse(localStorage.getItem("token")),
+  //         },
+  //       }
+  //     );
 
-      window.location.reload(true);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     window.location.reload(true);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const handleDecline = async () => {
     try {
@@ -53,24 +53,24 @@ const BookingItem = ({ book }) => {
     }
   };
 
-  const handleComplete = async () => {
-    try {
-      const res = await axios.put(
-        `https://room35backend.onrender.com/api/booking/complete/${book.id}/`,
-        complete,
-        {
-          headers: {
-            Authorization:
-              "Bearer " + JSON.parse(localStorage.getItem("token")),
-          },
-        }
-      );
+  // const handleComplete = async () => {
+  //   try {
+  //     const res = await axios.put(
+  //       `https://room35backend.onrender.com/api/booking/complete/${book.id}/`,
+  //       complete,
+  //       {
+  //         headers: {
+  //           Authorization:
+  //             "Bearer " + JSON.parse(localStorage.getItem("token")),
+  //         },
+  //       }
+  //     );
 
-      window.location.reload(true);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     window.location.reload(true);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <div className="flex pt-5 duration-500 pb-4 items-center">

@@ -1,6 +1,7 @@
 import { ApiSlice } from "./ApiSlice";
 
 const escortApi = ApiSlice.injectEndpoints({
+  tagTypes: ["Posts"],
   endpoints: (build) => ({
     getAllEscort: build.query({
       query: ({ gender, country, sexual_orientation, display_name }) =>
@@ -9,6 +10,15 @@ const escortApi = ApiSlice.injectEndpoints({
     getAllEscorts: build.query({
       query: () => `/escort/escorts/all/`,
     }),
+
+    getAllVideos: build.query({
+      query: () => `/escort/allvideos`,
+    }),
+
+    getVideoById: build.query({
+      query: (id) => `/escort/video/${id}/`,
+    }),
+
     updateEscort: build.mutation({
       query: (body) => ({
         url: "/profile/escort/edit/",
@@ -28,6 +38,41 @@ const escortApi = ApiSlice.injectEndpoints({
         },
       }),
     }),
+
+    likeVideo: build.mutation({
+      query: (id) => ({
+        url: `/escort/like-video/${id}/`,
+        method: "PUT",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Posts", id })),
+              { type: "Posts", id: "LIST" },
+            ]
+          : [{ type: "Posts", id: "LIST" }],
+    }),
+
+    unlikeVideo: build.mutation({
+      query: (id) => ({
+        url: `/escort/unlike-video/${id}/`,
+        method: "PUT",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Posts", id })),
+              { type: "Posts", id: "LIST" },
+            ]
+          : [{ type: "Posts", id: "LIST" }],
+    }),
+
     favorite: build.mutation({
       query: (id) => ({
         url: `/profile/addfavorite/${id}/`,
@@ -58,4 +103,8 @@ export const {
   useFollowMutation,
   useFavoriteMutation,
   useGetAllEscortQuery,
+  useGetAllVideosQuery,
+  useGetVideoByIdQuery,
+  useLikeVideoMutation,
+  useUnlikeVideoMutation,
 } = escortApi;

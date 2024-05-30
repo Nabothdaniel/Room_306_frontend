@@ -5,9 +5,16 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import NaugthyItems from "./NaugthyItems";
+import { useGetAllVideosQuery } from "../redux/EscortApi";
+import Loading from "./Loading";
 
 const NaughtSwiper = () => {
-  const names = ["James", "Paul", "John", "George", "Ringo", 1, 2, 3, 4, 5, 6];
+  const { data, isLoading } = useGetAllVideosQuery();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className=" text-white">
       <Swiper
@@ -23,25 +30,25 @@ const NaughtSwiper = () => {
         }}
         breakpoints={{
           640: {
-            slidesPerView: 2.2,
+            slidesPerView: 1.8,
             spaceBetween: 10,
           },
           900: {
-            slidesPerView: 3.2,
+            slidesPerView: 2.8,
             spaceBetween: 10,
           },
           1200: {
-            slidesPerView: 4.06,
+            slidesPerView: 3.5,
             spaceBetween: 10,
           },
         }}
         modules={[Pagination, Autoplay]}
         className="mySwiper "
       >
-        {names.map((item) => {
+        {data.map((item, index) => {
           return (
-            <SwiperSlide className="w-[30px] mb-10 swiper-1" key={item}>
-              <NaugthyItems />
+            <SwiperSlide className="w-[30px] mb-10 swiper-1" key={index}>
+              <NaugthyItems items={item} />
             </SwiperSlide>
           );
         })}

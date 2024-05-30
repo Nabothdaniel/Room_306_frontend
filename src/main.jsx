@@ -186,7 +186,7 @@ const router = createBrowserRouter([
             element: <NaughtVideo />,
           },
           {
-            path: ":title",
+            path: ":id",
             element: <NaughtyVideoView />,
           },
         ],

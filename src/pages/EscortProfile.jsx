@@ -37,11 +37,9 @@ const EscortProfile = () => {
   const parsedDate = parseISO(user.user.createdAt);
   const formattedDate = format(parsedDate, "MMMM d, yyyy");
 
-  if (user.date_of_birth) {
-    const birthDate = parse(user?.date_of_birth, "yyyy-MM-dd", new Date());
-    const currentDate = new Date();
-    const age = differenceInYears(currentDate, birthDate);
-  }
+  const birthDate = parse(user?.date_of_birth, "yyyy-MM-dd", new Date());
+  const currentDate = new Date();
+  const age = differenceInYears(currentDate, birthDate);
 
   const [animationParent] = useAutoAnimate();
   const [state, dispatch] = useReducer(reducer, {
@@ -221,8 +219,8 @@ const EscortProfile = () => {
                 <div className="flex text-white pt-6">
                   <div className="flex mr-5 flex-col items-center">
                     <p className="md:text-[24px] flex items-center text-[16px] font-semibold">
-                      {" "}
-                      <span className="text-[#B29A9A] text-[14px] md:text-base">
+                      {age}
+                      <span className="text-[#B29A9A] pl-1 text-[14px] md:text-base">
                         yrs
                       </span>
                     </p>
