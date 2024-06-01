@@ -33,7 +33,7 @@ const reducer = (state, action) => {
 };
 
 const MyRoom = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem("token"));
 
   // if (!users) {
@@ -49,7 +49,6 @@ const MyRoom = () => {
     open4: false,
     open5: false,
   });
- 
 
   if (isLoading) {
     return <Loading />;
@@ -85,12 +84,12 @@ const MyRoom = () => {
               onClick={() => dispatch({ type: "Change1" })}
               className={`md:mr-10 cursor-pointer ${
                 state.open1 &&
-                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[45px] md:before:w-[80px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[45px] md:before:w-[60px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
               }    `}
             >
               Publish
             </p>
-            <p
+            {/* <p
               onClick={() => dispatch({ type: "Change2" })}
               className={`md:mr-10 cursor-pointer ${
                 state.open2 &&
@@ -108,17 +107,17 @@ const MyRoom = () => {
               }    `}
             >
               Pending
-            </p>
-            <p
+            </p> */}
+            {/* <p
               onClick={() => dispatch({ type: "Change5" })}
               className={`md:mr-10 cursor-pointer ${
                 state.open5 &&
-                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[55px] md:before:w-[70px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+                "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[55px] md:before:w-[60px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
               }    `}
             >
               History
-            </p>
-            <p
+            </p> */}
+            {/* <p
               onClick={() => dispatch({ type: "Change3" })}
               className={`md:mr-10 cursor-pointer ${
                 state.open3 &&
@@ -126,7 +125,7 @@ const MyRoom = () => {
               }    `}
             >
               Suspended
-            </p>
+            </p> */}
           </div>
 
           <div className="mt-10 px-5  rounded-xl py-4 bg-[#1e1e1e]">
@@ -138,9 +137,17 @@ const MyRoom = () => {
             </Link>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               <div className={`${!state.open1 && "hidden"}`}>
-                {data.map((item, index) => {
-                  return <MyRoomItem key={index} item={item} />;
-                })}
+                {data.length == 0 ? (
+                  <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
+                    <p className="text-white md:text-xl ">No Published Room</p>
+                  </div>
+                ) : (
+                  <div>
+                    {data.map((item, index) => {
+                      return <MyRoomItem key={index} item={item} />;
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           </div>

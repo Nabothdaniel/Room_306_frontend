@@ -7,6 +7,8 @@ import EventItem from "../components/EventItem";
 import MyEventItem from "../components/MyEventItem";
 import { useMyEventQuery } from "../redux/EventApi";
 import Loading from "../components/Loading";
+import { formatISO } from "date-fns";
+import { LiaPasteSolid } from "react-icons/lia";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -55,9 +57,17 @@ const MyEvents = () => {
     open5: false,
   });
 
+  const date = new Date();
+
+  const dateISO = formatISO(date);
+
   if (isLoading) {
     return <Loading />;
   }
+
+
+  const past = data.filter((item) => item.end_date < dateISO);
+  const present = data.filter((item) => item.end_date >= dateISO);
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -94,7 +104,7 @@ const MyEvents = () => {
             >
               Attending
             </p>
-            <p
+            {/* <p
               onClick={() => dispatch({ type: "Change2" })}
               className={`md:mr-10 cursor-pointer ${
                 state.open2 &&
@@ -120,11 +130,11 @@ const MyEvents = () => {
               }    `}
             >
               Pending
-            </p>
+            </p> */}
             <p
-              onClick={() => dispatch({ type: "Change5" })}
+              onClick={() => dispatch({ type: "Change2" })}
               className={`md:mr-10 cursor-pointer ${
-                state.open5 &&
+                state.open2 &&
                 "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[55px] md:before:w-[70px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
               }    `}
             >
@@ -145,7 +155,16 @@ const MyEvents = () => {
                   !state.open1 && "hidden"
                 }  grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4   `}
               >
-                {data.map((item, index) => {
+                {present.map((item, index) => {
+                  return <MyEventItem key={index} item={item} />;
+                })}
+              </div>
+              <div
+                className={`${
+                  !state.open2 && "hidden"
+                }  grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4   `}
+              >
+                {past.map((item, index) => {
                   return <MyEventItem key={index} item={item} />;
                 })}
               </div>

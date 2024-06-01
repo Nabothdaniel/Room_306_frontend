@@ -27,7 +27,6 @@ const MyTour = () => {
 
   const details = JSON.parse(localStorage.getItem("details"));
 
-
   useEffect(() => {
     if (details?.user?.user_type !== "escort") {
       navigate("/");
@@ -50,13 +49,9 @@ const MyTour = () => {
     return <Loading />;
   }
 
-  
+  const past = data.filter((item) => item.end_date < dateISO);
+  const present = data.filter((item) => item.end_date >= dateISO);
 
-  const past = data.filter((item) => item.start_date < dateISO);
-  const present = data.filter((item) => item.start_date >= dateISO);
-
-
-  
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -118,9 +113,20 @@ const MyTour = () => {
                     !state.open1 && "hidden"
                   }  grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
                 >
-                  {present.map((item, index) => {
-                    return <MyTourItem key={index} item={item} />;
-                  })}
+                  {present.length == 0 ? (
+                    <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
+                      <p className="text-white md:text-xl ">
+                        No Active Tour Available
+                      </p>
+                    </div>
+                  ) : (
+                    <div>
+                      {" "}
+                      {present.map((item, index) => {
+                        return <MyTourItem key={index} item={item} />;
+                      })}
+                    </div>
+                  )}
                 </div>
 
                 <div
@@ -128,9 +134,19 @@ const MyTour = () => {
                     !state.open2 && "hidden"
                   }  grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
                 >
-                  {past.map((item, index) => {
-                    return <MyTourItem key={index} item={item} />;
-                  })}
+                  {past.length == 0 ? (
+                    <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
+                      <p className="text-white md:text-xl ">
+                        No Inactive Tour Available
+                      </p>
+                    </div>
+                  ) : (
+                    <div>
+                      {past.map((item, index) => {
+                        return <MyTourItem key={index} item={item} />;
+                      })}
+                    </div>
+                  )}
                 </div>
               </div>
             )}

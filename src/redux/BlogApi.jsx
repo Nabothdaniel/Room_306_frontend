@@ -5,7 +5,11 @@ const blogApi = ApiSlice.injectEndpoints({
     getAllBlog: build.query({
       query: () => "blog/list/",
     }),
+
+    getSingleBlog: build.query({
+      query: (slug) => `/blog/details/${slug}/`,
+    }),
   }),
 });
 
-export const { useGetAllBlogQuery } = blogApi;
+export const { useGetAllBlogQuery, useGetSingleBlogQuery } = blogApi;

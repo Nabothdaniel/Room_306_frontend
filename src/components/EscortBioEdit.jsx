@@ -8,25 +8,26 @@ const EscortBioEdit = ({ bioClass, formData, handleChange }) => {
       </h2>
 
       <div className="grid md:grid-cols-2 pt-6 gap-4">
-        <label className="text-white flex flex-col" htmlFor="Weight">
+        <label className="text-white flex flex-col" htmlFor="weight">
           <span className="font-semibold pb-1">
             Weight<span className="text-[#E9CB50]">*</span>
           </span>
           <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
             <select
               className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-              name="Weight"
-              id="Weight"
+              name="weight"
+              id="weight"
               value={formData.weight}
+              onChange={handleChange}
             >
-              <option value=""></option>
-              <option>HetroSexual(Straight)</option>
-              <option>Bisexual</option>
-              <option>Lesian</option>
-              <option>Gay</option>
-              <option>Trans-Sexual</option>
-              <option>Mistress(Domination)</option>
-              <option>Master(Domination)</option>
+              <option value="">Choose here</option>
+              <option>Average</option>
+              <option>BBW</option>
+              <option>Fluffy Light</option>
+              <option>HEAVY</option>
+              <option>Heavy Duty</option>
+              <option>Light</option>
+              <option>SSBBW</option>
             </select>
           </div>
         </label>
@@ -39,15 +40,15 @@ const EscortBioEdit = ({ bioClass, formData, handleChange }) => {
               className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
               name="height"
               id="height"
+              value={formData.height}
+              onChange={handleChange}
             >
-              <option value=""></option>
-              <option>HetroSexual(Straight)</option>
-              <option>Bisexual</option>
-              <option>Lesian</option>
-              <option>Gay</option>
-              <option>Trans-Sexual</option>
-              <option>Mistress(Domination)</option>
-              <option>Master(Domination)</option>
+              <option value="">Choose here</option>
+              <option>Average</option>
+              <option>Not too Tall</option>
+              <option>Portable</option>
+              <option>Tall</option>
+              <option>Very Tall</option>
             </select>
           </div>
         </label>
@@ -61,6 +62,7 @@ const EscortBioEdit = ({ bioClass, formData, handleChange }) => {
               name="ethnicity"
               id="ethnicity"
               value={formData.ethnicity}
+              onChange={handleChange}
             >
               <option value="">Your Ethnicity</option>
               <option>All</option>
@@ -86,6 +88,7 @@ const EscortBioEdit = ({ bioClass, formData, handleChange }) => {
               name="bust-size"
               id="bust-size"
               value={formData.bust_size}
+              onChange={handleChange}
             >
               <option value="">Choose here</option>
               <option>All</option>
@@ -110,6 +113,7 @@ const EscortBioEdit = ({ bioClass, formData, handleChange }) => {
               name="looks"
               id="looks"
               value={formData.looks}
+              onChange={handleChange}
             >
               <option value="">Choose here</option>
               <option>All</option>
@@ -138,6 +142,7 @@ const EscortBioEdit = ({ bioClass, formData, handleChange }) => {
               name="build"
               id="build"
               value={formData.build}
+              onChange={handleChange}
             >
               <option value="">Choose here</option>
               <option>All</option>

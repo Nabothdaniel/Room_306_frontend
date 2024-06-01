@@ -4,9 +4,60 @@ import SideBar from "../components/SideBar";
 import Upload from "../images/video.webp";
 import Input from "../components/Input";
 import TextArea from "../components/TextArea";
+import toast, { LoaderIcon } from "react-hot-toast";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddNaughty = () => {
+  const navigate = useNavigate();
   const [video, setVideo] = useState();
+  const [load, setLoad] = useState(false);
+
+  const [formData, setFormData] = useState({
+    category: "",
+    description: "",
+    title: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async () => {
+    if (formData.category && video && formData.description && formData.title) {
+      setLoad(true);
+      try {
+        const res = await axios.post(
+          "https://room35backend.onrender.com/api/escort/upload-video/",
+          { ...formData, video },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization:
+                "Bearer " + JSON.parse(localStorage.getItem("token")),
+            },
+          }
+        );
+
+        console.log(res);
+        toast.success("Video Created Succesfully");
+        setFormData({
+          category: "",
+          description: "",
+          title: "",
+        });
+        setLoad(false);
+        navigate("/naughty-videos");
+        window.location.reload(true);
+      } catch (err) {
+        setLoad(false);
+        console.log(err);
+      }
+    } else {
+      toast.error("All Field are Required");
+    }
+  };
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -40,14 +91,14 @@ const AddNaughty = () => {
                   hidden
                   onChange={({ target: { files } }) => {
                     if (files) {
-                      setVideo(URL.createObjectURL(files[0]));
+                      setVideo(files[0]);
                     }
                   }}
                 />
                 {video ? (
                   <video
                     className="rounded-lg object-cover lg:w-[80%]"
-                    src={video}
+                    src={URL.createObjectURL(video)}
                   ></video>
                 ) : (
                   <img
@@ -63,13 +114,15 @@ const AddNaughty = () => {
                     labelValue={"Description"}
                     labelClass={"md:text-base text-[14px]"}
                     required={"*"}
-                    inputName={"Description"}
+                    inputName={"description"}
                     inputClass={
                       "p-3 rounded-xl text-[#102127] placeholder-[#102127]"
                     }
                     holder={"In short, tell us about your video"}
                     col={""}
                     row={"7"}
+                    value={formData.description}
+                    onchange={handleChange}
                   />
                 </div>
                 <div className="w-full">
@@ -80,9 +133,11 @@ const AddNaughty = () => {
                     required={"*"}
                     inputName={"title"}
                     inputClass={
-                      " rounded-xl text-[#102127] placeholder-[#102127]"
+                      " rounded-xl text-[#102127] w-full placeholder-[#102127]"
                     }
                     holder={"Enter Here"}
+                    value={formData.title}
+                    onchange={handleChange}
                   />
                 </div>
                 <Input
@@ -95,8 +150,10 @@ const AddNaughty = () => {
                     " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={"Enter Here"}
+                  value={formData.category}
+                  onchange={handleChange}
                 />
-                <Input
+                {/* <Input
                   labelValue={"Tags"}
                   labelClass={"font-semibold md:text-base text-[14px] py-2"}
                   inputType={"text"}
@@ -106,12 +163,16 @@ const AddNaughty = () => {
                     " rounded-xl text-[#102127] placeholder-[#102127]"
                   }
                   holder={"Enter Tags Here"}
-                />
+                /> */}
               </div>
             </div>
             <div className="flex justify-end mt-6">
-              <button className="bg-[#E9CB50] text-[#171717] mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl">
-                Submit
+              <button
+                disabled={load}
+                onClick={handleSubmit}
+                className="bg-[#E9CB50] text-[#171717] mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl"
+              >
+                {load ? <LoaderIcon className="mx-auto" /> : "Submit"}
               </button>
             </div>
           </div>

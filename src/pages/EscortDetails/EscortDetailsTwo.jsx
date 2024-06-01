@@ -68,10 +68,14 @@ const EscortDetailsTwo = () => {
     if (!data.language_influence) {
       errors.level = "Language Level is required";
     }
-    if (!available_incall && !available_outcall) {
-      errors.call = "In Call or Outcall is required";
+    if (!available_incall) {
+      errors.call = "In Call is required";
     }
-    if (is_smoker == null) {
+    if (!available_outcall) {
+      errors.outcall = "Outcall is required";
+    }
+
+    if (is_smoker == "") {
       errors.smoker = "This field is required";
     }
 
@@ -482,7 +486,9 @@ const EscortDetailsTwo = () => {
                       <span className="checkmark"></span>
                     </label>
                   </div>
-                  <p className="py-1 text-[12px] text-red-500">{error.call}</p>
+                  <p className="py-1 text-[12px] text-red-500">
+                    {error.outcall}
+                  </p>
                 </div>
                 <div>
                   <Input

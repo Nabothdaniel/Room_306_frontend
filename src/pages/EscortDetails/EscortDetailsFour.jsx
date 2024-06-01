@@ -32,7 +32,13 @@ const EscortDetailsFour = () => {
   };
 
   const handleSubmit = () => {
-    if (!formData.incall_short_time || !formData.outcall_short_time) {
+    if (
+      !formData.incall_short_time &&
+      !formData.outcall_short_time &&
+      !formData.incall_overnight &&
+      !formData.incall_weekend &&
+      (!formData.outcall_overnight)(!formData.outcall_weekend)
+    ) {
       toast.error("Fill all the Required Field");
     } else {
       dispatch(details(formData));

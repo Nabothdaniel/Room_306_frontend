@@ -8,6 +8,7 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
   const [amount, setAmount] = useState(0);
   const [mainAmount, setMainAmount] = useState(0);
   const [amountCoin, setAmountCoin] = useState(0);
+  const [payment, setPayment] = useState([]);
 
   const coinPer = 1;
   const coinAmount = 100;
@@ -40,6 +41,24 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
     },
   };
 
+  const available = {
+    method: "GET",
+    url: "https://currency-converter18.p.rapidapi.com/api/v1/supportedCurrencies",
+    headers: {
+      "X-RapidAPI-Key": "10fdec6f57msh54fc45c2a1b0635p1c25fbjsnb9d4f9d8b135",
+      "X-RapidAPI-Host": "currency-converter18.p.rapidapi.com",
+    },
+  };
+
+  const availableCurrency = async () => {
+    try {
+      const response = await axios.request(available);
+      setPayment(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const currency = async () => {
     try {
       const response = await axios.request(options);
@@ -59,8 +78,12 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
   };
 
   useEffect(() => {
+    availableCurrency();
+  }, []);
+
+  useEffect(() => {
     const result = amountCoin / coinAmount;
-    setCoin(result * coinPer);
+    setCoin(Math.round(result * coinPer));
   }, [amountCoin]);
 
   useEffect(() => {
@@ -109,9 +132,16 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
         </h2>
 
         <div className="pt-8">
+          <select name="currency" id="">
+            <option value="">Select your payment currency</option>
+
+            {payment.map((item, index) => {
+              return <option>{item.symbol}</option>;
+            })}
+          </select>
           <h2 className="font-medium text-[20px] pb-3">Input Amount</h2>
           <div className="flex items-center border-2 px-3 py-2 rounded-xl">
-            <p>{user?.currency}</p>
+            {/* <p>{user?.currency}</p> */}
 
             <input
               onChange={(e) => {
@@ -125,6 +155,8 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
           <p>
             {amount} {user?.currency} is Equivalent to {coin} coins
           </p>
+
+          <div></div>
         </div>
 
         <FlutterWaveButton

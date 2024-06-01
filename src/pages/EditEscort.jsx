@@ -10,6 +10,8 @@ import EditAbout from "../components/EditAbout";
 import EscortBioEdit from "../components/EscortBioEdit";
 import EscortServicesEdit from "../components/EscortServicesEdit";
 import EscortRateEdit from "../components/EscortRateEdit";
+import { LoaderIcon } from "react-hot-toast";
+import { useEditProfileMutation } from "../redux/EscortApi";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -33,8 +35,10 @@ const reducer = (state, action) => {
 };
 
 const EditEscort = () => {
+  const [edit, { isLoading }] = useEditProfileMutation();
   const [currency, setCurrency] = useState("");
   const navigate = useNavigate();
+
   const users = JSON.parse(localStorage.getItem("details"));
 
   const [formData, setformData] = useState({
@@ -47,14 +51,14 @@ const EditEscort = () => {
     username: users.username,
     country_code: users.user.country_code,
     about: users.about,
-
+    date_of_birth: users.date_of_birth,
     heading: users.heading,
     is_smoker: users.is_smoker,
-    isMale: users.isMale,
-    isFemale: users.isFemale,
+    male: users.isMale,
+    female: users.isFemale,
     sexual_orientation: users.sexual_orientation,
     education: users.education,
-    occupation: users.occupation,
+    ocupation: users.occupation,
     weight: users.weight,
     looks: users.looks,
     height: users.height,
@@ -62,12 +66,30 @@ const EditEscort = () => {
     bust_size: users.bust_size,
     ethnicity: users.ethnicity,
     currency: users.currency,
-    available_incall: users.available_incall,
-    available_outcall: users.available_outcall,
+    incall_overnight: Math.ceil(users.incall_overnight),
+    incall_weekend: Math.ceil(users.incall_weekend),
+    outcall_weekend: Math.ceil(users.outcall_weekend),
+    outcall_overnight: Math.ceil(users.outcall_overnight),
+    incall_short_time: Math.ceil(users.incall_short_time),
+    outcall_short_time: Math.ceil(users.outcall_short_time),
   });
 
   const handleChange = (e) => {
-    setformData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.name == "gender") {
+      if (e.target.value == "male") {
+        setformData({ ...formData, female: false, male: true });
+      } else if (e.target.value == "female") {
+        setformData({ ...formData, male: false, female: true });
+      }
+    } else if (e.target.name == "is_smoker") {
+      if (e.target.value == "true") {
+        setformData({ ...formData, [e.target.name]: e.target.checked });
+      } else {
+        setformData({ ...formData, [e.target.name]: !e.target.checked });
+      }
+    } else {
+      setformData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
 
   const [state, dispatch] = useReducer(reducer, {
@@ -76,6 +98,15 @@ const EditEscort = () => {
     open3: false,
     open4: false,
   });
+
+  const handleSubmit = async () => {
+    try {
+      const res = await edit(formData).unwrap();
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -105,8 +136,16 @@ const EditEscort = () => {
                   <p className="font-semibold pb-3 md:pb-0">
                     {users.user.username}
                   </p>
-                  <button className="bg-[#E9CB50] float-right text-[#171717] text-[14px] h-[35px] md:h-[48px] w-[120px] font-semibold rounded-xl">
-                    Save Changes
+                  <button
+                    onClick={handleSubmit}
+                    disabled={isLoading}
+                    className="bg-[#E9CB50] float-right text-[#171717] text-[14px] h-[35px] md:h-[48px] w-[120px] font-semibold rounded-xl"
+                  >
+                    {isLoading ? (
+                      <LoaderIcon className="mx-auto" />
+                    ) : (
+                      "Save Changes"
+                    )}
                   </button>
                 </div>
                 <Input

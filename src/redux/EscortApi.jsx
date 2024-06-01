@@ -92,6 +92,27 @@ const escortApi = ApiSlice.injectEndpoints({
         },
       }),
     }),
+
+    myVideos: build.query({
+      query: () => ({
+        url: "/escort/myvideos/",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
+
+    editProfile: build.mutation({
+      query: (body) => ({
+        url: "/profile/escort/edit/",
+        method: "PUT",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+        body,
+      }),
+    }),
   }),
 });
 
@@ -107,4 +128,6 @@ export const {
   useGetVideoByIdQuery,
   useLikeVideoMutation,
   useUnlikeVideoMutation,
+  useMyVideosQuery,
+  useEditProfileMutation,
 } = escortApi;

@@ -10,7 +10,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
 
   const { data, isLoading } = useGetCountryQuery();
   const [image, setImage] = useState("");
- 
+
   const [code, setCode] = useState("");
 
   let handleCountry = () => {};
@@ -43,8 +43,6 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
     setGetCities(city);
   };
 
-  console.log(formData)
-
   let newCities = [];
 
   getCities.forEach((childArray) => {
@@ -74,9 +72,11 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
             inputType={"date"}
             labelClass={"font-semibold py-2"}
             required={""}
-            inputName={"date-of-birth"}
+            inputName={"date_of_birth"}
             inputClass={" rounded-xl text-[#102127] placeholder-[#102127]"}
             holder={""}
+            value={formData.date_of_birth}
+            onchange={handleChange}
           />
         </div>
         <label className=" md:col-span-2" htmlFor="">
@@ -91,6 +91,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
             <input
               type="tel"
               className="rounded-xl text-[#102127] placeholder-[#102127] p-3"
+              name="mobile_number"
               placeholder="e.g 0812346789"
               value={formData.mobile_number}
               onChange={handleChange}
@@ -105,9 +106,9 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
               <input
                 onChange={handleChange}
                 type="radio"
-                checked={formData.isMale}
-                name="isMale"
-                value={true}
+                checked={Boolean(formData.male)}
+                name="gender"
+                value="male"
               />
               <span className="checkmark"></span>
             </label>
@@ -117,9 +118,9 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
               <input
                 onChange={handleChange}
                 type="radio"
-                checked={!formData.isMale}
-                name="isFemale"
-                value={true}
+                checked={Boolean(formData.female)}
+                name="gender"
+                value="female"
               />
               <span className="checkmark"></span>
             </label>
@@ -136,7 +137,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
                 <input
                   onChange={handleChange}
                   type="radio"
-                  checked={formData.is_smoker}
+                  checked={Boolean(formData.is_smoker)}
                   name="is_smoker"
                   value={true}
                 />
@@ -150,7 +151,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
                   value={false}
                   type="radio"
                   name="is_smoker"
-                  checked={!formData.is_smoker}
+                  checked={Boolean(!formData.is_smoker)}
                 />
                 <span className="checkmark"></span>
               </label>
@@ -177,10 +178,10 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
             labelClass={"font-semibold"}
             inputType={"text"}
             required={"*"}
-            inputName={"occupation"}
+            inputName={"ocupation"}
             inputClass={" rounded-xl text-[#102127] placeholder-[#102127]"}
             holder={""}
-            value={formData.occupation}
+            value={formData.ocupation}
             onchange={handleChange}
           />
         </div>

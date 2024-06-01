@@ -56,8 +56,8 @@ const TourView = () => {
     }
   };
 
-  //   const postDate = parseISO(data.created_at);
-  //   const formatDate = format(postDate, "MMMM dd, yyyy 'at' h:mm a");
+  const postDate = parseISO(data.user.createdAt);
+  const formatDate = format(postDate, "MMMM dd, yyyy 'at' h:mm a");
 
   const parsedDate = parseISO(data.start_date);
   const Start_Date = format(parsedDate, "d MMMM");
@@ -106,7 +106,7 @@ const TourView = () => {
               >
                 Tour Details
               </p>
-              
+
               <p
                 onClick={() => dispatch({ type: "Change3" })}
                 className={`md:mr-10 mr-4 text-[14px] md:text-base cursor-pointer duration-700 ${
@@ -188,12 +188,16 @@ const TourView = () => {
               </div>
             </div>
             <div className="flex text-white pt-10 pb-4">
-              <img className="size-20 rounded-md" src={Blog} alt="" />
+              <img
+                className="size-20 rounded-md"
+                src={`https://room35backend.onrender.com${data.user.image}`}
+                alt=""
+              />
               <div className="ml-5">
                 <h2 className="font-semibold md:text-xl text-base">
-                  Adam Fresh
+                  {data.user.display_name}
                 </h2>
-                {/* <p className="text-[12px] text-white/60">{formatDate}</p> */}
+                <p className="text-[12px] text-white/60">{formatDate}</p>
               </div>
             </div>
           </div>

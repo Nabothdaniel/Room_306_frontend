@@ -18,6 +18,13 @@ const roomApi = ApiSlice.injectEndpoints({
         },
       }),
     }),
+
+
+
+
+
+
+
     getRoomById: build.query({
       query: (id) => ({
         url: `/room/${id}/`,
@@ -37,3 +44,4 @@ export const {
   useGetFilteredRoomQuery,
   useGetRoomReviewQuery,
 } = roomApi;
+// /room/{room_id}/delete/

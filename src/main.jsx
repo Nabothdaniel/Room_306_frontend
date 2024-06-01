@@ -235,7 +235,7 @@ const router = createBrowserRouter([
         element: <EscortSurvey />,
       },
       {
-        path: "/:title",
+        path: "/blogs/:slug",
         element: <SingleBlog />,
       },
       {
