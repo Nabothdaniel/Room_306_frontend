@@ -4,6 +4,7 @@ import SideBar from "../../components/SideBar";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { details } from "../../redux/UtilSlice";
+import toast from "react-hot-toast";
 
 const EscortDetailsFour = () => {
   const currency = useSelector((state) => state.Util.userDetails.currency);
@@ -31,9 +32,22 @@ const EscortDetailsFour = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(details(formData));
+    if (!formData.incall_short_time || !formData.outcall_short_time) {
+      toast.error("Fill all the Required Field");
+    } else {
+      dispatch(details(formData));
+      navigate("/profile-upload");
+    }
+  };
 
-    navigate("/profile-upload");
+  const handleDelete = () => {
+    let text =
+      "Pressing Delete will cancel your account Creation\nAre you sure? if so press OK.";
+    if (confirm(text) == true) {
+      navigate("/");
+      window.location.reload(true);
+    } else {
+    }
   };
 
   return (
@@ -907,7 +921,10 @@ const EscortDetailsFour = () => {
             </div>
 
             <div className="mt-12 flex md:justify-start justify-between">
-              <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-3 md:py-4 md:w-[120px] font-medium rounded-xl">
+              <button
+                onClick={handleDelete}
+                className="bg-[#CD2727] text-white mr-5 w-[100%] py-3 md:py-4 md:w-[120px] font-medium rounded-xl"
+              >
                 Delete
               </button>
               <button

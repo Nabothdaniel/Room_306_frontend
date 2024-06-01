@@ -31,12 +31,11 @@ const EscortDetailsOne = () => {
   const [formData, setFormData] = useState({
     country: "",
     state: "",
-    code: "",
-    cities: "",
-    gender: "",
-    dob: "",
+    city: "",
+    date_of_birth: "",
     display_name: "",
     heading: "",
+
     mobile_number: "",
     email: "",
     password: "",
@@ -44,7 +43,7 @@ const EscortDetailsOne = () => {
     country_code: "",
   });
 
-  const birthDate = parse(formData.dob, "yyyy-MM-dd", new Date());
+  const birthDate = parse(formData.date_of_birth, "yyyy-MM-dd", new Date());
   const currentDate = new Date();
   const age = differenceInYears(currentDate, birthDate);
 
@@ -77,13 +76,13 @@ const EscortDetailsOne = () => {
     if (!data.country) {
       errors.country = "Country is required";
     }
-    if (!data.cities) {
+    if (!data.city) {
       errors.cities = "City is required";
     }
-    if (!data.gender) {
+    if (data.male == null || data.female == null) {
       errors.gender = "Gender is required";
     }
-    if (!data.dob) {
+    if (!data.date_of_birth) {
       errors.dob = "Date of Birth is required";
     }
     if (age < 18) {
@@ -119,8 +118,23 @@ const EscortDetailsOne = () => {
   }, [formData, confirmPwd]);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.name == "gender") {
+      if (e.target.value == "male") {
+        if (e.target.checked) {
+          setFormData({ ...formData, female: "False", male: "True" });
+        }
+      }
+      if (e.target.value == "female") {
+        if (e.target.checked) {
+          setFormData({ ...formData, male: "False", female: "True" });
+        }
+      }
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
+
+  console.log(formData);
 
   if (isLoading) {
     return <Loading />;
@@ -156,13 +170,6 @@ const EscortDetailsOne = () => {
     const validationErrors = validateFormData(formData);
     setError(validationErrors);
 
-    try {
-      // const hello = await register( formData ).unwrap();
-      // console.log(hello);
-    } catch (err) {
-      console.log(err);
-    }
-
     if (Object.keys(validationErrors).length === 0) {
       dispatch(
         details({
@@ -174,21 +181,19 @@ const EscortDetailsOne = () => {
 
       navigate("/additional-details");
 
-      // setFormData({
-      //   country: "",
-      //   state: "",
-      //   code: "",
-      //   cities: "",
-      //   gender: "",
-      //   dob: "",
-      //   display_name: "",
-      //   heading: "",
-      //   mobile_number: "",
-      //   email: "",
-      //   password: "",
-      //   username: "",
-      // });
-      // }
+      setFormData({
+        country: "",
+        state: "",
+        city: "",
+        gender: "",
+        date_of_birth: "",
+        display_name: "",
+        heading: "",
+        mobile_number: "",
+        email: "",
+        password: "",
+        username: "",
+      });
     }
   };
 
@@ -366,8 +371,8 @@ const EscortDetailsOne = () => {
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                     <select
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
-                      name="cities"
-                      id="cities"
+                      name="city"
+                      id="city"
                       value={formData.cities}
                       onChange={handleChange}
                     >
@@ -393,12 +398,12 @@ const EscortDetailsOne = () => {
                     inputType={"date"}
                     labelClass={"font-semibold py-2"}
                     required={""}
-                    inputName={"dob"}
+                    inputName={"date_of_birth"}
                     inputClass={
                       " rounded-xl text-[#102127] placeholder-[#102127]"
                     }
                     holder={""}
-                    value={formData.dob}
+                    value={formData.date_of_birth}
                     onchange={handleChange}
                   />
                   <p className="py-1 text-[12px] text-red-500">{error.dob}</p>
@@ -411,7 +416,7 @@ const EscortDetailsOne = () => {
                       <input
                         type="radio"
                         name="gender"
-                        value={"male"}
+                        value="male"
                         onChange={handleChange}
                       />
                       <span className="checkmark"></span>
@@ -422,7 +427,7 @@ const EscortDetailsOne = () => {
                       <input
                         type="radio"
                         name="gender"
-                        value={"female"}
+                        value="female"
                         onChange={handleChange}
                       />
                       <span className="checkmark"></span>
@@ -469,9 +474,7 @@ const EscortDetailsOne = () => {
                     >
                       <option value="">Select</option>
 
-                      {code && (
-                        <option>{`${formData.country} +${code}`}</option>
-                      )}
+                      {code && <option>{`+${code}`}</option>}
                     </select>
                   </div>
                   <p className="py-1 text-[12px] text-red-500">{error.code}</p>

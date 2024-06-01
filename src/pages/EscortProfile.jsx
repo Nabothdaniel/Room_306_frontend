@@ -218,7 +218,7 @@ const EscortProfile = () => {
                 </p>
                 <div className="flex text-white pt-6">
                   <div className="flex mr-5 flex-col items-center">
-                    <p className="md:text-[24px] flex items-center text-[16px] font-semibold">
+                    <p className="md:text-[20px] flex items-center text-[16px] font-semibold">
                       {age}
                       <span className="text-[#B29A9A] pl-1 text-[14px] md:text-base">
                         yrs
@@ -227,13 +227,13 @@ const EscortProfile = () => {
                     <p className="text-[#B29A9A]">Age</p>
                   </div>
                   <div className="flex mr-5 flex-col items-center">
-                    <p className="md:text-[24px] text-[16px] font-semibold">
+                    <p className="md:text-[20px] text-[14px] font-semibold">
                       {user.weight}
                     </p>
                     <p className="text-[#B29A9A]">Weight</p>
                   </div>
                   <div className="flex flex-col items-center">
-                    <p className="md:text-[24px] text-[16px] font-semibold">
+                    <p className="md:text-[20px] text-[14px] font-semibold">
                       {user.height}
                     </p>
                     <p className="text-[#B29A9A]">Height</p>

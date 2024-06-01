@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React, { Children, useState } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./tailwind.css";
@@ -51,6 +51,7 @@ import Booking from "./pages/Booking.jsx";
 import { Toaster } from "react-hot-toast";
 import TourView from "./pages/TourView.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
+import { ImageContext } from "./Hooks/ImageContext.jsx";
 
 const router = createBrowserRouter([
   {

@@ -1,43 +1,62 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import User from "../../images/user.jpeg";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Upload from "../../images/Upload.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { ImageContext } from "../../Hooks/ImageContext";
+import axios from "axios";
+import { setCredentials } from "../../redux/UtilSlice";
 
 const EscortDetailsSecFive = () => {
-  const [image, setImage] = useState("");
+  const True = true;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { image } = useContext(ImageContext);
+  const [VImage, setVimage] = useState("");
   const data = useSelector((state) => state.Util.userDetails);
 
-  const formData = new FormData();
-  formData.append("verfication_image", image);
-  formData.append("image", data.image);
+  console.log(data);
 
   const handleSubmit = async () => {
-    if (image) {
+    if (VImage) {
       try {
         const res = await axios.post(
           "https://room35backend.onrender.com/api/auth/register_escort/",
-          { ...data, formData },
+          {
+            ...data,
+            verification_image: VImage,
+            image: image,
+            user_type: "escort",
+          },
           {
             headers: {
               "Content-Type": "multipart/form-data",
             },
           }
         );
-
+        console.log(res);
         dispatch(setCredentials(res.data?.token));
 
-        if (res.status == 200) {
-          navigate("/survey");
-          window.location.reload(true);
-        }
-
-        setApiError("");
+        navigate("/survey");
+        window.location.reload(True);
       } catch (err) {
-        setApiError(err.response?.data?.message);
+        console.log(err);
       }
+    } else {
+      toast.error("A Picture of yourself is needed");
+    }
+  };
+
+  const handleDelete = () => {
+    let text =
+      "Pressing Delete will cancel your account Creation\nAre you sure? if so press OK.";
+    if (confirm(text) == True) {
+      navigate("/");
+      window.location.reload(True);
+    } else {
     }
   };
 
@@ -108,14 +127,14 @@ const EscortDetailsSecFive = () => {
                       hidden
                       onChange={({ target: { files } }) => {
                         if (files) {
-                          setImage(files[0]);
+                          setVimage(files[0]);
                         }
                       }}
                     />
-                    {image ? (
+                    {VImage ? (
                       <img
                         className="rounded-lg h-[330px] object-cover max-w-[280px]"
-                        src={URL.createObjectURL(image)}
+                        src={URL.createObjectURL(VImage)}
                       />
                     ) : (
                       <img
@@ -127,11 +146,17 @@ const EscortDetailsSecFive = () => {
                   </div>
                 </div>
                 <div className="mt-4 flex justify-between md:justify-start">
-                  <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-4 md:w-[120px] font-semibold rounded-xl">
+                  <button
+                    onClick={handleDelete}
+                    className="bg-[#CD2727] text-white mr-5 w-[100%] py-4 md:w-[120px] font-semibold rounded-xl"
+                  >
                     Delete
                   </button>
-                  <button onClick={handleSubmit} className="bg-[#E9CB50] text-center block w-[100%] text-[#171717] py-4 md:w-[120px] font-semibold rounded-xl">
-                    Next
+                  <button
+                    onClick={handleSubmit}
+                    className="bg-[#E9CB50] text-center block w-[100%] text-[#171717] py-4 md:w-[120px] font-semibold rounded-xl"
+                  >
+                    Submit
                   </button>
                 </div>
               </div>

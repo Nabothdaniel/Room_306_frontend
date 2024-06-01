@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const EscortDetailsTwo = () => {
-  const open = useSelector((state) => state.Util.userDetails);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -69,10 +68,10 @@ const EscortDetailsTwo = () => {
     if (!data.language_influence) {
       errors.level = "Language Level is required";
     }
-    if (!(available_incall) && !(available_outcall)) {
+    if (!available_incall && !available_outcall) {
       errors.call = "In Call or Outcall is required";
     }
-    if (!is_smoker) {
+    if (is_smoker == null) {
       errors.smoker = "This field is required";
     }
 
@@ -100,24 +99,24 @@ const EscortDetailsTwo = () => {
           available_outcall,
           is_smoker,
         })
-        );
-        
-        navigate("/services");
+      );
 
-      // setFormData({
-      //   education: "",
-      //   occupation: "",
-      //   about: "",
-      //   ethnicity: "",
-      //   bust_size: "",
-      //   height: "",
-      //   weight: "",
-      //   build: "",
-      //   looks: "",
-      //   sexual_orientation: "",
-      //   language_spoken: "",
-      //   language_influence: "",
-      // });
+      navigate("/services");
+
+      setFormData({
+        education: "",
+        occupation: "",
+        about: "",
+        ethnicity: "",
+        bust_size: "",
+        height: "",
+        weight: "",
+        build: "",
+        looks: "",
+        sexual_orientation: "",
+        language_spoken: "",
+        language_influence: "",
+      });
     }
   };
 
@@ -374,7 +373,7 @@ const EscortDetailsTwo = () => {
                     <label className="container text-white ">
                       Yes
                       <input
-                        value={true}
+                        value={"True"}
                         onChange={(e) => setSmoker(e.target.value)}
                         type="radio"
                         name="smoker"
@@ -385,7 +384,7 @@ const EscortDetailsTwo = () => {
                     <label className="container text-white">
                       No
                       <input
-                        value={false}
+                        value={"False"}
                         onChange={(e) => setSmoker(e.target.value)}
                         type="radio"
                         name="smoker"

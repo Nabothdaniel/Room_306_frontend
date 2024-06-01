@@ -6,9 +6,11 @@ import { EscortProfileSwiper } from "./EscortProfileSwiper";
 import { differenceInYears, parse } from "date-fns";
 
 const ProfileViewItem = ({ handleBook, user }) => {
-  
-
-  const birthDate = parse(user?.escort_details.date_of_birth, "yyyy-MM-dd", new Date());
+  const birthDate = parse(
+    user?.escort_details.date_of_birth,
+    "yyyy-MM-dd",
+    new Date()
+  );
   const currentDate = new Date();
   const age = differenceInYears(currentDate, birthDate);
 
@@ -62,20 +64,20 @@ const ProfileViewItem = ({ handleBook, user }) => {
         </div>
         <div className="flex justify-around text-white">
           <div className="flex flex-col items-center">
-            <p className="text-[24px] font-semibold">
+            <p className="xl:text-[20px] md:text-base text-[14px] font-semibold">
               {age}
               <span className="text-[#B29A9A]">yrs</span>
             </p>
             <p className="text-[#B29A9A]">Age</p>
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-[24px] font-semibold">
+            <p className="xl:text-[20px] md:text-base text-[14px] font-semibold">
               {user.escort_details.weight}
             </p>
             <p className="text-[#B29A9A]">Weight</p>
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-[24px] font-semibold">
+            <p className="xl:text-[20px] md:text-base text-[14px] font-semibold">
               {user.escort_details.height}
             </p>
             <p className="text-[#B29A9A]">Height</p>

@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Avatar from "../../images/avatar2.png";
 import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Upload from "../../images/Upload.svg";
 import { useDispatch } from "react-redux";
 import { Image, details } from "../../redux/UtilSlice";
+import { ImageContext } from "../../Hooks/ImageContext";
+import toast from "react-hot-toast";
 
 const EscortDetailsFive = () => {
-  const [image, setImage] = useState("");
-  const dispatch = useDispatch();
-
-  const [count, setCount] = useState(1);
+  const { image, setImage } = useContext(ImageContext);
+  const [count, setCount] = useState("");
+  const navigate = useNavigate();
 
   // const item = [];
 
@@ -21,7 +22,19 @@ const EscortDetailsFive = () => {
 
   const handleImage = () => {
     if (image) {
-      dispatch(Image(image));
+      navigate("/verification");
+    } else {
+      toast.error("Please Upload a Picture");
+    }
+  };
+
+  const handleDelete = () => {
+    let text =
+      "Pressing Delete will cancel your account Creation\nAre you sure? if so press OK.";
+    if (confirm(text) == true) {
+      navigate("/");
+      window.location.reload(true);
+    } else {
     }
   };
 
@@ -120,7 +133,10 @@ const EscortDetailsFive = () => {
                   </div> */}
                 </div>
                 <div className="mt-4 flex md:justify-start justify-between">
-                  <button className="bg-[#CD2727] text-white mr-5 w-[100%] py-4 md:w-[120px] text font-medium rounded-xl">
+                  <button
+                    onClick={handleDelete}
+                    className="bg-[#CD2727] text-white mr-5 w-[100%] py-4 md:w-[120px] text font-medium rounded-xl"
+                  >
                     Delete
                   </button>
                   <button

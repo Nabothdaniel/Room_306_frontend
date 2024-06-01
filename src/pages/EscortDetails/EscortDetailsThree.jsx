@@ -9,7 +9,7 @@ const EscortDetailsThree = () => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState("");
   const dispatch = useDispatch();
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.checked });
   };
@@ -18,17 +18,27 @@ const navigate = useNavigate()
   );
 
   const handleEscortThree = () => {
+    navigate("/rates");
     if (trueKeys.length >= 5) {
       dispatch(
         details({
           ...formData,
         })
       );
-      navigate('/rates')
       setError("");
       setFormData({});
     } else {
       setError("Select at least five services");
+    }
+  };
+
+  const handleDelete = () => {
+    let text =
+      "Pressing Delete will cancel your account Creation\nAre you sure? if so press OK.";
+    if (confirm(text) == true) {
+      navigate("/");
+      window.location.reload(true);
+    } else {
     }
   };
 
@@ -235,11 +245,7 @@ const navigate = useNavigate()
               </label>
               <label className="checkContainer flex items-center">
                 BDMS (giving)
-                <input
-                  onChange={handleChange}
-                  type="checkbox"
-                  name="bdms_giving"
-                />
+                <input onChange={handleChange} type="checkbox" name="bdms" />
                 <span className="checkmate"></span>
               </label>
               <label className="checkContainer flex items-center">
@@ -658,8 +664,11 @@ const navigate = useNavigate()
               </label>
               <p className="py-1 text-[12px] text-red-500">{error}</p>
             </div>
-            <div className="mt-8 flex justify-between md:w-[15%]">
-              <button className="bg-[#CD2727] mr-5 w-[100%] py-3 md:w-[120px] font-medium rounded-xl">
+            <div className="mt-8 flex gap-x-3">
+              <button
+                onClick={handleDelete}
+                className="bg-[#CD2727] mr-5 w-[100%] py-3 md:w-[120px] font-medium rounded-xl"
+              >
                 Delete
               </button>
               <button
