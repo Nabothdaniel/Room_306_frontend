@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
+import { Convert } from "easy-currencies";
+import toast from "react-hot-toast";
 
 const Purchase = ({ purchaseClass, handleWallet }) => {
   const user = JSON.parse(localStorage.getItem("details"));
@@ -9,83 +11,49 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
   const [mainAmount, setMainAmount] = useState(0);
   const [amountCoin, setAmountCoin] = useState(0);
   const [payment, setPayment] = useState([]);
+  const [curr, setCurr] = useState("USD");
 
   const coinPer = 1;
   const coinAmount = 100;
 
-  const PurchaseAmount = {
-    method: "GET",
-    url: "https://currency-converter18.p.rapidapi.com/api/v1/convert",
-    params: {
-      from: user?.currency,
-      to: "USD",
-      amount,
-    },
-    headers: {
-      "X-RapidAPI-Key": "10fdec6f57msh54fc45c2a1b0635p1c25fbjsnb9d4f9d8b135",
-      "X-RapidAPI-Host": "currency-converter18.p.rapidapi.com",
-    },
-  };
-
-
-  const option = {
-    method: "GET",
-    url: "https://currency-exchange.p.rapidapi.com/listquotes",
-    headers: {
-      "X-RapidAPI-Key": "10fdec6f57msh54fc45c2a1b0635p1c25fbjsnb9d4f9d8b135",
-      "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
-    },
-  };
-
-
-  const options = {
-    method: "GET",
-    url: "https://currency-converter18.p.rapidapi.com/api/v1/convert",
-    params: {
-      from: user?.currency,
-      to: "NGN",
-      amount,
-    },
-    headers: {
-      "X-RapidAPI-Key": "10fdec6f57msh54fc45c2a1b0635p1c25fbjsnb9d4f9d8b135",
-      "X-RapidAPI-Host": "currency-converter18.p.rapidapi.com",
-    },
-  };
-
-  const available = {
-    method: "GET",
-    url: "https://currency-converter18.p.rapidapi.com/api/v1/supportedCurrencies",
-    headers: {
-      "X-RapidAPI-Key": "10fdec6f57msh54fc45c2a1b0635p1c25fbjsnb9d4f9d8b135",
-      "X-RapidAPI-Host": "currency-converter18.p.rapidapi.com",
-    },
-  };
-
-  const availableCurrency = async () => {
+  const paymentSuccess = async (data) => {
     try {
-      const response = await axios.request(option);
-      setPayment(response.data);
-      console.log(response)
-    } catch (error) {
-      console.error(error);
+      const res = await axios.put(
+        "https://room35backend.onrender.com/api/profile/buy_coin/",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer " + JSON.parse(localStorage.getItem("token")),
+          },
+        }
+      );
+
+      toast.success("Payment Successfully");
+      window.location.reload(true);
+    } catch (err) {
+      console.log(err);
     }
   };
 
   const currency = async () => {
-    try {
-      const response = await axios.request(options);
-      setAmountCoin(response?.data?.result?.convertedAmount);
-    } catch (err) {
-      console.log(err);
-    }
+    const value = await Convert(amount).from(curr).to("NGN");
+    setAmountCoin(value);
   };
 
-  const handlePurchaseAmount = async () => {
+  const available = {
+    method: "GET",
+    url: "https://openexchangerates.org/api/currencies.json",
+  };
+
+  const availableCurrency = async () => {
     try {
-      const response = await axios.request(PurchaseAmount);
-      setMainAmount(response?.data?.result?.convertedAmount);
-    } catch (err) {
-      console.log(err);
+      const response = await axios.request(available);
+      setPayment(Object.keys(response.data));
+      // console.log();
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -96,21 +64,17 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
   useEffect(() => {
     const result = amountCoin / coinAmount;
     setCoin(Math.round(result * coinPer));
-  }, [amountCoin]);
+  }, [amountCoin, curr]);
 
   useEffect(() => {
     currency();
-  }, [amount]);
-
-  useEffect(() => {
-    handlePurchaseAmount();
-  }, [amount]);
+  }, [amount, curr]);
 
   const config = {
     public_key: "FLWPUBK_TEST-c0b57df8f3e8c9ce075538ebe6565d91-X",
     tx_ref: Date.now(),
-    amount: mainAmount,
-    currency: "USD",
+    amount,
+    currency: curr,
     payment_options: "card,mobilemoney,ussd",
     customer: {
       email: user?.user?.email,
@@ -128,10 +92,16 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
     ...config,
     text: "Purchase Coin Now",
     callback: (response) => {
-      console.log(response);
+      if (response.charge_response_message == "Approved Successful") {
+        paymentSuccess({ coin_amount: coin, amount: response.amount });
+      } else {
+        toast.error("Payment Not Successful");
+      }
       closePaymentModal();
     },
-    onClose: () => {},
+    onClose: () => {
+      toast.error("Payment Cancelled");
+    },
   };
 
   return (
@@ -144,16 +114,23 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
         </h2>
 
         <div className="pt-8">
-          <select name="currency" id="">
-            <option value="">Select your payment currency</option>
+          <div className="pr-2 border w-fit rounded-3xl mb-7">
+            <select
+              className="py-3 bg-transparent px-2 outline-none rounded-3xl"
+              name="currency"
+              id=""
+              onChange={(e) => setCurr(e.target.value)}
+            >
+              <option value="">Select your payment currency</option>
 
-            {payment.map((item, index) => {
-              return <option>{item.symbol}</option>;
-            })}
-          </select>
+              {payment.map((item, index) => {
+                return <option key={index}>{item}</option>;
+              })}
+            </select>
+          </div>
           <h2 className="font-medium text-[20px] pb-3">Input Amount</h2>
           <div className="flex items-center border-2 px-3 py-2 rounded-xl">
-            {/* <p>{user?.currency}</p> */}
+            <p>{curr}</p>
 
             <input
               onChange={(e) => {
@@ -165,20 +142,27 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
           </div>
 
           <p>
-            {amount} {user?.currency} is Equivalent to {coin} coins
+            {amount} {curr} is Equivalent to {coin} coins
           </p>
+
+          {coin < 100 && (
+            <p className="py-1 text-[12px] text-red-500">
+              Minimum Coin Purchase is 100 coins
+            </p>
+          )}
 
           <div></div>
         </div>
 
         <FlutterWaveButton
+          disabled={coin < 100}
           className="text-center hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4  font-semibold mt-12 rounded-xl"
           {...fwConfig}
         />
 
         <button
           onClick={handleWallet}
-          className="text-center hover:bg-red-500/80 duration-500  bg-red-500 w-[100%] py-3 md:py-4  font-semibold mt-4 rounded-xl"
+          className="text-center hover:bg-red-500/80 duration-500 text-white  bg-red-500 w-[100%] py-3 md:py-4  font-semibold mt-4 rounded-xl"
         >
           Cancel Purchase
         </button>

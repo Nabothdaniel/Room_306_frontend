@@ -14,7 +14,7 @@ const ProfileEscortGallery = ({ galleryClass, data }) => {
 
   return (
     <div
-      className={`${galleryClass} pt-10 grid md:gap-4 gap-2 grid-cols-2 md:grid-cols-4`}
+      className={`${galleryClass} pt-10 grid md:gap-4 gap-2 grid-cols-2 md:grid-cols-3 xl:grid-cols-4`}
     >
       {data.map((item, index) => {
         return (

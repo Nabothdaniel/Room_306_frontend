@@ -25,11 +25,15 @@
       "dest": "/"
     },
     {
+      "src": "/survey",
+      "dest": "/"
+    },
+    {
       "src": "/escort-profile",
       "dest": "/"
     },
     {
-      "src": "/naughty-videos/new",
+      "src": "/naughty-videos",
       "dest": "/"
     },
     {
@@ -70,7 +74,7 @@
       "dest": "/"
     },
     {
-      "src": "/rooms/new",
+      "src": "/adverts",
       "dest": "/"
     },
     {

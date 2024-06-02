@@ -88,7 +88,7 @@ const ProfileEscort = ({ user }) => {
           Services
         </p>
       </div>
-      <NaughtyProfile naughtClass={`${!state.open4 ? "hidden" : ""}`} />
+      {/* <NaughtyProfile naughtClass={`${!state.open4 ? "hidden" : ""}`} /> */}
       <ProfileEscortAbout
         user={user.escort_details}
         aboutClass={`${!state.open1 ? "hidden" : ""}`}

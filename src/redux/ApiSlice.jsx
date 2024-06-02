@@ -16,6 +16,17 @@ export const ApiSlice = createApi({
         body,
       }),
     }),
+
+    wallet: build.query({
+      query: () => ({
+        url: "/profile/userwallet/",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
+
     profile: build.query({
       query: () => ({
         url: "/profile/",
@@ -84,4 +95,5 @@ export const {
   useGetProfileByIdQuery,
   useResetPasswordMutation,
   useNewPasswordMutation,
+  useWalletQuery,
 } = ApiSlice;

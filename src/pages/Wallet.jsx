@@ -5,11 +5,13 @@ import Arrow from "../images/arrow-left.svg";
 import Coin from "../images/coin.svg";
 import Purchase from "./Purchase";
 import { useNavigate } from "react-router-dom";
+import { useWalletQuery } from "../redux/ApiSlice";
 
 const Wallet = () => {
   const user = JSON.parse(localStorage.getItem("details"));
+  const { data } = useWalletQuery();
   const [openWallet, setWallet] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleWallet = () => {
     setWallet(!openWallet);
@@ -45,7 +47,9 @@ const Wallet = () => {
           <div className="w-[300px] h-[92px] flex justify-between bg-[#1E1E1E] pt-4 pb-4 px-4 rounded-xl mb-4">
             <div>
               <p className="text-[#B29A9A] text-[14px]">My Wallet Balance</p>
-              <p className="text-[#F9E598] text-[20px] font-semibold">00.00</p>
+              <p className="text-[#F9E598] text-[20px] font-semibold">
+                {data?.available_coin}
+              </p>
               <p className="uppercase text-[#B29A9A] text-[10px] ">
                 coins in escrow <span>0.00</span>
               </p>
