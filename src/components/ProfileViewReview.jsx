@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import ReviewEscort from "./ReviewEscort";
+import { data } from "autoprefixer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -57,9 +58,15 @@ const ProfileViewReview = ({ reviewClass, review }) => {
       </div>
       <div className={`text-white pt-5 text-2xl ${!state.open1 && "hidden"} `}>
         <h2 className="font-semibold pb-8">{review.length} Reviews</h2>
-        {review?.map((item, index) => {
-          return <ReviewEscort key={index} items={item} />;
-        })}
+        {review.length == 0 ? (
+          <div className="h-[20vh]"></div>
+        ) : (
+          <div>
+            {review?.map((item, index) => {
+              return <ReviewEscort key={index} items={item} />;
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

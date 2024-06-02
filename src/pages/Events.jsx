@@ -77,7 +77,7 @@ const Events = () => {
 
               <img className="w-40" src={Filter} alt="" />
             </div>
-            <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[40vh] rounded-2xl">
+            <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[70vh] rounded-2xl">
               <div className="">
                 <button
                   onClick={() => dispatch({ type: "Change1" })}
@@ -134,7 +134,7 @@ const Events = () => {
 
               <img className="w-40" src={Filter} alt="" />
             </div>
-            <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[40vh] rounded-2xl">
+            <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[70vh] rounded-2xl">
               <div className="">
                 <button
                   onClick={() => dispatch({ type: "Change1" })}

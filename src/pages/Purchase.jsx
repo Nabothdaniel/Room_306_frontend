@@ -27,6 +27,17 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
     },
   };
 
+
+  const option = {
+    method: "GET",
+    url: "https://currency-exchange.p.rapidapi.com/listquotes",
+    headers: {
+      "X-RapidAPI-Key": "10fdec6f57msh54fc45c2a1b0635p1c25fbjsnb9d4f9d8b135",
+      "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
+    },
+  };
+
+
   const options = {
     method: "GET",
     url: "https://currency-converter18.p.rapidapi.com/api/v1/convert",
@@ -52,8 +63,9 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
 
   const availableCurrency = async () => {
     try {
-      const response = await axios.request(available);
+      const response = await axios.request(option);
       setPayment(response.data);
+      console.log(response)
     } catch (error) {
       console.error(error);
     }
