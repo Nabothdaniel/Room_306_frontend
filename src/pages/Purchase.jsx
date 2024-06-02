@@ -51,7 +51,6 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
     try {
       const response = await axios.request(available);
       setPayment(Object.keys(response.data));
-      // console.log();
     } catch (error) {
       console.error(error);
     }
@@ -116,12 +115,12 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
         <div className="pt-8">
           <div className="pr-2 border w-fit rounded-3xl mb-7">
             <select
-              className="py-3 bg-transparent px-2 outline-none rounded-3xl"
+              className="py-3 md:text-base text-[14px] bg-transparent px-2 outline-none rounded-3xl"
               name="currency"
               id=""
               onChange={(e) => setCurr(e.target.value)}
             >
-              <option value="">Select your payment currency</option>
+              <option value="">Select payment currency</option>
 
               {payment.map((item, index) => {
                 return <option key={index}>{item}</option>;
@@ -150,8 +149,6 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
               Minimum Coin Purchase is 100 coins
             </p>
           )}
-
-          <div></div>
         </div>
 
         <FlutterWaveButton

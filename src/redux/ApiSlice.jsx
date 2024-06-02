@@ -27,6 +27,16 @@ export const ApiSlice = createApi({
       }),
     }),
 
+    transaction: build.query({
+      query: () => ({
+        url: "escort/mytransactions/",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
+
     profile: build.query({
       query: () => ({
         url: "/profile/",
@@ -47,6 +57,7 @@ export const ApiSlice = createApi({
         body,
       }),
     }),
+
     getProfileById: build.query({
       query: (username) => `/profile/username/${username}/`,
     }),
@@ -95,5 +106,6 @@ export const {
   useGetProfileByIdQuery,
   useResetPasswordMutation,
   useNewPasswordMutation,
+  useTransactionQuery,
   useWalletQuery,
 } = ApiSlice;

@@ -5,13 +5,14 @@ import Arrow from "../images/arrow-left.svg";
 import Coin from "../images/coin.svg";
 import Purchase from "./Purchase";
 import { useNavigate } from "react-router-dom";
-import { useWalletQuery } from "../redux/ApiSlice";
+import { useTransactionQuery, useWalletQuery } from "../redux/ApiSlice";
 
 const Wallet = () => {
   const user = JSON.parse(localStorage.getItem("details"));
   const { data } = useWalletQuery();
   const [openWallet, setWallet] = useState(false);
   const navigate = useNavigate();
+  const { data: transact } = useTransactionQuery();
 
   const handleWallet = () => {
     setWallet(!openWallet);
@@ -72,27 +73,29 @@ const Wallet = () => {
                 <p className="w-[300px] text-center">Paid</p>
                 <p className="w-[300px] text-center">Status</p>
               </div>
-              <div className="flex pt-5 duration-500 hover:bg-black pb-4 items-center">
-                <p className="w-[300px] text-center">#15267</p>
-                <p className="w-[300px] text-center">Credit</p>
-                <p className="w-[300px] text-center">100</p>
-                <p className="w-[300px] text-center">10000 NGN</p>
-                <p className="w-[300px] text-center">Success</p>
-              </div>
-              <div className="flex pt-5 duration-500 hover:bg-black pb-4 items-center">
-                <p className="w-[300px] text-center">#15267</p>
-                <p className="w-[300px] text-center">Credit</p>
-                <p className="w-[300px] text-center">100</p>
-                <p className="w-[300px] text-center">10000 NGN</p>
-                <p className="text-[#0C8CE9] w-[300px] text-center">Pending</p>
-              </div>
-              <div className="flex pt-5 duration-500 hover:bg-black pb-4 items-center">
-                <p className="w-[300px] text-center">#15267</p>
-                <p className="w-[300px] text-center">Credit</p>
-                <p className="w-[300px] text-center">100</p>
-                <p className="w-[300px] text-center">10000 NGN</p>
-                <p className="text-[#DC3545] w-[300px] text-center">Rejected</p>
-              </div>
+
+              {transact?.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex pt-5 duration-500 hover:bg-black pb-4 items-center"
+                  >
+                    <p className="w-[300px] text-center">#{1447 + index}</p>
+                    <p className="w-[300px] text-center">{item.type}</p>
+                    <p className="w-[300px] text-center">{item.coin}</p>
+                    <p className="w-[300px] text-center">{item.amount}</p>
+                    <p
+                      className={` ${
+                        item.status == "pending" && "text-[#0C8CE9]"
+                      } ${
+                        item.status == "rejected" && "text-[#DC3545]"
+                      } w-[300px] text-center`}
+                    >
+                      {item.status}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

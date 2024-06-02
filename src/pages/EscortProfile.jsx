@@ -13,6 +13,7 @@ import { ProfileSwiper } from "../components/ProfileSwiper";
 import { Link } from "react-router-dom";
 import ProfileViewItems from "../components/ProfileViewItems";
 import { parseISO, format, differenceInYears, parse } from "date-fns";
+import { useWalletQuery } from "../redux/ApiSlice";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -33,7 +34,7 @@ const reducer = (state, action) => {
 
 const EscortProfile = () => {
   const user = JSON.parse(localStorage.getItem("details"));
-
+  const { data } = useWalletQuery();
   const parsedDate = parseISO(user.user.createdAt);
   const formattedDate = format(parsedDate, "MMMM d, yyyy");
 
@@ -78,7 +79,7 @@ const EscortProfile = () => {
               <p className="flex items-center pb-4">
                 <IoPhonePortraitOutline className="text-xl mr-2" />
                 <span className="md:text-base text-[14px]">
-                  +{user.user.mobile_number}
+                  {user.user.mobile_number}
                 </span>
               </p>
               <p className="flex items-center">
@@ -113,10 +114,10 @@ const EscortProfile = () => {
               </div>
               <div className="ml-4">
                 <p className="md:text-[20px] text-[15px] font-semibold">
-                  My Wallet
+                  My Coin
                 </p>
                 <p className="md:text-[26px] text-[18px] font-semibold">
-                  {user.user.available_coin}
+                  {data?.available_coin}
                 </p>
               </div>
             </div>

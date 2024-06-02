@@ -3,12 +3,44 @@ import ScrollToTop from "./components/ScrollToTop";
 import Details from "./Hooks/Details";
 import { useGetCountryQuery } from "./redux/CountryApi";
 import { ImageContext } from "./Hooks/ImageContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { differenceInDays, parseISO } from "date-fns";
+import PopUp from "./components/PopUp";
+import toast from "react-hot-toast";
+import { useWalletQuery } from "./redux/ApiSlice";
 
 const App = () => {
+  let users = JSON.parse(localStorage.getItem("details"));
   const [image, setImage] = useState("");
   const { data, isLoading } = useGetCountryQuery();
+  const [pop, setPop] = useState(true);
+  const [day, setDay] = useState("");
+  const { data: pay } = useWalletQuery();
+
   Details();
+
+  useEffect(() => {
+    if (users?.user?.user_type == "escort") {
+      const birthDate = parseISO(
+        users?.user?.createdAt,
+        "yyyy-MM-dd",
+        new Date()
+      );
+      const currentDate = new Date();
+      setDay(differenceInDays(birthDate, currentDate));
+      if (pay?.available_coin <= 0) {
+        setPop(false);
+      }
+    }
+  }, [pay]);
+
+  const handlePop = () => {
+    if (day < 7) {
+      setPop(true);
+    } else {
+      toast.error("Please make payment to activate your account");
+    }
+  };
 
   return (
     <>
@@ -18,6 +50,10 @@ const App = () => {
           <Outlet />
         </ImageContext.Provider>
       </div>
+      <PopUp
+        popMenu={handlePop}
+        popClass={`${pop ? "-translate-y-[120vw]" : "translate-y-0"}`}
+      />
     </>
   );
 };

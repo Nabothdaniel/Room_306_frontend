@@ -11,7 +11,9 @@ import { logout, navClick } from "../redux/UtilSlice";
 import SearchModel from "./SearchModel";
 import ProfileModel from "./ProfileModel";
 import useAuth from "../Hooks/useAuth";
-import Purchase from "../pages/Purchase";
+import PopUp from "./PopUp";
+import { differenceInDays, parse, parseISO } from "date-fns";
+import toast from "react-hot-toast";
 
 const Navbar = ({ Headervalue, textValue }) => {
   let users = JSON.parse(localStorage.getItem("details"));
@@ -20,12 +22,17 @@ const Navbar = ({ Headervalue, textValue }) => {
   const [openSearch, setOpenSearch] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const [day, setDay] = useState("");
   const open = useSelector((state) => state.Util.navOpen);
+
+  const [pop, setPop] = useState(true);
 
   const { user_id } = useAuth();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+ 
 
   const handleSearch = () => {
     setOpenSearch(!openSearch);
@@ -45,9 +52,17 @@ const Navbar = ({ Headervalue, textValue }) => {
     window.location.reload(true);
   };
 
+  const handlePop = () => {
+    if (day < 7) {
+      setPop(true);
+    } else {
+      toast.error("Please make payment to activate your account");
+    }
+  };
+
   const wallet = () => {
-    navigate('/my-wallet')
-  }
+    navigate("/my-wallet");
+  };
 
   return (
     <>
@@ -88,7 +103,10 @@ const Navbar = ({ Headervalue, textValue }) => {
             />
           </div>
           {user_id && (
-            <button onClick={wallet} className="bg-[#E9CB50] hidden lg:block text-[#171717] font-medium rounded-xl py-3 px-4">
+            <button
+              onClick={wallet}
+              className="bg-[#E9CB50] hidden lg:block text-[#171717] font-medium rounded-xl py-3 px-4"
+            >
               See Coins
             </button>
           )}
@@ -172,7 +190,8 @@ const Navbar = ({ Headervalue, textValue }) => {
         handleMenu={handleMenu}
         menuClass={`${!openMenu ? "translate-x-[120vw]" : "translate-x-0"}`}
       />
-      
+
+     
     </>
   );
 };
