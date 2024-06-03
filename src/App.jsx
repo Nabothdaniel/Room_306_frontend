@@ -52,7 +52,7 @@ const App = () => {
       </div>
       <PopUp
         popMenu={handlePop}
-        popClass={`${pop ? "-translate-y-[120vw]" : "translate-y-0"}`}
+        popClass={`${pop ? "-translate-y-[120vh]" : "translate-y-0"}`}
       />
     </>
   );
