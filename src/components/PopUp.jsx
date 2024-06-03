@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Close from "../images/close-icon.svg";
 import { differenceInDays, parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
@@ -6,10 +6,19 @@ import { useNavigate } from "react-router-dom";
 const PopUp = ({ popClass, popMenu }) => {
   const navigate = useNavigate();
   let users = JSON.parse(localStorage.getItem("details"));
+  const [day, setDay] = useState("");
 
-  const birthDate = parseISO(users?.user?.createdAt, "yyyy-MM-dd", new Date());
-  const currentDate = new Date();
-  const day = differenceInDays(birthDate, currentDate);
+  useEffect(() => {
+    if (users?.user?.user_type == "escort") {
+      const birthDate = parseISO(
+        users?.user?.createdAt,
+        "yyyy-MM-dd",
+        new Date()
+      );
+      const currentDate = new Date();
+      setDay(differenceInDays(birthDate, currentDate));
+    }
+  }, []);
 
   return (
     <div
