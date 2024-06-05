@@ -100,21 +100,22 @@ const NaughtyVideoView = () => {
                 src={`https://room35backend.onrender.com${data.video}`}
               ></video>
               <div className="grid grid-cols-3 text-white pt-4 text-center">
-                <div className="cursor-pointer font-semibold">
+                {/* <div className="cursor-pointer font-semibold">
                   <p>
                     Rating <span>0</span>
                   </p>
-                </div>
+                </div> */}
+                <div></div>
                 <div className="cursor-pointer font-semibold">
                   <p>Viewed</p>
                   <p className="text-white/90 font-normal">{data.view_count}</p>
                 </div>
-                <div className="cursor-pointer font-semibold">
+                {/* <div className="cursor-pointer font-semibold">
                   <p>Duration</p>
                   <p className="text-[14px] text-white/90 font-normal">
                     01: 11
                   </p>
-                </div>
+                </div> */}
               </div>
               <div className="grid grid-cols-3 gap-x-1 text-white pt-4 ">
                 <div
@@ -166,7 +167,7 @@ const NaughtyVideoView = () => {
                   <p className="pl-3">{data.category}</p>
                 </div>
               </div>
-              <div className="pt-4 border-b pb-5 text-white border-neutral-600 items-start">
+              {/* <div className="pt-4 border-b pb-5 text-white border-neutral-600 items-start">
                 <div className="">
                   <h3 className="font-semibold text-[14px] text-white/70 pb-2">
                     Tags
@@ -175,7 +176,7 @@ const NaughtyVideoView = () => {
                     Amateur
                   </p>
                 </div>
-              </div>
+              </div> */}
 
               <div className="pt-4 pb-5 text-white items-start">
                 <div className="">
@@ -183,10 +184,14 @@ const NaughtyVideoView = () => {
                     Posted By
                   </h3>
                   <div className="flex">
-                    <img className="size-20 rounded-md" src={Blog} alt="" />
+                    <img
+                      className="size-20 rounded-md"
+                      src={`https://room35backend.onrender.com${data.escort.user.image}`}
+                      alt=""
+                    />
                     <div className="ml-5">
                       <h2 className="font-semibold md:text-xl text-base">
-                        Adam Fresh
+                        {data.escort.user.display_name}
                       </h2>
                       <p className="text-[12px] text-white/60">{formatDate}</p>
                     </div>

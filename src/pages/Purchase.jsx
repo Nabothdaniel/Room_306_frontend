@@ -70,7 +70,7 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
   }, [amount, curr]);
 
   const config = {
-    public_key: "FLWPUBK_TEST-c0b57df8f3e8c9ce075538ebe6565d91-X",
+    public_key: "FLWPUBK_TEST-a282993d131f52cf69f87d7b1c7f6ccf-X",
     tx_ref: Date.now(),
     amount,
     currency: curr,

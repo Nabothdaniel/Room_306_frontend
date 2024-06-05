@@ -32,7 +32,7 @@ const Adverts = () => {
             <div className="flex pb-4 justify-between items-center pt-2 md:pt-10">
               <h1 className="text-white font-semibold md:text-[24px] flex items-center">
                 Classified Ads{" "}
-                {users?.user?.user_type == "escort" && (
+                {users && (
                   <Link to={"/new-adverts"}>
                     <img className="size-9 ml-3" src={Frame} alt="" />
                   </Link>
@@ -67,7 +67,7 @@ const Adverts = () => {
             <div className="flex pb-4 justify-between items-center pt-2 md:pt-10">
               <h1 className="text-white font-semibold md:text-[24px] flex items-center">
                 Classified Ads{" "}
-                {users?.user?.user_type == "escort" && (
+                {users && (
                   <Link to={"/new-adverts"}>
                     <img className="size-9 ml-3" src={Frame} alt="" />
                   </Link>
@@ -113,7 +113,7 @@ const Adverts = () => {
           <div className="flex pb-4 justify-between items-center pt-2 md:pt-10">
             <h1 className="text-white font-semibold md:text-[24px] flex items-center">
               Classified Ads{" "}
-              {users?.user?.user_type == "escort" && (
+              {users && (
                 <Link to={"/new-adverts"}>
                   <img className="size-9 ml-3" src={Frame} alt="" />
                 </Link>

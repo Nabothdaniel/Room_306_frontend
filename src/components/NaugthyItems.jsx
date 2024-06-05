@@ -21,9 +21,15 @@ const NaugthyItems = ({ items }) => {
       <div className=" w-[100%] absolute bottom-0 left-0">
         <div className="mx-auto p-2 z-[999999] rounded-t-3xl md:w-[97%] w-[98%] bg-[#1E1E1E]">
           <div className="flex z-[999999]">
-            <img className="size-[40px] rounded-full" src={Naugt} alt="" />
+            <img
+              className="size-[40px] rounded-full"
+              src={`https://room35backend.onrender.com${items.escort.user.image}`}
+              alt=""
+            />
             <div className="text-white ml-3">
-              <p className="text-[14px] font-semibold">Sandra Kiss</p>
+              <p className="text-[14px] font-semibold">
+                {items.escort.user.display_name}
+              </p>
               <p className="text-[11px] text-[#DADADA]">{items.title}</p>
             </div>
           </div>

@@ -43,7 +43,7 @@ const MyEvents = () => {
   const { data, isLoading } = useMyEventQuery();
 
   useEffect(() => {
-    if (details?.user?.user_type !== "escort") {
+    if (!details) {
       navigate("/");
       return;
     }

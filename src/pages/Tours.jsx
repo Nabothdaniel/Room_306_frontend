@@ -54,7 +54,7 @@ const Tours = () => {
                 </Link>
               </p>
               <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
-                <img className="w-auto " src={Latest} alt="" />
+                {/* <img className="w-auto " src={Latest} alt="" /> */}
                 <img className=" w-auto" src={Expire} alt="" />
                 <img className=" w-auto" src={Filter} alt="" />
               </div>
@@ -105,7 +105,7 @@ const Tours = () => {
                 </Link>
               </p>
               <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
-                <img className="w-auto " src={Latest} alt="" />
+                {/* <img className="w-auto " src={Latest} alt="" /> */}
                 <img className=" w-auto" src={Expire} alt="" />
                 <img className=" w-auto" src={Filter} alt="" />
               </div>
@@ -165,7 +165,7 @@ const Tours = () => {
               </Link>
             </p>
             <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
-              <img className="w-auto" src={Latest} alt="" />
+              {/* <img className="w-auto" src={Latest} alt="" /> */}
               <img className="w-auto" src={Expire} alt="" />
               <img className="w-auto" src={Filter} alt="" />
             </div>

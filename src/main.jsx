@@ -201,7 +201,7 @@ const router = createBrowserRouter([
             element: <Channels />,
           },
           {
-            path: "naughty-room",
+            path: ":id",
             element: <NaughtyRoom />,
           },
         ],

@@ -23,7 +23,7 @@ const AddAdverts = () => {
   const [advert] = useCreateAdvertMutation();
 
   useEffect(() => {
-    if (users?.user?.user_type !== "escort") {
+    if (!users) {
       navigate("/");
       return;
     }

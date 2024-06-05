@@ -7,7 +7,7 @@ export const ApiSlice = createApi({
   refetchOnReconnect: true,
   refetchOnFocus: true,
   keepUnusedDataFor: 60,
-  tagTypes: ["Post", "User"],
+  tagTypes: ["Post"],
   endpoints: (build) => ({
     registerEscort: build.mutation({
       query: (body) => ({
@@ -25,6 +25,54 @@ export const ApiSlice = createApi({
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
       }),
+    }),
+
+    channelById: build.query({
+      query: (id) => ({
+        url: `channels/${id}/`,
+        method: "GET",
+      }),
+    }),
+
+    sendMessage: build.mutation({
+      query: (id) => ({
+        url: `channels/${id}/messages/send/`,
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
+
+    channelMessages: build.query({
+      query: (id) => ({
+        url: `channels/${id}/messages/`,
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              { type: "Post", id: "LIST" },
+              ...result.map(({ id }) => ({ type: "Post", id })),
+            ]
+          : [{ type: "Post", id: "LIST" }],
+    }),
+
+    channel: build.query({
+      query: () => ({
+        url: "channels",
+        method: "GET",
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Post", id })),
+              { type: "Post", id: "LIST" },
+            ]
+          : [{ type: "Post", id: "LIST" }],
     }),
 
     transaction: build.query({
@@ -108,4 +156,8 @@ export const {
   useNewPasswordMutation,
   useTransactionQuery,
   useWalletQuery,
+  useChannelQuery,
+  useChannelByIdQuery,
+  useChannelMessagesQuery,
+  useSendMessageMutation,
 } = ApiSlice;

@@ -110,7 +110,7 @@ const EscortProfile = () => {
               </p>
             </div>
             <div>
-              {user.user.is_verified || (
+              {user.is_verified || (
                 <p className="bg-[#E9CB50] text-black/70 text-[12px] md:text-base font-semibold rounded-xl py-1 text-center min-w-[100px] md:min-w-[130px]">
                   Under Review
                 </p>
@@ -179,7 +179,10 @@ const EscortProfile = () => {
               <h3 className="font-bold text-white text-[18px] md:text-[24px]">
                 Boost Profile
               </h3>
-              <Link to={'/my-wallet'} className="bg-white md:text-base text-[14px] cursor-pointer font-semibold md:text-[20px] h-[40px] flex items-center justify-center text-center rounded-3xl w-[130px]">
+              <Link
+                to={"/my-wallet"}
+                className="bg-white md:text-base text-[14px] cursor-pointer font-semibold md:text-[20px] h-[40px] flex items-center justify-center text-center rounded-3xl w-[130px]"
+              >
                 Boost Now
               </Link>
             </div>

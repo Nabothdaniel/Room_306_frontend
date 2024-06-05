@@ -68,7 +68,7 @@ const Events = () => {
             <div className="flex md:pt-10 pb-2 pl-1 justify-between pt-2 items-center">
               <h2 className="text-white flex items-center md:py-6 text-[16px] md:text-[20px] font-semibold">
                 All Events
-                {users?.user?.user_type == "escort" && (
+                {users && (
                   <Link to={"/add-event"}>
                     <img className="size-9 ml-3" src={Frame} alt="" />
                   </Link>
@@ -125,7 +125,7 @@ const Events = () => {
             <div className="flex md:pt-10 pb-2 pl-1 justify-between pt-2 items-center">
               <h2 className="text-white flex items-center md:py-6 text-[16px] md:text-[20px] font-semibold">
                 All Events
-                {users?.user?.user_type == "escort" && (
+                {users && (
                   <Link to={"/add-event"}>
                     <img className="size-9 ml-3" src={Frame} alt="" />
                   </Link>
@@ -198,7 +198,7 @@ const Events = () => {
           <div className="flex md:pt-10 pb-2 pl-1 justify-between pt-2 items-center">
             <h2 className="text-white flex items-center md:py-6 text-[16px] md:text-[20px] font-semibold">
               All Events
-              {users?.user?.user_type == "escort" && (
+              {users && (
                 <Link to={"/add-event"}>
                   <img className="size-9 ml-3" src={Frame} alt="" />
                 </Link>

@@ -25,7 +25,6 @@ const AddRoom = () => {
     city: "",
     start_date: "",
     amenities: "",
-    contacts: "",
     services: "",
     contacts: "",
     title: "",

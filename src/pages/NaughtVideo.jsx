@@ -43,11 +43,11 @@ const NaughtVideo = () => {
         <div className="md:py-8">
           <div className="flex text-white md:py-4 md:pb-6 py-2 justify-between items-center">
             <h2 className="  md:text-2xl font-semibold">Naughty Videos</h2>
-            <p className="cursor-pointer text-[#DADADA] text-[14px] md:text-base">
+            {/* <p className="cursor-pointer text-[#DADADA] text-[14px] md:text-base">
               See all
-            </p>
+            </p> */}
           </div>
-          <div className="flex md:justify-between overflow-x-scroll md:overflow-x-auto">
+          {/* <div className="flex md:justify-between overflow-x-scroll md:overflow-x-auto">
             <div className="flex ">
               <img className="h-[50px] cursor-pointer mr-3" src={Bdsm} alt="" />
               <img
@@ -74,13 +74,23 @@ const NaughtVideo = () => {
                 alt=""
               />
             </div>
-          </div>
+          </div> */}
 
           <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-6">
-            {displayVideos}
+            {data.length == 0 ? (
+              <div className="xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 flex justify-center items-center h-[40vh]">
+                <p className="text-white font-semibold md:text-xl">
+                  No Videos Available
+                </p>
+              </div>
+            ) : (
+              <div>{displayVideos}</div>
+            )}
           </div>
         </div>
-        <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
+        {data.length == 0 || (
+          <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
+        )}
       </div>
     </div>
   );

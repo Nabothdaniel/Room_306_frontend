@@ -97,12 +97,17 @@ const ProfileModel = ({ menuClass, handleMenu }) => {
               Lucky Draw
             </p>
           </div>
-          <div className="text-center text-white w-[130px] py-3 px-1 rounded-lg ">
+          <Link
+            to={"/my-events"}
+            className={`text-center text-white w-[130px] py-3 px-1 rounded-lg ${
+              location == "/my-events" ? "bg-black" : ""
+            } `}
+          >
             <img className="size-10 mx-auto" src={Book} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">
               Events
             </p>
-          </div>
+          </Link>
           <div className="text-center text-white w-[130px] py-3 px-1 rounded-lg ">
             <img className="size-10 mx-auto" src={Tag} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">

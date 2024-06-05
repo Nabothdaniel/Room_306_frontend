@@ -1,20 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BlogSwiper } from "../components/BlogSwiper";
 import Navbar from "../components/Navbar";
 import Naughty from "../images/Ellipse.svg";
 import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
 import ChannelsName from "../components/ChannelsName";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NaugthyChannel from "../components/NaugthyChannel";
 import Gallery from "../images/gallery.svg";
 import Send from "../images/Send.svg";
+import {
+  useChannelByIdQuery,
+  useChannelMessagesQuery,
+} from "../redux/ApiSlice";
+import Loading from "../components/Loading";
+import toast, { LoaderIcon } from "react-hot-toast";
+import axios from "axios";
 
 const NaughtyRoom = () => {
+  const { id } = useParams();
+  const { data: messages } = useChannelMessagesQuery(id);
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
-  const [text, setText] = useState(null);
+  const ref = useRef(null);
+
+  const newheight = document.getElementsByClassName("messag");
+
+  useEffect(() => {
+    ref.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+    });
+  }, [messages]);
+
+  const { data, isLoading } = useChannelByIdQuery(id);
+
+  if (isLoading) {
+    return <LoaderIcon />;
+  }
+
+  const handleSend = async () => {
+    if (message) {
+      try {
+        const res = await axios.post(
+          `https://room35backend.onrender.com/api/channels/${id}/messages/send/`,
+          { content: message, file: image },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization:
+                "Bearer " + JSON.parse(localStorage.getItem("token")),
+            },
+          }
+        );
+
+        toast.success("Message Sent");
+
+        setImage("");
+        setMessage("");
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      toast.error("Input message");
+    }
+  };
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -49,14 +100,25 @@ const NaughtyRoom = () => {
                 </div>
                 <div className="md:col-span-2 bg-[#202D2C] flex flex-col p-6 rounded-[30px] h-screen w-[100%] md:rounded-none md:rounded-e-[30px]">
                   <div className="flex pb-6">
-                    <img className="size-[40px]" src={Naughty} alt="" />
+                    <img
+                      className="size-[50px] rounded-full"
+                      src={`https://room35backend.onrender.com${data.image}`}
+                      alt=""
+                    />
                     <div className="pl-4 text-white">
-                      <p className="font-semibold">Naughty Room</p>
-                      <p className="text-[12px]  text-[#DADADA]">24 Members</p>
+                      <p className="font-semibold">{data.name}</p>
+                      <p className="text-[12px]  text-[#DADADA]">
+                        {data.members.length} Members
+                      </p>
                     </div>
                   </div>
-                  <div className="overflow-y-scroll channel flex-1">
-                    <NaugthyChannel images={image} text={text} />
+                  <div
+                    ref={ref}
+                    className="overflow-y-scroll messag pb-7 channel flex-1"
+                  >
+                    {messages?.map((item, index) => {
+                      return <NaugthyChannel key={index} item={item} />;
+                    })}
                   </div>
                   <div className="flex gap-x-4 md:gap-x-8 pt-5 md:px-4 items-center">
                     <div className="bg-[#14211F] flex-1 items-center py-3 px-4 rounded-[360px] flex">
@@ -81,16 +143,13 @@ const NaughtyRoom = () => {
                         hidden
                         onChange={({ target: { files } }) => {
                           if (files) {
-                            setImage(URL.createObjectURL(files[0]));
+                            setImage(files[0]);
                           }
                         }}
                       />
                     </div>
                     <img
-                      onClick={() => {
-                        setText((prev) => prev + message);
-                        setMessage("");
-                      }}
+                      onClick={handleSend}
                       className="size-[24px] mb-1 cursor-pointer"
                       src={Send}
                       alt=""
