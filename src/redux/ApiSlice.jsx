@@ -1,13 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const ApiSlice = createApi({
+  reducerPath: "Api",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://room35backend.onrender.com/api/",
   }),
   refetchOnReconnect: true,
   refetchOnFocus: true,
   keepUnusedDataFor: 60,
-  tagTypes: ["Post"],
+  tagTypes: ["Posts"],
   endpoints: (build) => ({
     registerEscort: build.mutation({
       query: (body) => ({
@@ -55,10 +56,10 @@ export const ApiSlice = createApi({
       providesTags: (result) =>
         result
           ? [
-              { type: "Post", id: "LIST" },
-              ...result.map(({ id }) => ({ type: "Post", id })),
+              ...result.map(({ id }) => ({ type: "Posts", id })),
+              { type: "Posts", id: "LIST" },
             ]
-          : [{ type: "Post", id: "LIST" }],
+          : [{ type: "Posts", id: "LIST" }],
     }),
 
     channel: build.query({
