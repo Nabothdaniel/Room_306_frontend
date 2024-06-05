@@ -134,8 +134,6 @@ const EscortDetailsOne = () => {
     }
   };
 
-  console.log(formData);
-
   if (isLoading) {
     return <Loading />;
   }

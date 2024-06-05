@@ -30,7 +30,7 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
         }
       );
 
-      toast.success("Payment Successfully");
+      toast.success("Payment Successful");
       window.location.reload(true);
     } catch (err) {
       console.log(err);
@@ -76,9 +76,9 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
     currency: curr,
     payment_options: "card,mobilemoney,ussd",
     customer: {
-      email: user?.user?.email,
-      phone_number: user?.user?.mobile_number,
-      name: user?.user?.username,
+      email: user?.user?.email || user?.email,
+      phone_number: user?.user?.mobile_number || user?.mobile_number,
+      name: user?.user?.username || user?.username,
     },
     customizations: {
       title: "My store",
@@ -91,6 +91,7 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
     ...config,
     text: "Purchase Coin Now",
     callback: (response) => {
+      handleWallet();
       if (response.charge_response_message == "Approved Successful") {
         paymentSuccess({ coin_amount: coin, amount: response.amount });
       } else {

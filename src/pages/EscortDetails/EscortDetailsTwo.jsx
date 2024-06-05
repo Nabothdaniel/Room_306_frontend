@@ -217,16 +217,16 @@ const EscortDetailsTwo = () => {
                       onChange={handleChange}
                     >
                       <option value="">Your Ethnicity</option>
-                      <option value="all">All</option>
-                      <option value="asian">Asian</option>
-                      <option value="black">Black</option>
-                      <option value="indian">Indian</option>
-                      <option value="latino">Latino</option>
-                      <option value="middle eastern">Mid Eastern</option>
-                      <option value="mix-race">Mix Race</option>
-                      <option value="other">Other</option>
-                      <option value="others">Others</option>
-                      <option value="white">White</option>
+                      <option>All</option>
+                      <option>Asian</option>
+                      <option>Black</option>
+                      <option>Indian</option>
+                      <option>Latino</option>
+                      <option>Mid Eastern</option>
+                      <option>Mix Race</option>
+                      <option>Other</option>
+                      <option>Others</option>
+                      <option>White</option>
                     </select>
                   </div>
                   <p className="py-1 text-[12px] text-red-500">

@@ -8,6 +8,7 @@ import { differenceInDays, parseISO } from "date-fns";
 import PopUp from "./components/PopUp";
 import toast from "react-hot-toast";
 import { useWalletQuery } from "./redux/ApiSlice";
+import { FilterApi } from "./Hooks/FilterApi";
 
 const App = () => {
   let users = JSON.parse(localStorage.getItem("details"));
@@ -16,6 +17,10 @@ const App = () => {
   const [pop, setPop] = useState(true);
   const [day, setDay] = useState("");
   const { data: pay } = useWalletQuery();
+  const [filter, setFilter] = useState({
+    roomCountry: "",
+    roomCity: "",
+  });
 
   Details();
 
@@ -46,7 +51,7 @@ const App = () => {
     <>
       <ScrollToTop />
       <div className="mt-[68px] md:-mt-4">
-        <ImageContext.Provider value={{ image, setImage }}>
+        <ImageContext.Provider value={{ image, setImage, filter, setFilter }}>
           <Outlet />
         </ImageContext.Provider>
       </div>

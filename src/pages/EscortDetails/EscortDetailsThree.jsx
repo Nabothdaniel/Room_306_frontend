@@ -11,20 +11,24 @@ const EscortDetailsThree = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.checked });
+    if (e.target.checked) {
+      setFormData({ ...formData, [e.target.name]: "True" });
+    } else {
+      setFormData({ ...formData, [e.target.name]: "False" });
+    }
   };
   const trueKeys = Object.keys(formData).filter(
-    (key) => formData[key] === true
+    (key) => formData[key] === "True"
   );
 
   const handleEscortThree = () => {
-    navigate("/rates");
     if (trueKeys.length >= 5) {
       dispatch(
         details({
           ...formData,
         })
       );
+      navigate("/rates");
       setError("");
       setFormData({});
     } else {
@@ -667,7 +671,7 @@ const EscortDetailsThree = () => {
             <div className="mt-8 flex gap-x-3">
               <button
                 onClick={handleDelete}
-                className="bg-[#CD2727] mr-5 w-[100%] py-3 md:w-[120px] font-medium rounded-xl"
+                className="bg-[#CD2727] text-white mr-5 w-[100%] py-3 md:w-[120px] font-medium rounded-xl"
               >
                 Delete
               </button>

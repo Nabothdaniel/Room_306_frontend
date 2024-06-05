@@ -11,14 +11,11 @@ import axios from "axios";
 import { setCredentials } from "../../redux/UtilSlice";
 
 const EscortDetailsSecFive = () => {
-  const True = true;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { image } = useContext(ImageContext);
   const [VImage, setVimage] = useState("");
   const data = useSelector((state) => state.Util.userDetails);
-
-  console.log(data);
 
   const handleSubmit = async () => {
     if (VImage) {
@@ -39,9 +36,8 @@ const EscortDetailsSecFive = () => {
         );
         console.log(res);
         dispatch(setCredentials(res.data?.token));
-
         navigate("/survey");
-        window.location.reload(True);
+        window.location.reload(true);
       } catch (err) {
         console.log(err);
       }
@@ -53,9 +49,9 @@ const EscortDetailsSecFive = () => {
   const handleDelete = () => {
     let text =
       "Pressing Delete will cancel your account Creation\nAre you sure? if so press OK.";
-    if (confirm(text) == True) {
+    if (confirm(text) == true) {
       navigate("/");
-      window.location.reload(True);
+      window.location.reload(true);
     } else {
     }
   };

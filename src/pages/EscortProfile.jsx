@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Blog from "../images/blog.jpeg";
@@ -12,7 +12,13 @@ import Media from "../components/Media";
 import { ProfileSwiper } from "../components/ProfileSwiper";
 import { Link } from "react-router-dom";
 import ProfileViewItems from "../components/ProfileViewItems";
-import { parseISO, format, differenceInYears, parse } from "date-fns";
+import {
+  parseISO,
+  format,
+  differenceInYears,
+  parse,
+  differenceInDays,
+} from "date-fns";
 import { useWalletQuery } from "../redux/ApiSlice";
 
 const reducer = (state, action) => {
@@ -35,6 +41,20 @@ const reducer = (state, action) => {
 const EscortProfile = () => {
   const user = JSON.parse(localStorage.getItem("details"));
   const { data } = useWalletQuery();
+  const [day, setDay] = useState(0);
+
+  useEffect(() => {
+    if (user?.user?.user_type == "escort") {
+      const cDate = parseISO(user?.user?.createdAt, "yyyy-MM-dd", new Date());
+      const newDate = new Date();
+      if (data?.available_coin <= 0) {
+        setDay(differenceInDays(cDate, newDate));
+      } else {
+        setDay(7);
+      }
+    }
+  }, [data]);
+
   const parsedDate = parseISO(user.user.createdAt);
   const formattedDate = format(parsedDate, "MMMM d, yyyy");
 
@@ -122,10 +142,13 @@ const EscortProfile = () => {
               </div>
             </div>
 
-            <div className="bg-[#CD2727] flex md:text-[20px] h-[36px] cursor-pointer font-bold items-center justify-center rounded-3xl min-w-[100px]">
+            <Link
+              to={"/my-wallet"}
+              className="bg-[#CD2727] flex md:text-[20px] h-[36px] cursor-pointer font-bold items-center justify-center rounded-3xl min-w-[100px]"
+            >
               <TbCurrencyNaira className="md:size-[30px] size-[26px]" />
               Buy
-            </div>
+            </Link>
           </div>
           <div className="text-white flex gap-x-4 md:gap-x-12 items-center justify-between md:col-span-2">
             <div className="">
@@ -140,9 +163,12 @@ const EscortProfile = () => {
                 disabled
                 name="boost"
                 id="boost"
+                value={7 - day}
+                max={7}
               />
               <p className="font-semibold text-[13px] md:text-[15px]">
-                0 days <span className="font-normal">left in Boost</span>
+                {7 - day} days{" "}
+                <span className="font-normal">left in Boost</span>
               </p>
             </label>
           </div>
@@ -153,9 +179,9 @@ const EscortProfile = () => {
               <h3 className="font-bold text-white text-[18px] md:text-[24px]">
                 Boost Profile
               </h3>
-              <div className="bg-white md:text-base text-[14px] cursor-pointer font-semibold md:text-[20px] h-[40px] flex items-center justify-center text-center rounded-3xl w-[130px]">
+              <Link to={'/my-wallet'} className="bg-white md:text-base text-[14px] cursor-pointer font-semibold md:text-[20px] h-[40px] flex items-center justify-center text-center rounded-3xl w-[130px]">
                 Boost Now
-              </div>
+              </Link>
             </div>
             <p className="lg:w-[23%] md:w-[28%]  pt-2 text-[14px] md:text-[18px] text-white font-medium">
               Boost your profile to Pro Max to be on the front pages and gain

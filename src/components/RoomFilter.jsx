@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Close from "../images/close-icon.svg";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import Loading from "./Loading";
 import { roomDetails } from "../redux/UtilSlice";
 import { useDispatch } from "react-redux";
+import { ImageContext } from "../Hooks/ImageContext";
 
 const RoomFilter = ({ RoomClass, Filter }) => {
+  const { setFilter } = useContext(ImageContext);
   const { data, isLoading } = useGetCountryQuery();
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
@@ -48,7 +50,7 @@ const RoomFilter = ({ RoomClass, Filter }) => {
   });
 
   const handleSearch = () => {
-    dispatch(roomDetails({ country, state, city }));
+    setFilter({ roomCountry: country, roomCity: city });
     Filter();
   };
 

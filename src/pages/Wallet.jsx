@@ -78,7 +78,7 @@ const Wallet = () => {
                 return (
                   <div
                     key={index}
-                    className="flex pt-5 duration-500 hover:bg-black pb-4 items-center"
+                    className="flex capitalize pt-5 duration-500 hover:bg-black pb-4 items-center"
                   >
                     <p className="w-[300px] text-center">#{1447 + index}</p>
                     <p className="w-[300px] text-center">{item.type}</p>

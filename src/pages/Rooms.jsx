@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Filter from "../images/Input.svg";
@@ -10,19 +10,22 @@ import Frame from "../images/Frame.svg";
 import { Link } from "react-router-dom";
 import RoomFilter from "../components/RoomFilter";
 import { useSelector } from "react-redux";
+import { ImageContext } from "../Hooks/ImageContext";
 
 const Rooms = () => {
-  const country = useSelector((state) => state.Util.roomSearch.country);
-  const city = useSelector((state) => state.Util.roomSearch.city);
-  const users = JSON.parse(localStorage.getItem("details"));
-  // const { data, isLoading } = useGetFilteredRoomQuery({ country, city });
+  const { filter } = useContext(ImageContext);
 
-  const {data, isLoading} = useGetAllRoomsQuery()
+  const country = filter.roomCountry;
+  const city = filter.roomCity;
+
+  const users = JSON.parse(localStorage.getItem("details"));
+  const { data, isLoading } = useGetFilteredRoomQuery({ country, city });
+
   const [currentPage, setCurrentPage] = useState(0);
-  const [filter, setFilter] = useState(false);
+  const [filters, setFilters] = useState(false);
 
   const handleFilter = () => {
-    setFilter(!filter);
+    setFilters(!filters);
   };
 
   if (isLoading) {
@@ -69,7 +72,7 @@ const Rooms = () => {
         </div>
         <RoomFilter
           Filter={handleFilter}
-          RoomClass={`${!filter ? "translate-x-[120vw]" : "translate-x-0"}`}
+          RoomClass={`${!filters ? "translate-x-[120vw]" : "translate-x-0"}`}
         />
       </div>
     );
@@ -115,7 +118,7 @@ const Rooms = () => {
         </div>
         <RoomFilter
           Filter={handleFilter}
-          RoomClass={`${!filter ? "translate-x-[120vw]" : "translate-x-0"}`}
+          RoomClass={`${!filters ? "translate-x-[120vw]" : "translate-x-0"}`}
         />
       </div>
     );
@@ -169,7 +172,7 @@ const Rooms = () => {
       </div>
       <RoomFilter
         Filter={handleFilter}
-        RoomClass={`${!filter ? "translate-x-[120vw]" : "translate-x-0"}`}
+        RoomClass={`${!filters ? "translate-x-[120vw]" : "translate-x-0"}`}
       />
     </div>
   );

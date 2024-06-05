@@ -27,7 +27,7 @@ const useAuth = () => {
 
         return { user_id };
       } else {
-        if (!data) {
+        if (data == null) {
           localStorage.removeItem("details");
         } else {
           localStorage.setItem("details", JSON.stringify(data));
