@@ -8,6 +8,7 @@ import Louge from "../images/Ellipse5.svg";
 import { NavLink, useLocation } from "react-router-dom";
 import { useChannelQuery } from "../redux/ApiSlice";
 import Loading from "./Loading";
+import { formatDistanceToNow, parse } from "date-fns";
 
 const ChannelsName = () => {
   const location = useLocation();
@@ -20,6 +21,16 @@ const ChannelsName = () => {
   return (
     <div className="px-[9px] flex flex-col gap-y-[10px]">
       {data.map((item, index) => {
+        const parsedDate = parse(
+          item.timestamp,
+          "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'",
+          new Date()
+        );
+        const formattedTimeAgo = formatDistanceToNow(parsedDate, {
+          addSuffix: true,
+        })
+          .replace("about", "")
+          .replace("hours", "hrs");
         return (
           <NavLink
             key={index}
@@ -28,7 +39,7 @@ const ChannelsName = () => {
             }}
             to={`/channels/${item._id}`}
             className={`flex  ${
-              location.pathname == `channels/${item._id}`
+              location.pathname == `/channels/${item._id}`
                 ? "bg-[#00AE791A]"
                 : ""
             } rounded-[12px] p-[12px] hover:bg-[#202D2C] duration-700 text-white items-center`}
@@ -40,7 +51,7 @@ const ChannelsName = () => {
             />
             <div className="pl-4 md:block md:w-auto flex justify-between items-center w-full">
               <p className="font-semibold">{item.name}</p>
-              <p className="text-[12px]  text-[#DADADA]">11 hrs ago</p>
+              <p className="text-[12px]  text-[#DADADA]">{formattedTimeAgo}</p>
             </div>
           </NavLink>
         );

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Erotic from "../images/Ellipse4.svg";
+import { format, parse } from "date-fns";
 
 const NaugthyChannel = ({ item }) => {
   const users = JSON.parse(localStorage.getItem("details"));
@@ -9,7 +10,15 @@ const NaugthyChannel = ({ item }) => {
   const text = "";
   const images = "";
 
-  if (item.sender.username == (users.user.username) || (users.username) ) {
+  const parsedDate = parse(
+    item.timestamp,
+    "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'",
+    new Date()
+  );
+
+  const formattedTime = format(parsedDate, "HH:mm");
+
+  if (item.sender.username == users.user.username || users.username) {
     return (
       <div className={`justify-end text-[14px]  flex`}>
         <div
@@ -41,7 +50,7 @@ const NaugthyChannel = ({ item }) => {
         <div className="flex flex-col mt-1 ml-4">
           <div className="flex">
             <p className="text-[#DADADA] mr-4">{item.sender.username}</p>
-            <p className="text-[#A0A8B5] ">11:23</p>
+            <p className="text-[#A0A8B5] ">{formattedTime}</p>
           </div>
 
           <div

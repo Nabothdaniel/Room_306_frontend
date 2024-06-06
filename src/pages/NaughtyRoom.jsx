@@ -20,20 +20,30 @@ import axios from "axios";
 
 const NaughtyRoom = () => {
   const { id } = useParams();
-  const { data: messages } = useChannelMessagesQuery(id);
+  const { data: messages } = useChannelMessagesQuery(id, {
+    pollingInterval: 3000,
+  });
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
+  //const ref = useRef(null);
   const ref = useRef(null);
   const [send] = useSendMessageMutation();
   const { data, isLoading } = useChannelByIdQuery(id);
+
+  // useEffect(() => {
+  //   ref.current?.scrollIntoView({
+  //     behavior: "smooth",
+  //     block: "end",
+  //   });
+  // }, []);
 
   useEffect(() => {
     ref.current?.scrollIntoView({
       behavior: "smooth",
       block: "end",
     });
-  }, [messages, data]);
+  }, [messages, messages?.length]);
 
   if (isLoading) {
     return <Loading />;
@@ -102,13 +112,13 @@ const NaughtyRoom = () => {
                   <div className="flex pb-6">
                     <img
                       className="size-[50px] rounded-full"
-                      src={`https://room35backend.onrender.com${data.image}`}
+                      src={`https://room35backend.onrender.com${data?.image}`}
                       alt=""
                     />
                     <div className="pl-4 text-white">
-                      <p className="font-semibold">{data.name}</p>
+                      <p className="font-semibold">{data?.name}</p>
                       <p className="text-[12px]  text-[#DADADA]">
-                        {data.members.length} Members
+                        {data?.members.length} Members
                       </p>
                     </div>
                   </div>
@@ -155,6 +165,7 @@ const NaughtyRoom = () => {
                   </div>
                 </div>
               </div>
+              {/* <div ref={ref}></div> */}
             </div>
             <div>
               <h2 className="text-center text-white font-medium pb-6 lg:pb-3 text-xl">
