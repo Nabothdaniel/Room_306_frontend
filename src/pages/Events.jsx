@@ -25,7 +25,7 @@ const reducer = (state, action) => {
 };
 
 const Events = () => {
-  const [pageCount, setCount] = useState(2);
+  const [pageCount, setCount] = useState(1);
   const users = JSON.parse(localStorage.getItem("details"));
   const { data, isLoading } = useGetAllEventsQuery();
   const usersPage = 12;

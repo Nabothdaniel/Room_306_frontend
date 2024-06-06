@@ -66,7 +66,7 @@ const EditClient = () => {
   handleCountry = (e) => {
     states = data.filter((state) => state.name === Data.country);
 
-    states = states.map((item) => item.states);
+    states = states?.map((item) => item.states);
 
     states.sort();
     setGetState(states[0]);
@@ -74,7 +74,7 @@ const EditClient = () => {
 
   handleState = (e) => {
     let city = getState.filter((item) => item.name === Data.state);
-    city = city.map((item) => item);
+    city = city?.map((item) => item);
 
     setGetCities(city);
   };
@@ -225,7 +225,7 @@ const EditClient = () => {
                       }}
                     >
                       <option value="">All Country</option>
-                      {data.map((item) => {
+                      {data?.map((item) => {
                         return (
                           <option key={item.id} value={item.name}>
                             {item.name}
@@ -252,7 +252,7 @@ const EditClient = () => {
                       }}
                     >
                       <option value="">State(Optional)</option>
-                      {getState.map((item, index) => {
+                      {getState?.map((item, index) => {
                         return (
                           <option key={item.id} value={item.name}>
                             {item.name}
@@ -274,7 +274,7 @@ const EditClient = () => {
                     >
                       <option value="">City(Optional)</option>
 
-                      {newCities.map((item) => {
+                      {newCities?.map((item) => {
                         return (
                           <option key={item.id} value={item.name}>
                             {item.name}

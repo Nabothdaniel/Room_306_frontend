@@ -5,6 +5,7 @@ import Calender from "../images/calendar-tick.svg";
 import Love from "../images/Love.svg";
 import { useAdvertFavoriteMutation } from "../redux/AdvertSlice";
 import toast from "react-hot-toast";
+import { format, parseISO } from "date-fns";
 
 const AdvertsItem = ({ items }) => {
   const [favorite] = useAdvertFavoriteMutation();
@@ -17,6 +18,12 @@ const AdvertsItem = ({ items }) => {
       console.log(err);
     }
   };
+
+  const parsedDate = parseISO(items.start_date);
+  const formattedDate = format(parsedDate, "dd MMM");
+
+  const endDate = parseISO(items.end_date);
+  const EndDate = format(endDate, "dd MMM");
 
   return (
     <div className="bg-[#1E1E1E] flex flex-col relative rounded-3xl p-4 md:p-7 ">
@@ -33,7 +40,9 @@ const AdvertsItem = ({ items }) => {
           <div className="hidden text-[14px] sm:flex pt-2">
             <div className="flex items-center rounded-md w-fit mr-2 py-1 px-[6px] text-white bg-[#0A0A0A]">
               <img className="size-5 mr-1" src={Calender} alt="" />
-              <p className="text-[13px]">23 Mar - 28 Mar</p>
+              <p className="text-[13px]">
+                {formattedDate} - {EndDate}
+              </p>
             </div>
             <div className="flex items-center rounded-md w-fit py-1 px-[6px] text-white bg-[#0A0A0A]">
               <img className="size-5 mr-1" src={House} alt="" />
@@ -55,7 +64,11 @@ const AdvertsItem = ({ items }) => {
             <button className="bg-[#E9CB50]  w-[100%] text-[#171717] h-[40px]  font-medium rounded-xl">
               Chat Now
             </button>
-            <img onClick={handleFavorite} src={Love} className="size-11 cursor-pointer ml-2" />
+            <img
+              onClick={handleFavorite}
+              src={Love}
+              className="size-11 cursor-pointer ml-2"
+            />
           </div>
         </div>
       </div>
@@ -88,7 +101,11 @@ const AdvertsItem = ({ items }) => {
           <button className="bg-[#E9CB50]  w-[100%] text-[#171717] h-[40px] font-medium rounded-xl">
             Chat Now
           </button>
-          <img onClick={handleFavorite} src={Love} className="size-11 cursor-pointer ml-2" />
+          <img
+            onClick={handleFavorite}
+            src={Love}
+            className="size-11 cursor-pointer ml-2"
+          />
         </div>
       </div>
       <p className="text-[#DADADA] text-[12px] sm:hidden block pt-4">

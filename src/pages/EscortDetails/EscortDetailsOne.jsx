@@ -141,9 +141,9 @@ const EscortDetailsOne = () => {
   let states;
   const handleCountry = (e) => {
     states = data.filter((state) => state.name === e.target.value);
-    setCode(states[0].phone_code);
-    setCurrency(states[0].currency);
-    states = states.map((item) => item.states);
+    setCode(states[0]?.phone_code);
+    setCurrency(states[0]?.currency);
+    states = states?.map((item) => item.states);
 
     states.sort();
     setGetState(states[0]);
@@ -151,7 +151,7 @@ const EscortDetailsOne = () => {
 
   const handleState = (e) => {
     let city = getState.filter((item) => item.name === e.target.value);
-    city = city.map((item) => item);
+    city = city?.map((item) => item);
 
     setGetCities(city);
   };
@@ -325,7 +325,7 @@ const EscortDetailsOne = () => {
                       }}
                     >
                       <option value="">All Country</option>
-                      {data.map((item) => {
+                      {data?.map((item) => {
                         return (
                           <option key={item.id} value={item.name}>
                             {item.name}
@@ -353,7 +353,7 @@ const EscortDetailsOne = () => {
                       }}
                     >
                       <option value="">State(Optional)</option>
-                      {getState.map((item, index) => {
+                      {getState?.map((item, index) => {
                         return (
                           <option key={item.id} value={item.name}>
                             {item.name}
@@ -376,7 +376,7 @@ const EscortDetailsOne = () => {
                     >
                       <option value="">City(Optional)</option>
 
-                      {newCities.map((item) => {
+                      {newCities?.map((item) => {
                         return (
                           <option key={item.id} value={item.name}>
                             {item.name}

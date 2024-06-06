@@ -10,12 +10,14 @@ import { useGetProfileByIdQuery } from "../redux/ApiSlice";
 import Loading from "../components/Loading";
 import ProfileEscort from "../components/ProfileEscort";
 import toast from "react-hot-toast";
+import ReportModel from "../components/ReportModel";
 
 const ProfileView = () => {
   const user = JSON.parse(localStorage.getItem("details"));
   const { username } = useParams();
   const { data, isLoading } = useGetProfileByIdQuery(username);
   const [openBook, setOpenBook] = useState(false);
+  const [openReport, setOpenReport] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,11 +30,15 @@ const ProfileView = () => {
     return;
   }
 
+  const handleReport = () => {
+    setOpenReport(!openReport);
+  };
+
   const handleBook = () => {
     if (user?.user_type == "client") {
       setOpenBook(!openBook);
     } else {
-      toast.error("Only Client can Book an Escort")
+      toast.error("Only Client can Book an Escort");
     }
   };
   return (
@@ -56,7 +62,11 @@ const ProfileView = () => {
               <img className="size-5 mr-1" src={Arrow} alt="" />
               Back
             </h2>
-            <ProfileViewItem user={data} handleBook={handleBook} />
+            <ProfileViewItem
+              handleReport={handleReport}
+              user={data}
+              handleBook={handleBook}
+            />
             <ProfileEscort user={data} />
           </div>
 
@@ -74,6 +84,11 @@ const ProfileView = () => {
         handleBook={handleBook}
         user={data}
         bookClass={`${!openBook ? "translate-x-[120vw]" : "translate-x-0"}`}
+      />
+      <ReportModel
+        handleReport={handleReport}
+        reportClass={`${!openReport ? "translate-x-[120vw]" : "translate-x-0"}`}
+        user={data}
       />
     </div>
   );

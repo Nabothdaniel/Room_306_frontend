@@ -18,7 +18,7 @@ const NaugthyChannel = ({ item }) => {
 
   const formattedTime = format(parsedDate, "HH:mm");
 
-  if (item.sender.username == users.user.username || users.username) {
+  if (item.sender.username == (users?.user?.username || users?.username)) {
     return (
       <div className={`justify-end text-[14px]  flex`}>
         <div
@@ -46,7 +46,6 @@ const NaugthyChannel = ({ item }) => {
           src={`https://room35backend.onrender.com${item.sender.image}`}
           alt=""
         />
-        {/* user name */}
         <div className="flex flex-col mt-1 ml-4">
           <div className="flex">
             <p className="text-[#DADADA] mr-4">{item.sender.username}</p>
@@ -68,8 +67,6 @@ const NaugthyChannel = ({ item }) => {
           </div>
         </div>
       </div>
-
-      {/* OWN */}
     </div>
   );
 };

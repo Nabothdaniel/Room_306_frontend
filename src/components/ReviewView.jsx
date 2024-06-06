@@ -1,8 +1,6 @@
-import React from 'react'
+import React from "react";
 
 const ReviewView = () => {
-    
-
   return (
     <div className=" mt-12">
       <div className="flex text-white pt-10 pb-4">
@@ -15,6 +13,6 @@ const ReviewView = () => {
       </div>
     </div>
   );
-}
+};
 
-export default ReviewView
+export default ReviewView;

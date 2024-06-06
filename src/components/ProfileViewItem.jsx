@@ -5,7 +5,7 @@ import Messenger from "../images/messenger.svg";
 import { EscortProfileSwiper } from "./EscortProfileSwiper";
 import { differenceInYears, parse } from "date-fns";
 
-const ProfileViewItem = ({ handleBook, user }) => {
+const ProfileViewItem = ({ handleBook, user, handleReport }) => {
   const birthDate = parse(
     user?.escort_details.date_of_birth,
     "yyyy-MM-dd",
@@ -89,12 +89,19 @@ const ProfileViewItem = ({ handleBook, user }) => {
         >
           Book Now
         </button>
-        <div className="flex text-[#DADADA] justify-center md:justify-normal items-center mt-4">
-          <p className="text-[12px] md:text-[14px]">Share Profile:</p>
+        <div className="flex text-[#DADADA] justify-center md:justify-normal items-center mt-8">
+          {/* <p className="text-[12px] md:text-[14px]">Share Profile:</p>
 
           <img className="size-7 ml-5" src={Whatsapp} alt="" />
           <img className="size-7 ml-4" src={Youtube} alt="" />
-          <img className="size-7 ml-4" src={Messenger} alt="" />
+          <img className="size-7 ml-4" src={Messenger} alt="" /> */}
+
+          <button
+            onClick={handleReport}
+            className="bg-red-500 py-1 font-semibold px-4 rounded-3xl"
+          >
+            Report User
+          </button>
         </div>
       </div>
     </div>

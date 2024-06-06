@@ -20,23 +20,15 @@ import axios from "axios";
 
 const NaughtyRoom = () => {
   const { id } = useParams();
-  const { data: messages } = useChannelMessagesQuery(id, {
+  const { data: messages, isLoading: loading } = useChannelMessagesQuery(id, {
     pollingInterval: 3000,
   });
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
-  //const ref = useRef(null);
   const ref = useRef(null);
   const [send] = useSendMessageMutation();
   const { data, isLoading } = useChannelByIdQuery(id);
-
-  // useEffect(() => {
-  //   ref.current?.scrollIntoView({
-  //     behavior: "smooth",
-  //     block: "end",
-  //   });
-  // }, []);
 
   useEffect(() => {
     ref.current?.scrollIntoView({
@@ -45,7 +37,7 @@ const NaughtyRoom = () => {
     });
   }, [messages, messages?.length]);
 
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loading />;
   }
 

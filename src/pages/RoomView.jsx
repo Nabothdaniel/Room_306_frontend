@@ -133,7 +133,7 @@ const RoomView = () => {
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Rates</h2>
-                <p className="text-[12px]">NGN 700000/ weekly</p>
+                <p className="text-[12px]">{data.rate}</p>
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Location</h2>

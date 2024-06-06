@@ -28,7 +28,7 @@ const RoomFilter = ({ RoomClass, Filter }) => {
   const handleCountry = (e) => {
     states = data.filter((state) => state.name === e.target.value);
 
-    states = states.map((item) => item.states);
+    states = states?.map((item) => item.states);
 
     states.sort();
     setGetState(states[0]);
@@ -36,7 +36,7 @@ const RoomFilter = ({ RoomClass, Filter }) => {
 
   const handleState = (e) => {
     let city = getState.filter((item) => item.name === e.target.value);
-    city = city.map((item) => item);
+    city = city?.map((item) => item);
 
     setGetCities(city);
   };
@@ -110,7 +110,7 @@ const RoomFilter = ({ RoomClass, Filter }) => {
                 }}
               >
                 <option value="">State(Optional)</option>
-                {getState.map((item, index) => {
+                {getState?.map((item, index) => {
                   return (
                     <option key={item.id} value={item.name}>
                       {item.name}
@@ -131,7 +131,7 @@ const RoomFilter = ({ RoomClass, Filter }) => {
               >
                 <option value="">City(Optional)</option>
 
-                {newCities.map((item) => {
+                {newCities?.map((item) => {
                   return (
                     <option key={item.id} value={item.name}>
                       {item.name}

@@ -28,9 +28,9 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
   let states;
   handleCountry = (e) => {
     states = data.filter((state) => state.name === formData.country);
-    setCode(states[0].phone_code);
-    setCurrency(states[0].currency);
-    states = states.map((item) => item.states);
+    setCode(states[0]?.phone_code);
+    setCurrency(states[0]?.currency);
+    states = states?.map((item) => item.states);
 
     states.sort();
     setGetState(states[0]);
@@ -38,7 +38,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
 
   handleState = (e) => {
     let city = getState.filter((item) => item.name === formData.state);
-    city = city.map((item) => item);
+    city = city?.map((item) => item);
 
     setGetCities(city);
   };
@@ -227,7 +227,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
                 }}
               >
                 <option value="">All Country</option>
-                {data.map((item) => {
+                {data?.map((item) => {
                   return (
                     <option key={item.id} value={item.name}>
                       {item.name}
@@ -251,7 +251,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
                 }}
               >
                 <option value="">State(Optional)</option>
-                {getState.map((item, index) => {
+                {getState?.map((item, index) => {
                   return (
                     <option key={item.id} value={item.name}>
                       {item.name}
@@ -273,7 +273,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
               >
                 <option value="">City(Optional)</option>
 
-                {newCities.map((item) => {
+                {newCities?.map((item) => {
                   return (
                     <option key={item.id} value={item.name}>
                       {item.name}

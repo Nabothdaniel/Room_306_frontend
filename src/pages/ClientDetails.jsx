@@ -110,7 +110,7 @@ const ClientDetails = () => {
   formData.append("mobile_number", Data.mobile_number);
   formData.append("image", image);
   formData.append("country", Data.country);
-  formData.append("user_type", Data.user_type);
+  formData.append("user_type", "client");
   formData.append("city", Data.city);
   formData.append("email", Data.email);
   formData.append("password", Data.password);
@@ -121,9 +121,9 @@ const ClientDetails = () => {
   let states;
   const handleCountry = (e) => {
     states = data.filter((state) => state.name === e.target.value);
-    setCode(states[0].phone_code);
+    setCode(states[0]?.phone_code);
 
-    states = states.map((item) => item.states);
+    states = states?.map((item) => item.states);
 
     states.sort();
     setGetState(states[0]);
@@ -131,7 +131,7 @@ const ClientDetails = () => {
 
   const handleState = (e) => {
     let city = getState.filter((item) => item.name === e.target.value);
-    city = city.map((item) => item);
+    city = city?.map((item) => item);
 
     setGetCities(city);
   };
@@ -319,7 +319,7 @@ const ClientDetails = () => {
                         }}
                       >
                         <option value="">All Country</option>
-                        {data.map((item) => {
+                        {data?.map((item) => {
                           return (
                             <option key={item.id} value={item.name}>
                               {item.name}
@@ -350,7 +350,7 @@ const ClientDetails = () => {
                         }}
                       >
                         <option value="">State(Optional)</option>
-                        {getState.map((item, index) => {
+                        {getState?.map((item, index) => {
                           return (
                             <option key={item.id} value={item.name}>
                               {item.name}
@@ -379,7 +379,7 @@ const ClientDetails = () => {
                       >
                         <option value="">City(Optional)</option>
 
-                        {newCities.map((item) => {
+                        {newCities?.map((item) => {
                           return (
                             <option key={item.id} value={item.name}>
                               {item.name}

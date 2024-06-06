@@ -12,7 +12,7 @@ const BlacklistedList = () => {
   return (
     <Link
       to={"/blacklisted/new"}
-      className="bg-[#121212] text-white p-3 rounded-lg"
+      className="bg-[#121212] block text-white p-3 rounded-lg"
     >
       <img className="rounded-lg h-[200px] object-cover" src={Slider1} alt="" />
       <div className=" py-3">

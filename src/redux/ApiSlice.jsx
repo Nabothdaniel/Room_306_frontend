@@ -57,14 +57,28 @@ export const ApiSlice = createApi({
 
     channel: build.query({
       query: () => ({
-        url: "channels",
+        url: "/channels",
+        method: "GET",
+      }),
+    }),
+
+    blackEscort: build.query({
+      query: () => ({
+        url: "/blacklisted/escorts/",
+        method: "GET",
+      }),
+    }),
+
+    blackClient: build.query({
+      query: () => ({
+        url: "/blacklisted/clients/",
         method: "GET",
       }),
     }),
 
     transaction: build.query({
       query: () => ({
-        url: "escort/mytransactions/",
+        url: "/escort/mytransactions/",
         method: "GET",
         headers: {
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
@@ -117,7 +131,7 @@ export const ApiSlice = createApi({
 
     ResetPassword: build.mutation({
       query: (body) => ({
-        url: "auth/forgot-password/",
+        url: "/auth/forgot-password/",
         method: "POST",
         body,
       }),
@@ -147,4 +161,6 @@ export const {
   useChannelByIdQuery,
   useChannelMessagesQuery,
   useSendMessageMutation,
+  useBlackEscortQuery,
+  useBlackClientQuery,
 } = ApiSlice;

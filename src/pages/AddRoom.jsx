@@ -31,6 +31,7 @@ const AddRoom = () => {
     description: "",
     property_type: "",
     policy: "",
+    rate: "",
   });
 
   const validateData = (data) => {
@@ -76,6 +77,9 @@ const AddRoom = () => {
     if (!data.policy) {
       errors.policy = "Policy is required";
     }
+    if (!data.rate) {
+      errors.rate = "Rate is required";
+    }
 
     return errors;
   };
@@ -103,6 +107,7 @@ const AddRoom = () => {
   formData.append("description", Data.description);
   formData.append("amenities", Data.amenities);
   formData.append("property_type", Data.property_type);
+  formData.append("rate", Data.rate);
 
   if (isLoading) {
     return <Loading />;
@@ -164,6 +169,7 @@ const AddRoom = () => {
           description: "",
           property_type: "",
           policy: "",
+          rate: "",
         });
         setImage("");
         navigate("/rooms");
@@ -376,6 +382,22 @@ const AddRoom = () => {
                   <p className="py-1 text-[12px] text-red-500">
                     {error.services}
                   </p>
+                </div>
+                <div>
+                  <Input
+                    labelValue={"Rate"}
+                    labelClass={"font-semibold md:text-base text-[14px] py-2"}
+                    inputType={"text"}
+                    required={"*"}
+                    inputName={"rate"}
+                    inputClass={
+                      " rounded-xl text-[#102127] placeholder-[#102127]"
+                    }
+                    holder={"Enter Here"}
+                    value={Data.rate}
+                    onchange={handleChange}
+                  />
+                  <p className="py-1 text-[12px] text-red-500">{error.rate}</p>
                 </div>
                 <div>
                   <Input
