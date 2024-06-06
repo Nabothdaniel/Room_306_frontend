@@ -12,6 +12,7 @@ import Send from "../images/Send.svg";
 import {
   useChannelByIdQuery,
   useChannelMessagesQuery,
+  useSendMessageMutation,
 } from "../redux/ApiSlice";
 import Loading from "../components/Loading";
 import toast, { LoaderIcon } from "react-hot-toast";
@@ -24,20 +25,18 @@ const NaughtyRoom = () => {
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
   const ref = useRef(null);
-
-  const newheight = document.getElementsByClassName("messag");
+  const [send] = useSendMessageMutation();
+  const { data, isLoading } = useChannelByIdQuery(id);
 
   useEffect(() => {
     ref.current?.scrollIntoView({
       behavior: "smooth",
       block: "end",
     });
-  }, [messages]);
-
-  const { data, isLoading } = useChannelByIdQuery(id);
+  }, [messages, data]);
 
   if (isLoading) {
-    return <LoaderIcon />;
+    return <Loading />;
   }
 
   const handleSend = async () => {
@@ -55,10 +54,11 @@ const NaughtyRoom = () => {
           }
         );
 
-        toast.success("Message Sent");
+        await send();
 
-        setImage("");
+        setImage(null);
         setMessage("");
+        toast.success("Message Sent");
       } catch (err) {
         console.log(err);
       }
@@ -112,13 +112,11 @@ const NaughtyRoom = () => {
                       </p>
                     </div>
                   </div>
-                  <div
-                    ref={ref}
-                    className="overflow-y-scroll messag pb-7 channel flex-1"
-                  >
+                  <div className="overflow-y-scroll channel flex-1">
                     {messages?.map((item, index) => {
                       return <NaugthyChannel key={index} item={item} />;
                     })}
+                    <div className="pb-8" ref={ref}></div>
                   </div>
                   <div className="flex gap-x-4 md:gap-x-8 pt-5 md:px-4 items-center">
                     <div className="bg-[#14211F] flex-1 items-center py-3 px-4 rounded-[360px] flex">

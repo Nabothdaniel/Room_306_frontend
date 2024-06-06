@@ -10,14 +10,6 @@ export const ApiSlice = createApi({
   keepUnusedDataFor: 60,
   tagTypes: ["Posts"],
   endpoints: (build) => ({
-    registerEscort: build.mutation({
-      query: (body) => ({
-        url: "auth/register_escort/",
-        method: "POST",
-        body,
-      }),
-    }),
-
     wallet: build.query({
       query: () => ({
         url: "/profile/userwallet/",
@@ -43,6 +35,7 @@ export const ApiSlice = createApi({
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
       }),
+      invalidatesTags: [{ type: "Posts", id: "LIST" }],
     }),
 
     channelMessages: build.query({
@@ -67,13 +60,6 @@ export const ApiSlice = createApi({
         url: "channels",
         method: "GET",
       }),
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.map(({ id }) => ({ type: "Post", id })),
-              { type: "Post", id: "LIST" },
-            ]
-          : [{ type: "Post", id: "LIST" }],
     }),
 
     transaction: build.query({
@@ -94,8 +80,8 @@ export const ApiSlice = createApi({
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
       }),
-      providesTags: ["Post"],
     }),
+
     updateClient: build.mutation({
       query: (body) => ({
         url: "/profile/edit/",
@@ -110,6 +96,7 @@ export const ApiSlice = createApi({
     getProfileById: build.query({
       query: (username) => `/profile/username/${username}/`,
     }),
+
     UploadImage: build.mutation({
       query: (body) => ({
         url: "/profile/upload-photo/",
@@ -147,7 +134,6 @@ export const ApiSlice = createApi({
 });
 
 export const {
-  useRegisterEscortMutation,
   useProfileQuery,
   useUpdateClientMutation,
   useLoginMutation,
