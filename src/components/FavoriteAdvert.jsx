@@ -3,29 +3,27 @@ import Location from "../images/location-tick.svg";
 import Slider1 from "../images/slider1.png";
 import { Link } from "react-router-dom";
 
-const FavoriteEscort = ({ item }) => {
+const FavoriteAdvert = ({ item }) => {
   return (
-    <Link
-      to={`/escort/${item.username}`}
-      className="bg-black text-white  p-3 rounded-lg"
-    >
+    <div className="bg-black text-white  p-3 rounded-lg">
       <img
         className="rounded-lg h-[200px] object-cover"
-        src={`https://room35backend.onrender.com${item.image}`}
+        src={`https://room35backend.onrender.com${item.user.image}`}
         alt=""
       />
       <div className="flex justify-between py-3">
         <div>
-          <h4 className="font-semibold pb-2">
-            {item.display_name}
-            {/* <span>23 yrs</span> */}
-          </h4>
+          <h4 className="font-semibold pb-2">{item.user.display_name}</h4>
+          <h4 className="font-semibold pb-2">{item.title}</h4>
 
           <p className="flex items-center text-[12px] lg:text-[14px]">
             <img src={Location} className="mr-1 size-5" />
             <span>
               {item.city}, {item.country}
             </span>
+          </p>
+          <p className="flex items-center text-[12px] pt-3 lg:text-[14px]">
+            {item.description}
           </p>
         </div>
         {/* <div>
@@ -34,8 +32,8 @@ const FavoriteEscort = ({ item }) => {
           </p>
         </div> */}
       </div>
-    </Link>
+    </div>
   );
 };
 
-export default FavoriteEscort;
+export default FavoriteAdvert;

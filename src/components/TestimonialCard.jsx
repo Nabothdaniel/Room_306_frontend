@@ -5,7 +5,7 @@ const TestimonialCard = ({ items }) => {
   return (
     <div className="bg-[#1E1E1E] py-12 rounded-2xl">
       <img
-        className="size-[100px] mx-auto after:contents-[''] after:absolute after:w-32 gradient rounded-full "
+        className="size-[100px] mx-auto  rounded-full "
         src={`https://room35backend.onrender.com${items.user.image}`}
         alt=""
       />

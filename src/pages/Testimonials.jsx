@@ -57,7 +57,7 @@ const Testimonials = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:gap-7 md:gap-4 gap-3">
             {data?.length == 0 ? (
-              <div className="md:col-span-2 col-span-1 flex justify-center items-center">
+              <div className="md:col-span-2 col-span-1 h-[40vh] flex justify-center items-center">
                 <p className="text-white md:text-xl font-semibold">
                   No Testimonial..
                 </p>

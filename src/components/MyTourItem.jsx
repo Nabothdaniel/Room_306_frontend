@@ -2,8 +2,10 @@ import React from "react";
 import Location from "../images/location-tick.svg";
 import Slider1 from "../images/slider1.png";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const MyTourItem = ({ item }) => {
+  const navigate = useNavigate();
   const handleDelete = async () => {
     try {
       const res = await axios.delete(
@@ -23,24 +25,37 @@ const MyTourItem = ({ item }) => {
     }
   };
 
+  const handleUpdate = () => {
+    localStorage.setItem("tour", JSON.stringify(item));
+    navigate("/update-tours");
+  };
+
   return (
     <div className={`bg-black text-white  p-3 rounded-lg`}>
-      <img
-        className="rounded-lg h-[200px] object-cover"
-        src={`https://room35backend.onrender.com${item.cover_image}`}
-        alt=""
-      />
+      <Link to={`/tours/${item.id}`}>
+        <img
+          className="rounded-lg h-[200px] object-cover"
+          src={`https://room35backend.onrender.com${item.cover_image}`}
+          alt=""
+        />
+      </Link>
       <div>
         <div className="flex justify-between py-2">
           <h4 className="font-semibold text-white pb-2">
             {item?.user?.display_name}
           </h4>
-          <div>
+          <div className="flex flex-col gap-5">
             <p
               onClick={handleDelete}
-              className="bg-yellow-300 text-[12px] py-1 text-black px-2 rounded-3xl cursor-pointer font-semibold"
+              className="bg-red-500 text-[12px] py-1 text-black px-2 rounded-3xl cursor-pointer font-semibold"
             >
               Delete
+            </p>
+            <p
+              onClick={handleUpdate}
+              className="bg-yellow-300 text-[12px] py-1 text-black px-2 rounded-3xl cursor-pointer font-semibold"
+            >
+              Update
             </p>
           </div>
         </div>

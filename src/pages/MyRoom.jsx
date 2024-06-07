@@ -135,14 +135,18 @@ const MyRoom = () => {
             >
               Add New
             </Link>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              <div className={`${!state.open1 && "hidden"}`}>
+            <div className="">
+              <div
+                className={`${
+                  !state.open1 && "hidden"
+                } grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`}
+              >
                 {data.length == 0 ? (
                   <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
                     <p className="text-white md:text-xl ">No Published Room</p>
                   </div>
                 ) : (
-                  <div>
+                  <div className="grid xl:grid-cols-4 xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
                     {data.map((item, index) => {
                       return <MyRoomItem key={index} item={item} />;
                     })}

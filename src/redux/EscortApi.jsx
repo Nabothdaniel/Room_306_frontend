@@ -103,6 +103,16 @@ const escortApi = ApiSlice.injectEndpoints({
       }),
     }),
 
+    myFavorite: build.query({
+      query: () => ({
+        url: "escort/escortfavorites/",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
+
     editProfile: build.mutation({
       query: (body) => ({
         url: "/profile/escort/edit/",
@@ -130,4 +140,5 @@ export const {
   useUnlikeVideoMutation,
   useMyVideosQuery,
   useEditProfileMutation,
+  useMyFavoriteQuery,
 } = escortApi;

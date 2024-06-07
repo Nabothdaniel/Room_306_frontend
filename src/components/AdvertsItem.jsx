@@ -32,7 +32,7 @@ const AdvertsItem = ({ items }) => {
       try {
         const res = await axios.post(
           "https://room35backend.onrender.com/api/conversations/start/",
-          { recipient_id: items.id },
+          { recipient_id: items.user.username },
           {
             headers: {
               "Content-Type": "application/json",

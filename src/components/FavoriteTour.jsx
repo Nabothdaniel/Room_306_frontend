@@ -3,21 +3,21 @@ import Location from "../images/location-tick.svg";
 import Slider1 from "../images/slider1.png";
 import { Link } from "react-router-dom";
 
-const FavoriteEscort = ({ item }) => {
+const FavoriteTour = ({ item }) => {
   return (
     <Link
-      to={`/escort/${item.username}`}
+      to={`/tours/${item.id}`}
       className="bg-black text-white  p-3 rounded-lg"
     >
       <img
         className="rounded-lg h-[200px] object-cover"
-        src={`https://room35backend.onrender.com${item.image}`}
+        src={`https://room35backend.onrender.com${item.cover_image}`}
         alt=""
       />
       <div className="flex justify-between py-3">
         <div>
           <h4 className="font-semibold pb-2">
-            {item.display_name}
+            {item.title}
             {/* <span>23 yrs</span> */}
           </h4>
 
@@ -38,4 +38,4 @@ const FavoriteEscort = ({ item }) => {
   );
 };
 
-export default FavoriteEscort;
+export default FavoriteTour;

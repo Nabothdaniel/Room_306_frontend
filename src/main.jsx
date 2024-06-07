@@ -53,6 +53,8 @@ import TourView from "./pages/TourView.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
 import { ImageContext } from "./Hooks/ImageContext.jsx";
 import PersonalChat from "./pages/PersonalChat.jsx";
+import UpdateTours from "./pages/UpdateTour.jsx";
+import UpdateRoom from "./pages/UpdateRoom.jsx";
 
 const router = createBrowserRouter([
   {
@@ -274,6 +276,14 @@ const router = createBrowserRouter([
       {
         path: "/add-room",
         element: <AddRoom />,
+      },
+      {
+        path: "/update-tours",
+        element: <UpdateTours />,
+      },
+      {
+        path: "/update-rooms",
+        element: <UpdateRoom />,
       },
       {
         path: "/chat/:id",

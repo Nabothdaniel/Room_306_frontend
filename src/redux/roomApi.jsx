@@ -1,6 +1,7 @@
 import { ApiSlice } from "./ApiSlice";
 
 const roomApi = ApiSlice.injectEndpoints({
+  tagTypes: ["Room"],
   endpoints: (build) => ({
     getAllRooms: build.query({
       query: () => "room/all",
@@ -17,13 +18,25 @@ const roomApi = ApiSlice.injectEndpoints({
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
       }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Room", id })),
+              { type: "Room", id: "LIST" },
+            ]
+          : [{ type: "Room", id: "LIST" }],
     }),
 
-
-
-
-
-
+    deleteRoom: build.mutation({
+      query: (id) => ({
+        url: `/room/${id}/delete/`,
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+      invalidatesTags: [{ type: "Room", id: "LIST" }],
+    }),
 
     getRoomById: build.query({
       query: (id) => ({
@@ -43,5 +56,6 @@ export const {
   useGetRoomByIdQuery,
   useGetFilteredRoomQuery,
   useGetRoomReviewQuery,
+  useDeleteRoomMutation,
 } = roomApi;
 // /room/{room_id}/delete/

@@ -37,6 +37,16 @@ const tourApi = ApiSlice.injectEndpoints({
       }),
     }),
 
+    favoriteTour: build.query({
+      query: () => ({
+        url: "/tour/my_favorite_tours/",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
+
     getTourById: build.query({
       query: (id) => ({
         url: `/tour/${id}/`,
@@ -51,4 +61,5 @@ export const {
   useGetMyTourQuery,
   useGetTourByIdQuery,
   useTourFavoriteMutation,
+  useFavoriteTourQuery,
 } = tourApi;

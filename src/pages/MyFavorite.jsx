@@ -1,10 +1,16 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
 import FavoriteEscort from "../components/FavoriteEscort";
 import FavoriteVideo from "../components/FavoriteVideo";
+import { useMyFavoriteQuery } from "../redux/EscortApi";
+import Loading from "../components/Loading";
+import { useFavoriteTourQuery } from "../redux/tourApi";
+import FavoriteTour from "../components/FavoriteTour";
+import { useFavoriteAdvertQuery } from "../redux/AdvertSlice";
+import FavoriteAdvert from "../components/FavoriteAdvert";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -16,15 +22,36 @@ const reducer = (state, action) => {
       return {
         open2: true,
       };
+    case "Change3":
+      return {
+        open3: true,
+      };
   }
 };
 
 const MyFavorite = () => {
+  const details = JSON.parse(localStorage.getItem("details"));
+  const { data, isLoading } = useMyFavoriteQuery();
+  const { data: tour, isLoading: tourLoad } = useFavoriteTourQuery();
+  const { data: advert, isLoading: adLoad } = useFavoriteAdvertQuery();
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
+    open3: false,
   });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (details?.user?.user_type !== "escort") {
+      navigate("/");
+      return;
+    }
+  }, []);
+
+  if (isLoading || tourLoad || adLoad) {
+    return <Loading />;
+  }
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
@@ -59,7 +86,7 @@ const MyFavorite = () => {
                 >
                   Escort{" "}
                   <span className="bg-white px-2 rounded-full text-black">
-                    1
+                    {data.length}
                   </span>
                 </p>
                 <p
@@ -68,9 +95,20 @@ const MyFavorite = () => {
                     state.open2 && "bg-[#1e1e1e]"
                   } `}
                 >
-                  Video{" "}
+                  Tour{" "}
                   <span className="bg-white px-2 rounded-full text-black">
-                    1
+                    {tour.length}
+                  </span>
+                </p>
+                <p
+                  onClick={() => dispatch({ type: "Change3" })}
+                  className={`md:w-[250px] w-[200px] py-3 rounded-t-md text-center cursor-pointer  ${
+                    state.open3 && "bg-[#1e1e1e]"
+                  } `}
+                >
+                  Adverts{" "}
+                  <span className="bg-white px-2 rounded-full text-black">
+                    {advert.length}
                   </span>
                 </p>
               </div>
@@ -79,14 +117,51 @@ const MyFavorite = () => {
                   !state.open1 ? "hidden" : ""
                 } py-4 px-5 rounded-b-md grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
               >
-                <FavoriteEscort />
+                {data.length == 0 ? (
+                  <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
+                    <p className="text-white md:text-xl ">No Favorite Escort</p>
+                  </div>
+                ) : (
+                  <div className="grid xl:grid-cols-4 xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                    {data.map((item, index) => {
+                      return <FavoriteEscort key={index} item={item} />;
+                    })}
+                  </div>
+                )}
               </div>
               <div
                 className={`bg-[#1e1e1e] ${
                   !state.open2 ? "hidden" : ""
                 } py-4 px-5 rounded-b-md grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
               >
-                <FavoriteVideo />
+                {tour.length == 0 ? (
+                  <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
+                    <p className="text-white md:text-xl ">No Favorite Tour</p>
+                  </div>
+                ) : (
+                  <div className="grid xl:grid-cols-4 xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                    {tour.map((item, index) => {
+                      return <FavoriteTour key={index} item={item} />;
+                    })}
+                  </div>
+                )}
+              </div>
+              <div
+                className={`bg-[#1e1e1e] ${
+                  !state.open3 ? "hidden" : ""
+                } py-4 px-5 rounded-b-md grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
+              >
+                {advert.length == 0 ? (
+                  <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
+                    <p className="text-white md:text-xl ">No Favorite Advert</p>
+                  </div>
+                ) : (
+                  <div className="grid xl:grid-cols-4 xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                    {advert.map((item, index) => {
+                      return <FavoriteAdvert key={index} item={item} />;
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           </div>
