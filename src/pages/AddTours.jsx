@@ -7,7 +7,7 @@ import Upload from "../images/Upload.svg";
 import Loading from "../components/Loading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
 
 const AddTours = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const AddTours = () => {
       return;
     }
   }, []);
-
+  const [load, setLoad] = useState(false);
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
   const [apiError, setApiError] = useState("");
@@ -90,16 +90,16 @@ const AddTours = () => {
 
   let states;
   const handleCountry = (e) => {
-    states = data.filter((state) => state.name === e.target.value);
-    states = states.map((item) => item.states);
+    states = data?.filter((state) => state.name === e.target.value);
+    states = states?.map((item) => item.states);
 
     states.sort();
     setGetState(states[0]);
   };
 
   const handleState = (e) => {
-    let city = getState.filter((item) => item.name === e.target.value);
-    city = city.map((item) => item);
+    let city = getState?.filter((item) => item.name === e.target.value);
+    city = city?.map((item) => item);
 
     setGetCities(city);
   };
@@ -107,7 +107,7 @@ const AddTours = () => {
   let newCities = [];
 
   getCities.forEach((childArray) => {
-    childArray.cities.forEach((item) => {
+    childArray?.cities?.forEach((item) => {
       newCities.push(item);
     });
   });
@@ -116,6 +116,7 @@ const AddTours = () => {
     const validationErrors = validateFormData(Data);
     setError(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
+      setLoad(true);
       try {
         const res = await axios.post(
           "https://room35backend.onrender.com/api/tour/create/",
@@ -129,6 +130,7 @@ const AddTours = () => {
             },
           }
         );
+        setLoad(false);
         toast.success("Tour Created Succesfully");
         navigate("/tours");
         window.location.reload(true);
@@ -142,6 +144,7 @@ const AddTours = () => {
 
         setApiError("");
       } catch (err) {
+        setLoad(false);
         console.log(err);
         setApiError(err.response.data.detail);
       }
@@ -243,7 +246,7 @@ const AddTours = () => {
                         }}
                       >
                         <option value="">All Country</option>
-                        {data.map((item) => {
+                        {data?.map((item) => {
                           return (
                             <option key={item.id} value={item.name}>
                               {item.name}
@@ -273,7 +276,7 @@ const AddTours = () => {
                         }}
                       >
                         <option value="">State(Optional)</option>
-                        {getState.map((item, index) => {
+                        {getState?.map((item, index) => {
                           return (
                             <option key={item.id} value={item.name}>
                               {item.name}
@@ -301,7 +304,7 @@ const AddTours = () => {
                       >
                         <option value="">City(Optional)</option>
 
-                        {newCities.map((item) => {
+                        {newCities?.map((item) => {
                           return (
                             <option key={item.id} value={item.name}>
                               {item.name}
@@ -345,9 +348,10 @@ const AddTours = () => {
               </div>
               <button
                 onClick={handleSubmit}
+                disabled={load}
                 className="bg-[#E9CB50] hover:bg-yellow-300 text-[#171717] mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl"
               >
-                Submit
+                {load ? <LoaderIcon className="mx-auto" /> : "Submit"}
               </button>
             </div>
           </div>

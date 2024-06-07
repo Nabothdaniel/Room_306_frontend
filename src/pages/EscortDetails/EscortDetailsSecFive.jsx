@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import Upload from "../../images/Upload.svg";
 import { useDispatch, useSelector } from "react-redux";
-import toast from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
 import { ImageContext } from "../../Hooks/ImageContext";
 import axios from "axios";
 import { setCredentials } from "../../redux/UtilSlice";
@@ -15,10 +15,12 @@ const EscortDetailsSecFive = () => {
   const navigate = useNavigate();
   const { image } = useContext(ImageContext);
   const [VImage, setVimage] = useState("");
+  const [load, setLoad] = useState(false);
   const data = useSelector((state) => state.Util.userDetails);
 
   const handleSubmit = async () => {
     if (VImage) {
+      setLoad(true);
       try {
         const res = await axios.post(
           "https://room35backend.onrender.com/api/auth/register_escort/",
@@ -34,12 +36,13 @@ const EscortDetailsSecFive = () => {
             },
           }
         );
-        console.log(res);
+        setLoad(false);
         dispatch(setCredentials(res.data?.token));
         navigate("/survey");
         window.location.reload(true);
       } catch (err) {
         console.log(err);
+        setLoad(false);
       }
     } else {
       toast.error("A Picture of yourself is needed");
@@ -150,9 +153,10 @@ const EscortDetailsSecFive = () => {
                   </button>
                   <button
                     onClick={handleSubmit}
+                    disabled={load}
                     className="bg-[#E9CB50] text-center block w-[100%] text-[#171717] py-4 md:w-[120px] font-semibold rounded-xl"
                   >
-                    Submit
+                    {load ? <LoaderIcon className="mx-auto" /> : "Submit"}
                   </button>
                 </div>
               </div>

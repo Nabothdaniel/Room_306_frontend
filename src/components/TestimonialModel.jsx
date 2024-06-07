@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Close from "../images/close-icon.svg";
 import { Link } from "react-router-dom";
+import toast, { LoaderIcon } from "react-hot-toast";
+import { useTestimonialsMutation } from "../redux/ApiSlice";
 
 const TestimonialModel = ({ modelClass, handleModel }) => {
+  const [load, setLoad] = useState(false);
+  const [content, setContent] = useState("");
+  const [testimony] = useTestimonialsMutation();
+  const users = JSON.parse(localStorage.getItem("details"));
+
+  const handleSubmit = async () => {
+    if (users) {
+      if (content.trim()) {
+        setLoad(true);
+        try {
+          const res = await testimony({ content: content.trim() }).unwrap();
+          setLoad(false);
+          handleModel();
+          setContent("");
+          toast.success("Testimonial Submitted");
+        } catch (err) {
+          setLoad(false);
+          toast.error("Failed");
+        }
+      } else {
+        toast.error("Field is Required");
+      }
+    } else {
+      toast.error("Only signed in user can give a testimonial");
+    }
+  };
+
   return (
     <div
       className={`bg-black/40 duration-500 ${modelClass} fixed top-0 z-[999] left-0 w-[100%] h-screen flex justify-center items-center`}
@@ -27,15 +56,18 @@ const TestimonialModel = ({ modelClass, handleModel }) => {
             id=""
             rows={4}
             placeholder="Your description"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           ></textarea>
         </label>
         <div className="mr-7 mb-5 flex justify-end">
-          <Link
-            to={"/signup/escort/1"}
+          <button
+            onClick={handleSubmit}
+            disabled={load}
             className="text-center block bg-[#E9CB50] py-4 w-[120px] font-semibold rounded-2xl"
           >
-            Submit
-          </Link>
+            {load ? <LoaderIcon className="mx-auto" /> : "Submit"}
+          </button>
         </div>
       </div>
     </div>

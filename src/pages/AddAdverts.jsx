@@ -6,13 +6,13 @@ import { useGetCountryQuery } from "../redux/CountryApi";
 import TextArea from "../components/TextArea";
 import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
 import { useCreateAdvertMutation } from "../redux/AdvertSlice";
 
 const AddAdverts = () => {
   const users = JSON.parse(localStorage.getItem("details"));
   const navigate = useNavigate();
-
+  const [load, setLoad] = useState(false);
   const [error, setError] = useState("");
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
@@ -38,6 +38,7 @@ const AddAdverts = () => {
     description: "",
     amount: "",
     start_date: "",
+    end_date: "",
     user: users?.id,
   });
 
@@ -57,6 +58,9 @@ const AddAdverts = () => {
     }
     if (!data.start_date) {
       errors.date = "Date is Required";
+    }
+    if (!data.end_date) {
+      errors.edate = "Date is Required";
     }
     if (!data.country) {
       errors.country = "Country is required";
@@ -112,8 +116,11 @@ const AddAdverts = () => {
     const validationErrors = validateFormData(Data);
     setError(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
+      setLoad(true);
       try {
         const res = await advert(Data).unwrap();
+
+        setLoad(false);
         toast.success("Adverts Created Succesfully");
         navigate("/adverts");
         window.location.reload(true);
@@ -123,8 +130,10 @@ const AddAdverts = () => {
           title: "",
           city: "",
           start_date: "",
+          end_date: "",
         });
       } catch (err) {
+        setLoad(false);
         console.log(err);
       }
     }
@@ -187,6 +196,23 @@ const AddAdverts = () => {
               />
               {error.date && (
                 <p className="py-1 text-[12px] text-red-500">{error.date}</p>
+              )}
+            </div>
+            <div>
+              <Input
+                labelValue={"End Date"}
+                inputType={"date"}
+                labelClass={"font-semibold md:pt-4 py-2"}
+                required={""}
+                inputName={"end_date"}
+                onchange={handleChange}
+                inputClass={
+                  "md:p-3 py-[6px] px-3 rounded-xl text-[#102127] placeholder-[#102127]"
+                }
+                holder={""}
+              />
+              {error.edate && (
+                <p className="py-1 text-[12px] text-red-500">{error.edate}</p>
               )}
             </div>
             <div>
@@ -330,7 +356,7 @@ const AddAdverts = () => {
               onClick={handleSubmit}
               className="bg-[#E9CB50] text-[#171717] mb-4 mt-4 text-[14px] h-[48px] w-[120px] font-semibold rounded-xl"
             >
-              Create
+              {load ? <LoaderIcon className="mx-auto" /> : "Create"}
             </button>
           </div>
         </div>

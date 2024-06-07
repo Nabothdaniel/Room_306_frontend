@@ -7,11 +7,13 @@ import { useLoginMutation } from "../redux/ApiSlice";
 import { setCredentials } from "../redux/UtilSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { LoaderIcon } from "react-hot-toast";
 
 const Login = ({ loginControl, loginClass }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [login] = useLoginMutation();
+  const [load, setLoad] = useState(false);
   const [error, setError] = useState();
   const [formData, setFormData] = useState("");
 
@@ -20,17 +22,20 @@ const Login = ({ loginControl, loginClass }) => {
   };
 
   const handleLogin = async () => {
+    setLoad(true);
     try {
       const res = await login(formData).unwrap();
 
       if (res.token) {
+        setLoad(false);
         dispatch(setCredentials(res.token));
         navigate("/");
         setError("");
-        window.location.reload(true);
         loginControl();
+        window.location.reload(true);
       }
     } catch (err) {
+      setLoad(false);
       setError(err.data.detail);
     }
   };
@@ -93,9 +98,10 @@ const Login = ({ loginControl, loginClass }) => {
         </Link>
         <button
           onClick={handleLogin}
+          disabled={load}
           className="bg-[#E9CB50] w-[100%] text-[18px] md:py-5 py-3 font-semibold text-[#171717] mb-10 rounded-xl"
         >
-          Log In
+          {load ? <LoaderIcon className="mx-auto" /> : "Log In"}
         </button>
       </div>
     </div>

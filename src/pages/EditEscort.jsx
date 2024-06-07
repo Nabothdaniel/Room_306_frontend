@@ -10,7 +10,7 @@ import EditAbout from "../components/EditAbout";
 import EscortBioEdit from "../components/EscortBioEdit";
 import EscortServicesEdit from "../components/EscortServicesEdit";
 import EscortRateEdit from "../components/EscortRateEdit";
-import { LoaderIcon } from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
 import { useEditProfileMutation } from "../redux/EscortApi";
 
 const reducer = (state, action) => {
@@ -45,7 +45,6 @@ const EditEscort = () => {
     country: users.user.country,
     state: users.user.state,
     city: users.user.city,
-
     mobile_number: users.user.mobile_number,
     email: users.user.email,
     username: users.username,
@@ -54,8 +53,8 @@ const EditEscort = () => {
     date_of_birth: users.date_of_birth,
     heading: users.heading,
     is_smoker: users.is_smoker,
-    male: users.isMale,
-    female: users.isFemale,
+    isMale: users.isMale,
+    isFemale: users.isFemale,
     sexual_orientation: users.sexual_orientation,
     education: users.education,
     ocupation: users.occupation,
@@ -77,9 +76,9 @@ const EditEscort = () => {
   const handleChange = (e) => {
     if (e.target.name == "gender") {
       if (e.target.value == "male") {
-        setformData({ ...formData, female: false, male: true });
+        setformData({ ...formData, isFemale: false, isMale: true });
       } else if (e.target.value == "female") {
-        setformData({ ...formData, male: false, female: true });
+        setformData({ ...formData, isMale: false, isFemale: true });
       }
     } else if (e.target.name == "is_smoker") {
       if (e.target.value == "true") {
@@ -102,7 +101,9 @@ const EditEscort = () => {
   const handleSubmit = async () => {
     try {
       const res = await edit(formData).unwrap();
-      console.log(res);
+      toast.success(res.message);
+      navigate("/profile");
+      window.location.reload(true);
     } catch (err) {
       console.log(err);
     }

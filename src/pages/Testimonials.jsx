@@ -5,13 +5,30 @@ import Frame from "../images/Frame.svg";
 import TestimonialCard from "../components/TestimonialCard";
 import Pagination from "../components/Pagination";
 import TestimonialModel from "../components/TestimonialModel";
+import { useGetTestimonialQuery } from "../redux/ApiSlice";
+import Loading from "../components/Loading";
 
 const Testimonials = () => {
   const [openModel, setOpenModel] = useState(false);
-
+  const { data, isLoading } = useGetTestimonialQuery();
+  const [currentPage, setCurrentPage] = useState(0);
   const handleModel = () => {
     setOpenModel(!openModel);
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  const usersPage = 12;
+
+  const page = currentPage * usersPage;
+
+  const displayTest = data.slice(page, page + usersPage).map((item, index) => {
+    return <TestimonialCard key={index} items={item} />;
+  });
+
+  const pageCount = Math.ceil(data.length / usersPage);
 
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
@@ -39,12 +56,21 @@ const Testimonials = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:gap-7 md:gap-4 gap-3">
-            <TestimonialCard />
-            <TestimonialCard />
-            <TestimonialCard />
-            <TestimonialCard />
+            {data?.length == 0 ? (
+              <div className="md:col-span-2 col-span-1 flex justify-center items-center">
+                <p className="text-white md:text-xl font-semibold">
+                  No Testimonial..
+                </p>
+              </div>
+            ) : (
+              <div className="md:col-span-2 col-span-1 grid md:grid-cols-2 grid-cols-1 gap-3 md:gap-4 lg:gap-7">
+                {displayTest}
+              </div>
+            )}
           </div>
-          <Pagination />
+          {data.length == 0 || (
+            <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
+          )}
         </div>
       </div>
       <TestimonialModel

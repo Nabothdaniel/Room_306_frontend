@@ -8,7 +8,7 @@ export const ApiSlice = createApi({
   refetchOnReconnect: true,
   refetchOnFocus: true,
   keepUnusedDataFor: 60,
-  tagTypes: ["Posts"],
+  tagTypes: ["Posts", "Tests", "Tour"],
   endpoints: (build) => ({
     wallet: build.query({
       query: () => ({
@@ -55,10 +55,37 @@ export const ApiSlice = createApi({
           : [{ type: "Posts", id: "LIST" }],
     }),
 
+    conversationMessages: build.query({
+      query: (id) => ({
+        url: `/conversations/${id}/messages/`,
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Posts", id })),
+              { type: "Posts", id: "LIST" },
+            ]
+          : [{ type: "Posts", id: "LIST" }],
+    }),
+
     channel: build.query({
       query: () => ({
         url: "/channels",
         method: "GET",
+      }),
+    }),
+
+    conversation: build.query({
+      query: () => ({
+        url: "/conversations/",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
       }),
     }),
 
@@ -67,6 +94,20 @@ export const ApiSlice = createApi({
         url: "/blacklisted/escorts/",
         method: "GET",
       }),
+    }),
+
+    getTestimonial: build.query({
+      query: () => ({
+        url: "/testimonies/",
+        method: "GET",
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Tests", id })),
+              { type: "Tests", id: "LIST" },
+            ]
+          : [{ type: "Tests", id: "LIST" }],
     }),
 
     blackClient: build.query({
@@ -144,6 +185,18 @@ export const ApiSlice = createApi({
         body,
       }),
     }),
+
+    testimonials: build.mutation({
+      query: (body) => ({
+        url: "/testimonies/create/",
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+        body,
+      }),
+      invalidatesTags: [{ type: "Tests", id: "LIST" }],
+    }),
   }),
 });
 
@@ -163,4 +216,8 @@ export const {
   useSendMessageMutation,
   useBlackEscortQuery,
   useBlackClientQuery,
+  useConversationQuery,
+  useConversationMessagesQuery,
+  useTestimonialsMutation,
+  useGetTestimonialQuery,
 } = ApiSlice;

@@ -78,15 +78,15 @@ const EscortBioEdit = ({ bioClass, formData, handleChange }) => {
             </select>
           </div>
         </label>
-        <label className="text-white flex flex-col" htmlFor="bust-size">
+        <label className="text-white flex flex-col" htmlFor="bust_size">
           <span className="font-semibold pb-1">
             Bust Size<span className="text-[#E9CB50]">*</span>
           </span>
           <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
             <select
               className="w-[100%] bg-[#F0F2F5] py-[10px] md:py-[14px] outline-none"
-              name="bust-size"
-              id="bust-size"
+              name="bust_size"
+              id="bust_size"
               value={formData.bust_size}
               onChange={handleChange}
             >

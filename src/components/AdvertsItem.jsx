@@ -6,8 +6,10 @@ import Love from "../images/Love.svg";
 import { useAdvertFavoriteMutation } from "../redux/AdvertSlice";
 import toast from "react-hot-toast";
 import { format, parseISO } from "date-fns";
+import axios from "axios";
 
 const AdvertsItem = ({ items }) => {
+  const users = JSON.parse(localStorage.getItem("details"));
   const [favorite] = useAdvertFavoriteMutation();
 
   const handleFavorite = async () => {
@@ -24,6 +26,28 @@ const AdvertsItem = ({ items }) => {
 
   const endDate = parseISO(items.end_date);
   const EndDate = format(endDate, "dd MMM");
+
+  const handleChat = async () => {
+    if (users) {
+      try {
+        const res = await axios.post(
+          "https://room35backend.onrender.com/api/conversations/start/",
+          { recipient_id: items.id },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Bearer " + JSON.parse(localStorage.getItem("token")),
+            },
+          }
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      toast.error("Sign in");
+    }
+  };
 
   return (
     <div className="bg-[#1E1E1E] flex flex-col relative rounded-3xl p-4 md:p-7 ">
@@ -61,7 +85,10 @@ const AdvertsItem = ({ items }) => {
             </div>
           </div>
           <div className="sm:flex hidden pt-2 items-center">
-            <button className="bg-[#E9CB50]  w-[100%] text-[#171717] h-[40px]  font-medium rounded-xl">
+            <button
+              onClick={handleChat}
+              className="bg-[#E9CB50]  w-[100%] text-[#171717] h-[40px]  font-medium rounded-xl"
+            >
               Chat Now
             </button>
             <img
@@ -98,7 +125,10 @@ const AdvertsItem = ({ items }) => {
           </div>
         </div>
         <div className="flex items-center">
-          <button className="bg-[#E9CB50]  w-[100%] text-[#171717] h-[40px] font-medium rounded-xl">
+          <button
+            onClick={handleChat}
+            className="bg-[#E9CB50]  w-[100%] text-[#171717] h-[40px] font-medium rounded-xl"
+          >
             Chat Now
           </button>
           <img

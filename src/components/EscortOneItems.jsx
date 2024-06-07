@@ -11,17 +11,17 @@ import toast from "react-hot-toast";
 const EscortOneItems = ({ items }) => {
   const [favorite] = useTourFavoriteMutation();
   const parsedDate = parseISO(items.start_date);
-  const formattedDate = format(parsedDate, "MMMM d, yyyy");
+  const formattedDate = format(parsedDate, "MMM dd, yyyy");
 
   const endDate = parseISO(items.end_date);
-  const EndDate = format(endDate, "MMMM d, yyyy");
+  const EndDate = format(endDate, "MMM dd, yyyy");
 
   const handleFavorite = async () => {
     try {
       const res = await favorite(items.id);
       toast.success(res.data.message);
     } catch (err) {
-     toast.error("Only Signed In User can add to Favorite");
+      toast.error("Only Signed In User can add to Favorite");
     }
   };
 
@@ -50,7 +50,11 @@ const EscortOneItems = ({ items }) => {
               </span>
             </p>
           </div>
-          <img onClick={handleFavorite} src={Love} className="size-12 cursor-pointer" />
+          <img
+            onClick={handleFavorite}
+            src={Love}
+            className="size-12 cursor-pointer"
+          />
         </div>
         <p className="lg:text-[15px] text-[12px] text-wrap  pb-2 text-[#DADADA]">
           {items.title}

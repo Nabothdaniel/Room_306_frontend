@@ -40,7 +40,7 @@ const Blacklisted = () => {
 
   const displayEscort = escort
     .slice(page, page + usersPage)
-    .filter((item) => item.is_approved == true)
+    .filter((item) => item.is_approved == false)
     .map((item, index) => {
       return <BlacklistedList key={index} items={item} />;
     });
@@ -52,8 +52,12 @@ const Blacklisted = () => {
       return <BlacklistedList key={index} items={item} />;
     });
 
-  const escortCount = Math.ceil(escort.length / usersPage);
-  const clientCount = Math.ceil(client.length / usersPage);
+  const escortCount = Math.ceil(
+    escort.filter((item) => item.is_approved == true).length / usersPage
+  );
+  const clientCount = Math.ceil(
+    client.filter((item) => item.is_approved == true).length / usersPage
+  );
 
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
@@ -109,14 +113,16 @@ const Blacklisted = () => {
                 !state.open2 && "hidden"
               }   grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4`}
             >
-              {escort.length == 0 ? (
+              {escort.filter((item) => item.is_approved == true).length == 0 ? (
                 <div className="text-white flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 h-[30vh]">
                   <p className="font-semibold md:text-xl">
                     No Blacklisted Escort
                   </p>
                 </div>
               ) : (
-                <div>{displayEscort}</div>
+                <div className="grid xl:grid-cols-4 xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                  {displayEscort}
+                </div>
               )}
             </div>
             <div
@@ -124,14 +130,16 @@ const Blacklisted = () => {
                 !state.open1 && "hidden"
               }   grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4`}
             >
-              {client.length == 0 ? (
+              {client.filter((item) => item.is_approved == true).length == 0 ? (
                 <div className="text-white flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 h-[30vh]">
                   <p className="font-semibold md:text-xl">
                     No Blacklisted Client
                   </p>
                 </div>
               ) : (
-                <div>{displayClient}</div>
+                <div className="grid xl:grid-cols-4 xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                  {displayClient}
+                </div>
               )}
             </div>
           </div>

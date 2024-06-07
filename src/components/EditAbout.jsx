@@ -27,7 +27,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
 
   let states;
   handleCountry = (e) => {
-    states = data.filter((state) => state.name === formData.country);
+    states = data?.filter((state) => state.name === formData.country);
     setCode(states[0]?.phone_code);
     setCurrency(states[0]?.currency);
     states = states?.map((item) => item.states);
@@ -37,7 +37,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
   };
 
   handleState = (e) => {
-    let city = getState.filter((item) => item.name === formData.state);
+    let city = getState?.filter((item) => item.name === formData.state);
     city = city?.map((item) => item);
 
     setGetCities(city);
@@ -46,7 +46,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
   let newCities = [];
 
   getCities.forEach((childArray) => {
-    childArray.cities.forEach((item) => {
+    childArray?.cities?.forEach((item) => {
       newCities.push(item);
     });
   });
@@ -106,7 +106,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
               <input
                 onChange={handleChange}
                 type="radio"
-                checked={Boolean(formData.male)}
+                checked={Boolean(formData.isMale)}
                 name="gender"
                 value="male"
               />
@@ -118,7 +118,7 @@ const EditAbout = ({ aboutClass, formData, handleChange, setCurrency }) => {
               <input
                 onChange={handleChange}
                 type="radio"
-                checked={Boolean(formData.female)}
+                checked={Boolean(formData.isFemale)}
                 name="gender"
                 value="female"
               />

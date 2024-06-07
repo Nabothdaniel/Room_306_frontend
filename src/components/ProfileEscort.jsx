@@ -6,6 +6,7 @@ import ProfileService from "./ProfileService";
 import ProfileEscortAbout from "./ProfileEscortAbout";
 import ProfileEscortGallery from "./ProfileEscortGallery";
 import Check from "../images/Check.svg";
+import ProfileVideo from "./ProfileVideo";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -89,7 +90,7 @@ const ProfileEscort = ({ user }) => {
           Services
         </p>
       </div>
-      {/* <NaughtyProfile naughtClass={`${!state.open4 ? "hidden" : ""}`} /> */}
+      <ProfileVideo naughtClass={`${!state.open4 ? "hidden" : ""}`} />
       <ProfileEscortAbout
         user={user.escort_details}
         aboutClass={`${!state.open1 ? "hidden" : ""}`}
