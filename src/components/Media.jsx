@@ -68,12 +68,12 @@ const Media = ({ mediaClass }) => {
           alt=""
         />
       </div>
-      <hr />
+      {/* <hr />
       <div className="flex pb-[15px] md:text-base text-[14px] pt-4 font-semibold text-white items-center">
         <img className="size-8 mr-2" src={Book} alt="" />
         Story
         <img className="size-7 cursor-pointer ml-3" src={Frame} alt="" />
-      </div>
+      </div> */}
       <hr />
       <div className="flex pb-[15px] md:text-base text-[14px] pt-4 font-semibold text-white items-center">
         <img className="size-8 mr-2" src={Video} alt="" />

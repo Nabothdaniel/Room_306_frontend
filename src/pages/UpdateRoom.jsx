@@ -171,7 +171,6 @@ const UpdateRoom = () => {
           amenities: "",
           contacts: "",
           services: "",
-          contacts: "",
           title: "",
           description: "",
           property_type: "",
