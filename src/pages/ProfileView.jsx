@@ -10,18 +10,19 @@ import Loading from "../components/Loading";
 import ProfileEscort from "../components/ProfileEscort";
 import toast from "react-hot-toast";
 import ReportModel from "../components/ReportModel";
-import { useGetProfileByIdQuery } from "../redux/EscortApi";
+import { useFollowingQuery, useGetProfileByIdQuery } from "../redux/EscortApi";
 
 const ProfileView = () => {
   const user = JSON.parse(localStorage.getItem("details"));
   const { username } = useParams();
   const { data, isLoading } = useGetProfileByIdQuery(username);
+  const { data: newData, isLoading: load } = useFollowingQuery();
   const [openBook, setOpenBook] = useState(false);
   const [openReport, setOpenReport] = useState(false);
 
   const navigate = useNavigate();
 
-  if (isLoading) {
+  if (isLoading || load) {
     return <Loading />;
   }
 
@@ -66,6 +67,7 @@ const ProfileView = () => {
               handleReport={handleReport}
               user={data}
               handleBook={handleBook}
+              newData={newData}
             />
             <ProfileEscort user={data} />
           </div>

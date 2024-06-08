@@ -1,40 +1,37 @@
 import React, { useEffect, useState } from "react";
 import Whatsapp from "../images/whatsapp.svg";
-import Youtube from "../images/youtube.svg";
-import Messenger from "../images/messenger.svg";
 import { EscortProfileSwiper } from "./EscortProfileSwiper";
 import { differenceInYears, parse } from "date-fns";
-import {
-  useFollowMutation,
-  useFollowingQuery,
-  useUnfollowMutation,
-} from "../redux/EscortApi";
+import { useFollowMutation, useUnfollowMutation } from "../redux/EscortApi";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
-const ProfileViewItem = ({ handleBook, user, handleReport }) => {
+const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
   const users = JSON.parse(localStorage.getItem("details"));
 
   const { username } = useParams();
   const [follow] = useFollowMutation();
   const [unfollow] = useUnfollowMutation();
-  const { data, isLoading } = useFollowingQuery();
+
   const [followed, setFollowed] = useState(false);
+  const [Data, setData] = useState("");
   const birthDate = parse(
     user?.escort_details.date_of_birth,
     "yyyy-MM-dd",
     new Date()
   );
 
-  const newData = data?.filter((item) => item.username == username);
+  useEffect(() => {
+    setData(newData?.filter((item) => item?.username == username));
+  }, [newData]);
 
   useEffect(() => {
-    if (newData[0]?.username == username) {
+    if (Data[0]?.username == username) {
       setFollowed(true);
     } else {
       setFollowed(false);
     }
-  }, [newData]);
+  }, [Data]);
 
   const currentDate = new Date();
   const age = differenceInYears(currentDate, birthDate);
