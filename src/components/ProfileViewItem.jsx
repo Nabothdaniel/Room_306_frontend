@@ -22,16 +22,20 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
   );
 
   useEffect(() => {
-    setData(newData?.filter((item) => item?.username == username));
+    setData(
+      newData?.filter(
+        (item) => item?.username == user.escort_details.user.username
+      )
+    );
   }, [newData]);
 
   useEffect(() => {
-    if (Data[0]?.username == username) {
+    if (Boolean(Data[0]?.username == username)) {
       setFollowed(true);
     } else {
       setFollowed(false);
     }
-  }, [Data]);
+  }, [Data, newData]);
 
   const currentDate = new Date();
   const age = differenceInYears(currentDate, birthDate);

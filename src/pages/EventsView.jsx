@@ -58,13 +58,13 @@ const EventsView = () => {
     }
   };
 
-  const postDate = parseISO(data.created_at);
+  const postDate = parseISO(data.event.created_at);
   const formatDate = format(postDate, "MMMM dd, yyyy 'at' h:mm a");
 
-  const parsedDate = parseISO(data.start_date);
+  const parsedDate = parseISO(data.event.start_date);
   const Start_Date = format(parsedDate, "d MMMM");
 
-  const parsedEndDate = parseISO(data.end_date);
+  const parsedEndDate = parseISO(data.event.end_date);
   const End_Date = format(parsedEndDate, "d MMMM");
 
   return (
@@ -94,7 +94,7 @@ const EventsView = () => {
               </h1>
               <img
                 className="h-[450px] object-fit rounded-md"
-                src={`https://room35backend.onrender.com${data.cover_image}`}
+                src={`https://room35backend.onrender.com${data.event.cover_image}`}
                 alt=""
               />
             </div>
@@ -135,19 +135,19 @@ const EventsView = () => {
               <div className="grid grid-cols-2 gap-x-3 border-b border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Event Dates</h2>
                 <p className="text-[12px]">
-                  {Start_Date} @ {data.start_time} - {End_Date} @{" "}
-                  {data.end_time}
+                  {Start_Date} @ {data.event.start_time} - {End_Date} @{" "}
+                  {data.event.end_time}
                 </p>
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Event Location</h2>
                 <p className="text-[12px]">
-                  {data.city}, {data.state}, {data.country}
+                  {data.event.city}, {data.event.state}, {data.event.country}
                 </p>
               </div>
               <div className="grid grid-cols-2 border-b gap-x-3 border-neutral-600 pb-4 pt-5 text-white">
                 <h2 className="font-semibold">Available Capacity</h2>
-                <p className="text-[12px]">{data.available_ticket}</p>
+                <p className="text-[12px]">{data.event.available_ticket}</p>
               </div>
             </div>
             <div
@@ -158,7 +158,9 @@ const EventsView = () => {
               <h2 className="md:text-3xl text-xl font-semibold pt-4 pb-3">
                 Description
               </h2>
-              <p className="md:text-base text-[14px]">{data.description}</p>
+              <p className="md:text-base text-[14px]">
+                {data.event.description}
+              </p>
             </div>
             <div
               className={`bg-[#1e1e1e] text-white  py-4 px-4 pb-8 md:px-8 h-fit rounded-lg mt-10 ${
@@ -192,10 +194,14 @@ const EventsView = () => {
                       key={index}
                       className="flex text-white bg-black rounded-xl px-5 py-4"
                     >
-                      <img className="size-20 rounded-md" src={Blog} alt="" />
+                      <img
+                        className="size-20 rounded-md"
+                        src={`https://room35backend.onrender.com${item.user.image}`}
+                        alt=""
+                      />
                       <div className="ml-5">
                         <h2 className="font-semibold md:text-xl text-base">
-                          Adam Fresh
+                          {item.user.display_name}
                         </h2>
                         <p className="text-[12px] text-white/60">
                           {formattedDate}
@@ -208,10 +214,14 @@ const EventsView = () => {
               </div>
             </div>
             <div className="flex text-white pt-10 pb-4">
-              <img className="size-20 rounded-md" src={Blog} alt="" />
+              <img
+                className="size-20 rounded-md"
+                src={`https://room35backend.onrender.com${data.user.image}`}
+                alt=""
+              />
               <div className="ml-5">
                 <h2 className="font-semibold md:text-xl text-base">
-                  Adam Fresh
+                  {data.user.display_name}
                 </h2>
                 <p className="text-[12px] text-white/60">{formatDate}</p>
               </div>
@@ -229,7 +239,7 @@ const EventsView = () => {
         </div>
       </div>
       <Reviews
-        id={data.id}
+        id={data.event.id}
         reviewClass={`${!review ? "translate-x-[120vw]" : "translate-x-0"}`}
         handleReview={handleReview}
       />

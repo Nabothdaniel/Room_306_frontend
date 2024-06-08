@@ -387,7 +387,7 @@ const AddRoom = () => {
                   <Input
                     labelValue={"Rate"}
                     labelClass={"font-semibold md:text-base text-[14px] py-2"}
-                    inputType={"text"}
+                    inputType={"number"}
                     required={"*"}
                     inputName={"rate"}
                     inputClass={

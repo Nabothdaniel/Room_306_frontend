@@ -3,14 +3,16 @@ import Close from "../images/close-icon.svg";
 import TextArea from "./TextArea";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useAddReviewMutation } from "../redux/EventApi";
 
 const Reviews = ({ reviewClass, handleReview, id }) => {
   const [formData, setFormData] = useState({
-    event: id,
     rating: "",
     comment: "",
   });
   const [error, setError] = useState("");
+
+  const [addreview] = useAddReviewMutation();
 
   const validateData = (data) => {
     let errors = {};
@@ -40,7 +42,7 @@ const Reviews = ({ reviewClass, handleReview, id }) => {
       try {
         const res = await axios.post(
           `https://room35backend.onrender.com/api/events/${id}/review/`,
-          formData,
+          { ...formData, event: id },
           {
             headers: {
               Authorization:
@@ -48,8 +50,13 @@ const Reviews = ({ reviewClass, handleReview, id }) => {
             },
           }
         );
+        await addreview();
+        handleReview();
+        setFormData({
+          rating: "",
+          comment: "",
+        });
         toast.success("Reviews Submitted Successfully");
-        window.location.reload(true);
       } catch (err) {
         console.log(err);
       }
@@ -78,6 +85,7 @@ const Reviews = ({ reviewClass, handleReview, id }) => {
                 className="w-[100%] pl-4 rounded-xl bg-[#F0F2F5] py-[14px] outline-none"
                 name="rating"
                 id="rating"
+                value={formData.rating}
                 onChange={handleChange}
               >
                 <option>Select</option>
@@ -105,6 +113,7 @@ const Reviews = ({ reviewClass, handleReview, id }) => {
               holder={"Write your review here..."}
               col={""}
               row={"5"}
+              value={formData.comment}
               onchange={handleChange}
             />
             {error.review && (

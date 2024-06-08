@@ -17,6 +17,8 @@ const tourApi = ApiSlice.injectEndpoints({
           : [{ type: "Tour", id: "LIST" }],
     }),
 
+    // /tour/addreview/{tour_id}/
+
     tourFavorite: build.mutation({
       query: (id) => ({
         url: `tour/tours/favorite/${id}/`,

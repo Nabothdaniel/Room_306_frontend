@@ -4,22 +4,33 @@ import Navbar from "../../components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { details } from "../../redux/UtilSlice";
 import { useNavigate } from "react-router-dom";
+import { useServicesQuery } from "../../redux/ApiSlice";
+import Loading from "../../components/Loading";
 
 const EscortDetailsThree = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState([]);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
+  const { data, isLoading } = useServicesQuery();
   const navigate = useNavigate();
+
   const handleChange = (e) => {
+    let services = [];
     if (e.target.checked) {
-      setFormData({ ...formData, [e.target.name]: "True" });
+      services.push(e.target.id);
     } else {
-      setFormData({ ...formData, [e.target.name]: "False" });
+      setFormData({ [e.target.name]: "" });
     }
   };
   const trueKeys = Object.keys(formData).filter(
     (key) => formData[key] === "True"
   );
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  console.log(formData);
 
   const handleEscortThree = () => {
     if (trueKeys.length >= 5) {
@@ -78,16 +89,22 @@ const EscortDetailsThree = () => {
             </h3>
 
             <div className="grid md:grid-cols-2 text-white lg:grid-cols-3 gap-x-1 gap-y-3">
-              <label className="checkContainer">
-                69 (69 sex Position)
-                <input
-                  onChange={handleChange}
-                  type="checkbox"
-                  name="sixty_nine"
-                />
-                <span className="checkmate"></span>
-              </label>
-              <label className="checkContainer ">
+              {data.map((item, index) => {
+                return (
+                  <label key={index} className="checkContainer">
+                    {item.name}
+                    <input
+                      onChange={handleChange}
+                      type="checkbox"
+                      name="services"
+                      id={item.id}
+                    />
+                    <span className="checkmate"></span>
+                  </label>
+                );
+              })}
+
+              {/* <label className="checkContainer ">
                 Anal Rimming (Licking Anus)
                 <input
                   onChange={handleChange}
@@ -665,7 +682,7 @@ const EscortDetailsThree = () => {
                   name="blow_job"
                 />
                 <span className="checkmate"></span>
-              </label>
+              </label> */}
               <p className="py-1 text-[12px] text-red-500">{error}</p>
             </div>
             <div className="mt-8 flex gap-x-3">

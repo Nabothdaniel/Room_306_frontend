@@ -161,7 +161,7 @@ const UpdateRoom = () => {
             },
           }
         );
-
+        localStorage.removeItem("room");
         toast.success("Room Updated Succesfully");
         setData({
           country: "",
@@ -394,7 +394,7 @@ const UpdateRoom = () => {
                   <Input
                     labelValue={"Rate"}
                     labelClass={"font-semibold md:text-base text-[14px] py-2"}
-                    inputType={"text"}
+                    inputType={"number"}
                     required={"*"}
                     inputName={"rate"}
                     inputClass={

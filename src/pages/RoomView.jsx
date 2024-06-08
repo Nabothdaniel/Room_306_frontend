@@ -192,10 +192,14 @@ const RoomView = () => {
                       key={index}
                       className="flex text-white bg-black rounded-xl px-5 py-4"
                     >
-                      <img className="size-20 rounded-md" src={Blog} alt="" />
+                      <img
+                        className="size-20 rounded-md"
+                        src={`https://room35backend.onrender.com${item.user.image}`}
+                        alt=""
+                      />
                       <div className="ml-5">
                         <h2 className="font-semibold md:text-xl text-base">
-                          Adam Fresh
+                          {item.user.display_name}
                         </h2>
                         <p className="text-[12px] text-white/60">
                           {formattedDate}

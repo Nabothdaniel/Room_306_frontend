@@ -102,24 +102,8 @@ const ProfileViewItems = () => {
           !state.open5 ? "hidden" : ""
         }  grid md:grid-cols-3 grid-cols-2  bg-[#1e1e1e] gap-5 pt-4 pb-10 px-5 rounded-xl mt-10 `}
       >
-        {/* <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService />
-        <ProfileService /> */}
-        {user.services?.sixty_nine && (
+        
+        {/* {user.services?.sixty_nine && (
           <div className="flex items-center font-semibold text-white text-[14px]">
             <img className="size-4 mr-2" src={Check} alt="" />
             69 (69 sex Position)
@@ -395,7 +379,7 @@ const ProfileViewItems = () => {
             <img className="size-4 mr-2" src={Check} alt="" />
             Rimming (receiving)
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

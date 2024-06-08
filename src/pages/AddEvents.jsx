@@ -10,7 +10,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast, { LoaderIcon } from "react-hot-toast";
 
-
 const AddEvents = () => {
   const user = JSON.parse(localStorage.getItem("details"));
   const events = JSON.parse(localStorage.getItem("events"));
@@ -96,10 +95,6 @@ const AddEvents = () => {
 
   if (image) {
     formData.append("cover_image", image);
-  }
-
-  if (events) {
-    formData.append("cover_image", events.image);
   }
 
   formData.append("country", Data.country);
@@ -194,7 +189,7 @@ const AddEvents = () => {
               },
             }
           );
-
+          localStorage.removeItem("events");
           console.log(res);
           toast.success("Event Updated Succesfully");
           setData({

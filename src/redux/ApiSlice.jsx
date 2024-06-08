@@ -96,6 +96,13 @@ export const ApiSlice = createApi({
       }),
     }),
 
+    services: build.query({
+      query: () => ({
+        url: "/services/",
+        method: "GET",
+      }),
+    }),
+
     getTestimonial: build.query({
       query: () => ({
         url: "/testimonies/",
@@ -147,8 +154,6 @@ export const ApiSlice = createApi({
         body,
       }),
     }),
-
-    
 
     UploadImage: build.mutation({
       query: (body) => ({
@@ -217,4 +222,5 @@ export const {
   useConversationMessagesQuery,
   useTestimonialsMutation,
   useGetTestimonialQuery,
+  useServicesQuery,
 } = ApiSlice;

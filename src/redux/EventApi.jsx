@@ -1,7 +1,7 @@
 import { ApiSlice } from "./ApiSlice";
 
-
 const eventApi = ApiSlice.injectEndpoints({
+  tagTypes: ["Event"],
   endpoints: (build) => ({
     getAllEvents: build.query({
       query: () => "/events/",
@@ -12,8 +12,6 @@ const eventApi = ApiSlice.injectEndpoints({
         method: "DELETE",
       }),
     }),
-
-    
 
     getEventById: build.query({
       query: (id) => `/events/${id}/`,
@@ -29,8 +27,23 @@ const eventApi = ApiSlice.injectEndpoints({
       }),
     }),
 
+    addReview: build.mutation({
+      query: (id) => ({
+        url: `/events/${id}/review/`,
+        method: "POST",
+      }),
+      invalidatesTags: [{ type: "Event", id: "LIST" }],
+    }),
+
     getEventReview: build.query({
       query: (id) => `/events/reviews/${id}/`,
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Event", id })),
+              { type: "Event", id: "LIST" },
+            ]
+          : [{ type: "Event", id: "LIST" }],
     }),
   }),
 });
@@ -41,5 +54,5 @@ export const {
   useGetEventReviewQuery,
   useMyEventQuery,
   useDeleteEventMutation,
- 
+  useAddReviewMutation,
 } = eventApi;

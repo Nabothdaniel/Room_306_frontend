@@ -41,6 +41,7 @@ const ProfileEscort = ({ user }) => {
     open4: false,
     open5: false,
   });
+
   return (
     <>
       <div className="border-b-2 pt-6 flex justify-between md:text-base text-[14px] relative md:justify-normal font-semibold items-center text-white border-[#393C49] py-3">
@@ -109,7 +110,11 @@ const ProfileEscort = ({ user }) => {
           !state.open5 ? "hidden" : ""
         }  grid md:grid-cols-3 grid-cols-2  bg-[#1e1e1e] gap-5 pt-4 pb-10 px-5 rounded-xl mt-10 `}
       >
-        {user.services?.sixty_nine && (
+        {user.escort_details.services.map((item, index) => {
+          return <ProfileService key={index} item={item} />;
+        })}
+
+        {/* {user.services?.sixty_nine && (
           <div className="flex items-center font-semibold text-white text-[14px]">
             <img className="size-4 mr-2" src={Check} alt="" />
             69 (69 sex Position)
@@ -385,7 +390,7 @@ const ProfileEscort = ({ user }) => {
             <img className="size-4 mr-2" src={Check} alt="" />
             Rimming (receiving)
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
