@@ -6,12 +6,12 @@ import { BlogSwiper } from "../components/BlogSwiper";
 import { useNavigate, useParams } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
 import Frame from "../images/Frame.svg";
-import { useGetEventReviewQuery } from "../redux/EventApi";
 import Loading from "../components/Loading";
 import { format, parseISO } from "date-fns";
 import Reviews from "../components/Reviews";
 import toast from "react-hot-toast";
-import { useGetTourByIdQuery } from "../redux/tourApi";
+import { useGetTourByIdQuery, useGetTourReviewQuery } from "../redux/tourApi";
+import TourReviews from "../components/TourReviews";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -34,7 +34,7 @@ const TourView = () => {
   let users = JSON.parse(localStorage.getItem("details"));
   const { id } = useParams();
   const [review, setReview] = useState(false);
-  const { data: reviews } = useGetEventReviewQuery(id);
+  const { data: reviews } = useGetTourReviewQuery(id);
   const { data, isLoading } = useGetTourByIdQuery(id);
 
   const [state, dispatch] = useReducer(reducer, {
@@ -172,10 +172,14 @@ const TourView = () => {
                       key={index}
                       className="flex text-white bg-black rounded-xl px-5 py-4"
                     >
-                      <img className="size-20 rounded-md" src={Blog} alt="" />
+                      <img
+                        className="size-20 rounded-md"
+                        src={`https://room35backend.onrender.com${item.user.image}`}
+                        alt=""
+                      />
                       <div className="ml-5">
                         <h2 className="font-semibold md:text-xl text-base">
-                          Adam Fresh
+                          {item.user.display_name}
                         </h2>
                         <p className="text-[12px] text-white/60">
                           {formattedDate}
@@ -212,7 +216,7 @@ const TourView = () => {
           </div>
         </div>
       </div>
-      <Reviews
+      <TourReviews
         id={data.id}
         reviewClass={`${!review ? "translate-x-[120vw]" : "translate-x-0"}`}
         handleReview={handleReview}

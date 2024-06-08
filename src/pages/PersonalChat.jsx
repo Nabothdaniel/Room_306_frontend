@@ -20,6 +20,7 @@ import toast, { LoaderIcon } from "react-hot-toast";
 import axios from "axios";
 
 const PersonalChat = () => {
+  const users = JSON.parse(localStorage.getItem("details"));
   const { id } = useParams();
   const { data: converse, isLoading: loaded } = useConversationQuery();
   const { data: messages, isLoading: loading } = useConversationMessagesQuery(
@@ -33,7 +34,7 @@ const PersonalChat = () => {
   const [message, setMessage] = useState("");
   const ref = useRef(null);
   const [send] = useSendMessageMutation();
-//   const { data, isLoading } = useChannelByIdQuery(id);
+  //   const { data, isLoading } = useChannelByIdQuery(id);
 
   useEffect(() => {
     ref.current?.scrollIntoView({
@@ -108,24 +109,46 @@ const PersonalChat = () => {
                   </div>
                 </div>
                 <div className="md:col-span-2 bg-[#202D2C] flex flex-col p-6 rounded-[30px] h-screen w-[100%] md:rounded-none md:rounded-e-[30px]">
-                  <Link
-                    to={`/escort/${name[0]?.sender?.username}`}
-                    className="flex pb-6 items-center"
-                  >
-                    <img
-                      className="size-[50px] rounded-full"
-                      src={`https://room35backend.onrender.com${name[0]?.sender.image}`}
-                      alt=""
-                    />
-                    <div className="pl-4 text-white">
-                      <p className="font-semibold">
-                        {name[0]?.sender.username}
-                      </p>
-                      {/* <p className="text-[12px]  text-[#DADADA]">
+                  {name[0]?.sender?.username ==
+                  (users?.user?.username || users?.username) ? (
+                    <Link
+                      to={`/escort/${name[0]?.recipient?.username}`}
+                      className="flex pb-6 items-center"
+                    >
+                      <img
+                        className="size-[50px] rounded-full"
+                        src={`https://room35backend.onrender.com${name[0]?.recipient.image}`}
+                        alt=""
+                      />
+                      <div className="pl-4 text-white">
+                        <p className="font-semibold">
+                          {name[0]?.recipient.username}
+                        </p>
+                        {/* <p className="text-[12px]  text-[#DADADA]">
                         {data?.members.length} Members
                       </p> */}
-                    </div>
-                  </Link>
+                      </div>
+                    </Link>
+                  ) : (
+                    <Link
+                      to={`/escort/${name[0]?.sender?.username}`}
+                      className="flex pb-6 items-center"
+                    >
+                      <img
+                        className="size-[50px] rounded-full"
+                        src={`https://room35backend.onrender.com${name[0]?.sender.image}`}
+                        alt=""
+                      />
+                      <div className="pl-4 text-white">
+                        <p className="font-semibold">
+                          {name[0]?.sender.username}
+                        </p>
+                        {/* <p className="text-[12px]  text-[#DADADA]">
+                        {data?.members.length} Members
+                      </p> */}
+                      </div>
+                    </Link>
+                  )}
                   <div className="overflow-y-scroll channel flex-1">
                     {messages?.map((item, index) => {
                       return <NaugthyChannel key={index} item={item} />;

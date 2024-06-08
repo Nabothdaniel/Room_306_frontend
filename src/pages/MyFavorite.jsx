@@ -42,7 +42,7 @@ const MyFavorite = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (details?.user?.user_type !== "escort") {
+    if (!details) {
       navigate("/");
       return;
     }

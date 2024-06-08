@@ -38,8 +38,8 @@ const EditEscort = () => {
   const [edit, { isLoading }] = useEditProfileMutation();
   const [currency, setCurrency] = useState("");
   const navigate = useNavigate();
-
-  const users = JSON.parse(localStorage.getItem("details"));
+ const users = JSON.parse(localStorage.getItem("details"));
+ 
 
   const [formData, setformData] = useState({
     country: users.user.country,

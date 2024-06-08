@@ -7,11 +7,12 @@ import { useAdvertFavoriteMutation } from "../redux/AdvertSlice";
 import toast from "react-hot-toast";
 import { format, parseISO } from "date-fns";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AdvertsItem = ({ items }) => {
   const users = JSON.parse(localStorage.getItem("details"));
   const [favorite] = useAdvertFavoriteMutation();
-
+  const navigate = useNavigate();
   const handleFavorite = async () => {
     try {
       const res = await favorite(items.id);
@@ -32,7 +33,7 @@ const AdvertsItem = ({ items }) => {
       try {
         const res = await axios.post(
           "https://room35backend.onrender.com/api/conversations/start/",
-          { recipient_id: 2 },
+          { recipient_id: items.user.username },
           {
             headers: {
               "Content-Type": "application/json",
@@ -41,6 +42,7 @@ const AdvertsItem = ({ items }) => {
             },
           }
         );
+        navigate(`/chat/${res.data.conversation.id}`);
       } catch (err) {
         console.log(err);
       }

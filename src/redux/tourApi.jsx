@@ -1,7 +1,7 @@
 import { ApiSlice } from "./ApiSlice";
 
 const tourApi = ApiSlice.injectEndpoints({
-  tagTypes: ["Tour"],
+  tagTypes: ["Tour", "Tours"],
   endpoints: (build) => ({
     getAllTour: build.query({
       query: () => ({
@@ -29,6 +29,26 @@ const tourApi = ApiSlice.injectEndpoints({
       }),
       invalidatesTags: [{ type: "Tour", id: "LIST" }],
     }),
+
+    addTourReview: build.mutation({
+      query: (id) => ({
+        url: `/tour/addreview/${id}/`,
+        method: "POST",
+      }),
+      invalidatesTags: [{ type: "Tours", id: "LIST" }],
+    }),
+
+    getTourReview: build.query({
+      query: (id) => `/tour/tour_reviews/${id}/`,
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Tours", id })),
+              { type: "Tours", id: "LIST" },
+            ]
+          : [{ type: "Tours", id: "LIST" }],
+    }),
+
     getMyTour: build.query({
       query: () => ({
         url: "/tour/my_tours/",
@@ -64,4 +84,6 @@ export const {
   useGetTourByIdQuery,
   useTourFavoriteMutation,
   useFavoriteTourQuery,
+  useGetTourReviewQuery,
+  useAddTourReviewMutation,
 } = tourApi;

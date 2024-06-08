@@ -21,30 +21,36 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
     new Date()
   );
 
-  useEffect(() => {
-    setData(
-      newData?.filter(
-        (item) => item?.username == user.escort_details.user.username
-      )
-    );
-  }, [newData]);
+  if (users) {
+    useEffect(() => {
+      setData(
+        newData?.filter(
+          (item) => item?.username == user.escort_details.user.username
+        )
+      );
+    }, [newData]);
 
-  useEffect(() => {
-    if (Boolean(Data[0]?.username == username)) {
-      setFollowed(true);
-    } else {
-      setFollowed(false);
-    }
-  }, [Data, newData]);
+    useEffect(() => {
+      if (Boolean(Data[0]?.username == username)) {
+        setFollowed(true);
+      } else {
+        setFollowed(false);
+      }
+    }, [Data, newData]);
+  }
 
   const currentDate = new Date();
   const age = differenceInYears(currentDate, birthDate);
 
   const handleFollow = async () => {
-    try {
-      const res = await follow(user.escort_details.id).unwrap();
-      toast.success(res.message);
-    } catch (err) {}
+    if (users) {
+      try {
+        const res = await follow(user.escort_details.id).unwrap();
+        toast.success(res.message);
+      } catch (err) {}
+    } else {
+      toast.error("Only signed in users can follow");
+    }
   };
 
   const handleUnFollow = async () => {
@@ -62,7 +68,7 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
 
       <img
         className="h-[400px] rounded-xl"
-        src={`https://room35backend.onrender.com${user.profile.image}`}
+        src={`https://room35backend.onrender.com${user?.profile.image}`}
         alt=""
       />
 
@@ -74,14 +80,14 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
           </div>
           <div className="flex flex-col items-center">
             <p className="text-[24px] font-semibold">
-              {user.escort_details.user.followers_count}
+              {user?.escort_details.user.followers_count}
             </p>
             <p className="text-[#B29A9A]">Followers</p>
           </div>
           <div className="flex flex-col items-center">
             <p className="text-[24px] font-semibold">
               {" "}
-              {user.escort_details.user.following_count}
+              {user?.escort_details.user.following_count}
             </p>
             <p className="text-[#B29A9A]">Following</p>
           </div>
@@ -94,14 +100,14 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
             <a
               className="flex items-center"
               target="_blank"
-              href={`https://wa.me/${user.profile.mobile_number}`}
+              href={`https://wa.me/${user?.profile?.mobile_number}`}
             >
               <img className="size-5 mr-1" src={Whatsapp} alt="" />
-              {user.profile.mobile_number}
+              {user?.profile.mobile_number}
             </a>
           </div>
           <p className="text-[#DADADA] lg:text-[14px] text-[12px]">
-            {user.escort_details.about}
+            {user?.escort_details.about}
           </p>
         </div>
         <div className="flex justify-around text-white">
@@ -141,12 +147,12 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
           <button
             onClick={handleReport}
             className={`bg-red-500 ${
-              username == users.user.username && "hidden"
+              username == users?.user?.username && "hidden"
             } py-1 font-semibold px-4 rounded-3xl`}
           >
             Report User
           </button>
-          <div className={`${username == users.user.username && "hidden"}`}>
+          <div className={`${username == users?.user?.username && "hidden"}`}>
             {followed ? (
               <button
                 onClick={handleUnFollow}

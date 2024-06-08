@@ -182,10 +182,10 @@ const Navbar = ({ Headervalue, textValue }) => {
           loginControl={setOpenLogin}
         />
       </div>
-      {/* <SearchModel
+      <SearchModel
         SearchClass={`${!openSearch ? "translate-x-[120vw]" : "translate-x-0"}`}
         handleSearch={handleSearch}
-      /> */}
+      />
       <ProfileModel
         handleMenu={handleMenu}
         menuClass={`${!openMenu ? "translate-x-[120vw]" : "translate-x-0"}`}

@@ -11,6 +11,7 @@ import Loading from "./Loading";
 import { formatDistanceToNow, parse } from "date-fns";
 
 const ChannelsName = () => {
+  const users = JSON.parse(localStorage.getItem("details"));
   const location = useLocation();
   const { data, isLoading } = useChannelQuery();
   const { data: converse, isLoading: loading } = useConversationQuery();
@@ -77,18 +78,34 @@ const ChannelsName = () => {
             }}
             to={`/chat/${item.id}`}
             className={`flex  ${
-              location.pathname == `/chat/${item.id}`
-                ? "bg-[#00AE791A]"
-                : ""
+              location.pathname == `/chat/${item.id}` ? "bg-[#00AE791A]" : ""
             } rounded-[12px] p-[12px] hover:bg-[#202D2C] duration-700 text-white items-center`}
           >
-            <img
-              className="size-[48px] rounded-full"
-              src={`https://room35backend.onrender.com${item.image}`}
-              alt=""
-            />
+            <div>
+              {item.sender.username ==
+              (users?.user?.username || users?.username) ? (
+                <img
+                  className="size-[48px] rounded-full"
+                  src={`https://room35backend.onrender.com${item.recipient.image}`}
+                  alt=""
+                />
+              ) : (
+                <img
+                  className="size-[48px] rounded-full"
+                  src={`https://room35backend.onrender.com${item.sender.image}`}
+                  alt=""
+                />
+              )}
+            </div>
             <div className="pl-4 md:block md:w-auto flex justify-between items-center w-full">
-              <p className="font-semibold">{item.name}</p>
+              <div>
+                {" "}
+                {item.sender.username == users?.user?.username ? (
+                  <p className="font-semibold">{item.recipient.username}</p>
+                ) : (
+                  <p className="font-semibold">{item.sender.username}</p>
+                )}
+              </div>
               <p className="text-[12px]  text-[#DADADA]">{formattedTimeAgo}</p>
             </div>
           </NavLink>
