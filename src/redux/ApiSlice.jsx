@@ -148,9 +148,7 @@ export const ApiSlice = createApi({
       }),
     }),
 
-    getProfileById: build.query({
-      query: (username) => `/profile/username/${username}/`,
-    }),
+    
 
     UploadImage: build.mutation({
       query: (body) => ({
@@ -205,7 +203,6 @@ export const {
   useUpdateClientMutation,
   useLoginMutation,
   useUploadImageMutation,
-  useGetProfileByIdQuery,
   useResetPasswordMutation,
   useNewPasswordMutation,
   useTransactionQuery,

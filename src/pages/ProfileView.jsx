@@ -6,11 +6,11 @@ import Arrow from "../images/arrow-left.svg";
 import ProfileViewItem from "../components/ProfileViewItem";
 import { useNavigate, useParams } from "react-router-dom";
 import BookingModel from "../components/BookingModel";
-import { useGetProfileByIdQuery } from "../redux/ApiSlice";
 import Loading from "../components/Loading";
 import ProfileEscort from "../components/ProfileEscort";
 import toast from "react-hot-toast";
 import ReportModel from "../components/ReportModel";
+import { useGetProfileByIdQuery } from "../redux/EscortApi";
 
 const ProfileView = () => {
   const user = JSON.parse(localStorage.getItem("details"));

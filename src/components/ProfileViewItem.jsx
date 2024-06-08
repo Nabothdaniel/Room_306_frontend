@@ -1,18 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Whatsapp from "../images/whatsapp.svg";
 import Youtube from "../images/youtube.svg";
 import Messenger from "../images/messenger.svg";
 import { EscortProfileSwiper } from "./EscortProfileSwiper";
 import { differenceInYears, parse } from "date-fns";
+import {
+  useFollowMutation,
+  useFollowingQuery,
+  useUnfollowMutation,
+} from "../redux/EscortApi";
+import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
 
 const ProfileViewItem = ({ handleBook, user, handleReport }) => {
+  const users = JSON.parse(localStorage.getItem("details"));
+
+  const { username } = useParams();
+  const [follow] = useFollowMutation();
+  const [unfollow] = useUnfollowMutation();
+  const { data, isLoading } = useFollowingQuery();
+  const [followed, setFollowed] = useState(false);
   const birthDate = parse(
     user?.escort_details.date_of_birth,
     "yyyy-MM-dd",
     new Date()
   );
+
+  const newData = data?.filter((item) => item.username == username);
+
+  useEffect(() => {
+    if (newData[0]?.username == username) {
+      setFollowed(true);
+    } else {
+      setFollowed(false);
+    }
+  }, [newData]);
+
   const currentDate = new Date();
   const age = differenceInYears(currentDate, birthDate);
+
+  const handleFollow = async () => {
+    try {
+      const res = await follow(user.escort_details.id).unwrap();
+      toast.success(res.message);
+    } catch (err) {}
+  };
+
+  const handleUnFollow = async () => {
+    try {
+      const res = await unfollow(user.escort_details.id).unwrap();
+      toast.success(res?.message);
+    } catch (err) {
+      toast.error(err?.data?.message);
+    }
+  };
 
   return (
     <div className="grid md:grid-cols-2 md:px-4 md:pt-4 py-4 px-6 gap-x-6 h-fit pb-7 md:pb-4  rounded-xl bg-[#1E1E1E] ">
@@ -89,7 +130,7 @@ const ProfileViewItem = ({ handleBook, user, handleReport }) => {
         >
           Book Now
         </button>
-        <div className="flex text-[#DADADA] justify-center md:justify-normal items-center mt-8">
+        <div className="flex gap-4 text-[#DADADA] justify-center md:justify-normal items-center mt-8">
           {/* <p className="text-[12px] md:text-[14px]">Share Profile:</p>
 
           <img className="size-7 ml-5" src={Whatsapp} alt="" />
@@ -98,10 +139,29 @@ const ProfileViewItem = ({ handleBook, user, handleReport }) => {
 
           <button
             onClick={handleReport}
-            className="bg-red-500 py-1 font-semibold px-4 rounded-3xl"
+            className={`bg-red-500 ${
+              username == users.user.username && "hidden"
+            } py-1 font-semibold px-4 rounded-3xl`}
           >
             Report User
           </button>
+          <div className={`${username == users.user.username && "hidden"}`}>
+            {followed ? (
+              <button
+                onClick={handleUnFollow}
+                className="bg-blue-500 py-1 font-semibold px-4 rounded-3xl"
+              >
+                Unfollow
+              </button>
+            ) : (
+              <button
+                onClick={handleFollow}
+                className="bg-blue-500 py-1 font-semibold px-4 rounded-3xl"
+              >
+                Follow
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

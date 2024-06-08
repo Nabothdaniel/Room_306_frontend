@@ -140,7 +140,7 @@ const EscortDetailsOne = () => {
 
   let states;
   const handleCountry = (e) => {
-    states = data.filter((state) => state.name === e.target.value);
+    states = data?.filter((state) => state.name === e.target.value);
     setCode(states[0]?.phone_code);
     setCurrency(states[0]?.currency);
     states = states?.map((item) => item.states);
@@ -150,7 +150,7 @@ const EscortDetailsOne = () => {
   };
 
   const handleState = (e) => {
-    let city = getState.filter((item) => item.name === e.target.value);
+    let city = getState?.filter((item) => item.name === e.target.value);
     city = city?.map((item) => item);
 
     setGetCities(city);
@@ -159,7 +159,7 @@ const EscortDetailsOne = () => {
   let newCities = [];
 
   getCities.forEach((childArray) => {
-    childArray.cities.forEach((item) => {
+    childArray?.cities?.forEach((item) => {
       newCities.push(item);
     });
   });

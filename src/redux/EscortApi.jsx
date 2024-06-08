@@ -1,7 +1,7 @@
 import { ApiSlice } from "./ApiSlice";
 
 const escortApi = ApiSlice.injectEndpoints({
-  tagTypes: ["Posts"],
+  tagTypes: ["Posts", "Follow"],
   endpoints: (build) => ({
     getAllEscort: build.query({
       query: ({ gender, country, sexual_orientation, display_name }) =>
@@ -29,6 +29,12 @@ const escortApi = ApiSlice.injectEndpoints({
         body,
       }),
     }),
+
+    getProfileById: build.query({
+      query: (username) => `/profile/username/${username}/`,
+      providesTags: [{ type: "Follow", id: "LIST" }],
+    }),
+
     follow: build.mutation({
       query: (id) => ({
         url: `/profile/follow_user/${id}/`,
@@ -37,6 +43,35 @@ const escortApi = ApiSlice.injectEndpoints({
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
       }),
+      invalidatesTags: [{ type: "Follow", id: "LIST" }],
+    }),
+
+    unfollow: build.mutation({
+      query: (id) => ({
+        url: `/profile/unfollow_user/${id}/`,
+        method: "PUT",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+      invalidatesTags: [{ type: "Follow", id: "LIST" }],
+    }),
+
+    following: build.query({
+      query: () => ({
+        url: "/profile/following/",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Follow", id })),
+              { type: "Follow", id: "LIST" },
+            ]
+          : [{ type: "Follow", id: "LIST" }],
     }),
 
     likeVideo: build.mutation({
@@ -141,4 +176,7 @@ export const {
   useMyVideosQuery,
   useEditProfileMutation,
   useMyFavoriteQuery,
+  useFollowingQuery,
+  useGetProfileByIdQuery,
+  useUnfollowMutation,
 } = escortApi;
