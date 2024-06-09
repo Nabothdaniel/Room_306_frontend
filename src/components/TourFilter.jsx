@@ -18,7 +18,7 @@ const TourFilter = ({ TourClass, Filter }) => {
 
   if (isLoading) {
     return (
-      <div className={`${RoomClass}`}>
+      <div className={`${TourClass}`}>
         <Loading />;
       </div>
     );

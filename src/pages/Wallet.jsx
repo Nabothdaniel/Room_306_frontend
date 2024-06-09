@@ -77,28 +77,30 @@ const Wallet = () => {
                 <p className="w-[300px] text-center">Status</p>
               </div>
 
-              {transact?.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="flex capitalize pt-5 duration-500 hover:bg-black pb-4 items-center"
-                  >
-                    <p className="w-[300px] text-center">#{1447 + index}</p>
-                    <p className="w-[300px] text-center">{item.type}</p>
-                    <p className="w-[300px] text-center">{item.coin}</p>
-                    <p className="w-[300px] text-center">{item.amount}</p>
-                    <p
-                      className={` ${
-                        item.status == "pending" && "text-[#0C8CE9]"
-                      } ${
-                        item.status == "rejected" && "text-[#DC3545]"
-                      } w-[300px] text-center`}
+              <div className="overflow-y-scroll h-[400px]">
+                {transact?.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="flex capitalize pt-5 duration-500 hover:bg-black pb-4 items-center"
                     >
-                      {item.status}
-                    </p>
-                  </div>
-                );
-              })}
+                      <p className="w-[300px] text-center">#{1447 + index}</p>
+                      <p className="w-[300px] text-center">{item.type}</p>
+                      <p className="w-[300px] text-center">{item.coin}</p>
+                      <p className="w-[300px] text-center">{item.amount}</p>
+                      <p
+                        className={` ${
+                          item.status == "pending" && "text-[#0C8CE9]"
+                        } ${
+                          item.status == "rejected" && "text-[#DC3545]"
+                        } w-[300px] text-center`}
+                      >
+                        {item.status}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

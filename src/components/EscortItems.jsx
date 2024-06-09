@@ -22,7 +22,7 @@ const EscortItems = ({ items }) => {
 
   return (
     <>
-      <div className="bg-[#1E1E1E] block text-white h-auto  p-3 rounded-lg">
+      <div className="bg-[#1E1E1E] relative overflow-hidden block text-white h-auto  p-3 rounded-lg">
         <Link className="block" to={`/escort/${items.user.username}`}>
           <img
             className="rounded-lg h-[200px]"
@@ -71,6 +71,9 @@ const EscortItems = ({ items }) => {
             </p>
           </div>
         </Link>
+        <div className="absolute top-8 rotate-45 px-5 shadow-2xl -right-6 bg-yellow-500">
+          Fresh Escort
+        </div>
       </div>
     </>
   );

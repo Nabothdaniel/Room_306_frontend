@@ -36,6 +36,8 @@ const Navbar = ({ Headervalue, textValue }) => {
     const isRead = data?.filter((item) => item.is_read == false);
     if (isRead?.length <= 0) {
       setRead(false);
+    } else if (!isRead) {
+      setRead(false);
     } else {
       setRead(true);
     }
