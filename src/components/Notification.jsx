@@ -31,7 +31,7 @@ const Notification = ({ data, load }) => {
             <div
               key={index}
               onClick={() => handleView(item.id)}
-              className="text-neutral-400 cursor-pointer px-6 font-medium"
+              className="text-neutral-400 cursor-pointer pl-6 font-medium"
             >
               <div className={`${view == item.id ? "" : "hidden"}`}>
                 {view && <ReadNote id={view} />}

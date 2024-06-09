@@ -1,8 +1,26 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import EscortReview from "./EscortReview";
+import { useGetAllEscortsQuery } from "../redux/EscortApi";
+import Loading from "./Loading";
 
 const BookingItem = ({ book }) => {
+  const [review, setReview] = useState(false);
+
+  const { data, isLoading } = useGetAllEscortsQuery();
+  const [cancel, setCancel] = useState({
+    status: "cancelled",
+  });
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  const newReview = data?.filter(
+    (item) => item.user.username == book.escort.username
+  );
+
   // const [accept, setAccept] = useState({
   //   status: "accepted",
   // });
@@ -10,10 +28,6 @@ const BookingItem = ({ book }) => {
   // const [complete, setComplete] = useState({
   //   status: "completed",
   // });
-
-  const [cancel, setCancel] = useState({
-    status: "cancelled",
-  });
 
   // const handleAccept = async () => {
   //   try {
@@ -53,6 +67,10 @@ const BookingItem = ({ book }) => {
     }
   };
 
+  const handleReview = () => {
+    setReview(!review);
+  };
+
   // const handleComplete = async () => {
   //   try {
   //     const res = await axios.put(
@@ -73,7 +91,7 @@ const BookingItem = ({ book }) => {
   // };
 
   return (
-    <div className="flex pt-5 duration-500 pb-4 items-center">
+    <div className="flex pt-5 max-h-[400px] overflow-y-scroll duration-500 pb-4 items-center">
       <p className="w-[290px] flex items-center gap-x-3 cursor-pointer font-semibold">
         <Link to={`/escort/${book.escort.username}`}>
           <img
@@ -125,7 +143,20 @@ const BookingItem = ({ book }) => {
             Cancel
           </p>
         )}
+        {book.status == "completed" && (
+          <p
+            onClick={handleReview}
+            className="bg-green-300 text-[12px] shadow-2xl  py-1 text-black px-2 rounded-xl shadow-2xl cursor-pointer font-semibold"
+          >
+            Review Escort
+          </p>
+        )}
       </div>
+      <EscortReview
+        id={newReview[0]?.id}
+        reviewClass={`${!review ? "translate-x-[120vw]" : "translate-x-0"}`}
+        handleReview={handleReview}
+      />
     </div>
   );
 };

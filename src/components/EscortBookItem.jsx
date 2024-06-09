@@ -74,7 +74,7 @@ const EscortBookItem = ({ book }) => {
   };
 
   return (
-    <div className="flex pt-5 duration-500 pb-4 items-center">
+    <div className="flex pt-5 duration-500 max-h-[400px] overflow-y-scroll pb-4 items-center">
       <Link
         to={`/client/${book?.client?.username}`}
         className="w-[300px] flex items-center justify-center gap-x-3 cursor-pointer font-semibold"
