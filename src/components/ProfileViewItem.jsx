@@ -148,7 +148,7 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
             onClick={handleReport}
             className={`bg-red-500 ${
               username == users?.user?.username && "hidden"
-            } py-1 font-semibold px-4 rounded-3xl`}
+            } py-1 font-semibold px-3 md:text-base text-[13px] rounded-3xl`}
           >
             Report User
           </button>
@@ -156,14 +156,14 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
             {followed ? (
               <button
                 onClick={handleUnFollow}
-                className="bg-blue-500 py-1 font-semibold px-4 rounded-3xl"
+                className="bg-blue-500 py-1 font-semibold px-3 md:text-base text-[13px] rounded-3xl"
               >
                 Unfollow
               </button>
             ) : (
               <button
                 onClick={handleFollow}
-                className="bg-blue-500 py-1 font-semibold px-4 rounded-3xl"
+                className="bg-blue-500 py-1 font-semibold px-3 md:text-base text-[13px] rounded-3xl"
               >
                 Follow
               </button>
