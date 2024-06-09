@@ -123,7 +123,7 @@ const Navbar = ({ Headervalue, textValue }) => {
               <div
                 className={`absolute top-16 bg-black h-[500px] ${
                   notify ? "translate-y-0" : "-translate-y-[130vh]"
-                } text-white rounded-3xl duration-500 py-4 px-6 w-[90vw] md:w-[400px] -right-14 md:right-0`}
+                } text-white rounded-3xl duration-500 py-4 px-6 w-[90vw] md:w-[400px] -right-16 md:right-0`}
               >
                 <Notification />
               </div>
