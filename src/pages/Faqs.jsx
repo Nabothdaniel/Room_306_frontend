@@ -56,7 +56,9 @@ const Faqs = () => {
           textValue={"Explore our rooms and activities"}
         />
         <div className="md:py-8">
-          <h2 className="text-white py-4 pb-6 md:text-2xl font-semibold">FAQs</h2>
+          <h2 className="text-white py-4 pb-6 md:text-2xl font-semibold">
+            FAQs
+          </h2>
           <div className="bg-[url('../images/Mark-group.svg')] mb-5 bg-auto bg-black flex justify-center items-center h-[250px]">
             <div
               className={`bg-[#0A0A0A] p-2 md:py-3 md:px-4 flex items-center rounded-full md:rounded-lg w-[290px]`}
@@ -119,6 +121,9 @@ const Faqs = () => {
                     process. once approved, log back in , scroll down and click
                     ACTIVATE. ITS 10,000 NGN to activate your account
                   </li>
+                  <li className="ml-2">
+                    To ensure the safety of escorts it's advised to share location of your rendezvous with a client to a close friend/pal and don't meet client in anonymous places
+                  </li>
                 </ol>
               )}
             </div>
@@ -130,7 +135,7 @@ const Faqs = () => {
             >
               <div className="flex justify-between items-center">
                 <h2 className="md:text-xl text-[15px] font-semibold">
-                  How to Register as an Escort ?
+                  How to Manage Your Pictures ?
                 </h2>
                 <img
                   onClick={() => dispatch({ type: "Change2" })}
@@ -142,18 +147,33 @@ const Faqs = () => {
                 />
               </div>
               {state.open2 && (
-                <ol
+                <div
                   className={`list-decimal text-[13px] md:text-base
                                   } duration-500 pt-3 pl-4 unorder text-[#E5C9C9]`}
                 >
-                  <li> Visit WWW.ROOM306.COM</li>
-                  <li> Click Sign Up</li>
-                  <li> Register as an Independent Escort</li>
+                  <h2 className="pb-3 md:text-[18px] font-semibold text-base">
+                    Managing Your Pictures Guide
+                  </h2>
+                  <h3 className="md:text-base font-semibold text-[14px] pb-2">
+                    To manage your pictures:
+                  </h3>
+                  <ol className="list-decimal text-[13px] md:text-base duration-500 pt-3 pl-4 unorder text-[#E5C9C9]">
+                    <li>Click on your avatar at the top</li>
+                    <li>Scroll down to MEDIA +</li>
+                    <li>
+                      Select your desired option - (Profile photo, Naughty
+                      Video)
+                    </li>
+                  </ol>
+                  <h2 className="md:text-base font-semibold text-[14px] pb-2 pt-3">
+                    How to Delete Old Photos:
+                  </h2>
+                  <li>Add new pictures before attempting to delete old ones</li>
+                  <li> Add your new pictures first.</li>
                   <li>
-                    follow the guidelines , and complete the Escort details
+                    Click delete at the top right of the old photo you wish to
+                    delete
                   </li>
-                  <li>Check your email for the verification code.</li>
-                  <li>Complete the rest of the registration pages.</li>
                   <li>upload your appealing and bright pictures.</li>
                   <li>
                     Take and upload a verification Photo as shown by the
@@ -167,7 +187,7 @@ const Faqs = () => {
                     process. once approved, log back in , scroll down and click
                     ACTIVATE. ITS 10,000 NGN to activate your account
                   </li>
-                </ol>
+                </div>
               )}
             </div>
           </div>

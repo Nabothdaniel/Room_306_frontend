@@ -23,7 +23,7 @@ const Notice = ({ noticeClass }) => {
       <p className="md:text-[26px] text-[20px] py-2 text-center">
         BELOW IS OUR ONLY WHATSAPP NUMBER :
       </p>
-      <p className="text-center text-[20px] md:text-[26px]">Number Here</p>
+      <p className="text-center text-[20px] md:text-[26px]">+234 7052995373</p>
       <p className="md:text-[26px] text-[22px] py-3 text-center">
         Please contact us on this number only for payment issues, for other
         things use email.

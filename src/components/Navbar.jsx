@@ -15,18 +15,31 @@ import PopUp from "./PopUp";
 import { differenceInDays, parse, parseISO } from "date-fns";
 import toast from "react-hot-toast";
 import Notification from "./Notification";
+import { useNotificationQuery } from "../redux/ApiSlice";
 
 const Navbar = ({ Headervalue, textValue }) => {
   let users = JSON.parse(localStorage.getItem("details"));
+  const { data, isLoading } = useNotificationQuery({
+    pollingInterval: 3000,
+  });
   const [notify, setNotify] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [day, setDay] = useState("");
+  const [read, setRead] = useState(false);
   const open = useSelector((state) => state.Util.navOpen);
-
   const [pop, setPop] = useState(true);
+
+  useEffect(() => {
+    const isRead = data?.filter((item) => item.is_read == false);
+    if (isRead?.length <= 0) {
+      setRead(false);
+    } else {
+      setRead(true);
+    }
+  }, [data]);
 
   const { user_id } = useAuth();
 
@@ -116,7 +129,10 @@ const Navbar = ({ Headervalue, textValue }) => {
                   setNotify(!notify);
                   setOpenProfile(false);
                 }}
-                className="bg-[#0A0A0A] block cursor-pointer relative before:absolute before:right-2 before:rounded-full before:top-0 before:contents-[''] before:size-[10px] before:bg-red-500 p-3 rounded-full"
+                className={` ${
+                  read &&
+                  "before:absolute before:right-2 before:rounded-full before:top-0 before:contents-[''] before:size-[10px] before:bg-red-500"
+                }  bg-[#0A0A0A] block cursor-pointer relative  p-3 rounded-full`}
               >
                 <TbBell className=" text-[#DADADA] size-7" />
               </div>
@@ -125,7 +141,7 @@ const Navbar = ({ Headervalue, textValue }) => {
                   notify ? "translate-y-0" : "-translate-y-[130vh]"
                 } text-white rounded-3xl duration-500 py-4 px-6 w-[90vw] md:w-[400px] -right-16 md:right-0`}
               >
-                <Notification />
+                <Notification data={data} load={isLoading} />
               </div>
             </div>
           )}

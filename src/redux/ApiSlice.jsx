@@ -8,7 +8,7 @@ export const ApiSlice = createApi({
   refetchOnReconnect: true,
   refetchOnFocus: true,
   keepUnusedDataFor: 60,
-  tagTypes: ["Posts", "Tests", "Tour"],
+  tagTypes: ["Posts", "Tests", "Tour", "Note"],
   endpoints: (build) => ({
     wallet: build.query({
       query: () => ({
@@ -189,6 +189,42 @@ export const ApiSlice = createApi({
       }),
     }),
 
+    Notification: build.query({
+      query: () => ({
+        url: "/notifications/user/",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Note", id })),
+              { type: "Note", id: "LIST" },
+            ]
+          : [{ type: "Note", id: "LIST" }],
+    }),
+
+    NotificationById: build.query({
+      query: (id) => ({
+        url: `/notifications/${id}/`,
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
+
+    Note: build.mutation({
+      query: (body) => ({
+        url: "/auth",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [{ type: "Note", id: "LIST" }],
+    }),
+
     testimonials: build.mutation({
       query: (body) => ({
         url: "/testimonies/create/",
@@ -223,4 +259,7 @@ export const {
   useTestimonialsMutation,
   useGetTestimonialQuery,
   useServicesQuery,
+  useNotificationQuery,
+  useNotificationByIdQuery,
+  useNoteMutation,
 } = ApiSlice;
