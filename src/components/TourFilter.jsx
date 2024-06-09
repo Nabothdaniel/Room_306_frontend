@@ -50,17 +50,17 @@ const TourFilter = ({ TourClass, Filter }) => {
   });
 
   const handleSearch = () => {
-    setFilter({ roomCountry: country, roomCity: city });
+    setFilter({ tourCountry: country, tourCity: city });
     Filter();
   };
 
   return (
     <div
-      className={`bg-black/40 duration-500 ${RoomClass} fixed top-0 z-[999999] flex left-0 w-[100%] h-screen  justify-center`}
+      className={`bg-black/40 duration-500 ${TourClass} fixed top-0 z-[999999] flex left-0 w-[100%] h-screen  justify-center`}
     >
       <div className="bg-white w-[80%] md:w-[600px] h-fit mt-28 py-4 rounded-xl">
         <div className="flex items-center justify-between border-b-2 px-6 pb-2 border-[#F1D6D6]">
-          <h2 className="md:text-3xl font-semibold text-xl">Filter Room</h2>
+          <h2 className="md:text-3xl font-semibold text-xl">Filter Tour</h2>
           <img
             onClick={Filter}
             className="size-5 cursor-pointer"

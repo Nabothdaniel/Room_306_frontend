@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Expire from "../images/Expire.svg";
@@ -7,16 +7,27 @@ import Filter from "../images/Input.svg";
 import Pagination from "../components/Pagination";
 import Frame from "../images/Frame.svg";
 import { Link } from "react-router-dom";
-import { useGetAllTourQuery } from "../redux/tourApi";
+import { useGetAllTourQuery, useGetFilteredTourQuery } from "../redux/tourApi";
 import Loading from "../components/Loading";
 import EscortOneItems from "../components/EscortOneItems";
 import TourFilter from "../components/TourFilter";
+import { ImageContext } from "../Hooks/ImageContext";
 
 const Tours = () => {
+  const { filter } = useContext(ImageContext);
+
+  const country = filter.tourCountry;
+  const city = filter.tourCity;
+
+  const [filters, setFilters] = useState(false);
   const users = JSON.parse(localStorage.getItem("details"));
   const [currentPage, setCurrentPage] = useState(0);
 
-  const { data, isLoading } = useGetAllTourQuery();
+  const { data, isLoading } = useGetFilteredTourQuery({ country, city });
+
+  const handleFilter = () => {
+    setFilters(!filters);
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -57,7 +68,12 @@ const Tours = () => {
               <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
                 {/* <img className="w-auto " src={Latest} alt="" /> */}
                 {/* <img className=" w-auto" src={Expire} alt="" /> */}
-                <img className=" w-auto" src={Filter} alt="" />
+                <img
+                  onClick={handleFilter}
+                  className=" w-auto cursor-pointer"
+                  src={Filter}
+                  alt=""
+                />
               </div>
             </div>
             <div className=" bg-[#121212]">
@@ -69,6 +85,10 @@ const Tours = () => {
             </div>
           </div>
         </div>
+        <TourFilter
+          Filter={handleFilter}
+          TourClass={`${!filters ? "translate-x-[120vw]" : "translate-x-0"}`}
+        />
       </div>
     );
   }
@@ -108,7 +128,12 @@ const Tours = () => {
               <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
                 {/* <img className="w-auto " src={Latest} alt="" /> */}
                 {/* <img className=" w-auto" src={Expire} alt="" /> */}
-                <img className=" w-auto" src={Filter} alt="" />
+                <img
+                  onClick={handleFilter}
+                  className=" w-auto cursor-pointer"
+                  src={Filter}
+                  alt=""
+                />
               </div>
             </div>
             <div className=" bg-[#121212]">
@@ -120,6 +145,10 @@ const Tours = () => {
             </div>
           </div>
         </div>
+        <TourFilter
+          Filter={handleFilter}
+          TourClass={`${!filters ? "translate-x-[120vw]" : "translate-x-0"}`}
+        />
       </div>
     );
   }
@@ -168,7 +197,12 @@ const Tours = () => {
             <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
               {/* <img className="w-auto" src={Latest} alt="" /> */}
               {/* <img className="w-auto" src={Expire} alt="" /> */}
-              <img className="w-auto" src={Filter} alt="" />
+              <img
+                onClick={handleFilter}
+                className="w-auto cursor-pointer"
+                src={Filter}
+                alt=""
+              />
             </div>
           </div>
           <div className=" bg-[#121212]">
@@ -179,7 +213,10 @@ const Tours = () => {
           </div>
         </div>
       </div>
-      <TourFilter />
+      <TourFilter
+        Filter={handleFilter}
+        TourClass={`${!filters ? "translate-x-[120vw]" : "translate-x-0"}`}
+      />
     </div>
   );
 };

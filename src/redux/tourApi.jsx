@@ -17,7 +17,11 @@ const tourApi = ApiSlice.injectEndpoints({
           : [{ type: "Tour", id: "LIST" }],
     }),
 
-    
+    getFilteredTour: build.query({
+      query: ({ country, city }) =>
+        `/tour/filter/?country=${country}&city=${city}`,
+    }),
+
     tourFavorite: build.mutation({
       query: (id) => ({
         url: `tour/tours/favorite/${id}/`,
@@ -85,4 +89,5 @@ export const {
   useFavoriteTourQuery,
   useGetTourReviewQuery,
   useAddTourReviewMutation,
+  useGetFilteredTourQuery,
 } = tourApi;
