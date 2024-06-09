@@ -19,7 +19,7 @@ import { useNotificationQuery } from "../redux/ApiSlice";
 
 const Navbar = ({ Headervalue, textValue }) => {
   let users = JSON.parse(localStorage.getItem("details"));
-  const { data, isLoading } = useNotificationQuery({
+  const { data, isLoading } = useNotificationQuery(1, {
     pollingInterval: 3000,
   });
   const [notify, setNotify] = useState(false);
