@@ -14,10 +14,11 @@ import useAuth from "../Hooks/useAuth";
 import PopUp from "./PopUp";
 import { differenceInDays, parse, parseISO } from "date-fns";
 import toast from "react-hot-toast";
+import Notification from "./Notification";
 
 const Navbar = ({ Headervalue, textValue }) => {
   let users = JSON.parse(localStorage.getItem("details"));
-
+  const [notify, setNotify] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
@@ -81,7 +82,7 @@ const Navbar = ({ Headervalue, textValue }) => {
             alt=""
           />
 
-          <img className="w-[80px]" src={Logo} alt="" />
+          <img className="md:w-[80px] w-[70px]" src={Logo} alt="" />
         </div>
 
         <div className="flex lg:justify-between justify-end md:w-[360px] lg:w-fit items-center gap-x-4">
@@ -108,14 +109,34 @@ const Navbar = ({ Headervalue, textValue }) => {
               See Coins
             </button>
           )}
-          <div className="bg-[#0A0A0A] hidden lg:block cursor-pointer p-3 rounded-full">
-            <TbBell className=" text-[#DADADA] size-7" />
-          </div>
+          {user_id && (
+            <div className="relative">
+              <div
+                onClick={() => {
+                  setNotify(!notify);
+                  setOpenProfile(false);
+                }}
+                className="bg-[#0A0A0A] block cursor-pointer relative before:absolute before:right-2 before:rounded-full before:top-0 before:contents-[''] before:size-[10px] before:bg-red-500 p-3 rounded-full"
+              >
+                <TbBell className=" text-[#DADADA] size-7" />
+              </div>
+              <div
+                className={`absolute top-16 bg-black h-[500px] ${
+                  notify ? "translate-y-0" : "-translate-y-[130vh]"
+                } text-white rounded-3xl duration-500 py-4 px-6 w-[90vw] md:w-[400px] -right-14 md:right-0`}
+              >
+                <Notification />
+              </div>
+            </div>
+          )}
 
           {users && (
             <div className="relative">
               <img
-                onClick={handleProfile}
+                onClick={() => {
+                  handleProfile();
+                  setNotify(false);
+                }}
                 className="size-[48px] object-cover rounded-full cursor-pointer"
                 src={`https://room35backend.onrender.com${
                   users?.image ?? users?.user?.image
