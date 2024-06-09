@@ -42,7 +42,13 @@ const AdvertsItem = ({ items }) => {
             },
           }
         );
-        navigate(`/chat/${res.data.conversation.id}`);
+
+        if (res.data.id) {
+          navigate(`/chat/${res.data.id}`);
+        } else if (res.data.conversation.id) {
+          navigate(`/chat/${res.data.conversation.id}`);
+        }
+        window.location.reload(true);
       } catch (err) {
         console.log(err);
       }

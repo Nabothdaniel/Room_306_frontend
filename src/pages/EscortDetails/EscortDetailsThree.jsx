@@ -14,26 +14,21 @@ const EscortDetailsThree = () => {
   const { data, isLoading } = useServicesQuery();
   const navigate = useNavigate();
 
+  let services = [];
   const handleChange = (e) => {
-    let services = [];
     if (e.target.checked) {
-      services.push(e.target.id);
-    } else {
-      setFormData({ [e.target.name]: "" });
+      services.push(Number(e.target.id));
+    } else if (e.target.checked == false) {
+      services = services.filter((item) => item != Number(e.target.id));
     }
   };
-  const trueKeys = Object.keys(formData).filter(
-    (key) => formData[key] === "True"
-  );
 
   if (isLoading) {
     return <Loading />;
   }
 
-  console.log(formData);
-
   const handleEscortThree = () => {
-    if (trueKeys.length >= 5) {
+    if (services.length >= 5) {
       dispatch(
         details({
           ...formData,

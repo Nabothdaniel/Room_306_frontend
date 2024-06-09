@@ -51,10 +51,10 @@ import Booking from "./pages/Booking.jsx";
 import { Toaster } from "react-hot-toast";
 import TourView from "./pages/TourView.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
-import { ImageContext } from "./Hooks/ImageContext.jsx";
 import PersonalChat from "./pages/PersonalChat.jsx";
 import UpdateTours from "./pages/UpdateTour.jsx";
 import UpdateRoom from "./pages/UpdateRoom.jsx";
+import ClientView from "./pages/ClientView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -272,6 +272,10 @@ const router = createBrowserRouter([
       {
         path: "/add-naughty",
         element: <AddNaughty />,
+      },
+      {
+        path: "/client/:username",
+        element: <ClientView />,
       },
       {
         path: "/add-room",

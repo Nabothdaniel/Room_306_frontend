@@ -105,7 +105,7 @@ const EscortDetailsTwo = () => {
         })
       );
 
-      navigate("/services");
+      navigate("/rates");
 
       setFormData({
         education: "",

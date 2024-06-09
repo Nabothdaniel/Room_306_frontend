@@ -100,7 +100,8 @@ const ChannelsName = () => {
             <div className="pl-4 md:block md:w-auto flex justify-between items-center w-full">
               <div>
                 {" "}
-                {item.sender.username == users?.user?.username ? (
+                {item.sender.username ==
+                (users?.user?.username || users?.username) ? (
                   <p className="font-semibold">{item.recipient.username}</p>
                 ) : (
                   <p className="font-semibold">{item.sender.username}</p>

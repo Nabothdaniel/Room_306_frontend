@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import { BlogSwiper } from "../components/BlogSwiper";
@@ -13,23 +13,31 @@ import Blog from "../images/blog.jpeg";
 import NaughtSwiper from "../components/NaughtSwiper";
 import Loading from "../components/Loading";
 import {
+  useGetCommentQuery,
   useGetVideoByIdQuery,
   useLikeVideoMutation,
   useUnlikeVideoMutation,
 } from "../redux/EscortApi";
 import { format, parseISO } from "date-fns";
 import toast from "react-hot-toast";
+import Comment from "../components/Comment";
 
 const NaughtyVideoView = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [like] = useLikeVideoMutation();
   const [unlike] = useUnlikeVideoMutation();
+  const { data: comments, isLoading: load } = useGetCommentQuery(id);
   const { data, isLoading } = useGetVideoByIdQuery(id);
+  const [comment, setComment] = useState(false);
 
-  if (isLoading) {
+  if (isLoading || load) {
     return <Loading />;
   }
+
+  const handleComment = () => {
+    setComment(!comment);
+  };
 
   const handleLike = async () => {
     try {
@@ -140,9 +148,14 @@ const NaughtyVideoView = () => {
                     ({data.un_like_count})
                   </span>
                 </div>
-                <div className="bg-[#1e1e1e] hover:bg-white/80 duration-500 cursor-pointer flex rounded-r-xl items-center py-2 px-3">
+                <div
+                  onClick={handleComment}
+                  className="bg-[#1e1e1e] hover:bg-white/80 duration-500 cursor-pointer flex rounded-r-xl items-center py-2 px-3"
+                >
                   <img className="md:size-8 size-7" src={Message} alt="" />
-                  <span className="text-[20px] font-semibold">(0)</span>
+                  <span className="text-[20px] font-semibold">
+                    ({comments.length})
+                  </span>
                 </div>
               </div>
               <div className="flex pt-6 border-b pb-5 border-neutral-600 items-start">
@@ -220,6 +233,10 @@ const NaughtyVideoView = () => {
           </div>
         </div>
       </div>
+      <Comment
+        commentClass={`${!comment ? "translate-x-[120vw]" : "translate-x-0"}`}
+        handleComment={handleComment}
+      />
     </div>
   );
 };

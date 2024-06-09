@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Details from "./Hooks/Details";
 import { useGetCountryQuery } from "./redux/CountryApi";
@@ -13,9 +13,11 @@ import { FilterApi } from "./Hooks/FilterApi";
 const App = () => {
   let users = JSON.parse(localStorage.getItem("details"));
   const [image, setImage] = useState("");
+  const pathname = useLocation().pathname;
   const { data, isLoading } = useGetCountryQuery();
   const [pop, setPop] = useState(true);
   const [day, setDay] = useState("");
+  const navigate = useNavigate();
   const { data: pay } = useWalletQuery();
   const [filter, setFilter] = useState({
     roomCountry: "",
@@ -38,6 +40,14 @@ const App = () => {
       }
     }
   }, [pay]);
+
+  useEffect(() => {
+    if (users?.user?.user_type == "escort") {
+      if (users?.services?.length == 0) {
+        navigate("/services");
+      }
+    }
+  }, [pathname, users]);
 
   const handlePop = () => {
     if (day < 7) {

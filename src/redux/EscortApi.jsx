@@ -1,7 +1,7 @@
 import { ApiSlice } from "./ApiSlice";
 
 const escortApi = ApiSlice.injectEndpoints({
-  tagTypes: ["Posts", "Follow"],
+  tagTypes: ["Posts", "Follow", "Video", "Comment"],
   endpoints: (build) => ({
     getAllEscort: build.query({
       query: ({ gender, country, sexual_orientation, display_name }) =>
@@ -17,6 +17,18 @@ const escortApi = ApiSlice.injectEndpoints({
 
     getVideoById: build.query({
       query: (id) => `/escort/video/${id}/`,
+      providesTags: [{ type: "Video", id: "LIST" }],
+    }),
+
+    comment: build.mutation({
+      query: (id) => ({
+        url: `/escort/escort/video_comment/${id}/`,
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+      invalidatesTags: [{ type: "Comment", id: "LIST" }],
     }),
 
     updateEscort: build.mutation({
@@ -74,6 +86,23 @@ const escortApi = ApiSlice.injectEndpoints({
           : [{ type: "Follow", id: "LIST" }],
     }),
 
+    getComment: build.query({
+      query: (id) => ({
+        url: `/escort/escort/video/comments/${id}/`,
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Comment", id })),
+              { type: "Comment", id: "LIST" },
+            ]
+          : [{ type: "Comment", id: "LIST" }],
+    }),
+
     likeVideo: build.mutation({
       query: (id) => ({
         url: `/escort/like-video/${id}/`,
@@ -82,13 +111,7 @@ const escortApi = ApiSlice.injectEndpoints({
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
       }),
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.map(({ id }) => ({ type: "Posts", id })),
-              { type: "Posts", id: "LIST" },
-            ]
-          : [{ type: "Posts", id: "LIST" }],
+      invalidatesTags: [{ type: "Video", id: "LIST" }],
     }),
 
     unlikeVideo: build.mutation({
@@ -99,13 +122,7 @@ const escortApi = ApiSlice.injectEndpoints({
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
       }),
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.map(({ id }) => ({ type: "Posts", id })),
-              { type: "Posts", id: "LIST" },
-            ]
-          : [{ type: "Posts", id: "LIST" }],
+      invalidatesTags: [{ type: "Video", id: "LIST" }],
     }),
 
     favorite: build.mutation({
@@ -179,4 +196,6 @@ export const {
   useFollowingQuery,
   useGetProfileByIdQuery,
   useUnfollowMutation,
+  useGetCommentQuery,
+  useCommentMutation,
 } = escortApi;
