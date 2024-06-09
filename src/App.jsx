@@ -22,6 +22,8 @@ const App = () => {
   const [filter, setFilter] = useState({
     roomCountry: "",
     roomCity: "",
+    tourCountry: "",
+    tourCity: "",
   });
 
   Details();

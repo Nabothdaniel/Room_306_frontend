@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useGetAllTourQuery } from "../redux/tourApi";
 import Loading from "../components/Loading";
 import EscortOneItems from "../components/EscortOneItems";
+import TourFilter from "../components/TourFilter";
 
 const Tours = () => {
   const users = JSON.parse(localStorage.getItem("details"));
@@ -55,7 +56,7 @@ const Tours = () => {
               </p>
               <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
                 {/* <img className="w-auto " src={Latest} alt="" /> */}
-                <img className=" w-auto" src={Expire} alt="" />
+                {/* <img className=" w-auto" src={Expire} alt="" /> */}
                 <img className=" w-auto" src={Filter} alt="" />
               </div>
             </div>
@@ -106,7 +107,7 @@ const Tours = () => {
               </p>
               <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
                 {/* <img className="w-auto " src={Latest} alt="" /> */}
-                <img className=" w-auto" src={Expire} alt="" />
+                {/* <img className=" w-auto" src={Expire} alt="" /> */}
                 <img className=" w-auto" src={Filter} alt="" />
               </div>
             </div>
@@ -166,7 +167,7 @@ const Tours = () => {
             </p>
             <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
               {/* <img className="w-auto" src={Latest} alt="" /> */}
-              <img className="w-auto" src={Expire} alt="" />
+              {/* <img className="w-auto" src={Expire} alt="" /> */}
               <img className="w-auto" src={Filter} alt="" />
             </div>
           </div>
@@ -178,6 +179,7 @@ const Tours = () => {
           </div>
         </div>
       </div>
+      <TourFilter />
     </div>
   );
 };

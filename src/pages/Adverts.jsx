@@ -119,9 +119,9 @@ const Adverts = () => {
                 </Link>
               )}
             </h1>
-            <p className="text-white cursor-pointer">
+            {/* <p className="text-white cursor-pointer">
               <img className="" src={Input} alt="" />
-            </p>
+            </p> */}
           </div>
           <div className="grid xl:grid-cols-2 grid-cols-1 gap-4">
             {displayAdverts}

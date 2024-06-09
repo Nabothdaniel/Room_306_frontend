@@ -70,7 +70,7 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
   }, [amount, curr]);
 
   const config = {
-    public_key: "FLWPUBK_TEST-a282993d131f52cf69f87d7b1c7f6ccf-X",
+    public_key: import.meta.env.VITE_FLUTTERWAVE,
     tx_ref: Date.now(),
     amount,
     currency: curr,

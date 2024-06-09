@@ -23,7 +23,7 @@ const Notification = ({ data, load }) => {
         Notifications
       </h1>
       <div className="overflow-y-scroll  channel h-[400px] space-y-4">
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           const reviewDate = parseISO(item.createdAt);
           const formattedDate = format(reviewDate, "MMMM dd, yyyy 'at' h:mm a");
 
