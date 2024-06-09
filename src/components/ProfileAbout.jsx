@@ -56,6 +56,14 @@ const ProfileAbout = ({ client }) => {
           <p className="font-semibold">{formattedDate}</p>
         </div>
       </div>
+      <p className="text-white uppercase text-center pt-16">
+        Profile Viewed{" "}
+        <span className="bg-red-400 px-3 rounded-3xl mr-1 py-1 font-semibold">
+          {" "}
+          {client.views}
+        </span>
+        Times
+      </p>
     </div>
   );
 };

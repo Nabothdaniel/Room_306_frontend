@@ -28,6 +28,19 @@ const App = () => {
 
   useEffect(() => {
     if (users?.user?.user_type == "escort") {
+      if (users?.services?.length == 0) {
+        navigate("/services");
+      }
+    }
+    if (users?.user?.user_type !== "escort") {
+      if (pathname == "/services") {
+        navigate("/");
+      }
+    }
+  }, [pay, pathname]);
+
+  useEffect(() => {
+    if (users?.user?.user_type == "escort") {
       const birthDate = parseISO(
         users?.user?.createdAt,
         "yyyy-MM-dd",
@@ -40,14 +53,6 @@ const App = () => {
       }
     }
   }, [pay]);
-
-  useEffect(() => {
-    if (users?.user?.user_type == "escort") {
-      if (users?.services?.length == 0) {
-        navigate("/services");
-      }
-    }
-  }, [pathname, users]);
 
   const handlePop = () => {
     if (day < 7) {

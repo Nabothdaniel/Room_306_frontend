@@ -4,6 +4,7 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useBookMutation } from "../redux/BookApi";
 
 const BookingModel = ({ bookClass, handleBook, user }) => {
   const [Data, setData] = useState({
@@ -11,7 +12,7 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
     date: "",
     message: "",
   });
-
+  const [sendBook] = useBookMutation();
   const handleChange = (e) => {
     setData({ ...Data, [e.target.name]: e.target.value });
   };
@@ -34,7 +35,7 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
           },
         }
       );
-
+      await sendBook();
       handleBook();
       toast.success(
         `Booking Sent to ${user.escort_details.user.display_name} Successfully`

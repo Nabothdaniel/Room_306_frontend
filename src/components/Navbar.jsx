@@ -32,8 +32,6 @@ const Navbar = ({ Headervalue, textValue }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
- 
-
   const handleSearch = () => {
     setOpenSearch(!openSearch);
   };
@@ -144,7 +142,13 @@ const Navbar = ({ Headervalue, textValue }) => {
                   </p>
                 )}
                 <p
-                  onClick={() => setOpenLogin(!openLogin)}
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    setOpenLogin(!openLogin);
+                    setTimeout(() => {
+                      localStorage.removeItem("details");
+                    }, 3000);
+                  }}
                   className="cursor-pointer hover:text-[#E9CB50] duration-300"
                 >
                   Switch Account
@@ -190,8 +194,6 @@ const Navbar = ({ Headervalue, textValue }) => {
         handleMenu={handleMenu}
         menuClass={`${!openMenu ? "translate-x-[120vw]" : "translate-x-0"}`}
       />
-
-     
     </>
   );
 };

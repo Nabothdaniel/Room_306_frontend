@@ -38,7 +38,7 @@ const EscortDetailsSecFive = () => {
         );
         setLoad(false);
         dispatch(setCredentials(res.data?.token));
-        navigate("/survey");
+        navigate("/services");
         window.location.reload(true);
       } catch (err) {
         console.log(err);

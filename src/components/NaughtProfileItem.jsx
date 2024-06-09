@@ -5,17 +5,29 @@ import Like from "../images/dislike.svg";
 import Message from "../images/messages-2.svg";
 import Blog from "../images/blog.jpeg";
 import { Link } from "react-router-dom";
+import { useDeleteVideoMutation } from "../redux/EscortApi";
+import toast, { LoaderIcon } from "react-hot-toast";
 
 const NaughtProfileItem = ({ items }) => {
+  const [deleteVideo, { isLoading }] = useDeleteVideoMutation();
+
+  const handleDelete = async () => {
+    try {
+      const res = await deleteVideo(items.id).unwrap();
+      toast.success("Video Deleted");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <Link
-      to={`/naughty-videos/${items.id}`}
-      className="bg-black block relative text-white  p-2 rounded-lg"
-    >
-      <video
-        className="h-[300px] w-full object-cover rounded-lg"
-        src={`https://room35backend.onrender.com${items.video}`}
-      ></video>
+    <div className="bg-black block relative text-white  p-2 rounded-lg">
+      <Link to={`/naughty-videos/${items.id}`}>
+        <video
+          className="h-[300px] w-full object-cover rounded-lg"
+          src={`https://room35backend.onrender.com${items.video}`}
+        ></video>
+      </Link>
 
       <div className=" w-[100%] absolute bottom-0 left-0">
         <div className="mx-auto p-2 z-[999999] rounded-t-3xl md:w-[97%] w-[98%] bg-black">
@@ -38,11 +50,14 @@ const NaughtProfileItem = ({ items }) => {
         </div>
       </div>
       {/* <div className="  absolute top-3 right-5"> */}
-      <span className="bg-white absolute top-3 right-5 max-h-[10px] text-black rounded-xl">
-        ...
+      <span
+        onClick={handleDelete}
+        className="bg-red-500 cursor-pointer absolute top-3 right-5 px-2 py-[3px] text-black rounded-xl"
+      >
+        {isLoading ? <LoaderIcon className="mx-auto" /> : "Delete"}
       </span>
       {/* </div> */}
-    </Link>
+    </div>
   );
 };
 

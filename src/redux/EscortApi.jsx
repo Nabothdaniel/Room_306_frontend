@@ -1,7 +1,7 @@
 import { ApiSlice } from "./ApiSlice";
 
 const escortApi = ApiSlice.injectEndpoints({
-  tagTypes: ["Posts", "Follow", "Video", "Comment"],
+  tagTypes: ["Posts", "Follow", "Video", "Comment", "Delete"],
   endpoints: (build) => ({
     getAllEscort: build.query({
       query: ({ gender, country, sexual_orientation, display_name }) =>
@@ -153,6 +153,24 @@ const escortApi = ApiSlice.injectEndpoints({
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
       }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Delete", id })),
+              { type: "Delete", id: "LIST" },
+            ]
+          : [{ type: "Delete", id: "LIST" }],
+    }),
+
+    deleteVideo: build.mutation({
+      query: (id) => ({
+        url: `/escort/delete/video/${id}/`,
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+      invalidatesTags: [{ type: "Delete", id: "LIST" }],
     }),
 
     myFavorite: build.query({
@@ -169,6 +187,17 @@ const escortApi = ApiSlice.injectEndpoints({
       query: (body) => ({
         url: "/profile/escort/edit/",
         method: "PUT",
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+        body,
+      }),
+    }),
+
+    addServices: build.mutation({
+      query: (body) => ({
+        url: "/profile/services/add_services/",
+        method: "POST",
         headers: {
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
@@ -198,4 +227,6 @@ export const {
   useUnfollowMutation,
   useGetCommentQuery,
   useCommentMutation,
+  useAddServicesMutation,
+  useDeleteVideoMutation,
 } = escortApi;

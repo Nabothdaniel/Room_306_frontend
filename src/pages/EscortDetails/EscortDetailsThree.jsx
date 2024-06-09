@@ -6,6 +6,8 @@ import { details } from "../../redux/UtilSlice";
 import { useNavigate } from "react-router-dom";
 import { useServicesQuery } from "../../redux/ApiSlice";
 import Loading from "../../components/Loading";
+import { useAddServicesMutation } from "../../redux/EscortApi";
+import toast from "react-hot-toast";
 
 const EscortDetailsThree = () => {
   const [formData, setFormData] = useState([]);
@@ -13,6 +15,7 @@ const EscortDetailsThree = () => {
   const dispatch = useDispatch();
   const { data, isLoading } = useServicesQuery();
   const navigate = useNavigate();
+  const [addServices] = useAddServicesMutation();
 
   let services = [];
   const handleChange = (e) => {
@@ -27,16 +30,17 @@ const EscortDetailsThree = () => {
     return <Loading />;
   }
 
-  const handleEscortThree = () => {
+  const handleEscortThree = async () => {
     if (services.length >= 5) {
-      dispatch(
-        details({
-          ...formData,
-        })
-      );
-      navigate("/rates");
+      try {
+        const res = await addServices({ services }).unwrap();
+        toast.success(res.message);
+        navigate("/survey");
+        window.location.reload(true);
+      } catch (err) {
+        console.log(err);
+      }
       setError("");
-      setFormData({});
     } else {
       setError("Select at least five services");
     }
@@ -678,8 +682,8 @@ const EscortDetailsThree = () => {
                 />
                 <span className="checkmate"></span>
               </label> */}
-              <p className="py-1 text-[12px] text-red-500">{error}</p>
             </div>
+              <p className="py-1 text-[12px] text-red-500">{error}</p>
             <div className="mt-8 flex gap-x-3">
               <button
                 onClick={handleDelete}

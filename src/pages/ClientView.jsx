@@ -64,19 +64,21 @@ const ClientView = () => {
                   </p> */}
                   <div className="md:flex hidden justify-between text-white">
                     <div className="flex flex-col items-center">
-                      <p className="text-[24px] font-semibold">27</p>
-                      <p className="text-[#B29A9A] text-[13px]">
-                        Discussion Posts
+                      <p className="text-[24px] font-semibold">
+                        {client.followers_count}
                       </p>
+                      <p className="text-[#B29A9A] text-[13px]">Followers</p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <p className="text-[24px] font-semibold">35</p>
-                      <p className="text-[#B29A9A] text-[13px]">Comments</p>
+                      <p className="text-[24px] font-semibold">
+                        {client.following_count}
+                      </p>
+                      <p className="text-[#B29A9A] text-[13px]">Following</p>
                     </div>
-                    <div className="flex flex-col items-center">
-                      <p className="text-[24px] font-semibold">5</p>
+                    {/* <div className="flex flex-col items-center">
+                      <p className="text-[24px] font-semibold">{Book.length}</p>
                       <p className="text-[#B29A9A] text-[13px]">Bookings</p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="flex justify-end ">

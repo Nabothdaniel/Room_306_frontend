@@ -1,15 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useServicesQuery } from "../redux/ApiSlice";
+import Loading from "./Loading";
+import { useAddServicesMutation } from "../redux/EscortApi";
+import toast, { LoaderIcon } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const EscortServicesEdit = ({ serviceClass }) => {
   const users = JSON.parse(localStorage.getItem("details"));
-  
-  const [formData, setFormData] = useState({
-    
-  })
+  const { data, isLoading } = useServicesQuery();
+  const [formData, setFormData] = useState([]);
+  const [addServices] = useAddServicesMutation();
+  const [error, setError] = useState("");
+  const [load, setLoad] = useState(false);
+  const navigate = useNavigate();
 
-  const handleChange = () => { };
-  
+  useEffect(() => {
+    setFormData([...users?.services?.map((item) => item.id)]);
+  }, [data]);
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  // let services = Array(...users?.services?.map((item) => item.id));
+  const handleChange = (e) => {
+    if (!formData?.includes(Number(e.target.id))) {
+      setFormData([...formData, Number(e.target.id)]);
+      //console.log(services);
+    } else {
+      setFormData(formData.filter((item) => item != Number(e.target.id)));
+    }
+  };
+
+  const handleServices = async () => {
+    if (formData.length >= 2) {
+      setLoad(true);
+      try {
+        const res = await addServices({ services: formData }).unwrap();
+        setLoad(false);
+        toast.success(res.message);
+        navigate("/profile");
+        window.location.reload(true);
+      } catch (err) {
+        setLoad(false);
+
+        console.log(err);
+      }
+      setError("");
+    } else {
+      setError("Select at least five services");
+    }
+  };
 
   return (
     <div
@@ -23,7 +64,23 @@ const EscortServicesEdit = ({ serviceClass }) => {
       </h3>
 
       <div className="grid md:grid-cols-2 text-white lg:grid-cols-3 gap-x-1 gap-y-3">
-        <label className="checkContainer">
+        {data.map((item, index) => {
+          return (
+            <label key={index} className="checkContainer">
+              {item.name}
+              <input
+                onChange={handleChange}
+                type="checkbox"
+                name="services"
+                id={item.id}
+                checked={formData?.includes(Number(item.id))}
+              />
+              <span className="checkmate"></span>
+            </label>
+          );
+        })}
+
+        {/* <label className="checkContainer">
           69 (69 sex Position)
           <input onChange={handleChange} type="checkbox" name="sixty_nine" />
           <span className="checkmate"></span>
@@ -498,7 +555,17 @@ const EscortServicesEdit = ({ serviceClass }) => {
           Blow Job
           <input onChange={handleChange} type="checkbox" name="blow_job" />
           <span className="checkmate"></span>
-        </label>
+        </label> */}
+      </div>
+      <p className="py-1 text-[12px] text-red-500">{error}</p>
+      <div className="flex justify-end">
+        <button
+          onClick={handleServices}
+          disabled={load}
+          className="bg-[#E9CB50] mt-12 text-center block w-[100%] text-[#171717] py-[10px] md:w-[150px] font-medium rounded-xl"
+        >
+          {load ? <LoaderIcon className="mx-auto" /> : "Save Changes"}
+        </button>
       </div>
     </div>
   );
