@@ -21,6 +21,7 @@ import {
 import { format, parseISO } from "date-fns";
 import toast from "react-hot-toast";
 import Comment from "../components/Comment";
+import Footer from "../components/Footer";
 
 const NaughtyVideoView = () => {
   const navigate = useNavigate();
@@ -232,6 +233,7 @@ const NaughtyVideoView = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
       <Comment
         commentClass={`${!comment ? "translate-x-[120vw]" : "translate-x-0"}`}

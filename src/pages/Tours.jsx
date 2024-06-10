@@ -12,6 +12,7 @@ import Loading from "../components/Loading";
 import EscortOneItems from "../components/EscortOneItems";
 import TourFilter from "../components/TourFilter";
 import { ImageContext } from "../Hooks/ImageContext";
+import Footer from "../components/Footer";
 
 const Tours = () => {
   const { filter } = useContext(ImageContext);
@@ -144,6 +145,7 @@ const Tours = () => {
               </div>
             </div>
           </div>
+          <Footer />
         </div>
         <TourFilter
           Filter={handleFilter}
@@ -212,6 +214,7 @@ const Tours = () => {
             <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
           </div>
         </div>
+        <Footer />
       </div>
       <TourFilter
         Filter={handleFilter}

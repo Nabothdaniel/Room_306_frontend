@@ -9,6 +9,7 @@ import {
   useResetPasswordMutation,
 } from "../redux/ApiSlice";
 import toast from "react-hot-toast";
+import Footer from "../components/Footer";
 
 const ResetPassword = () => {
   const [reset] = useResetPasswordMutation();
@@ -58,7 +59,7 @@ const ResetPassword = () => {
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
 
-      <div className="flex-1 md:w-[80%] px-4 pt-6 pb-10 md:pb-20 md:pt-14 md:px-10">
+      <div className="flex-1 md:w-[80%] px-4 pt-6 md:pb-20 md:pt-14 md:px-10">
         <Navbar
           Headervalue={"Welcome to Room 306"}
           textValue={"Explore our escort at your own pace"}
@@ -115,6 +116,7 @@ const ResetPassword = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
       {/* CHANGE PASSWORD */}
 

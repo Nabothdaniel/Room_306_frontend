@@ -10,6 +10,7 @@ import NaugthyItems from "../components/NaugthyItems";
 import Pagination from "../components/Pagination";
 import { useGetAllVideosQuery } from "../redux/EscortApi";
 import Loading from "../components/Loading";
+import Footer from "../components/Footer";
 
 const NaughtVideo = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -34,7 +35,7 @@ const NaughtVideo = () => {
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
-      <div className="flex-1 md:w-[80%] pb-8 pt-6 md:pt-14 px-6 lg:px-10">
+      <div className="flex-1 md:w-[80%] pt-6 md:pt-14 px-6 lg:px-10">
         <Navbar
           Headervalue={"Welcome to Room 306"}
           textValue={"Explore our escort at your own pace"}
@@ -89,10 +90,11 @@ const NaughtVideo = () => {
               </div>
             )}
           </div>
+          {data.length == 0 || (
+            <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
+          )}
         </div>
-        {data.length == 0 || (
-          <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
-        )}
+        <Footer />
       </div>
     </div>
   );

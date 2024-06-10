@@ -6,6 +6,7 @@ import Arrow from "../images/arrow-left.svg";
 import MyRoomItem from "../components/MyRoomItem";
 import { useGetMyRoomsQuery } from "../redux/roomApi";
 import Loading from "../components/Loading";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -156,6 +157,7 @@ const MyRoom = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

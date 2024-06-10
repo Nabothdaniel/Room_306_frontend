@@ -11,6 +11,7 @@ import { useFavoriteTourQuery } from "../redux/tourApi";
 import FavoriteTour from "../components/FavoriteTour";
 import { useFavoriteAdvertQuery } from "../redux/AdvertSlice";
 import FavoriteAdvert from "../components/FavoriteAdvert";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -166,6 +167,7 @@ const MyFavorite = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import { useGetRoomByIdQuery, useGetRoomReviewQuery } from "../redux/roomApi";
 import RoomReview from "../components/RoomReview";
 import { format, parseISO } from "date-fns";
 import toast from "react-hot-toast";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -233,6 +234,7 @@ const RoomView = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
       <RoomReview
         id={data.id}

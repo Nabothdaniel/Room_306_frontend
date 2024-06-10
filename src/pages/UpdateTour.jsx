@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast, { LoaderIcon } from "react-hot-toast";
+import Footer from "../components/Footer";
 
 const UpdateTours = () => {
   const navigate = useNavigate();
@@ -375,6 +376,7 @@ const UpdateTours = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

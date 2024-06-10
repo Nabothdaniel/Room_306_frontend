@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination";
 import TestimonialModel from "../components/TestimonialModel";
 import { useGetTestimonialQuery } from "../redux/ApiSlice";
 import Loading from "../components/Loading";
+import Footer from "../components/Footer";
 
 const Testimonials = () => {
   const [openModel, setOpenModel] = useState(false);
@@ -72,6 +73,7 @@ const Testimonials = () => {
             <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
           )}
         </div>
+        <Footer />
       </div>
       <TestimonialModel
         handleModel={handleModel}

@@ -18,6 +18,7 @@ import {
 import Loading from "../components/Loading";
 import toast, { LoaderIcon } from "react-hot-toast";
 import axios from "axios";
+import Footer from "../components/Footer";
 
 const PersonalChat = () => {
   const users = JSON.parse(localStorage.getItem("details"));
@@ -202,6 +203,7 @@ const PersonalChat = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import MyTourItem from "../components/MyTourItem";
 import { useGetMyTourQuery } from "../redux/tourApi";
 import Loading from "../components/Loading";
 import { formatISO } from "date-fns";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -152,6 +153,7 @@ const MyTour = () => {
             )}
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

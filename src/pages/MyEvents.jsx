@@ -9,6 +9,7 @@ import { useMyEventQuery } from "../redux/EventApi";
 import Loading from "../components/Loading";
 import { formatISO } from "date-fns";
 import { LiaPasteSolid } from "react-icons/lia";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -171,6 +172,7 @@ const MyEvents = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

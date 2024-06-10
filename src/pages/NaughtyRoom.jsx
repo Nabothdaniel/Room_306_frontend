@@ -17,6 +17,7 @@ import {
 import Loading from "../components/Loading";
 import toast, { LoaderIcon } from "react-hot-toast";
 import axios from "axios";
+import Footer from "../components/Footer";
 
 const NaughtyRoom = () => {
   const { id } = useParams();
@@ -167,6 +168,7 @@ const NaughtyRoom = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

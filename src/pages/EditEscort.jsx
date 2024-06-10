@@ -12,6 +12,7 @@ import EscortServicesEdit from "../components/EscortServicesEdit";
 import EscortRateEdit from "../components/EscortRateEdit";
 import toast, { LoaderIcon } from "react-hot-toast";
 import { useEditProfileMutation } from "../redux/EscortApi";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -242,6 +243,7 @@ const EditEscort = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

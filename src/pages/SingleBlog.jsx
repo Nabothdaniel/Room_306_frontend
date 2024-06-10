@@ -7,6 +7,7 @@ import Blog from "../images/blog.jpeg";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { useGetSingleBlogQuery } from "../redux/BlogApi";
+import Footer from "../components/Footer";
 
 const SingleBlog = () => {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ const SingleBlog = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

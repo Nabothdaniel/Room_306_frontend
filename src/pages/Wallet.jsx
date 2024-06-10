@@ -6,6 +6,7 @@ import Coin from "../images/coin.svg";
 import Purchase from "./Purchase";
 import { useNavigate } from "react-router-dom";
 import { useTransactionQuery, useWalletQuery } from "../redux/ApiSlice";
+import Footer from "../components/Footer";
 
 const Wallet = () => {
   const user = JSON.parse(localStorage.getItem("details"));
@@ -104,6 +105,7 @@ const Wallet = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
 
       <Purchase

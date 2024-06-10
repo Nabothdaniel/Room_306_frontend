@@ -36,10 +36,16 @@ const Notification = ({ data, load }) => {
               <div className={`${view == item.id ? "" : "hidden"}`}>
                 {view && <ReadNote id={view} />}
               </div>
-              <p className={`${!item.is_read && "text-white"}`}>
+              <p
+                className={`${
+                  !item.is_read && "text-white"
+                } md:text-base text-[14px]`}
+              >
                 {item.message}
               </p>
-              <p className="text-[12px] font-normal">{formattedDate}</p>
+              <p className="md:text-[12px] text-[10px] font-normal">
+                {formattedDate}
+              </p>
             </div>
           );
         })}

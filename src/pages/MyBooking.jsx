@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import BookingItem from "../components/BookingItem";
 import { useGetBookingQuery } from "../redux/BookApi";
 import Loading from "../components/Loading";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -193,6 +194,7 @@ const MyBooking = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

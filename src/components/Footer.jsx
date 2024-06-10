@@ -3,7 +3,7 @@ import { IoMdHand } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <div className="bg-[#1F1A1A] py-5 pl-8 pr-5">
+    <div className="bg-[#1F1A1A] rounded-t-xl py-5 pl-8 pr-5">
       <div className="flex gap-4 items-center">
         <IoMdHand className="md:size-14 size-10 text-red-600" />
         <span className="md:text-2xl text-[17px] text-orange-400 font-semibold">

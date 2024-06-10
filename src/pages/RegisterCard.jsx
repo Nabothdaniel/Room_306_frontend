@@ -3,6 +3,7 @@ import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Check from "../images/Check.svg";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const RegisterCard = () => {
   return (
@@ -115,6 +116,7 @@ const RegisterCard = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

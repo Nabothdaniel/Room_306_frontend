@@ -4,6 +4,7 @@ import SideBar from "../components/SideBar";
 import { RiSearchLine } from "react-icons/ri";
 import FAQs from "../images/faqs.svg";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -122,7 +123,9 @@ const Faqs = () => {
                     ACTIVATE. ITS 10,000 NGN to activate your account
                   </li>
                   <li className="ml-2">
-                    To ensure the safety of escorts it's advised to share location of your rendezvous with a client to a close friend/pal and don't meet client in anonymous places
+                    To ensure the safety of escorts it's advised to share
+                    location of your rendezvous with a client to a close
+                    friend/pal and don't meet client in anonymous places
                   </li>
                 </ol>
               )}
@@ -192,6 +195,7 @@ const Faqs = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ import Loading from "../components/Loading";
 import { format, parseISO } from "date-fns";
 import Reviews from "../components/Reviews";
 import toast from "react-hot-toast";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -237,6 +238,7 @@ const EventsView = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
       <Reviews
         id={data.event.id}

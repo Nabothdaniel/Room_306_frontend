@@ -9,6 +9,8 @@ import { useParams } from "react-router-dom";
 const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
   const users = JSON.parse(localStorage.getItem("details"));
 
+  console.log(user)
+
   const { username } = useParams();
   const [follow] = useFollowMutation();
   const [unfollow] = useUnfollowMutation();

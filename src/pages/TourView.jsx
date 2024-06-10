@@ -12,6 +12,7 @@ import Reviews from "../components/Reviews";
 import toast from "react-hot-toast";
 import { useGetTourByIdQuery, useGetTourReviewQuery } from "../redux/tourApi";
 import TourReviews from "../components/TourReviews";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -215,6 +216,7 @@ const TourView = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
       <TourReviews
         id={data.id}

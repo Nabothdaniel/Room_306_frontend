@@ -20,6 +20,7 @@ import {
   differenceInDays,
 } from "date-fns";
 import { useWalletQuery } from "../redux/ApiSlice";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -284,6 +285,7 @@ const EscortProfile = () => {
             <ProfileViewItems />
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

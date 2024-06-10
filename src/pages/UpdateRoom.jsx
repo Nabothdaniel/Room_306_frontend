@@ -9,6 +9,7 @@ import Loading from "../components/Loading";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const UpdateRoom = () => {
   const user = JSON.parse(localStorage.getItem("details"));
@@ -503,6 +504,7 @@ const UpdateRoom = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

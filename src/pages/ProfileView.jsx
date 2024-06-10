@@ -11,6 +11,7 @@ import ProfileEscort from "../components/ProfileEscort";
 import toast from "react-hot-toast";
 import ReportModel from "../components/ReportModel";
 import { useFollowingQuery, useGetProfileByIdQuery } from "../redux/EscortApi";
+import Footer from "../components/Footer";
 
 const ProfileView = () => {
   const user = JSON.parse(localStorage.getItem("details"));
@@ -81,6 +82,7 @@ const ProfileView = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
       <BookingModel
         handleBook={handleBook}

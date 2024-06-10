@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import RoomFilter from "../components/RoomFilter";
 import { useSelector } from "react-redux";
 import { ImageContext } from "../Hooks/ImageContext";
+import Footer from "../components/Footer";
 
 const Rooms = () => {
   const { filter } = useContext(ImageContext);
@@ -115,6 +116,7 @@ const Rooms = () => {
               </div>
             </div>
           </div>
+          <Footer />
         </div>
         <RoomFilter
           Filter={handleFilter}
@@ -169,6 +171,7 @@ const Rooms = () => {
             <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
           </div>
         </div>
+        <Footer />
       </div>
       <RoomFilter
         Filter={handleFilter}

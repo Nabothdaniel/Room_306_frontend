@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import { useUpdateClientMutation } from "../redux/ApiSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "../components/Footer";
 
 const EditClient = () => {
   let users = JSON.parse(localStorage.getItem("details"));
@@ -295,6 +296,7 @@ const EditClient = () => {
             </button>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

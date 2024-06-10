@@ -10,6 +10,7 @@ import Loading from "../components/Loading";
 import Frame from "../images/Frame.svg";
 import { Link } from "react-router-dom";
 import { formatISO } from "date-fns";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -163,6 +164,7 @@ const Events = () => {
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       </div>
     );
@@ -303,6 +305,7 @@ const Events = () => {
           </div>
           <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
         </div>
+        <Footer />
       </div>
     </div>
   );
