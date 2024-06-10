@@ -9,7 +9,8 @@ import { useTransactionQuery, useWalletQuery } from "../redux/ApiSlice";
 import Footer from "../components/Footer";
 
 const Wallet = () => {
-  const user = JSON.parse(localStorage.getItem("details"));
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let user = useD?.profile;
   const { data } = useWalletQuery();
   const [openWallet, setWallet] = useState(false);
   const navigate = useNavigate();

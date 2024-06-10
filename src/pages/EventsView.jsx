@@ -34,7 +34,9 @@ const reducer = (state, action) => {
 };
 
 const EventsView = () => {
-  let users = JSON.parse(localStorage.getItem("details"));
+  let user = JSON.parse(localStorage.getItem("details"));
+  let users = user?.profile;
+  
   const { id } = useParams();
   const [review, setReview] = useState(false);
   const { data: reviews } = useGetEventReviewQuery(id);

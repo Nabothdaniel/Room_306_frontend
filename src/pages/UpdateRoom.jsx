@@ -12,7 +12,8 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const UpdateRoom = () => {
-  const user = JSON.parse(localStorage.getItem("details"));
+   let useD = JSON.parse(localStorage.getItem("details"));
+   let users = useD?.profile;
   const room = JSON.parse(localStorage.getItem("room"));
   const { data, isLoading } = useGetCountryQuery();
   const [image, setImage] = useState();

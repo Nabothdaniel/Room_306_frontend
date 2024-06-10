@@ -12,7 +12,8 @@ import Footer from "../components/Footer";
 
 const AddTours = () => {
   const navigate = useNavigate();
-  const users = JSON.parse(localStorage.getItem("details"));
+  let user = JSON.parse(localStorage.getItem("details"));
+  let users = user?.profile;
 
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);

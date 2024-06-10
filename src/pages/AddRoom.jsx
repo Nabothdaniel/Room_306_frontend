@@ -12,7 +12,8 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const AddRoom = () => {
-  const user = JSON.parse(localStorage.getItem("details"));
+  let users = JSON.parse(localStorage.getItem("details"));
+  let user = users?.profile;
   const { data, isLoading } = useGetCountryQuery();
   const [image, setImage] = useState();
   const [error, setError] = useState("");

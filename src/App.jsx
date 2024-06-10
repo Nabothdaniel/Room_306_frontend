@@ -11,7 +11,8 @@ import { useWalletQuery } from "./redux/ApiSlice";
 import { FilterApi } from "./Hooks/FilterApi";
 
 const App = () => {
-  let users = JSON.parse(localStorage.getItem("details"));
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let users = useD?.profile;
   const [image, setImage] = useState("");
   const pathname = useLocation().pathname;
   const { data, isLoading } = useGetCountryQuery();

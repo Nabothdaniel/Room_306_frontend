@@ -11,7 +11,8 @@ import { useGetAllAdvertsQuery } from "../redux/AdvertSlice";
 import Footer from "../components/Footer";
 
 const Adverts = () => {
-  const users = JSON.parse(localStorage.getItem("details"));
+  let user = JSON.parse(localStorage.getItem("details"));
+  let users = user?.profile;
   const { data, isLoading } = useGetAllAdvertsQuery();
   const [currentPage, setCurrentPage] = useState(0);
 

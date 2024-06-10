@@ -19,7 +19,8 @@ const Rooms = () => {
   const country = filter.roomCountry;
   const city = filter.roomCity;
 
-  const users = JSON.parse(localStorage.getItem("details"));
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let users = useD?.profile;
   const { data, isLoading } = useGetFilteredRoomQuery({ country, city });
 
   const [currentPage, setCurrentPage] = useState(0);

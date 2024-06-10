@@ -21,7 +21,8 @@ const Tours = () => {
   const city = filter.tourCity;
 
   const [filters, setFilters] = useState(false);
-  const users = JSON.parse(localStorage.getItem("details"));
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let users = useD?.profile;
   const [currentPage, setCurrentPage] = useState(0);
 
   const { data, isLoading } = useGetFilteredTourQuery({ country, city });

@@ -19,8 +19,8 @@ const Booking = () => {
 
   return (
     <div>
-      {data?.user_type == "client" && <MyBooking />}
-      {data?.user?.user_type == "escort" && <MyEscortBooking />}
+      {data?.profile?.user_type == "client" && <MyBooking />}
+      {data?.profile?.user?.user_type == "escort" && <MyEscortBooking />}
     </div>
   );
 };

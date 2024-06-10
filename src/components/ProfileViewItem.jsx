@@ -4,12 +4,12 @@ import { EscortProfileSwiper } from "./EscortProfileSwiper";
 import { differenceInYears, parse } from "date-fns";
 import { useFollowMutation, useUnfollowMutation } from "../redux/EscortApi";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
-  const users = JSON.parse(localStorage.getItem("details"));
-
-  console.log(user)
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let users = useD?.profile;
+  const pathname = useLocation().pathname;
 
   const { username } = useParams();
   const [follow] = useFollowMutation();
@@ -25,12 +25,8 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
 
   if (users) {
     useEffect(() => {
-      setData(
-        newData?.filter(
-          (item) => item?.username == user.escort_details.user.username
-        )
-      );
-    }, [newData]);
+      setData(newData?.filter((item) => item?.username == username));
+    }, [newData, pathname]);
 
     useEffect(() => {
       if (Boolean(Data[0]?.username == username)) {
@@ -38,7 +34,7 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
       } else {
         setFollowed(false);
       }
-    }, [Data, newData]);
+    }, [Data, newData, pathname]);
   }
 
   const currentDate = new Date();
@@ -47,7 +43,7 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
   const handleFollow = async () => {
     if (users) {
       try {
-        const res = await follow(user.escort_details.id).unwrap();
+        const res = await follow(user.profile.id).unwrap();
         toast.success(res.message);
       } catch (err) {}
     } else {
@@ -57,7 +53,7 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
 
   const handleUnFollow = async () => {
     try {
-      const res = await unfollow(user.escort_details.id).unwrap();
+      const res = await unfollow(user.profile.id).unwrap();
       toast.success(res?.message);
     } catch (err) {
       toast.error(err?.data?.message);

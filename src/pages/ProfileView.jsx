@@ -14,7 +14,8 @@ import { useFollowingQuery, useGetProfileByIdQuery } from "../redux/EscortApi";
 import Footer from "../components/Footer";
 
 const ProfileView = () => {
-  const user = JSON.parse(localStorage.getItem("details"));
+  let users = JSON.parse(localStorage.getItem("details"));
+  let user = users?.profile;
   const { username } = useParams();
   const { data, isLoading } = useGetProfileByIdQuery(username);
   const { data: newData, isLoading: load } = useFollowingQuery();

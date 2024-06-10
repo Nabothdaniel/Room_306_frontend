@@ -27,7 +27,8 @@ const reducer = (state, action) => {
 
 const Events = () => {
   const [pageCount, setCount] = useState(1);
-  const users = JSON.parse(localStorage.getItem("details"));
+ let user = JSON.parse(localStorage.getItem("details"));
+ let users = user?.profile;
   const { data, isLoading } = useGetAllEventsQuery();
   const usersPage = 12;
   const [state, dispatch] = useReducer(reducer, {

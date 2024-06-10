@@ -32,7 +32,8 @@ const reducer = (state, action) => {
 };
 
 const TourView = () => {
-  let users = JSON.parse(localStorage.getItem("details"));
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let users = useD?.profile;
   const { id } = useParams();
   const [review, setReview] = useState(false);
   const { data: reviews } = useGetTourReviewQuery(id);

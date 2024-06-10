@@ -5,7 +5,8 @@ import { Convert } from "easy-currencies";
 import toast from "react-hot-toast";
 
 const Purchase = ({ purchaseClass, handleWallet }) => {
-  const user = JSON.parse(localStorage.getItem("details"));
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let user = useD?.profile;
   const [coin, setCoin] = useState("");
   const [amount, setAmount] = useState(0);
   const [mainAmount, setMainAmount] = useState(0);

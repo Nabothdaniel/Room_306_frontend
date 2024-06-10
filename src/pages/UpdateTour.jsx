@@ -14,7 +14,8 @@ const UpdateTours = () => {
   const navigate = useNavigate();
   const tour = JSON.parse(localStorage.getItem("tour"));
 
-  const users = JSON.parse(localStorage.getItem("details"));
+   let useD = JSON.parse(localStorage.getItem("details"));
+   let users = useD?.profile;
 
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);

@@ -31,7 +31,8 @@ const reducer = (state, action) => {
 };
 
 const RoomView = () => {
-  let users = JSON.parse(localStorage.getItem("details"));
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let users = useD?.profile;
   const [review, setReview] = useState(false);
   const { id } = useParams();
   const { data: reviews } = useGetRoomReviewQuery(id);
