@@ -9,8 +9,6 @@ const ReportModel = ({ handleReport, reportClass, user }) => {
   let useD = JSON.parse(localStorage.getItem("details"));
   let users = useD?.profile;
 
-  console.log(user.profile.id);
-
   const [image, setImage] = useState("");
   const [load, setLoad] = useState(false);
   const [formData, setFormData] = useState({

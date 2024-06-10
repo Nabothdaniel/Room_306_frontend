@@ -31,11 +31,13 @@ const App = () => {
 
   useEffect(() => {
     if (users?.user?.user_type == "escort") {
+      //setTimeout(() => {
       if (users?.services?.length == 0) {
-        setTimeout(() => {
-          navigate("/services");
-        }, 5000);
+        navigate("/services");
+      } else if (pathname == "/services" && users?.services?.length > 0) {
+        navigate("/");
       }
+      //  }, 5000);
     }
     if (users?.user?.user_type !== "escort") {
       if (pathname == "/services") {
