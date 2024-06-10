@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Arrow from "../images/arrow-left.svg";
@@ -7,8 +7,26 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { useGetProfileByIdQuery } from "../redux/EscortApi";
 import Footer from "../components/Footer";
+import ClientReviewView from "../components/ClientReviewView";
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "Change1":
+      return {
+        open1: true,
+      };
+    case "Change2":
+      return {
+        open2: true,
+      };
+  }
+};
 
 const ClientView = () => {
+  const [state, dispatch] = useReducer(reducer, {
+    open1: true,
+    open2: false,
+  });
   const { username } = useParams();
   const { data, isLoading } = useGetProfileByIdQuery(username);
   const navigate = useNavigate();
@@ -112,12 +130,33 @@ const ClientView = () => {
           </div>
         </div>
         <div className="border-b-2 pt-6 mt-64 md:mt-48 flex relative font-semibold items-center text-white border-[#393C49] py-3">
-          <p className="mr-10 before:contents-[''] cursor-pointer before:absolute before:-bottom-[2px] before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]  ">
+          <p
+            onClick={() => dispatch({ type: "Change1" })}
+            className={`md:mr-10 cursor-pointer ${
+              state.open1 &&
+              "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[45px] md:before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+            }    `}
+          >
             About
           </p>
-          <p className="">Review</p>
+          <p
+            onClick={() => dispatch({ type: "Change2" })}
+            className={`md:mr-10 cursor-pointer ${
+              state.open2 &&
+              "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[50px] md:before:w-[57px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
+            }    `}
+          >
+            Review
+          </p>
         </div>
-        <ProfileAbout client={client} />
+        <ProfileAbout
+          client={client}
+          aboutClass={`${!state.open1 ? "hidden" : ""}`}
+        />
+        <ClientReviewView
+          review={data.reviews}
+          reviewClass={`${!state.open2 ? "hidden" : ""}`}
+        />
         <div className="pt-10">
           <Footer />
         </div>

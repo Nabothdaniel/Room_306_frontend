@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Blog from "../images/blog.jpeg";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import EscortReview from "./EscortReview";
 
 const EscortBookItem = ({ book }) => {
+  const [review, setReview] = useState(false);
   const [accept, setAccept] = useState({
     status: "accepted",
   });
@@ -34,6 +36,10 @@ const EscortBookItem = ({ book }) => {
       console.log(err);
     }
   };
+
+   const handleReview = () => {
+     setReview(!review);
+   };
 
   const handleDecline = async () => {
     try {
@@ -125,7 +131,20 @@ const EscortBookItem = ({ book }) => {
             Cancel
           </p>
         )}
+        {book.status == "completed" && (
+          <p
+            onClick={handleReview}
+            className="bg-green-300 text-[12px] shadow-2xl  py-1 text-black px-2 rounded-xl cursor-pointer font-semibold"
+          >
+            Review Escort
+          </p>
+        )}
       </div>
+      <EscortReview
+        id={book.client.id}
+        reviewClass={`${!review ? "translate-x-[120vw]" : "translate-x-0"}`}
+        handleReview={handleReview}
+      />
     </div>
   );
 };

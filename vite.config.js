@@ -14,6 +14,9 @@ export default defineConfig({
       },
     },
   },
+  preview: {
+    port: 8080,
+  },
   build: {
     proxy: {
       // Proxy requests for images to a different server

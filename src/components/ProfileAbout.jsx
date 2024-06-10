@@ -1,12 +1,12 @@
 import React from "react";
 import { parseISO, format } from "date-fns";
 
-const ProfileAbout = ({ client }) => {
+const ProfileAbout = ({ client, aboutClass }) => {
   const parsedDate = parseISO(client.createdAt);
   const formattedDate = format(parsedDate, "MMMM d, yyyy");
 
   return (
-    <div className="pt-6 text-[#DADADA]">
+    <div className={`pt-6 ${aboutClass} text-[#DADADA]`}>
       <div className="grid grid-cols-2 md:grid-cols-4 text-[14px] pt-3 gap-y-6 md:gap-y-8">
         <div className="flex flex-col justify-center">
           <h4 className="text-[#B29A9A] text-[13px]">Username</h4>
