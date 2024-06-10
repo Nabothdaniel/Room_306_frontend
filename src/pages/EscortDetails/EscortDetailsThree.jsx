@@ -32,6 +32,7 @@ const EscortDetailsThree = () => {
 
   const handleEscortThree = async () => {
     if (services.length >= 5) {
+      setError("");
       try {
         const res = await addServices({ services }).unwrap();
         toast.success(res.message);
@@ -40,7 +41,6 @@ const EscortDetailsThree = () => {
       } catch (err) {
         console.log(err);
       }
-      setError("");
     } else {
       setError("Select at least five services");
     }
@@ -683,7 +683,7 @@ const EscortDetailsThree = () => {
                 <span className="checkmate"></span>
               </label> */}
             </div>
-              <p className="py-1 text-[12px] text-red-500">{error}</p>
+            <p className="py-1 text-[12px] text-red-500">{error}</p>
             <div className="mt-8 flex gap-x-3">
               <button
                 onClick={handleDelete}

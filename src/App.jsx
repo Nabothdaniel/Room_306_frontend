@@ -35,7 +35,7 @@ const App = () => {
       if (users?.services?.length == 0) {
         navigate("/services");
       } else if (pathname == "/services" && users?.services?.length > 0) {
-        navigate("/");
+        navigate("/survey");
       }
       //  }, 5000);
     }
