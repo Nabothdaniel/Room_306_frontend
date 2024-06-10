@@ -6,6 +6,7 @@ import BlacklistedList from "../components/BlacklistedList";
 import Pagination from "../components/Pagination";
 import { useBlackClientQuery, useBlackEscortQuery } from "../redux/ApiSlice";
 import Loading from "../components/Loading";
+import Footer from "../components/Footer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -159,6 +160,7 @@ const Blacklisted = () => {
             </div>
           )}
         </div>
+        <Footer />
       </div>
     </div>
   );

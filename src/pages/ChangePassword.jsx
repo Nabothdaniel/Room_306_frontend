@@ -7,6 +7,7 @@ import Password from "../images/password.png";
 import Input from "../components/Input";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Footer from "../components/Footer";
 
 const ChangePassword = () => {
   const navigate = useNavigate();
@@ -177,6 +178,7 @@ const ChangePassword = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

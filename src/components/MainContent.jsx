@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import EscortOne from "./EscortOne";
 import EscortBanner from "./EscortBanner";
 import AllEscort from "./AllEscort";
+import Footer from "./Footer";
 
 const MainContent = () => {
   return (
@@ -14,6 +15,7 @@ const MainContent = () => {
       <EscortOne />
       <EscortBanner />
       <AllEscort />
+      <Footer />
     </div>
   );
 };

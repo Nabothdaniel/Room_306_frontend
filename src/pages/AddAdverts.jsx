@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
 import toast, { LoaderIcon } from "react-hot-toast";
 import { useCreateAdvertMutation } from "../redux/AdvertSlice";
+import Footer from "../components/Footer";
 
 const AddAdverts = () => {
   const users = JSON.parse(localStorage.getItem("details"));
@@ -360,6 +361,7 @@ const AddAdverts = () => {
             </button>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

@@ -23,9 +23,9 @@ const EscortSurvey = () => {
 
             <p className="text-white md:text-4xl text-3xl font-semibold">
               <span className="text-[#B29A9A] md:text-2xl text-xl">
-                Step <span>6/</span>
+                Step <span>7/</span>
               </span>
-              6
+              7
             </p>
           </div>
           <div className="rounded-xl px-10 py-36 pl-12 bg-[#1E1E1E] ">

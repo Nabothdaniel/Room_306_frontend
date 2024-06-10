@@ -74,9 +74,9 @@ const EscortDetailsFour = () => {
 
             <p className="text-white md:text-4xl text-3xl font-semibold">
               <span className="text-[#B29A9A] text-xl md:text-2xl">
-                Step <span>4/</span>
+                Step <span>3/</span>
               </span>
-              6
+              7
             </p>
           </div>
           <div className="rounded-xl lg:px-10  px-4 py-6 md:px-12 md:py-14 bg-[#1E1E1E] ">

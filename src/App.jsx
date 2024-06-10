@@ -31,7 +31,9 @@ const App = () => {
   useEffect(() => {
     if (users?.user?.user_type == "escort") {
       if (users?.services?.length == 0) {
-        navigate("/services");
+        setTimeout(() => {
+          navigate("/services");
+        }, 5000);
       }
     }
     if (users?.user?.user_type !== "escort") {

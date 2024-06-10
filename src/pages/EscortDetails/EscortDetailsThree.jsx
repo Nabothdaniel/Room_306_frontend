@@ -74,9 +74,9 @@ const EscortDetailsThree = () => {
 
             <p className="text-white md:text-4xl text-3xl font-semibold">
               <span className="text-[#B29A9A] md:text-2xl text-xl">
-                Step <span>3/</span>
+                Step <span>6/</span>
               </span>
-              6
+              7
             </p>
           </div>
           <div className="rounded-xl md:px-10 px-8 lg:px-14 pt-6 md:py-12 pb-8 bg-[#1E1E1E] ">

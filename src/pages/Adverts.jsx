@@ -8,6 +8,7 @@ import Pagination from "../components/Pagination";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import { useGetAllAdvertsQuery } from "../redux/AdvertSlice";
+import Footer from "../components/Footer";
 
 const Adverts = () => {
   const users = JSON.parse(localStorage.getItem("details"));
@@ -83,6 +84,7 @@ const Adverts = () => {
               </p>
             </div>
           </div>
+          <Footer />
         </div>
       </div>
     );
@@ -128,6 +130,7 @@ const Adverts = () => {
           </div>
           <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
         </div>
+        <Footer />
       </div>
     </div>
   );

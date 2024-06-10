@@ -6,6 +6,7 @@ import { BlogSwiper } from "../components/BlogSwiper";
 import Pagination from "../components/Pagination";
 import { useGetAllBlogQuery } from "../redux/BlogApi";
 import Loading from "../components/Loading";
+import Footer from "../components/Footer";
 
 const Blog = () => {
   const { data, isLoading } = useGetAllBlogQuery();
@@ -84,6 +85,7 @@ const Blog = () => {
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       </div>
     );
@@ -127,6 +129,7 @@ const Blog = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

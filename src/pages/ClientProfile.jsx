@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useProfileQuery } from "../redux/ApiSlice";
 import Loading from "../components/Loading";
 import { useGetBookingQuery } from "../redux/BookApi";
+import Footer from "../components/Footer";
 
 const ClientProfile = () => {
   const { data, isLoading } = useProfileQuery();
@@ -120,6 +121,7 @@ const ClientProfile = () => {
           <p className="">Review</p>
         </div>
         <ProfileAbout client={client} />
+        <Footer />
       </div>
     </div>
   );

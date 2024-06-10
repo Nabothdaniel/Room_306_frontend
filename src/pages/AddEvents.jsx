@@ -9,6 +9,7 @@ import { useGetCountryQuery } from "../redux/CountryApi";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast, { LoaderIcon } from "react-hot-toast";
+import Footer from "../components/Footer";
 
 const AddEvents = () => {
   const user = JSON.parse(localStorage.getItem("details"));
@@ -506,6 +507,7 @@ const AddEvents = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

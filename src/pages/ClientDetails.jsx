@@ -9,6 +9,7 @@ import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../redux/UtilSlice";
 import { useDispatch } from "react-redux";
+import Footer from "../components/Footer";
 
 const ClientDetails = () => {
   const { data, isLoading } = useGetCountryQuery();
@@ -490,6 +491,7 @@ const ClientDetails = () => {
               </button>
             </div>
           </div>
+          <Footer />
         </div>
       </div>
     </>

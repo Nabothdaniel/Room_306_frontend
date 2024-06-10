@@ -7,6 +7,7 @@ import TextArea from "../components/TextArea";
 import toast, { LoaderIcon } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const AddNaughty = () => {
   const navigate = useNavigate();
@@ -177,6 +178,7 @@ const AddNaughty = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

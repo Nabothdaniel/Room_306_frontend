@@ -6,6 +6,7 @@ import ProfileAbout from "../components/ProfileAbout";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { useGetProfileByIdQuery } from "../redux/EscortApi";
+import Footer from "../components/Footer";
 
 const ClientView = () => {
   const { username } = useParams();
@@ -22,12 +23,11 @@ const ClientView = () => {
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />
 
-      <div className="flex-1 md:w-[80%] px-4 pt-6 pb-20 md:pt-14 md:px-10">
+      <div className="flex-1 md:w-[80%] px-4 pt-6 md:pt-14 md:px-10">
         <Navbar
           Headervalue={"Welcome to Room 306"}
           textValue={"Explore our escort at your own pace"}
         />
-
         <div className="md:py-8">
           <div className="flex justify-between items-center md:pb-6 py-2 md:pt-8">
             <h2
@@ -118,6 +118,9 @@ const ClientView = () => {
           <p className="">Review</p>
         </div>
         <ProfileAbout client={client} />
+        <div className="pt-10">
+          <Footer />
+        </div>
       </div>
     </div>
   );

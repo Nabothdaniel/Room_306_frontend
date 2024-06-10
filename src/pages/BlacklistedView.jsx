@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import BlacklistImageSwipe from "../components/BlacklistImageSwipe";
 import User from "../images/blog.jpeg";
 import TextArea from "../components/TextArea";
+import Footer from "../components/Footer";
 
 const BlacklistedView = () => {
   const navigate = useNavigate();
@@ -129,6 +130,7 @@ const BlacklistedView = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

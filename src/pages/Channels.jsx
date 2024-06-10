@@ -5,6 +5,7 @@ import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
 import ChannelsName from "../components/ChannelsName";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 
 const Channels = () => {
@@ -52,6 +53,7 @@ const Channels = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

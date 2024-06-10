@@ -79,7 +79,7 @@ const EscortDetailsSecFive = () => {
               <span className="text-[#B29A9A] md:text-2xl text-xl">
                 Step <span>5/</span>
               </span>
-              6
+              7
             </p>
           </div>
           <div className="rounded-xl lg:px-16 px-5 pb-10 bg-[#1E1E1E] ">
