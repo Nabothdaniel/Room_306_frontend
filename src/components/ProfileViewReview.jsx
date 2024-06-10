@@ -57,8 +57,8 @@ const ProfileViewReview = ({ reviewClass, review }) => {
         </button>
       </div>
       <div className={`text-white pt-5 text-2xl ${!state.open1 && "hidden"} `}>
-        <h2 className="font-semibold pb-8">{review.length} Reviews</h2>
-        {review.length == 0 ? (
+        <h2 className="font-semibold pb-8">{review?.length} Reviews</h2>
+        {review?.length == 0 ? (
           <div className="h-[20vh]"></div>
         ) : (
           <div>
