@@ -3,7 +3,8 @@ import Erotic from "../images/Ellipse4.svg";
 import { format, parse } from "date-fns";
 
 const NaugthyChannel = ({ item }) => {
-  const users = JSON.parse(localStorage.getItem("details"));
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let users = useD?.profile;
 
   const [own, setOwn] = useState(false);
 

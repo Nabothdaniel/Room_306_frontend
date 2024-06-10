@@ -21,7 +21,8 @@ import axios from "axios";
 import Footer from "../components/Footer";
 
 const PersonalChat = () => {
-  const users = JSON.parse(localStorage.getItem("details"));
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let users = useD?.profile;
   const { id } = useParams();
   const { data: converse, isLoading: loaded } = useConversationQuery();
   const { data: messages, isLoading: loading } = useConversationMessagesQuery(

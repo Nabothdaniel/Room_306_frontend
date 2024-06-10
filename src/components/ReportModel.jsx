@@ -6,7 +6,11 @@ import axios from "axios";
 import toast, { LoaderIcon } from "react-hot-toast";
 
 const ReportModel = ({ handleReport, reportClass, user }) => {
-  const users = JSON.parse(localStorage.getItem("details"));
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let users = useD?.profile;
+
+  console.log(user.profile.id);
+
   const [image, setImage] = useState("");
   const [load, setLoad] = useState(false);
   const [formData, setFormData] = useState({
@@ -20,40 +24,34 @@ const ReportModel = ({ handleReport, reportClass, user }) => {
 
   const handleSubmit = async () => {
     if (users) {
-      if (users?.user?.user_type == "escort") {
-        setLoad(true);
-        try {
-          const res = await axios.post(
-            `https://room35backend.onrender.com/api/blacklisted/create/`,
-            {
-              ...formData,
-              images: image,
-              reporter: users.id,
-              reported_user: user.escort_details.id,
+      setLoad(true);
+      try {
+        const res = await axios.post(
+          `https://room35backend.onrender.com/api/blacklisted/create/`,
+          {
+            ...formData,
+            images: image,
+            reporter: users.id,
+            reported_user: user?.profile.id,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
             },
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          );
-          setLoad(false);
-          handleReport();
-          setFormData({
-            description: "",
-            detail: "",
-          });
-          setImage("");
-          toast.success("Report Submitted Successfully");
-        } catch (err) {
-          setLoad(false);
-
-          console.log(err);
-        }
-      } else {
+          }
+        );
+        setLoad(false);
         handleReport();
+        setFormData({
+          description: "",
+          detail: "",
+        });
+        setImage("");
+        toast.success("Report Submitted Successfully");
+      } catch (err) {
+        setLoad(false);
 
-        toast.error("Only Escort can report a user");
+        console.log(err);
       }
     } else {
       handleReport();

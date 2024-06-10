@@ -65,9 +65,7 @@ const EscortItems = ({ items }) => {
             </p>
             <p className="flex justify-between items-center">
               <img src={User} />{" "}
-              <span className="font-semibold pl-1">
-                ({items?.reviews?.length})
-              </span>
+              <span className="font-semibold pl-1">({items?.user?.views})</span>
             </p>
           </div>
         </Link>

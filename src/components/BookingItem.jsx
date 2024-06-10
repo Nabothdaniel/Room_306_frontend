@@ -146,7 +146,7 @@ const BookingItem = ({ book }) => {
         {book.status == "completed" && (
           <p
             onClick={handleReview}
-            className="bg-green-300 text-[12px] shadow-2xl  py-1 text-black px-2 rounded-xl shadow-2xl cursor-pointer font-semibold"
+            className="bg-green-300 text-[12px] shadow-2xl  py-1 text-black px-2 rounded-xl cursor-pointer font-semibold"
           >
             Review Escort
           </p>
