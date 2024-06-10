@@ -11,7 +11,10 @@ import { useCreateAdvertMutation } from "../redux/AdvertSlice";
 import Footer from "../components/Footer";
 
 const AddAdverts = () => {
-  const users = JSON.parse(localStorage.getItem("details"));
+  let user = JSON.parse(localStorage.getItem("details"));
+
+  let users = user?.profile;
+
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
   const [error, setError] = useState("");

@@ -44,7 +44,7 @@ export const BlogSwiper = () => {
         modules={[Autoplay]}
         className="mySwiper max-w-[1024px] max-h-[1000px] lg:h-[1000px] text-white"
       >
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           return (
             <SwiperSlide className=" swiper-1" key={index}>
               <FreshEscort items={item} />

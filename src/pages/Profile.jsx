@@ -6,7 +6,6 @@ import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-
 const Profile = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.Util.token);
@@ -18,7 +17,7 @@ const Profile = () => {
       navigate("/");
       return;
     }
-  },[])
+  }, []);
 
   if (isLoading) {
     return <Loading />;
@@ -29,12 +28,10 @@ const Profile = () => {
     return;
   }
 
-  
-
   return (
     <div>
-      {data?.user_type == "client" && <ClientProfile />}
-      {data?.user?.user_type == "escort" && <EscortProfile />}
+      {data?.profile?.user_type == "client" && <ClientProfile />}
+      {data?.profile?.user?.user_type == "escort" && <EscortProfile />}
     </div>
   );
 };

@@ -19,7 +19,7 @@ const ClientProfile = () => {
     return <Loading />;
   }
 
-  const client = data;
+  const client = data?.profile;
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">

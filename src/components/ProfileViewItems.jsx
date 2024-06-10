@@ -92,7 +92,7 @@ const ProfileViewItems = () => {
       <NaughtyProfile naughtClass={`${!state.open4 ? "hidden" : ""}`} />
       <ProfileViewAbout aboutClass={`${!state.open1 ? "hidden" : ""}`} />
       <ProfileViewReview
-        review={user.reviews}
+        review={user?.profile?.reviews}
         reviewClass={`${!state.open3 ? "hidden" : ""}`}
       />
       <ProfileViewGallery galleryClass={`${!state.open2 ? "hidden" : ""}`} />
@@ -102,7 +102,7 @@ const ProfileViewItems = () => {
           !state.open5 ? "hidden" : ""
         }  grid md:grid-cols-3 grid-cols-2  bg-[#1e1e1e] gap-5 pt-4 pb-10 px-5 rounded-xl mt-10 `}
       >
-        {user.services.map((item, index) => {
+        {user?.profile.services?.map((item, index) => {
           return <ProfileService key={index} item={item} />;
         })}
         {/* {user.services?.sixty_nine && (

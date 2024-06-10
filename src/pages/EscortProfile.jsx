@@ -46,7 +46,11 @@ const EscortProfile = () => {
 
   useEffect(() => {
     if (user?.user?.user_type == "escort") {
-      const cDate = parseISO(user?.user?.createdAt, "yyyy-MM-dd", new Date());
+      const cDate = parseISO(
+        user?.profile?.user?.createdAt,
+        "yyyy-MM-dd",
+        new Date()
+      );
       const newDate = new Date();
       if (data?.available_coin <= 0) {
         setDay(differenceInDays(cDate, newDate));
@@ -56,10 +60,14 @@ const EscortProfile = () => {
     }
   }, [data]);
 
-  const parsedDate = parseISO(user.user.createdAt);
+  const parsedDate = parseISO(user.profile.user.createdAt);
   const formattedDate = format(parsedDate, "MMMM d, yyyy");
 
-  const birthDate = parse(user?.date_of_birth, "yyyy-MM-dd", new Date());
+  const birthDate = parse(
+    user?.profile?.date_of_birth,
+    "yyyy-MM-dd",
+    new Date()
+  );
   const currentDate = new Date();
   const age = differenceInYears(currentDate, birthDate);
 
@@ -83,15 +91,15 @@ const EscortProfile = () => {
           <div className="flex items-start min-w-[600px] text-white">
             <img
               className="size-[60px] rounded-full"
-              src={`https://room35backend.onrender.com${user.user.image}`}
+              src={`https://room35backend.onrender.com${user?.profile?.user.image}`}
               alt=""
             />
             <div className="ml-3">
               <h2 className="md:text-2xl font-semibold text-[18px]">
-                {user.user.display_name}
+                {user?.profile?.user.display_name}
               </h2>
               <p className="text-white/80 md:text-[14px] text-[12px]">
-                @{user.user.username}
+                @{user?.profile?.user.username}
               </p>
             </div>
           </div>
@@ -100,18 +108,18 @@ const EscortProfile = () => {
               <p className="flex items-center pb-4">
                 <IoPhonePortraitOutline className="text-xl mr-2" />
                 <span className="md:text-base text-[14px]">
-                  {user.user.mobile_number}
+                  {user?.profile?.user.mobile_number}
                 </span>
               </p>
               <p className="flex items-center">
                 <FiMail className="text-xl mr-2" />
                 <span className="md:text-base text-[14px]">
-                  {user.user.email}
+                  {user?.profile?.user.email}
                 </span>
               </p>
             </div>
             <div>
-              {user.is_verified || (
+              {user?.profile?.is_verified || (
                 <p className="bg-[#E9CB50] text-black/70 text-[12px] md:text-base font-semibold rounded-xl py-1 text-center min-w-[100px] md:min-w-[130px]">
                   Under Review
                 </p>
@@ -242,10 +250,10 @@ const EscortProfile = () => {
             <div className="md:col-span-2 flex justify-between pt-4 text-white ">
               <div>
                 <p className="md:text-2xl text-[20px] font-semibold">
-                  {user.user.display_name}
+                  {user?.profile?.user.display_name}
                 </p>
                 <p className="font-semibold text-white/70 md:text-[18px] pt-3">
-                  {user.heading}
+                  {user?.profile.heading}
                 </p>
                 <div className="flex text-white pt-6">
                   <div className="flex mr-5 flex-col items-center">
@@ -259,13 +267,13 @@ const EscortProfile = () => {
                   </div>
                   <div className="flex mr-5 flex-col items-center">
                     <p className="md:text-[20px] text-[14px] font-semibold">
-                      {user.weight}
+                      {user?.profile?.weight}
                     </p>
                     <p className="text-[#B29A9A]">Weight</p>
                   </div>
                   <div className="flex flex-col items-center">
                     <p className="md:text-[20px] text-[14px] font-semibold">
-                      {user.height}
+                      {user?.profile?.height}
                     </p>
                     <p className="text-[#B29A9A]">Height</p>
                   </div>

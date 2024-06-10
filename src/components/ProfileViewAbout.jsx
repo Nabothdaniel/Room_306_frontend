@@ -2,7 +2,9 @@ import React from "react";
 import { parseISO, format } from "date-fns";
 
 const ProfileViewAbout = ({ aboutClass }) => {
-  const user = JSON.parse(localStorage.getItem("details"));
+  const users = JSON.parse(localStorage.getItem("details"));
+
+  const user = users.profile;
 
   const parsedDate = parseISO(user.user.createdAt);
   const formattedDate = format(parsedDate, "MMMM d, yyyy");

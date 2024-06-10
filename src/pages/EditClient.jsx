@@ -11,7 +11,13 @@ import axios from "axios";
 import Footer from "../components/Footer";
 
 const EditClient = () => {
-  let users = JSON.parse(localStorage.getItem("details"));
+  let user = JSON.parse(localStorage.getItem("details"));
+
+  let users = user?.profile;
+
+
+
+
   const navigate = useNavigate();
 
   const [Data, setformData] = useState({
