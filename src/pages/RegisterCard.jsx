@@ -82,27 +82,29 @@ const RegisterCard = () => {
                   <ul className="pt-10 md:text-[18px] text-white">
                     <li className="flex pb-3 items-center">
                       <img className="w-[25px] mr-4" src={Check} alt="" />
-                      <span>Featured position</span>
+                      <span>Mark favorite porfiles</span>
                     </li>
                     <li className="flex pb-3 items-center">
                       <img className="w-[25px] mr-4" src={Check} alt="" />
-                      <span>Add tours</span>
+                      <span>See profile photos</span>
                     </li>
                     <li className="flex pb-3 items-center">
                       <img className="w-[25px] mr-4" src={Check} alt="" />
-                      <span>Add blacklisted clients</span>
+                      <span>Contact escorts</span>
+                    </li>
+                    <li className="flex pb-3 items-center">
+                      <img className="w-[25px] mr-4" src={Check} alt="" />
+                      <span>Add reviews to escorts and rate them</span>
                     </li>
                     <li className="flex pb-3 items-center">
                       <img className="w-[25px] mr-4" src={Check} alt="" />
                       <span>Post classified ads</span>
                     </li>
-                    <li className="flex pb-3 items-center">
-                      <img className="w-[25px] mr-4" src={Check} alt="" />
-                      <span>Many more</span>
-                    </li>
                   </ul>
                   <div className="md:mb-12 lg:mb-8">
-                    <p className="pt-8 text-3xl text-[#B29A9A]">Free</p>
+                    <p className="pt-8 text-3xl text-[#B29A9A]">
+                      For Client Only (Not for Escorts!)
+                    </p>
 
                     <Link
                       to={"/client-register"}

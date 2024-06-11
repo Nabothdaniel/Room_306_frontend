@@ -5,9 +5,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const BlacklistImageSwipe = () => {
-  
-  const names = ["James", "Paul", "John", "George", "Ringo", 1, 2, 3, 4, 5, 6];
+const BlacklistImageSwipe = ({ items }) => {
   return (
     <>
       <Swiper
@@ -24,12 +22,12 @@ const BlacklistImageSwipe = () => {
         modules={[Autoplay, Pagination]}
         className="mySwiper max-w-[1024px] text-white"
       >
-        {names.map((item) => {
+        {items.map((item) => {
           return (
             <SwiperSlide className="mb-10 swiper-1" key={item}>
               <img
                 className="w-[100%]  object-contain h-[403px] rounded-xl "
-                src={Profile}
+                src={`https://room35backend.onrender.com${item.image}`}
                 alt=""
               />
             </SwiperSlide>

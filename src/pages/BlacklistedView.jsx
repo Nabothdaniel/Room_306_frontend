@@ -3,20 +3,30 @@ import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
 import BlacklistSwiper from "../components/BlacklistSwiper";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import BlacklistImageSwipe from "../components/BlacklistImageSwipe";
 import User from "../images/blog.jpeg";
 import TextArea from "../components/TextArea";
 import Footer from "../components/Footer";
+import { useBlacklistedByIdQuery } from "../redux/EscortApi";
+import Loading from "../components/Loading";
 
 const BlacklistedView = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
 
+  const { data, isLoading } = useBlacklistedByIdQuery(id);
 
-  // if (!data) {
-  //   navigate("/404");
-  //   return;
-  // }
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (!data) {
+    navigate("/404");
+    return;
+  }
+
+  const items = data.reported_user;
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -41,37 +51,37 @@ const BlacklistedView = () => {
                 Back
               </h2>
               <div className="md:col-span-3 mb-6 md:mb-0 bg-[#1E1E1E] rounded-2xl px-2 pt-2 pb-12 md:pb-10">
-                <BlacklistImageSwipe />
+                <BlacklistImageSwipe items={data.report.images} />
                 <div className="text-white md:pl-10 pl-6 pt-6">
                   <h2 className="md:text-3xl text-[20px] font-semibold pb-4">
-                    Adam Fresh
+                    {items.display_name}
                   </h2>
                   <div className="flex flex-col gap-y-2">
                     <p className="font-semibold ">
                       Location:{" "}
                       <span className="font-normal text-[14px] text-white/80">
-                        Lagos, Nigeria
+                        {items.city}, {items.country}
                       </span>
                     </p>
                     <p className="font-semibold ">
                       Phone:{" "}
                       <span className="font-normal text-[14px] text-white/80">
-                        +234812345678
+                        {items.mobile_number}
                       </span>
                     </p>
-                    <p className="font-semibold ">
+                    {/* <p className="font-semibold ">
                       Sex:{" "}
                       <span className="font-normal text-[14px] text-white/80">
-                        Male
+                        
                       </span>
-                    </p>
-                    <p className="font-semibold ">
+                    </p> */}
+                    {/* <p className="font-semibold ">
                       Age Range:{" "}
                       <span className="font-normal text-[14px] text-white/80">
                         28 - 30
                       </span>
-                    </p>
-                    <p className="font-semibold ">
+                    </p> */}
+                    {/* <p className="font-semibold ">
                       Height:{" "}
                       <span className="font-normal text-[14px] text-white/80">
                         Not too tall
@@ -82,11 +92,11 @@ const BlacklistedView = () => {
                       <span className="font-normal text-[14px] text-white/80">
                         Huge
                       </span>
-                    </p>
+                    </p> */}
                     <p className="font-semibold ">
                       Crime Committed:{" "}
                       <span className="font-normal text-[14px] text-white/80">
-                        Fuck and Run
+                        {data.report.description}
                       </span>
                     </p>
                   </div>
@@ -96,10 +106,10 @@ const BlacklistedView = () => {
                     Full Details
                   </h2>
                   <p className="text-white/80 text-[14px]">
-                    Fuck and run and he's a theif
+                    {data?.report?.details}
                   </p>
                 </div>
-                <div className="border-2 flex items-center text-white border-neutral-600 py-5 px-6 rounded-xl mx-4 mt-6">
+                {/* <div className="border-2 flex items-center text-white border-neutral-600 py-5 px-6 rounded-xl mx-4 mt-6">
                   <img className="size-[60px] rounded-full" src={User} alt="" />
                   <div className="ml-4">
                     <p className="text-[20px] font-semibold">Prexy Frosh</p>
@@ -125,7 +135,7 @@ const BlacklistedView = () => {
                   <button className="bg-[#E9CB50] block text-center w-[100%] py-3 md:py-4 md:w-[200px] font-semibold mt-5 rounded-xl">
                     Leave a comment
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
             <div>

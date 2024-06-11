@@ -86,7 +86,7 @@ const Faqs = () => {
             >
               <div className="flex justify-between items-center">
                 <h2 className="md:text-xl text-[15px] font-semibold">
-                  How to Register as an Escort ?
+                  What is Room306?
                 </h2>
                 <img
                   onClick={() => dispatch({ type: "Change1" })}
@@ -98,6 +98,33 @@ const Faqs = () => {
                 />
               </div>
               {state.open1 && (
+                <ol
+                  className={`list-decimal text-[13px] md:text-base duration-500 transition-all pt-3 pl-4 unorder text-[#E5C9C9]`}
+                >
+                  Room306 is an exquisite companionship website
+                </ol>
+              )}
+            </div>
+            <div
+              ref={animationParent}
+              className={`${
+                state.open3 && "border-2 border-[#E9CB50]"
+              } rounded-2xl px-4  md:px-8 py-5 bg-[#121212] mb-4 md:w-[80%] w-[95%] mx-auto`}
+            >
+              <div className="flex justify-between items-center">
+                <h2 className="md:text-xl text-[15px] font-semibold">
+                  How to Register as an Escort ?
+                </h2>
+                <img
+                  onClick={() => dispatch({ type: "Change3" })}
+                  className={`${
+                    !state.open3 && "rotate-[270deg]"
+                  } cursor-pointer duration-500 size-12 `}
+                  src={FAQs}
+                  alt=""
+                />
+              </div>
+              {state.open3 && (
                 <ol
                   className={`list-decimal text-[13px] md:text-base duration-500 transition-all pt-3 pl-4 unorder text-[#E5C9C9]`}
                 >
@@ -161,11 +188,22 @@ const Faqs = () => {
                     To manage your pictures:
                   </h3>
                   <ol className="list-decimal text-[13px] md:text-base duration-500 pt-3 pl-4 unorder text-[#E5C9C9]">
-                    <li>Click on your avatar at the top</li>
-                    <li>Scroll down to MEDIA +</li>
+                    <li>Click View profile</li>
+                    <li>Click Gallery</li>
                     <li>
-                      Select your desired option - (Profile photo, Naughty
-                      Video)
+                      Click the 3 dots beside the photo you want to appear on
+                      your headline.
+                    </li>
+                    <li>And Click move to headline</li>
+                    <p>Note: Headline can only have max of 3 pics</p>
+                    <li>
+                      So you may need to remove existing ones from the headline
+                      to make room to replace with a new picture
+                    </li>
+                    <p>From headline,</p>
+                    <li>
+                      Click a picture you want and click make default to make it
+                      your main profile picture.
                     </li>
                   </ol>
                   <h2 className="md:text-base font-semibold text-[14px] pb-2 pt-3">
@@ -177,7 +215,7 @@ const Faqs = () => {
                     Click delete at the top right of the old photo you wish to
                     delete
                   </li>
-                  <li>upload your appealing and bright pictures.</li>
+                  {/* <li>upload your appealing and bright pictures.</li>
                   <li>
                     Take and upload a verification Photo as shown by the
                     reference picture.
@@ -189,7 +227,85 @@ const Faqs = () => {
                     once approved, click buy coin, complete the coin buying
                     process. once approved, log back in , scroll down and click
                     ACTIVATE. ITS 10,000 NGN to activate your account
+                  </li> */}
+                </div>
+              )}
+            </div>
+            <div
+              ref={animationParent}
+              className={`${
+                state.open4 && "border-2 border-[#E9CB50]"
+              } rounded-2xl px-4  md:px-8 py-6 bg-[#121212] md:w-[80%] w-[95%] mx-auto`}
+            >
+              <div className="flex justify-between items-center">
+                <h2 className="md:text-xl text-[15px] font-semibold">
+                  Transport Fare
+                </h2>
+                <img
+                  onClick={() => dispatch({ type: "Change4" })}
+                  className={`${
+                    !state.open4 && "rotate-[270deg]"
+                  } cursor-pointer duration-500 size-12 `}
+                  src={FAQs}
+                  alt=""
+                />
+              </div>
+              {state.open4 && (
+                <div
+                  className={`list-decimal text-[13px] md:text-base
+                                  } duration-500 pt-3 pl-4 unorder text-[#E5C9C9]`}
+                >
+                  <h2 className="pb-3 md:text-[18px] font-semibold text-base">
+                    Transportation Fee Protocol:
+                  </h2>
+
+                  <h3 className="md:text-base uppercase font-semibold text-[14px] pb-2">
+                    Mandatory Transportation Payment
+                  </h3>
+                  <ol className="list-decimal text-[13px] md:text-base duration-500 pt-3 pl-4 unorder text-[#E5C9C9]">
+                    <li>
+                      Payment for transportation is a prerequisite and should be
+                      settled in advance before you consider leaving your
+                      residence, unless the client offers a "Prepaid
+                      Uber/Taxify" Option
+                    </li>
+                    <li>
+                      Should a client decline this requirement, it is advisible
+                      to discontinue communication, as there is a high
+                      probability of encountering a fraudulent or time-wasting
+                      individual.
+                    </li>
+                    <li>
+                      It is imperative not to venture outside your home,
+                      regardless of assurance provided, if client does not
+                      arrange for upfront transportation fare.
+                    </li>
+                    <li>
+                      The transportation fee serves as the primary indicator of
+                      a client sincerity and is essential for your SAFETY. It
+                      not only establishes a commitment but also creates a
+                      traceable record in case of any unforeseen circumstances.
+                    </li>
+
+                    <li>
+                      Compliance with this protocol is strictly mandatory for
+                      your well-being.
+                    </li>
+                  </ol>
+
+                  {/* <li>upload your appealing and bright pictures.</li>
+                  <li>
+                    Take and upload a verification Photo as shown by the
+                    reference picture.
                   </li>
+                  <li>
+                    click submit and wait for your profile to be approved.
+                  </li>
+                  <li className="ml-2">
+                    once approved, click buy coin, complete the coin buying
+                    process. once approved, log back in , scroll down and click
+                    ACTIVATE. ITS 10,000 NGN to activate your account
+                  </li> */}
                 </div>
               )}
             </div>

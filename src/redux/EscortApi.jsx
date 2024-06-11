@@ -192,6 +192,20 @@ const escortApi = ApiSlice.injectEndpoints({
       invalidatesTags: [{ type: "Delete", id: "LIST" }],
     }),
 
+    blacklistedById: build.query({
+      query: (id) => ({
+        url: `/blacklisted/${id}/`,
+        method: "GET",
+      }),
+    }),
+
+    blacklisted: build.query({
+      query: (id) => ({
+        url: `/blacklisted/approved/`,
+        method: "GET",
+      }),
+    }),
+
     myFavorite: build.query({
       query: () => ({
         url: "escort/escortfavorites/",
@@ -249,4 +263,6 @@ export const {
   useAddServicesMutation,
   useDeleteVideoMutation,
   useGetSearchEscortQuery,
+  useBlacklistedByIdQuery,
+  useBlacklistedQuery,
 } = escortApi;

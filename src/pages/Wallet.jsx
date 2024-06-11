@@ -7,6 +7,7 @@ import Purchase from "./Purchase";
 import { useNavigate } from "react-router-dom";
 import { useTransactionQuery, useWalletQuery } from "../redux/ApiSlice";
 import Footer from "../components/Footer";
+import AnotherPurchase from "./AnotherPurchase";
 
 const Wallet = () => {
   let useD = JSON.parse(localStorage.getItem("details"));
@@ -109,7 +110,14 @@ const Wallet = () => {
         <Footer />
       </div>
 
-      <Purchase
+      {/* <Purchase
+        handleWallet={handleWallet}
+        purchaseClass={`${
+          !openWallet ? "translate-x-[120vw]" : "translate-x-0"
+        }`}
+      /> */}
+
+      <AnotherPurchase
         handleWallet={handleWallet}
         purchaseClass={`${
           !openWallet ? "translate-x-[120vw]" : "translate-x-0"

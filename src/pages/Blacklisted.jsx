@@ -120,7 +120,7 @@ const Blacklisted = () => {
 
   const displayEscort = escort
     ?.slice(page, page + usersPage)
-    ?.filter((item) => item.is_approved == false)
+    ?.filter((item) => item.is_approved == true)
     ?.map((item, index) => {
       return <BlacklistedList key={index} items={item} />;
     });
