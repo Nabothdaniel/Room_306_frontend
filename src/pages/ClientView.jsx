@@ -37,8 +37,8 @@ const ClientView = () => {
 
   const client = data?.profile;
 
-  if (!client || data?.user_type !== "client") {
-    navigate("/not-found");
+  if (!client || client?.user_type !== "client") {
+    navigate("/404");
     return;
   }
 
