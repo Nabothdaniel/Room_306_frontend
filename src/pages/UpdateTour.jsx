@@ -14,11 +14,16 @@ const UpdateTours = () => {
   const navigate = useNavigate();
   const tour = JSON.parse(localStorage.getItem("tour"));
 
-   let useD = JSON.parse(localStorage.getItem("details"));
-   let users = useD?.profile;
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let users = useD?.profile;
 
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
+
+  if (!tour) {
+    navigate("/");
+    return;
+  }
 
   useEffect(() => {
     if (users?.user?.user_type !== "escort") {

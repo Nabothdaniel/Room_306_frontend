@@ -58,6 +58,7 @@ import ClientView from "./pages/ClientView.jsx";
 import Hello from "./pages/Hello.jsx";
 import Search from "./pages/Search.jsx";
 import NotFound from "./pages/404.jsx";
+import MyAdverts from "./pages/MyAdverts.jsx";
 
 const router = createBrowserRouter([
   {
@@ -123,6 +124,10 @@ const router = createBrowserRouter([
       {
         path: "/faqs",
         element: <Faqs />,
+      },
+      {
+        path: "/my-adverts",
+        element: <MyAdverts />,
       },
       {
         path: "/search-escort",

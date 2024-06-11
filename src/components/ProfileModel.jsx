@@ -79,18 +79,28 @@ const ProfileModel = ({ menuClass, handleMenu }) => {
               Referrals
             </p>
           </div>
-          <Link to={'/my-favourites'} className="text-center text-white w-[130px] py-3 px-1 rounded-lg ">
+          <Link
+            to={"/my-favourites"}
+            className={`text-center text-white w-[130px] py-3 px-1 rounded-lg ${
+              location == "/my-favourites" ? "bg-black" : ""
+            } `}
+          >
             <img className="size-10 mx-auto" src={Heart} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">
               Favourites
             </p>
           </Link>
-          <div className="text-center text-white w-[130px] py-3 px-1 rounded-lg ">
+          <Link
+            to={"/my-adverts"}
+            className={`text-center text-white w-[130px] py-3 px-1 rounded-lg ${
+              location == "/my-adverts" ? "bg-black" : ""
+            } `}
+          >
             <img className="size-10 mx-auto" src={Tag} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">
               Classic Ads
             </p>
-          </div>
+          </Link>
           <div className="text-center text-white w-[130px] py-3 px-1 rounded-lg ">
             <img className="size-10 mx-auto" src={Game} alt="" />
             <p className="md:text-[14px] text-[12px] font-semibold pt-1">

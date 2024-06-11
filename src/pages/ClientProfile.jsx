@@ -135,7 +135,7 @@ const ClientProfile = () => {
         <div className="border-b-2 pt-6 mt-64 md:mt-48 flex relative font-semibold items-center text-white border-[#393C49] py-3">
           <p
             onClick={() => dispatch({ type: "Change1" })}
-            className={`md:mr-10 cursor-pointer ${
+            className={`md:mr-10 cursor-pointer mr-6 ${
               state.open1 &&
               "before:contents-[''] duration-500  before:absolute text-[#E9CB50] before:-bottom-[2px] before:w-[45px] md:before:w-[50px] before:h-[3px] before:rounded-lg before:bg-[#E9CB50]"
             }    `}

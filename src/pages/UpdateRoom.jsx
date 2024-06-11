@@ -12,8 +12,8 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const UpdateRoom = () => {
-   let useD = JSON.parse(localStorage.getItem("details"));
-   let users = useD?.profile;
+  let useD = JSON.parse(localStorage.getItem("details"));
+  let users = useD?.profile;
   const room = JSON.parse(localStorage.getItem("room"));
   const { data, isLoading } = useGetCountryQuery();
   const [image, setImage] = useState();
@@ -36,6 +36,11 @@ const UpdateRoom = () => {
     policy: room.policy,
     rate: room.rate,
   });
+
+  if (!room) {
+    navigate("/");
+    return;
+  }
 
   const validateData = (data) => {
     let errors = {};
