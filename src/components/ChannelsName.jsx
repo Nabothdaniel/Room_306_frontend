@@ -14,7 +14,9 @@ const ChannelsName = () => {
   const users = JSON.parse(localStorage.getItem("details"));
   const location = useLocation();
   const { data, isLoading } = useChannelQuery();
-  const { data: converse, isLoading: loading } = useConversationQuery();
+  const { data: converse, isLoading: loading } = useConversationQuery(1, {
+    skip: !users,
+  });
 
   if (isLoading || loading) {
     return <Loading />;

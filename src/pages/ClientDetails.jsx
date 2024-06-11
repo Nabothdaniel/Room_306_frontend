@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../redux/UtilSlice";
 import { useDispatch } from "react-redux";
 import Footer from "../components/Footer";
+import { LoaderIcon } from "react-hot-toast";
 
 const ClientDetails = () => {
   const { data, isLoading } = useGetCountryQuery();
@@ -22,6 +23,7 @@ const ClientDetails = () => {
   const [getCities, setGetCities] = useState([]);
   const [apiError, setApiError] = useState("");
   const dispatch = useDispatch();
+  const [load, setLoad] = useState(false);
 
   const [Data, setData] = useState({
     country: "",
@@ -149,6 +151,7 @@ const ClientDetails = () => {
     const validationErrors = validateData(Data);
     setError(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
+      setLoad(true);
       try {
         const res = await axios.post(
           "https://room35backend.onrender.com/api/auth/register_client/",
@@ -159,32 +162,34 @@ const ClientDetails = () => {
             },
           }
         );
-
+        setLoad(false);
         dispatch(setCredentials(res.data?.token));
 
         if (res.status == 200) {
           navigate("/");
           window.location.reload(true);
         }
-
+        console.log(res);
         setApiError("");
       } catch (err) {
+        setLoad(false);
+        console.log(err);
         setApiError(err.response?.data?.message);
       }
 
-      setData({
-        country: "",
-        state: "",
-        country_code: "",
-        city: "",
-        image: "",
-        display_name: "",
-        mobile_number: "",
-        email: "",
-        password: "",
-        username: "",
-      });
-      setImage("");
+      // setData({
+      //   country: "",
+      //   state: "",
+      //   country_code: "",
+      //   city: "",
+      //   image: "",
+      //   display_name: "",
+      //   mobile_number: "",
+      //   email: "",
+      //   password: "",
+      //   username: "",
+      // });
+      // setImage("");
     }
   };
 
@@ -487,7 +492,11 @@ const ClientDetails = () => {
                 onClick={handleSubmit}
                 className="bg-[#E9CB50] w-[100%] py-3 md:py-4 md:w-[200px] font-semibold mt-5 md:mt-10 rounded-xl"
               >
-                Sign up as a client
+                {load ? (
+                  <LoaderIcon className="mx-auto" />
+                ) : (
+                  "Sign up as a client"
+                )}
               </button>
             </div>
           </div>

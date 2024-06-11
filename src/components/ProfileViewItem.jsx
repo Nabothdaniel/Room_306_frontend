@@ -62,14 +62,15 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
 
   return (
     <div className="grid md:grid-cols-2 md:px-4 md:pt-4 py-4 px-6 gap-x-6 h-fit pb-7 md:pb-4  rounded-xl bg-[#1E1E1E] ">
-      {/* <EscortProfileSwiper data={user.gallery} /> */}
-
-      <img
-        className="h-[400px] rounded-xl"
-        src={`https://room35backend.onrender.com${user?.profile.image}`}
-        alt=""
-      />
-
+      {user.gallery.length > 0 ? (
+        <EscortProfileSwiper data={user.gallery} />
+      ) : (
+        <img
+          className="h-[400px] rounded-xl"
+          src={`https://room35backend.onrender.com${user?.profile.image}`}
+          alt=""
+        />
+      )}
       <div className="md:pr-10 md:px-0 px-4">
         <div className="flex justify-between border-b pt-4 pb-3 border-[#23262A] text-white">
           <div className="flex flex-col items-center">

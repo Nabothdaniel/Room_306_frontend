@@ -19,12 +19,28 @@ const App = () => {
   const [pop, setPop] = useState(true);
   const [day, setDay] = useState("");
   const navigate = useNavigate();
-  const { data: pay } = useWalletQuery();
+  const { data: pay } = useWalletQuery(1, {
+    skip: !users,
+  });
   const [filter, setFilter] = useState({
     roomCountry: "",
     roomCity: "",
     tourCountry: "",
     tourCity: "",
+    search: {
+      display_name: "",
+      country: "",
+      city: "",
+      state: "",
+      gender: "",
+      ethnicity: "",
+      bust_size: "",
+      looks: "",
+      build: "",
+      sexual_orientation: "",
+      smoker: "",
+      services: "",
+    },
   });
 
   Details();
@@ -44,7 +60,7 @@ const App = () => {
         navigate("/");
       }
     }
-  }, [pay, pathname]);
+  }, [pay, pathname, data]);
 
   useEffect(() => {
     if (users?.user?.user_type == "escort") {
@@ -59,7 +75,7 @@ const App = () => {
         setPop(false);
       }
     }
-  }, [pay]);
+  }, [pay, data]);
 
   const handlePop = () => {
     if (day < 7) {

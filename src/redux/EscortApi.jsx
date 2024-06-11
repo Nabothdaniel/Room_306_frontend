@@ -7,6 +7,25 @@ const escortApi = ApiSlice.injectEndpoints({
       query: ({ gender, country, sexual_orientation, display_name }) =>
         `escort/filter/?sexual_orientation=${sexual_orientation}&country=${country}&display_name=${display_name}&gender=${gender}`,
     }),
+
+    getSearchEscort: build.query({
+      query: ({
+        gender,
+        country,
+        sexual_orientation,
+        display_name,
+        looks,
+        build,
+        city,
+        state,
+        smoker,
+        ethnicity,
+        bust_size,
+        services,
+      }) =>
+        `/escort/search/filter/?state=${state}&smoker=${smoker}&services=${services}&display_name=${display_name}&gender=${gender}&country=${country}&city=${city}&sexual_orientation=${sexual_orientation}&build=${build}&looks=${looks}&bust_size=${bust_size}&ethnicity=${ethnicity}`,
+    }),
+
     getAllEscorts: build.query({
       query: () => `/escort/escorts/all/`,
     }),
@@ -229,4 +248,5 @@ export const {
   useCommentMutation,
   useAddServicesMutation,
   useDeleteVideoMutation,
+  useGetSearchEscortQuery,
 } = escortApi;

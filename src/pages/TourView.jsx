@@ -58,6 +58,11 @@ const TourView = () => {
     }
   };
 
+  if (!data) {
+    navigate("/404");
+    return;
+  }
+
   const postDate = parseISO(data.user.createdAt);
   const formatDate = format(postDate, "MMMM dd, yyyy 'at' h:mm a");
 

@@ -18,6 +18,12 @@ const SingleBlog = () => {
     return <Loading />;
   }
 
+  if (!data) {
+    navigate("/404");
+    return;
+  }
+
+
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
       <SideBar />

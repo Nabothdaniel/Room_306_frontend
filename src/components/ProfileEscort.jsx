@@ -42,6 +42,8 @@ const ProfileEscort = ({ user }) => {
     open5: false,
   });
 
+  
+
   return (
     <>
       <div className="border-b-2 pt-6 flex justify-between md:text-base text-[14px] relative md:justify-normal font-semibold items-center text-white border-[#393C49] py-3">
@@ -97,7 +99,7 @@ const ProfileEscort = ({ user }) => {
         aboutClass={`${!state.open1 ? "hidden" : ""}`}
       />
       <ProfileViewReview
-        review={user.escort_details.reviews}
+        review={user.reviews}
         reviewClass={`${!state.open3 ? "hidden" : ""}`}
       />
       <ProfileEscortGallery

@@ -28,8 +28,8 @@ const ProfileView = () => {
     return <Loading />;
   }
 
-  if (!data) {
-    navigate("/");
+  if (!data || data?.profile?.user_type !== "escort") {
+    navigate("/404");
     return;
   }
 

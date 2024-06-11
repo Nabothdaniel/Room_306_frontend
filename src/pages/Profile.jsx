@@ -10,7 +10,9 @@ const Profile = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.Util.token);
   const navigate = useNavigate();
-  const { data, isLoading } = useProfileQuery();
+  const { data, isLoading } = useProfileQuery(1, {
+    skip: !token,
+  });
 
   useEffect(() => {
     if (!token) {

@@ -42,6 +42,11 @@ const NaughtyRoom = () => {
     return <Loading />;
   }
 
+  if (!data) {
+    navigate("/404");
+    return;
+  }
+
   const handleSend = async () => {
     if (message) {
       try {

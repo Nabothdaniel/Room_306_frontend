@@ -24,6 +24,7 @@ const Navbar = ({ Headervalue, textValue }) => {
 
   const { data, isLoading } = useNotificationQuery(1, {
     pollingInterval: 3000,
+    skip: !Boolean(users),
   });
   const [notify, setNotify] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);

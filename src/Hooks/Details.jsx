@@ -7,7 +7,9 @@ import { useSelector } from "react-redux";
 
 const Details = () => {
   const token = useSelector((state) => state.Util.token);
-  const { data, isLoading } = useProfileQuery();
+  const { data, isLoading } = useProfileQuery(1, {
+    skip: !token,
+  });
 
   if (token) {
     if (isLoading) {

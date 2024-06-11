@@ -36,6 +36,11 @@ const NaughtyVideoView = () => {
     return <Loading />;
   }
 
+  if (!data) {
+    navigate("/404");
+    return;
+  }
+
   const handleComment = () => {
     setComment(!comment);
   };

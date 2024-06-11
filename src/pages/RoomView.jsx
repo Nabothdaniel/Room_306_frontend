@@ -49,6 +49,11 @@ const RoomView = () => {
     return <Loading />;
   }
 
+  if (!data) {
+    navigate("/404");
+    return;
+  }
+
   const handleReview = () => {
     if (users) {
       setReview(!review);

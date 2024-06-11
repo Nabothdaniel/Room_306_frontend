@@ -23,19 +23,24 @@ const reducer = (state, action) => {
 };
 
 const ClientView = () => {
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
   });
   const { username } = useParams();
   const { data, isLoading } = useGetProfileByIdQuery(username);
-  const navigate = useNavigate();
 
   if (isLoading) {
     return <Loading />;
   }
 
   const client = data?.profile;
+
+  if (!client || data?.user_type !== "client") {
+    navigate("/not-found");
+    return;
+  }
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">

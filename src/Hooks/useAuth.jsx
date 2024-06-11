@@ -6,7 +6,9 @@ import { useProfileQuery } from "../redux/ApiSlice";
 const useAuth = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.Util.token);
-  const { data, isLoading } = useProfileQuery();
+  const { data, isLoading } = useProfileQuery(1, {
+    skip: !token,
+  });
 
   if (token) {
     const decode = jwtDecode(token);

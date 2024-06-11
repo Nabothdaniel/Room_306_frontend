@@ -77,7 +77,7 @@ const Events = () => {
                 )}
               </h2>
 
-              <img className="w-40" src={Filter} alt="" />
+              {/* <img className="w-40" src={Filter} alt="" /> */}
             </div>
             <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[70vh] rounded-2xl">
               <div className="">
@@ -134,7 +134,7 @@ const Events = () => {
                 )}
               </h2>
 
-              <img className="w-40" src={Filter} alt="" />
+              {/* <img className="w-40" src={Filter} alt="" /> */}
             </div>
             <div className="bg-[#1E1E1E] md:py-7 p-4 md:px-8 h-[70vh] rounded-2xl">
               <div className="">
@@ -208,7 +208,7 @@ const Events = () => {
               )}
             </h2>
 
-            <img className="w-40" src={Filter} alt="" />
+            {/* <img className="w-40" src={Filter} alt="" /> */}
           </div>
 
           {/* EMPTY */}

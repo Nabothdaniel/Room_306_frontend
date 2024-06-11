@@ -55,6 +55,9 @@ import PersonalChat from "./pages/PersonalChat.jsx";
 import UpdateTours from "./pages/UpdateTour.jsx";
 import UpdateRoom from "./pages/UpdateRoom.jsx";
 import ClientView from "./pages/ClientView.jsx";
+import Hello from "./pages/Hello.jsx";
+import Search from "./pages/Search.jsx";
+import NotFound from "./pages/404.jsx";
 
 const router = createBrowserRouter([
   {
@@ -120,6 +123,14 @@ const router = createBrowserRouter([
       {
         path: "/faqs",
         element: <Faqs />,
+      },
+      {
+        path: "/search-escort",
+        element: <Search />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
       {
         path: "/profile",

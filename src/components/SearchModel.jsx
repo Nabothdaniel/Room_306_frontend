@@ -1,19 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Close from "../images/close-icon.svg";
 import Input from "./Input";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import { Age } from "./AgeArray";
 import Loading from "./Loading";
+import { useServicesQuery } from "../redux/ApiSlice";
+import { ImageContext } from "../Hooks/ImageContext";
+import { useNavigate } from "react-router-dom";
 
 const SearchModel = ({ handleSearch, SearchClass }) => {
+  const { setFilter } = useContext(ImageContext);
   const [getState, setGetState] = useState([]);
   const [getCities, setGetCities] = useState([]);
   const [country, setCountry] = useState("");
   const [State, setState] = useState("");
   const [cities, setCities] = useState("");
   const { data, isLoading } = useGetCountryQuery();
+  const navigate = useNavigate();
+  const { data: service, isLoading: load } = useServicesQuery();
+  const [formData, setFormData] = useState({
+    display_name: "",
+    country: "",
+    city: "",
+    state: "",
+    gender: "",
+    ethnicity: "",
+    bust_size: "",
+    looks: "",
+    build: "",
+    sexual_orientation: "",
+    smoker: true,
+    services: 1,
+  });
 
-  // if (isLoading) {
+  // if (isLoading || load) {
   //   return (
   //     <div className={`${SearchClass}`}>
   //       <Loading />;
@@ -21,19 +41,33 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
   //   );
   // }
 
+  const handleChange = (e) => {
+    if (e.target.name == "services") {
+      setFormData({ ...formData, [e.target.name]: e.target.id });
+    } else if (e.target.name == "smoker") {
+      if (e.target.value == "true") {
+        setFormData({ ...formData, [e.target.name]: e.target.checked });
+      } else {
+        setFormData({ ...formData, [e.target.name]: !e.target.checked });
+      }
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+  };
+
   let states;
   const handleCountry = (e) => {
     states = data?.filter((state) => state.name === e.target.value);
 
-    states = states.map((item) => item.states);
+    states = states?.map((item) => item.states);
 
     states.sort();
     setGetState(states[0]);
   };
 
   const handleState = (e) => {
-    let city = getState.filter((item) => item.name === e.target.value);
-    city = city.map((item) => item);
+    let city = getState?.filter((item) => item.name === e.target.value);
+    city = city?.map((item) => item);
 
     setGetCities(city);
   };
@@ -41,10 +75,16 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
   let newCities = [];
 
   getCities.forEach((childArray) => {
-    childArray.cities.forEach((item) => {
+    childArray?.cities?.forEach((item) => {
       newCities.push(item);
     });
   });
+
+  const handleSub = () => {
+    setFilter({ search: formData });
+    handleSearch();
+    navigate("/search-escort");
+  };
 
   return (
     <div
@@ -66,11 +106,12 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
               labelValue={"Escort Name"}
               labelClass={"text-[#475367] pb-2 font-semibold text-[16px]"}
               inputType={"text"}
-              inputName={""}
+              inputName={"display_name"}
               inputClass={
                 "bg-[#F0F2F5] py-3 px-4 md:mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
               }
               holder={"Enter Name Here"}
+              onchange={handleChange}
             />
 
             <label className="text-[#475367] flex flex-col" htmlFor="country">
@@ -84,6 +125,7 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   onChange={(e) => {
                     handleCountry(e);
                     setCountry(e.target.value);
+                    handleChange(e);
                   }}
                 >
                   <option value="">All Country</option>
@@ -108,6 +150,7 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   onChange={(e) => {
                     handleState(e);
                     setState(e.target.value);
+                    handleChange(e);
                   }}
                 >
                   <option value="">State(Optional)</option>
@@ -129,7 +172,10 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   name="city"
                   id="city"
                   value={cities}
-                  onChange={(e) => setCities(e.target.value)}
+                  onChange={(e) => {
+                    setCities(e.target.value);
+                    handleChange(e);
+                  }}
                 >
                   <option value="">City(Optional)</option>
 
@@ -149,25 +195,40 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
               <div className="flex md:w-[70%]">
                 <label className="container">
                   Both
-                  <input type="radio" name="gender" />
+                  <input
+                    onChange={handleChange}
+                    type="radio"
+                    name="gender"
+                    value={""}
+                  />
                   <span className="checkmark"></span>
                 </label>
 
                 <label className="container ">
                   Male
-                  <input type="radio" name="gender" />
+                  <input
+                    onChange={handleChange}
+                    type="radio"
+                    name="gender"
+                    value={"male"}
+                  />
                   <span className="checkmark"></span>
                 </label>
 
                 <label className="container">
                   Female
-                  <input type="radio" name="gender" />
+                  <input
+                    onChange={handleChange}
+                    type="radio"
+                    name="gender"
+                    value={"female"}
+                  />
                   <span className="checkmark"></span>
                 </label>
               </div>
             </div>
 
-            <label className="text-[#475367] pt-4 " htmlFor="escort age">
+            {/* <label className="text-[#475367] pt-4 " htmlFor="escort age">
               <span className="font-semibold ">Escort Age</span>
               <div className="grid gap-x-4 pt-2 grid-cols-2">
                 <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
@@ -204,7 +265,7 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   </select>
                 </div>
               </div>
-            </label>
+            </label> */}
 
             <label
               className="text-[#475367] pt-5 flex flex-col"
@@ -216,18 +277,19 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                   name="ethnicity"
                   id="ethnicity"
+                  onChange={handleChange}
                 >
                   <option value="">Your Ethnicity</option>
-                  <option value="all">All</option>
-                  <option value="asian">Asian</option>
-                  <option value="black">Black</option>
-                  <option value="indian">Indian</option>
-                  <option value="latino">Latino</option>
-                  <option value="middle eastern">Mid Eastern</option>
-                  <option value="mix-race">Mix Race</option>
-                  <option value="other">Other</option>
-                  <option value="others">Others</option>
-                  <option value="white">White</option>
+                  <option>All</option>
+                  <option>Asian</option>
+                  <option>Black</option>
+                  <option>Indian</option>
+                  <option>Latino</option>
+                  <option>Mid Eastern</option>
+                  <option>Mix Race</option>
+                  <option>Other</option>
+                  <option>Others</option>
+                  <option>White</option>
                 </select>
               </div>
             </label>
@@ -240,8 +302,9 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
               <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                 <select
                   className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
-                  name="bust-size"
-                  id="bust-size"
+                  name="bust_size"
+                  id="bust_size"
+                  onChange={handleChange}
                 >
                   <option value="">Choose here</option>
                   <option>All</option>
@@ -267,6 +330,7 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                   name="build"
                   id="build"
+                  onChange={handleChange}
                 >
                   <option value="">Choose here</option>
                   <option>All</option>
@@ -299,6 +363,7 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                   name="looks"
                   id="looks"
+                  onChange={handleChange}
                 >
                   <option value="">Choose here</option>
                   <option>All</option>
@@ -326,8 +391,9 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
               <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
                 <select
                   className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
-                  name="sexual-orientation"
-                  id="sexual-orientation"
+                  name="sexual_orientation"
+                  id="sexual_orientation"
+                  onChange={handleChange}
                 >
                   <option value="">Sexual Orientation</option>
                   <option>HetroSexual(Straight)</option>
@@ -342,7 +408,7 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
             </label>
 
             {/* TESTING */}
-            <div className="w-[70%]">
+            {/* <div className="w-[70%]">
               <h3 className="text-[#475367] pb-4 pt-5 font-semibold">
                 Availability
               </h3>
@@ -358,26 +424,43 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   <span className="checkmate"></span>
                 </label>
               </div>
-            </div>
+            </div> */}
 
             <div className=" pt-5 ">
               <h4 className="text-[#475367] font-semibold pb-3">Smoker</h4>
               <div className="flex">
-                <label className="container">
+                {/* <label className="container">
                   Any
-                  <input type="radio" name="smoker" />
+                  <input
+                    onChange={handleChange}
+                    type="radio"
+                    name="smoker"
+                    value={""}
+                  />
                   <span className="checkmark"></span>
-                </label>
+                </label> */}
 
                 <label className="container ">
                   Yes
-                  <input type="radio" name="smoker" />
+                  <input
+                    onChange={handleChange}
+                    type="radio"
+                    name="smoker"
+                    value={true}
+                    checked={formData.smoker}
+                  />
                   <span className="checkmark"></span>
                 </label>
 
                 <label className="container">
                   No
-                  <input type="radio" name="smoker" />
+                  <input
+                    onChange={handleChange}
+                    type="radio"
+                    name="smoker"
+                    value={false}
+                    checked={!formData.smoker}
+                  />
                   <span className="checkmark"></span>
                 </label>
               </div>
@@ -386,380 +469,32 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
             <div className="md:col-span-2 pt-5 ">
               <h4 className="text-[#475367] font-semibold pb-3">Services</h4>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-1 gap-y-3">
-                <label className="checkContainer">
-                  69 (69 sex Position)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer ">
-                  Anal Rimming (Licking Anus)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  BDMS (receiving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Body Worship
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  CIM (Cum in Mouth)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  COF (Cum on Face)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  DFK(Deep French Kissing)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Domination (receiving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer  flex items-center">
-                  Erotic Massage
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Face Sitting
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Fisting (giving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Foot fetish
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Gang Bang
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Golden Shower
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Scat (giving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Humiliation(giving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Lap dancing
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Massage
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Modeling
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Smoking (Fetish)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  A-Level(Anal Sex)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  BDMS (giving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Being Filmed
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Couples
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  DFK(Deep French Kissing)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Domination (receiving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Double Penetration
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Fisting (receiving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  French Kissing
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  GFE (Girlfriend experience)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Hand Job
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Attending corporate parties
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Beach parties
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Bondage
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  COB (Cum on body)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Domestic carer
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Fetish
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Humiliation (receiving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  MMF 3somes
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  O-Level (Oral sex)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  OWO (Oral without condom)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  PSE (Porn Star Experience)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Parties (Mandatory sex parties)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Preparing a meal
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Prostrate Massage
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Receiving Oral
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Rimming (receiving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Role Play & Fantasy
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Sex Toys
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Erotic Spanking (giving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Erotic Spanking (receiving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Pegging
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Sub games
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Swallow
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Swallow (at discretion)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Tantric Massage
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Threesome
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Tie & Tease
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Travel Companion
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Watersports (giving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Watersports (receiving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Oral with condom
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Rimming (giving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  INSEMINATION
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Period Play
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Pregnant
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Swinging
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  SURROGATE
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Male Stripper
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Scat (receiving)
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Female Stripper
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Food Play
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
-                <label className="checkContainer flex items-center">
-                  Blow Job
-                  <input type="checkbox" name="" />
-                  <span className="checkmate"></span>
-                </label>
+                {service?.map((item, index) => {
+                  return (
+                    <label key={index} className="checkContainer">
+                      {item.name}
+                      <input
+                        onChange={handleChange}
+                        type="checkbox"
+                        name="services"
+                        id={item.id}
+                      />
+                      <span className="checkmate"></span>
+                    </label>
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
         <div className="flex pr-8 pb-6 justify-end pt-6">
-          <button className="bg-transparent text-[#171717] mr-1 text-[14px] h-[48px] w-[92px] font-semibold rounded-xl">
+          {/* <button className="bg-transparent text-[#171717] mr-1 text-[14px] h-[48px] w-[92px] font-semibold rounded-xl">
             Reset
-          </button>
-          <button className="bg-[#E9CB50] text-[#171717] text-[14px] h-[48px] w-[92px] font-semibold rounded-xl">
+          </button> */}
+          <button
+            onClick={handleSub}
+            className="bg-[#E9CB50] text-[#171717] text-[14px] h-[48px] w-[92px] font-semibold rounded-xl"
+          >
             Apply
           </button>
         </div>

@@ -31,12 +31,18 @@ const PersonalChat = () => {
       pollingInterval: 3000,
     }
   );
+
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
   const ref = useRef(null);
   const [send] = useSendMessageMutation();
   //   const { data, isLoading } = useChannelByIdQuery(id);
+
+  if (!converse) {
+    navigate("/404");
+    return;
+  }
 
   useEffect(() => {
     ref.current?.scrollIntoView({
