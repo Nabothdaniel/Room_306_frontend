@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../redux/UtilSlice";
 import { useDispatch } from "react-redux";
 import Footer from "../components/Footer";
-import { LoaderIcon } from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
 
 const ClientDetails = () => {
   const { data, isLoading } = useGetCountryQuery();
@@ -173,8 +173,12 @@ const ClientDetails = () => {
         setApiError("");
       } catch (err) {
         setLoad(false);
-        console.log(err);
-        setApiError(err.response?.data?.message);
+
+        if (err.response.status == 500) {
+          setApiError("Display name has been taken");
+        } else {
+          setApiError(err.response?.data?.message);
+        }
       }
 
       // setData({

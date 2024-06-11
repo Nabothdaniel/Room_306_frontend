@@ -41,8 +41,8 @@ const EscortDetailsSecFive = () => {
         navigate("/services");
         window.location.reload(true);
       } catch (err) {
-        console.log(err);
         setLoad(false);
+        toast.error(err?.response?.data?.message);
       }
     } else {
       toast.error("A Picture of yourself is needed");
