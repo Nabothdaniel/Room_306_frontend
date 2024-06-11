@@ -12,8 +12,9 @@ const AnotherPurchase = ({ purchaseClass, handleWallet }) => {
 
         <div className="pt-8">
           <p className="text-center">
-            For Activation of your account and Buying of Coin send the money to
-            the Bank details below:
+            For Activation of your account and Buying of Coin make payment to
+            the Bank details below and send a Receipt to the Admin Whatsapp
+            number (+234 7052995373) to confirm:
           </p>
 
           <p className="md:text-xl text-center py-3 font-semibold">
