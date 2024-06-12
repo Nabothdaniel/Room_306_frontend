@@ -11,7 +11,7 @@ const FavoriteTour = ({ item }) => {
     >
       <img
         className="rounded-lg h-[200px] object-cover"
-        src={`https://room35backend.onrender.com${item.cover_image}`}
+        src={`https://theroom306.com${item.cover_image}`}
         alt=""
       />
       <div className="flex justify-between py-3">

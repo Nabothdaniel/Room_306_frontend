@@ -6,7 +6,7 @@ const TestimonialCard = ({ items }) => {
     <div className="bg-[#1E1E1E] py-12 rounded-2xl">
       <img
         className="size-[100px] mx-auto  rounded-full "
-        src={`https://room35backend.onrender.com${items.user.image}`}
+        src={`https://theroom306.com${items.user.image}`}
         alt=""
       />
       <div className="text-center text-white px-10">

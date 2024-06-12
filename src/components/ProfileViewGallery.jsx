@@ -17,7 +17,7 @@ const ProfileViewGallery = ({ galleryClass }) => {
     setUpLoad(true);
     try {
       const res = await axios.post(
-        "https://room35backend.onrender.com/api/escort/upload-to-gallery/",
+        "https://theroom306.com/api/escort/upload-to-gallery/",
         formData,
         {
           headers: {
@@ -40,7 +40,7 @@ const ProfileViewGallery = ({ galleryClass }) => {
     setLoad(true);
     try {
       const res = await axios.delete(
-        `https://room35backend.onrender.com/api/escort/delete-gallery-photo/${id}/`,
+        `https://theroom306.com/api/escort/delete-gallery-photo/${id}/`,
 
         {
           headers: {
@@ -110,7 +110,7 @@ const ProfileViewGallery = ({ galleryClass }) => {
                   <img
                     className="rounded-xl h-[300px] object-cover"
                     key={index}
-                    src={`https://room35backend.onrender.com${item.photo}`}
+                    src={`https://theroom306.com${item.photo}`}
                   />
                   <button
                     onClick={() => handleDelete(item.id)}

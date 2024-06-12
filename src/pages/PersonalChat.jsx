@@ -61,7 +61,7 @@ const PersonalChat = () => {
     if (message) {
       try {
         const res = await axios.post(
-          `https://room35backend.onrender.com/api/conversations/${id}/messages/send/`,
+          `https://theroom306.com/api/conversations/${id}/messages/send/`,
           { content: message, file: image },
           {
             headers: {
@@ -125,7 +125,7 @@ const PersonalChat = () => {
                     >
                       <img
                         className="size-[50px] rounded-full"
-                        src={`https://room35backend.onrender.com${name[0]?.recipient.image}`}
+                        src={`https://theroom306.com${name[0]?.recipient.image}`}
                         alt=""
                       />
                       <div className="pl-4 text-white">
@@ -144,7 +144,7 @@ const PersonalChat = () => {
                     >
                       <img
                         className="size-[50px] rounded-full"
-                        src={`https://room35backend.onrender.com${name[0]?.sender.image}`}
+                        src={`https://theroom306.com${name[0]?.sender.image}`}
                         alt=""
                       />
                       <div className="pl-4 text-white">

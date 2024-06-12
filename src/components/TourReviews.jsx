@@ -41,7 +41,7 @@ const TourReviews = ({ reviewClass, handleReview, id }) => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         const res = await axios.post(
-          `https://room35backend.onrender.com/api/tour/addreview/${id}/`,
+          `https://theroom306.com/api/tour/addreview/${id}/`,
           { ...formData, tour: id },
           {
             headers: {

@@ -111,7 +111,7 @@ const NaughtyVideoView = () => {
                 controls
                 autoPlay
                 className={`md:h-[500px] h-[400px] object-cover w-full `}
-                src={`https://room35backend.onrender.com${data.video}`}
+                src={`https://theroom306.com${data.video}`}
               ></video>
               <div className="grid grid-cols-3 text-white pt-4 text-center">
                 {/* <div className="cursor-pointer font-semibold">
@@ -205,7 +205,7 @@ const NaughtyVideoView = () => {
                   <div className="flex">
                     <img
                       className="size-20 rounded-md"
-                      src={`https://room35backend.onrender.com${data.escort.user.image}`}
+                      src={`https://theroom306.com${data.escort.user.image}`}
                       alt=""
                     />
                     <div className="ml-5">

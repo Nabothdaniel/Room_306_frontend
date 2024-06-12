@@ -41,7 +41,7 @@ const MyEventItem = ({ item }) => {
     <div className="bg-[#121212] text-white p-3 rounded-lg">
       <img
         className="rounded-lg h-[200px] object-cover"
-        src={`https://room35backend.onrender.com${item.cover_image}`}
+        src={`https://theroom306.com${item.cover_image}`}
         alt=""
       />
       <div className="flex justify-between py-3">
@@ -70,7 +70,10 @@ const MyEventItem = ({ item }) => {
           >
             Delete
           </p>
-          <p onClick={handleUpdate} className="bg-yellow-300 text-[12px] py-1 text-black px-2 rounded-3xl cursor-pointer font-semibold">
+          <p
+            onClick={handleUpdate}
+            className="bg-yellow-300 text-[12px] py-1 text-black px-2 rounded-3xl cursor-pointer font-semibold"
+          >
             Update
           </p>
         </div>

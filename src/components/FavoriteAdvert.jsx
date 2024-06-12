@@ -8,7 +8,7 @@ const FavoriteAdvert = ({ item }) => {
     <div className="bg-black text-white  p-3 rounded-lg">
       <img
         className="rounded-lg h-[200px] object-cover"
-        src={`https://room35backend.onrender.com${item.user.image}`}
+        src={`https://theroom306.com${item.user.image}`}
         alt=""
       />
       <div className="flex justify-between py-3">

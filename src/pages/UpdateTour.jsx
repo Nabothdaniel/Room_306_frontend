@@ -140,7 +140,7 @@ const UpdateTours = () => {
       setLoad(true);
       try {
         const res = await axios.put(
-          `https://room35backend.onrender.com/api/tour/update/${tour.id}/`,
+          `https://theroom306.com/api/tour/update/${tour.id}/`,
           formData,
           {
             headers: {
@@ -365,7 +365,7 @@ const UpdateTours = () => {
                   ) : (
                     <img
                       className=" "
-                      src={`https://room35backend.onrender.com${tour.cover_image}`}
+                      src={`https://theroom306.com${tour.cover_image}`}
                       alt=""
                     />
                   )}

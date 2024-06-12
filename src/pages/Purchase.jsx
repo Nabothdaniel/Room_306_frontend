@@ -20,7 +20,7 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
   const paymentSuccess = async (data) => {
     try {
       const res = await axios.put(
-        "https://room35backend.onrender.com/api/profile/buy_coin/",
+        "https://theroom306.com/api/profile/buy_coin/",
         data,
         {
           headers: {

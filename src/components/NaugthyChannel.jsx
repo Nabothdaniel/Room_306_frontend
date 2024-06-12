@@ -30,7 +30,7 @@ const NaugthyChannel = ({ item }) => {
           {item.file && (
             <img
               className="size-[200px] rounded-[10px] object-cover"
-              src={`https://room35backend.onrender.com${item.file}`}
+              src={`https://theroom306.com${item.file}`}
             />
           )}
           {item.content && <p className="pt-1">{item.content}</p>}
@@ -44,7 +44,7 @@ const NaugthyChannel = ({ item }) => {
       <div className="text-[14px] pb-4 flex">
         <img
           className="size-[30px] rounded-full"
-          src={`https://room35backend.onrender.com${item.sender.image}`}
+          src={`https://theroom306.com${item.sender.image}`}
           alt=""
         />
         <div className="flex flex-col mt-1 ml-4">
@@ -61,7 +61,7 @@ const NaugthyChannel = ({ item }) => {
             {item.file && (
               <img
                 className="size-[200px] rounded-[10px] object-cover"
-                src={`https://room35backend.onrender.com${item.file}`}
+                src={`https://theroom306.com${item.file}`}
               />
             )}
             {item.content && <p className="pt-1">{item.content}</p>}

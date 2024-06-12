@@ -25,7 +25,7 @@ const Media = ({ mediaClass }) => {
   const uploadImage = async () => {
     try {
       const res = await axios.put(
-        "https://room35backend.onrender.com/api/profile/upload-photo/",
+        "https://theroom306.com/api/profile/upload-photo/",
         formData,
         {
           headers: {

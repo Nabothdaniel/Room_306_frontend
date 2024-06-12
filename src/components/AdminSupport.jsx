@@ -20,7 +20,7 @@ const AdminSupport = ({ supportClass, handleSupport }) => {
     setLoad(true);
     try {
       const res = await axios.post(
-        `https://room35backend.onrender.com/api/admin_contacts/create/`,
+        `https://theroom306.com/api/admin_contacts/create/`,
         formData,
         {
           headers: {

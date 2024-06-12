@@ -28,7 +28,7 @@ const EventItem = ({ items }) => {
       <div className="bg-[#121212] text-white p-3 rounded-lg">
         <img
           className="rounded-lg h-[200px] object-fit"
-          src={`https://room35backend.onrender.com${items.cover_image}`}
+          src={`https://theroom306.com${items.cover_image}`}
           alt=""
         />
         <div className="flex justify-between py-3">

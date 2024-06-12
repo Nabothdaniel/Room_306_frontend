@@ -31,7 +31,7 @@ const EscortOneItems = ({ items }) => {
         <Link className="block" to={`/tours/${items.id}`}>
           <img
             className="rounded-lg h-[200px]"
-            src={`https://room35backend.onrender.com${items.cover_image}`}
+            src={`https://theroom306.com${items.cover_image}`}
             alt=""
           />
         </Link>

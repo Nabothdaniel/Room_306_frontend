@@ -67,7 +67,7 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
       ) : (
         <img
           className="h-[400px] rounded-xl"
-          src={`https://room35backend.onrender.com${user?.profile.image}`}
+          src={`https://theroom306.com${user?.profile.image}`}
           alt=""
         />
       )}

@@ -146,7 +146,7 @@ const AddEvents = () => {
       if (!events) {
         try {
           const res = await axios.post(
-            "https://room35backend.onrender.com/api/events/create/",
+            "https://theroom306.com/api/events/create/",
             formData,
             {
               headers: {
@@ -182,7 +182,7 @@ const AddEvents = () => {
       if (events) {
         try {
           const res = await axios.put(
-            `https://room35backend.onrender.com/api/events/${events.id}/update/`,
+            `https://theroom306.com/api/events/${events.id}/update/`,
             formData,
             {
               headers: {

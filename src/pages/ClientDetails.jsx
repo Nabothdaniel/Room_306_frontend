@@ -154,7 +154,7 @@ const ClientDetails = () => {
       setLoad(true);
       try {
         const res = await axios.post(
-          "https://room35backend.onrender.com/api/auth/register_client/",
+          "https://theroom306.com/api/auth/register_client/",
           formData,
           {
             headers: {
@@ -419,7 +419,7 @@ const ClientDetails = () => {
                       >
                         <option value="">Select</option>
 
-                        {code && <option>{`${Data.country} +${code}`}</option>}
+                        {code && <option>{`+${code}`}</option>}
                       </select>
                     </div>
                     <p className="py-1 text-[12px] text-red-500">

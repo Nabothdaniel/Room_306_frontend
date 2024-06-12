@@ -26,7 +26,7 @@ const EscortItems = ({ items }) => {
         <Link className="block" to={`/escort/${items.user.username}`}>
           <img
             className="rounded-lg h-[200px]"
-            src={`https://room35backend.onrender.com${items.user.image}`}
+            src={`https://theroom306.com${items.user.image}`}
             alt=""
           />
         </Link>

@@ -42,7 +42,7 @@ const BookingItem = ({ book }) => {
   const handleDecline = async () => {
     try {
       const res = await axios.put(
-        `https://room35backend.onrender.com/api/booking/accept_decline/${book.id}/`,
+        `https://theroom306.com/api/booking/accept_decline/${book.id}/`,
         cancel,
         {
           headers: {
@@ -87,7 +87,7 @@ const BookingItem = ({ book }) => {
         <Link to={`/escort/${book.escort.username}`}>
           <img
             className="size-[50px] rounded-full"
-            src={`https://room35backend.onrender.com${book.escort.image}`}
+            src={`https://theroom306.com${book.escort.image}`}
             alt=""
           />
         </Link>

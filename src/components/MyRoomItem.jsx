@@ -35,7 +35,7 @@ const MyRoomItem = ({ item }) => {
       <Link to={`/rooms/${item.id}`}>
         <img
           className="rounded-lg h-[200px] object-cover"
-          src={`https://room35backend.onrender.com${item.cover_image}`}
+          src={`https://theroom306.com${item.cover_image}`}
           alt=""
         />
       </Link>

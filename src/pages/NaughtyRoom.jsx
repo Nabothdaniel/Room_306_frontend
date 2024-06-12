@@ -51,7 +51,7 @@ const NaughtyRoom = () => {
     if (message) {
       try {
         const res = await axios.post(
-          `https://room35backend.onrender.com/api/channels/${id}/messages/send/`,
+          `https://theroom306.com/api/channels/${id}/messages/send/`,
           { content: message, file: image },
           {
             headers: {
@@ -110,7 +110,7 @@ const NaughtyRoom = () => {
                   <div className="flex pb-6">
                     <img
                       className="size-[50px] rounded-full"
-                      src={`https://room35backend.onrender.com${data?.image}`}
+                      src={`https://theroom306.com${data?.image}`}
                       alt=""
                     />
                     <div className="pl-4 text-white">

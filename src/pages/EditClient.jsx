@@ -97,7 +97,7 @@ const EditClient = () => {
   const handleEdit = async () => {
     try {
       const res = await axios.put(
-        "https://room35backend.onrender.com/api/profile/edit/",
+        "https://theroom306.com/api/profile/edit/",
         formData,
         {
           headers: {
@@ -158,7 +158,7 @@ const EditClient = () => {
               ) : (
                 <img
                   className="h-[300px] w-full rounded-lg"
-                  src={`https://room35backend.onrender.com${users.image}`}
+                  src={`https://theroom306.com${users.image}`}
                   alt=""
                 />
               )}

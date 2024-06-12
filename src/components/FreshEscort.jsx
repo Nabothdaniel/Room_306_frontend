@@ -13,7 +13,7 @@ const FreshEscort = ({ items }) => {
     >
       <img
         className="rounded-lg h-[170px] object-cover"
-        src={`https://room35backend.onrender.com${items.user.image}`}
+        src={`https://theroom306.com${items.user.image}`}
         alt=""
       />
       <div className="flex justify-between py-3">
@@ -40,7 +40,7 @@ const FreshEscort = ({ items }) => {
       <div className="flex justify-between pb-2 items-center">
         <p className="flex justify-between items-center">
           <img src={Whatsapp} className="size-4" />{" "}
-          <span className="text-[12px] pl-1">{ items.user.mobile_number}</span>
+          <span className="text-[12px] pl-1">{items.user.mobile_number}</span>
         </p>
       </div>
     </Link>

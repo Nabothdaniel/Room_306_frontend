@@ -92,7 +92,7 @@ const RoomView = () => {
               </h1>
               <img
                 className="h-[450px] object-cover md:object-contain rounded-md"
-                src={`https://room35backend.onrender.com${data.cover_image}`}
+                src={`https://theroom306.com${data.cover_image}`}
                 alt=""
               />
             </div>
@@ -201,7 +201,7 @@ const RoomView = () => {
                     >
                       <img
                         className="size-20 rounded-md"
-                        src={`https://room35backend.onrender.com${item.user.image}`}
+                        src={`https://theroom306.com${item.user.image}`}
                         alt=""
                       />
                       <div className="ml-5">

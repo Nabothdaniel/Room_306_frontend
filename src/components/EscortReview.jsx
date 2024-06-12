@@ -40,7 +40,7 @@ const EscortReview = ({ reviewClass, handleReview, id }) => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         const res = await axios.post(
-          `https://room35backend.onrender.com/api/profile/escort/${id}/add-review/`,
+          `https://theroom306.com/api/profile/escort/${id}/add-review/`,
           { ...formData, escort_id: id },
           {
             headers: {

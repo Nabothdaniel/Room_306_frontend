@@ -27,7 +27,7 @@ const BlacklistImageSwipe = ({ items }) => {
             <SwiperSlide className="mb-10 swiper-1" key={item}>
               <img
                 className="w-[100%]  object-contain h-[403px] rounded-xl "
-                src={`https://room35backend.onrender.com${item.image}`}
+                src={`https://theroom306.com${item.image}`}
                 alt=""
               />
             </SwiperSlide>

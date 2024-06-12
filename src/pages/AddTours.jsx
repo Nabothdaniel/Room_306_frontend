@@ -121,7 +121,7 @@ const AddTours = () => {
       setLoad(true);
       try {
         const res = await axios.post(
-          "https://room35backend.onrender.com/api/tour/create/",
+          "https://theroom306.com/api/tour/create/",
           formData,
           {
             headers: {

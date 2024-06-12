@@ -52,7 +52,7 @@ const ChangePassword = () => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         const res = await axios.post(
-          "https://room35backend.onrender.com/api/auth/change-password/",
+          "https://theroom306.com/api/auth/change-password/",
           formData,
           {
             headers: {

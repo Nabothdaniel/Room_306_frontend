@@ -222,7 +222,7 @@ const MyAdverts = () => {
                 ) : (
                   <div className="grid xl:grid-cols-4 xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
                     {data.map((item, index) => {
-                      return <FavoriteEscort key={index} item={item} />;
+                      return <FavoriteAdvert key={index} item={item} />;
                     })}
                   </div>
                 )}
@@ -241,7 +241,7 @@ const MyAdverts = () => {
                     {data
                       ?.filter((item) => item.i_am == "Looking")
                       ?.map((item, index) => {
-                        return <FavoriteTour key={index} item={item} />;
+                        return <FavoriteAdvert key={index} item={item} />;
                       })}
                   </div>
                 )}

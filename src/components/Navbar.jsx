@@ -160,7 +160,7 @@ const Navbar = ({ Headervalue, textValue }) => {
                   setNotify(false);
                 }}
                 className="size-[48px] object-cover rounded-full cursor-pointer"
-                src={`https://room35backend.onrender.com${
+                src={`https://theroom306.com${
                   users?.image ?? users?.user?.image
                 }`}
                 alt=""
