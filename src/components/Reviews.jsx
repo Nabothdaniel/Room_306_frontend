@@ -41,7 +41,7 @@ const Reviews = ({ reviewClass, handleReview, id }) => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         const res = await axios.post(
-          `https://theroom306.com/api/events/${id}/review/`,
+          `https://backend.theroom306.com/api/events/${id}/review/`,
           { ...formData, event: id },
           {
             headers: {

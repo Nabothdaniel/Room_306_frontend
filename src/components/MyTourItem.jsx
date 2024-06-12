@@ -9,7 +9,7 @@ const MyTourItem = ({ item }) => {
   const handleDelete = async () => {
     try {
       const res = await axios.delete(
-        `https://theroom306.com/api/tour/delete/${item.id}/`,
+        `https://backend.theroom306.com/api/tour/delete/${item.id}/`,
 
         {
           headers: {
@@ -35,7 +35,7 @@ const MyTourItem = ({ item }) => {
       <Link to={`/tours/${item.id}`}>
         <img
           className="rounded-lg h-[200px] object-cover"
-          src={`https://theroom306.com${item.cover_image}`}
+          src={`https://backend.theroom306.com${item.cover_image}`}
           alt=""
         />
       </Link>

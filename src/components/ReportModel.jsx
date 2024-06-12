@@ -25,7 +25,7 @@ const ReportModel = ({ handleReport, reportClass, user }) => {
       setLoad(true);
       try {
         const res = await axios.post(
-          `https://theroom306.com/api/blacklisted/create/`,
+          `https://backend.theroom306.com/api/blacklisted/create/`,
           {
             ...formData,
             images: image,

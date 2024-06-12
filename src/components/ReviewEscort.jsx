@@ -9,7 +9,7 @@ const ReviewEscort = ({ items }) => {
     <div className="flex py-3 px-4 mb-4 rounded-xl shadow-2xl bg-black">
       <img
         className="size-[100px] object-cover rounded-lg"
-        src={`https://theroom306.com${items.user.image}`}
+        src={`https://backend.theroom306.com${items.user.image}`}
         alt=""
       />
       <div className="ml-5">

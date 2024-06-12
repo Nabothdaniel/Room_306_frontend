@@ -20,7 +20,7 @@ const BlacklistedList = ({ items }) => {
     >
       <img
         className="rounded-lg h-[200px] object-cover"
-        src={`https://theroom306.com${items?.images[0]?.image}`}
+        src={`https://backend.theroom306.com${items?.images[0]?.image}`}
         alt=""
       />
       <div className=" py-3">

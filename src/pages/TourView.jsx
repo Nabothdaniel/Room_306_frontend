@@ -99,7 +99,7 @@ const TourView = () => {
               </h1>
               <img
                 className="h-[450px] object-fit rounded-md"
-                src={`https://theroom306.com${data.cover_image}`}
+                src={`https://backend.theroom306.com${data.cover_image}`}
                 alt=""
               />
             </div>
@@ -181,7 +181,7 @@ const TourView = () => {
                     >
                       <img
                         className="size-20 rounded-md"
-                        src={`https://theroom306.com${item.user.image}`}
+                        src={`https://backend.theroom306.com${item.user.image}`}
                         alt=""
                       />
                       <div className="ml-5">
@@ -201,7 +201,7 @@ const TourView = () => {
             <div className="flex text-white pt-10 pb-4">
               <img
                 className="size-20 rounded-md"
-                src={`https://theroom306.com${data.user.image}`}
+                src={`https://backend.theroom306.com${data.user.image}`}
                 alt=""
               />
               <div className="ml-5">

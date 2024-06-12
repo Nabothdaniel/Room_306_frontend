@@ -13,7 +13,7 @@ const EscortItems = ({ items }) => {
 
   const handleFavorite = async () => {
     try {
-      const res = await favorite(items.id).unwrap();
+      const res = await favorite(items.user.id).unwrap();
       toast.success(res.message);
     } catch (err) {
       toast.error("Only Signed In User can add to Favorite");
@@ -26,7 +26,7 @@ const EscortItems = ({ items }) => {
         <Link className="block" to={`/escort/${items.user.username}`}>
           <img
             className="rounded-lg h-[200px]"
-            src={`https://theroom306.com${items.user.image}`}
+            src={`https://backend.theroom306.com${items.user.image}`}
             alt=""
           />
         </Link>

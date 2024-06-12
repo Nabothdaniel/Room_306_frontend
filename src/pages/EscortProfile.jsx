@@ -91,7 +91,7 @@ const EscortProfile = () => {
           <div className="flex items-start min-w-[600px] text-white">
             <img
               className="size-[60px] rounded-full"
-              src={`https://theroom306.com${user?.profile?.user.image}`}
+              src={`https://backend.theroom306.com${user?.profile?.user.image}`}
               alt=""
             />
             <div className="ml-3">

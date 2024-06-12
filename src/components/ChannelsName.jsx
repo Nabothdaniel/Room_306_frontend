@@ -50,7 +50,7 @@ const ChannelsName = () => {
           >
             <img
               className="size-[48px] rounded-full"
-              src={`https://theroom306.com${item.image}`}
+              src={`https://backend.theroom306.com${item.image}`}
               alt=""
             />
             <div className="pl-4 md:block md:w-auto flex justify-between items-center w-full">
@@ -88,13 +88,13 @@ const ChannelsName = () => {
               (users?.user?.username || users?.username) ? (
                 <img
                   className="size-[48px] rounded-full"
-                  src={`https://theroom306.com${item.recipient.image}`}
+                  src={`https://backend.theroom306.com${item.recipient.image}`}
                   alt=""
                 />
               ) : (
                 <img
                   className="size-[48px] rounded-full"
-                  src={`https://theroom306.com${item.sender.image}`}
+                  src={`https://backend.theroom306.com${item.sender.image}`}
                   alt=""
                 />
               )}

@@ -43,7 +43,7 @@ export const ProfileSwiper = () => {
             <SwiperSlide className="mb-10 swiper-1" key={index}>
               <img
                 className="md:w-[100%]  object-cover h-[403px] rounded-xl "
-                src={`https://theroom306.com${item.photo}`}
+                src={`https://backend.theroom306.com${item.photo}`}
                 alt=""
               />
             </SwiperSlide>

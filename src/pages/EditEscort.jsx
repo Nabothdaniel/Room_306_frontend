@@ -103,8 +103,8 @@ const EditEscort = () => {
     try {
       const res = await edit(formData).unwrap();
       toast.success(res.message);
-      navigate("/profile");
-      window.location.reload(true);
+      // navigate("/profile");
+      // window.location.reload(true);
     } catch (err) {
       console.log(err);
     }

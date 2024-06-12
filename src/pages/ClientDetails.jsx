@@ -154,7 +154,7 @@ const ClientDetails = () => {
       setLoad(true);
       try {
         const res = await axios.post(
-          "https://theroom306.com/api/auth/register_client/",
+          "https://backend.theroom306.com/api/auth/register_client/",
           formData,
           {
             headers: {

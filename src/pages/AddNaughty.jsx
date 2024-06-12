@@ -29,7 +29,7 @@ const AddNaughty = () => {
       setLoad(true);
       try {
         const res = await axios.post(
-          "https://theroom306.com/api/escort/upload-video/",
+          "https://backend.theroom306.com/api/escort/upload-video/",
           { ...formData, video },
           {
             headers: {

@@ -52,7 +52,7 @@ const SingleBlog = () => {
               </div>
               <img
                 className="md:max-h-[550px] mb-4 max-h-[300px] object-cover rounded-xl"
-                src={`https://theroom306.com${data.featured_image}`}
+                src={`https://backend.theroom306.com${data.featured_image}`}
                 alt=""
               />
               <p className="text-[#DADADA] text-[14px] md:text-base">

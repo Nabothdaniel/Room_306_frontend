@@ -21,7 +21,7 @@ const ProfileEscortGallery = ({ galleryClass, data }) => {
           <img
             className="rounded-xl h-[300px] object-cover"
             key={index}
-            src={`https://theroom306.com${item.photo}`}
+            src={`https://backend.theroom306.com${item.photo}`}
           />
         );
       })}

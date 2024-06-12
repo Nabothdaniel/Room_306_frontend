@@ -21,7 +21,7 @@ const EscortBookItem = ({ book }) => {
   const handleAccept = async () => {
     try {
       const res = await axios.put(
-        `https://theroom306.com/api/booking/accept_decline/${book.id}/`,
+        `https://backend.theroom306.com/api/booking/accept_decline/${book.id}/`,
         accept,
         {
           headers: {
@@ -44,7 +44,7 @@ const EscortBookItem = ({ book }) => {
   const handleDecline = async () => {
     try {
       const res = await axios.put(
-        `https://theroom306.com/api/booking/accept_decline/${book.id}/`,
+        `https://backend.theroom306.com/api/booking/accept_decline/${book.id}/`,
         cancel,
         {
           headers: {
@@ -63,7 +63,7 @@ const EscortBookItem = ({ book }) => {
   const handleComplete = async () => {
     try {
       const res = await axios.put(
-        `https://theroom306.com/api/booking/complete/${book.id}/`,
+        `https://backend.theroom306.com/api/booking/complete/${book.id}/`,
         complete,
         {
           headers: {
@@ -87,7 +87,7 @@ const EscortBookItem = ({ book }) => {
       >
         <img
           className="size-[50px] rounded-full"
-          src={`https://theroom306.com${book?.client?.image}`}
+          src={`https://backend.theroom306.com${book?.client?.image}`}
           alt=""
         />
         {book?.client?.display_name}

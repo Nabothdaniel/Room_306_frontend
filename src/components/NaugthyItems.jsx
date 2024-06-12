@@ -14,7 +14,7 @@ const NaugthyItems = ({ items }) => {
     >
       <video
         className="h-[300px] w-full object-cover rounded-lg"
-        src={`https://theroom306.com${items.video}`}
+        src={`https://backend.theroom306.com${items.video}`}
         autoPlay
       ></video>
 
@@ -23,7 +23,7 @@ const NaugthyItems = ({ items }) => {
           <div className="flex z-[999999]">
             <img
               className="size-[40px] rounded-full"
-              src={`https://theroom306.com${items.escort.user.image}`}
+              src={`https://backend.theroom306.com${items.escort.user.image}`}
               alt=""
             />
             <div className="text-white ml-3">

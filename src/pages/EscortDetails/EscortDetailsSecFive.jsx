@@ -23,7 +23,7 @@ const EscortDetailsSecFive = () => {
       setLoad(true);
       try {
         const res = await axios.post(
-          "https://theroom306.com/api/auth/register_escort/",
+          "https://backend.theroom306.com/api/auth/register_escort/",
           {
             ...data,
             verification_image: VImage,

@@ -29,7 +29,7 @@ const Comment = ({ commentClass, handleComment }) => {
   const handleSend = async () => {
     try {
       const res = await axios.post(
-        `https://theroom306.com/api/escort/escort/video_comment/${id}/`,
+        `https://backend.theroom306.com/api/escort/escort/video_comment/${id}/`,
         { comment: message },
         {
           headers: {

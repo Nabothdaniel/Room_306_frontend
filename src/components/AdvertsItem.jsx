@@ -32,7 +32,7 @@ const AdvertsItem = ({ items }) => {
     if (users) {
       try {
         const res = await axios.post(
-          "https://theroom306.com/api/conversations/start/",
+          "https://backend.theroom306.com/api/conversations/start/",
           { recipient_id: items.user.username },
           {
             headers: {
@@ -62,7 +62,7 @@ const AdvertsItem = ({ items }) => {
       <div className="flex items-center sm:items-start  ">
         <img
           className="sm:size-[150px] size-[48px] object-cover rounded-full"
-          src={`https://theroom306.com${items.user.image}`}
+          src={`https://backend.theroom306.com${items.user.image}`}
           alt=""
         />
         <div className="ml-3">

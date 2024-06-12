@@ -25,7 +25,7 @@ const BookingModel = ({ bookClass, handleBook, user }) => {
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
-        `https://theroom306.com/api/booking/book/${user.profile.id}/`,
+        `https://backend.theroom306.com/api/booking/book/${user.profile.id}/`,
         formData,
         {
           headers: {

@@ -14,7 +14,7 @@ const Media = ({ mediaClass }) => {
 
   const formData = new FormData();
   formData.append("image", image);
-  formData.append("userId", user.id);
+  formData.append("userId", user.profile.user.id);
 
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const Media = ({ mediaClass }) => {
   const uploadImage = async () => {
     try {
       const res = await axios.put(
-        "https://theroom306.com/api/profile/upload-photo/",
+        "https://backend.theroom306.com/api/profile/upload-photo/",
         formData,
         {
           headers: {

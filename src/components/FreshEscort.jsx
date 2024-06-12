@@ -13,7 +13,7 @@ const FreshEscort = ({ items }) => {
     >
       <img
         className="rounded-lg h-[170px] object-cover"
-        src={`https://theroom306.com${items.user.image}`}
+        src={`https://backend.theroom306.com${items.user.image}`}
         alt=""
       />
       <div className="flex justify-between py-3">

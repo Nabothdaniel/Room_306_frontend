@@ -158,7 +158,7 @@ const UpdateRoom = () => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         const res = await axios.put(
-          `https://theroom306.com/api/room/${room.id}/update/`,
+          `https://backend.theroom306.com/api/room/${room.id}/update/`,
           formData,
           {
             headers: {
@@ -492,7 +492,7 @@ const UpdateRoom = () => {
                   ) : (
                     <img
                       className=" "
-                      src={`https://theroom306.com${room.cover_image}`}
+                      src={`https://backend.theroom306.com${room.cover_image}`}
                       alt=""
                     />
                   )}

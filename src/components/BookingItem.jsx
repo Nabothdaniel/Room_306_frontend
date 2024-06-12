@@ -17,7 +17,7 @@ const BookingItem = ({ book }) => {
   const handleDecline = async () => {
     try {
       const res = await axios.put(
-        `https://theroom306.com/api/booking/accept_decline/${book.id}/`,
+        `https://backend.theroom306.com/api/booking/accept_decline/${book.id}/`,
         cancel,
         {
           headers: {
@@ -45,7 +45,7 @@ const BookingItem = ({ book }) => {
         <Link to={`/escort/${book.escort.username}`}>
           <img
             className="size-[50px] rounded-full"
-            src={`https://theroom306.com${book.escort.image}`}
+            src={`https://backend.theroom306.com${book.escort.image}`}
             alt=""
           />
         </Link>
@@ -67,7 +67,6 @@ const BookingItem = ({ book }) => {
         {book.status}
       </p>
       <div className="w-[300px] text-center flex justify-center gap-x-3">
-      
         {book.status != "completed" && book.status != "cancelled" && (
           <p
             onClick={handleDecline}

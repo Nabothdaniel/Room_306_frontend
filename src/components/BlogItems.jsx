@@ -13,7 +13,7 @@ const BlogItems = ({ items }) => {
     <div className="bg-[#1E1E1E] h-full rounded-xl p-3">
       <img
         className="rounded-xl  h-[230px] object-cover"
-        src={`https://theroom306.com${items.featured_image}`}
+        src={`https://backend.theroom306.com${items.featured_image}`}
         alt=""
       />
       <div className="text-white pt-4">

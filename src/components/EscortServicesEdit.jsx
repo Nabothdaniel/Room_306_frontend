@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const EscortServicesEdit = ({ serviceClass }) => {
   const users = JSON.parse(localStorage.getItem("details"));
   const { data, isLoading } = useServicesQuery();
+
   const [formData, setFormData] = useState([]);
   const [addServices] = useAddServicesMutation();
   const [error, setError] = useState("");
@@ -15,7 +16,7 @@ const EscortServicesEdit = ({ serviceClass }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setFormData([...users?.services?.map((item) => item.id)]);
+    setFormData([...users?.profile?.services?.map((item) => item.id)]);
   }, [data]);
 
   if (isLoading) {
@@ -28,7 +29,7 @@ const EscortServicesEdit = ({ serviceClass }) => {
       setFormData([...formData, Number(e.target.id)]);
       //console.log(services);
     } else {
-      setFormData(formData.filter((item) => item != Number(e.target.id)));
+      setFormData(formData?.filter((item) => item != Number(e.target.id)));
     }
   };
 
@@ -64,7 +65,7 @@ const EscortServicesEdit = ({ serviceClass }) => {
       </h3>
 
       <div className="grid md:grid-cols-2 text-white lg:grid-cols-3 gap-x-1 gap-y-3">
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           return (
             <label key={index} className="checkContainer">
               {item.name}
@@ -79,8 +80,6 @@ const EscortServicesEdit = ({ serviceClass }) => {
             </label>
           );
         })}
-
-       
       </div>
       <p className="py-1 text-[12px] text-red-500">{error}</p>
       <div className="flex justify-end">

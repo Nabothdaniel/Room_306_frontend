@@ -146,7 +146,7 @@ const AddEvents = () => {
       if (!events) {
         try {
           const res = await axios.post(
-            "https://theroom306.com/api/events/create/",
+            "https://backend.theroom306.com/api/events/create/",
             formData,
             {
               headers: {
@@ -182,7 +182,7 @@ const AddEvents = () => {
       if (events) {
         try {
           const res = await axios.put(
-            `https://theroom306.com/api/events/${events.id}/update/`,
+            `https://backend.theroom306.com/api/events/${events.id}/update/`,
             formData,
             {
               headers: {
@@ -479,7 +479,7 @@ const AddEvents = () => {
                     <span>
                       <img
                         className="rounded-xl "
-                        src={`https://room35backend.onrender.com${events.cover_image}`}
+                        src={`https://backend.theroom306.com${events.cover_image}`}
                         alt=""
                       />
                     </span>

@@ -25,7 +25,7 @@ const NaughtProfileItem = ({ items }) => {
       <Link to={`/naughty-videos/${items.id}`}>
         <video
           className="h-[300px] w-full object-cover rounded-lg"
-          src={`https://theroom306.com${items.video}`}
+          src={`https://backend.theroom306.com${items.video}`}
         ></video>
       </Link>
 
@@ -34,7 +34,7 @@ const NaughtProfileItem = ({ items }) => {
           <div className="flex z-[999999]">
             <img
               className="size-[40px] rounded-full"
-              src={`https://theroom306.com${items.escort.user.image}`}
+              src={`https://backend.theroom306.com${items.escort.user.image}`}
               alt=""
             />
             <div className="text-white ml-3">

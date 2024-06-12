@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const ApiSlice = createApi({
   reducerPath: "Api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://theroom306.com/api/",
+    baseUrl: "https://backend.theroom306.com/api/",
   }),
   refetchOnReconnect: true,
   refetchOnFocus: true,
