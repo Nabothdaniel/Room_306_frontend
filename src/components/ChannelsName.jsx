@@ -115,46 +115,7 @@ const ChannelsName = () => {
         );
       })}
 
-      {/* <NavLink
-        to={"/channels/naughty-room"}
-        className="flex  rounded-[12px] hover:bg-[#202D2C] duration-700 p-[12px] text-white items-center"
-      >
-        <img className="size-[32px]" src={Discussion} alt="" />
-        <div className="pl-4 md:block md:w-auto flex justify-between items-center w-full">
-          <p className="font-semibold">Discussion</p>
-          <p className="text-[12px] text-[#DADADA]">11 hrs ago</p>
-        </div>
-      </NavLink>
-      <NavLink
-        to={"/channels/naughty-room"}
-        className="flex  rounded-[12px] hover:bg-[#202D2C] duration-700 p-[12px] text-white items-center"
-      >
-        <img className="size-[32px]" src={Erotic} alt="" />
-        <div className="pl-4 md:block md:w-auto flex justify-between items-center w-full">
-          <p className="font-semibold">Erotic Stories</p>
-          <p className="text-[12px] text-[#DADADA]">11 hrs ago</p>
-        </div>
-      </NavLink>
-      <NavLink
-        to={"/channels/naughty-room"}
-        className="flex  rounded-[12px] hover:bg-[#202D2C] duration-700 p-[12px] text-white items-center"
-      >
-        <img className="size-[32px]" src={Testimonial} alt="" />
-        <div className="pl-4 md:block md:w-auto flex justify-between items-center w-full">
-          <p className="font-semibold">Testimonial</p>
-          <p className="text-[12px] text-[#DADADA]">11 hrs ago</p>
-        </div>
-      </NavLink>
-      <NavLink
-        to={"/channels/naughty-room"}
-        className="flex  rounded-[12px] hover:bg-[#202D2C] duration-700 p-[12px] text-white items-center"
-      >
-        <img className="size-[32px]" src={Louge} alt="" />
-        <div className="pl-4 md:block md:w-auto flex justify-between items-center w-full">
-          <p className="font-semibold">Louge</p>
-          <p className="text-[12px] text-[#DADADA]">11 hrs ago</p>
-        </div>
-      </NavLink> */}
+     
     </div>
   );
 };

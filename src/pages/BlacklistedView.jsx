@@ -69,30 +69,7 @@ const BlacklistedView = () => {
                         {items.mobile_number}
                       </span>
                     </p>
-                    {/* <p className="font-semibold ">
-                      Sex:{" "}
-                      <span className="font-normal text-[14px] text-white/80">
-                        
-                      </span>
-                    </p> */}
-                    {/* <p className="font-semibold ">
-                      Age Range:{" "}
-                      <span className="font-normal text-[14px] text-white/80">
-                        28 - 30
-                      </span>
-                    </p> */}
-                    {/* <p className="font-semibold ">
-                      Height:{" "}
-                      <span className="font-normal text-[14px] text-white/80">
-                        Not too tall
-                      </span>
-                    </p>
-                    <p className="font-semibold ">
-                      Build:{" "}
-                      <span className="font-normal text-[14px] text-white/80">
-                        Huge
-                      </span>
-                    </p> */}
+                    
                     <p className="font-semibold ">
                       Crime Committed:{" "}
                       <span className="font-normal text-[14px] text-white/80">
@@ -109,33 +86,7 @@ const BlacklistedView = () => {
                     {data?.report?.details}
                   </p>
                 </div>
-                {/* <div className="border-2 flex items-center text-white border-neutral-600 py-5 px-6 rounded-xl mx-4 mt-6">
-                  <img className="size-[60px] rounded-full" src={User} alt="" />
-                  <div className="ml-4">
-                    <p className="text-[20px] font-semibold">Prexy Frosh</p>
-                    <p className="text-[14px] text-white/80 pt-1">
-                      why will agree to fuck without payment first
-                    </p>
-                  </div>
-                </div>
-                <div className="mx-4 mt-8">
-                  <TextArea
-                    labelValue={"Comments"}
-                    required={""}
-                    inputName={"comments"}
-                    inputClass={
-                      "p-3 rounded-xl outline-none text-[#102127] placeholder-[#102127]"
-                    }
-                    holder={"Leave your comment please"}
-                    col={""}
-                    row={"7"}
-                  />
-                </div>
-                <div className="flex justify-end px-4">
-                  <button className="bg-[#E9CB50] block text-center w-[100%] py-3 md:py-4 md:w-[200px] font-semibold mt-5 rounded-xl">
-                    Leave a comment
-                  </button>
-                </div> */}
+                
               </div>
             </div>
             <div>

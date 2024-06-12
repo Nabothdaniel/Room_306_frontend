@@ -3,16 +3,8 @@ import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import Arrow from "../images/arrow-left.svg";
-import FavoriteEscort from "../components/FavoriteEscort";
-import FavoriteVideo from "../components/FavoriteVideo";
-import { useMyFavoriteQuery } from "../redux/EscortApi";
-import Loading from "../components/Loading";
-import { useFavoriteTourQuery } from "../redux/tourApi";
-import FavoriteTour from "../components/FavoriteTour";
-import { useFavoriteAdvertQuery, useMyAdvertQuery } from "../redux/AdvertSlice";
-import FavoriteAdvert from "../components/FavoriteAdvert";
+
 import Footer from "../components/Footer";
-import MyAdvertsError from "./MyAdvertsError";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -31,9 +23,9 @@ const reducer = (state, action) => {
   }
 };
 
-const MyAdverts = () => {
+const MyAdvertsError = () => {
   const details = JSON.parse(localStorage.getItem("details"));
-  const { data, isLoading } = useMyAdvertQuery();
+
   const [state, dispatch] = useReducer(reducer, {
     open1: true,
     open2: false,
@@ -47,14 +39,6 @@ const MyAdverts = () => {
       return;
     }
   }, []);
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (!data) {
-    return <MyAdvertsError />;
-  }
 
   return (
     <div className="block md:flex overflow-x-clip max-w-[1740px] mx-auto">
@@ -88,9 +72,9 @@ const MyAdverts = () => {
                     state.open1 && "bg-[#1e1e1e]"
                   } `}
                 >
-                  All{" "}
+                  All
                   <span className="bg-white px-2 rounded-full text-black">
-                    {data.length}
+                    0
                   </span>
                 </p>
                 <p
@@ -101,7 +85,7 @@ const MyAdverts = () => {
                 >
                   Looking{" "}
                   <span className="bg-white px-2 rounded-full text-black">
-                    {data.filter((item) => item.i_am == "Looking").length}
+                    0
                   </span>
                 </p>
                 <p
@@ -112,7 +96,7 @@ const MyAdverts = () => {
                 >
                   Offering{" "}
                   <span className="bg-white px-2 rounded-full text-black">
-                    {data.filter((item) => item.i_am == "Offering").length}
+                    0
                   </span>
                 </p>
               </div>
@@ -121,55 +105,27 @@ const MyAdverts = () => {
                   !state.open1 ? "hidden" : ""
                 } py-4 px-5 rounded-b-md grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
               >
-                {data.length == 0 ? (
-                  <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
-                    <p className="text-white md:text-xl ">No Adverts</p>
-                  </div>
-                ) : (
-                  <div className="grid xl:grid-cols-4 xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-                    {data.map((item, index) => {
-                      return <FavoriteAdvert key={index} item={item} />;
-                    })}
-                  </div>
-                )}
+                <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
+                  <p className="text-white md:text-xl ">No Adverts</p>
+                </div>
               </div>
               <div
                 className={`bg-[#1e1e1e] ${
                   !state.open2 ? "hidden" : ""
                 } py-4 px-5 rounded-b-md grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
               >
-                {data.filter((item) => item.i_am == "Looking").length == 0 ? (
-                  <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
-                    <p className="text-white md:text-xl ">No Looking Advert</p>
-                  </div>
-                ) : (
-                  <div className="grid xl:grid-cols-4 xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-                    {data
-                      ?.filter((item) => item.i_am == "Looking")
-                      ?.map((item, index) => {
-                        return <FavoriteAdvert key={index} item={item} />;
-                      })}
-                  </div>
-                )}
+                <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
+                  <p className="text-white md:text-xl ">No Looking Adverts</p>
+                </div>
               </div>
               <div
                 className={`bg-[#1e1e1e] ${
                   !state.open3 ? "hidden" : ""
                 } py-4 px-5 rounded-b-md grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-4`}
               >
-                {data.filter((item) => item.i_am == "Offering").length == 0 ? (
-                  <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
-                    <p className="text-white md:text-xl ">No Looking Advert</p>
-                  </div>
-                ) : (
-                  <div className="grid xl:grid-cols-4 xl:col-span-4 lg:col-span-3 sm:col-span-2 col-span-1 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-                    {data
-                      ?.filter((item) => item.i_am == "Offering")
-                      ?.map((item, index) => {
-                        return <FavoriteAdvert key={index} item={item} />;
-                      })}
-                  </div>
-                )}
+                <div className="flex justify-center items-center xl:col-span-4 lg:col-span-3 sm:col-span-2 h-[20vh]">
+                  <p className="text-white md:text-xl ">No Offering Adverts</p>
+                </div>
               </div>
             </div>
           </div>
@@ -180,4 +136,4 @@ const MyAdverts = () => {
   );
 };
 
-export default MyAdverts;
+export default MyAdvertsError;

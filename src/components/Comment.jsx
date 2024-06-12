@@ -97,24 +97,7 @@ const Comment = ({ commentClass, handleComment }) => {
               type="text"
               value={message}
             />
-            {/* <img
-              onClick={() => document.querySelector(".input").click()}
-              className="size-[24px] ml-1 cursor-pointer"
-              src={Gallery}
-              alt=""
-            />
-            <input
-              type="file"
-              name="file"
-              id="file"
-              className="input"
-              hidden
-              onChange={({ target: { files } }) => {
-                if (files) {
-                  setImage(files[0]);
-                }
-              }}
-            /> */}
+           
           </div>
           <img
             onClick={handleSend}

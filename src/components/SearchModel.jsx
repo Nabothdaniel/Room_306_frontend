@@ -7,6 +7,7 @@ import Loading from "./Loading";
 import { useServicesQuery } from "../redux/ApiSlice";
 import { ImageContext } from "../Hooks/ImageContext";
 import { useNavigate } from "react-router-dom";
+import Ethnicity from "./Ethnicity";
 
 const SearchModel = ({ handleSearch, SearchClass }) => {
   const { setFilter } = useContext(ImageContext);
@@ -279,17 +280,7 @@ const SearchModel = ({ handleSearch, SearchClass }) => {
                   id="ethnicity"
                   onChange={handleChange}
                 >
-                  <option value="">Your Ethnicity</option>
-                  <option>All</option>
-                  <option>Asian</option>
-                  <option>Black</option>
-                  <option>Indian</option>
-                  <option>Latino</option>
-                  <option>Mid Eastern</option>
-                  <option>Mix Race</option>
-                  <option>Other</option>
-                  <option>Others</option>
-                  <option>White</option>
+                  <Ethnicity />
                 </select>
               </div>
             </label>

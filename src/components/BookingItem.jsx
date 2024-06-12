@@ -12,32 +12,7 @@ const BookingItem = ({ book }) => {
     status: "cancelled",
   });
 
-  // const [accept, setAccept] = useState({
-  //   status: "accepted",
-  // });
 
-  // const [complete, setComplete] = useState({
-  //   status: "completed",
-  // });
-
-  // const handleAccept = async () => {
-  //   try {
-  //     const res = await axios.put(
-  //       `https://room35backend.onrender.com/api/booking/accept_decline/${book.id}/`,
-  //       accept,
-  //       {
-  //         headers: {
-  //           Authorization:
-  //             "Bearer " + JSON.parse(localStorage.getItem("token")),
-  //         },
-  //       }
-  //     );
-
-  //     window.location.reload(true);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   const handleDecline = async () => {
     try {
@@ -62,24 +37,7 @@ const BookingItem = ({ book }) => {
     setReview(!review);
   };
 
-  // const handleComplete = async () => {
-  //   try {
-  //     const res = await axios.put(
-  //       `https://room35backend.onrender.com/api/booking/complete/${book.id}/`,
-  //       complete,
-  //       {
-  //         headers: {
-  //           Authorization:
-  //             "Bearer " + JSON.parse(localStorage.getItem("token")),
-  //         },
-  //       }
-  //     );
-
-  //     window.location.reload(true);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  
 
   return (
     <div className="flex pt-5 max-h-[400px] overflow-y-scroll duration-500 pb-4 items-center">
@@ -109,23 +67,7 @@ const BookingItem = ({ book }) => {
         {book.status}
       </p>
       <div className="w-[300px] text-center flex justify-center gap-x-3">
-        {/* {book.status == "pending" && (
-          <p
-            onClick={handleAccept}
-            className="bg-green-300 text-[12px] shadow-2xl  py-1 text-black px-2 rounded-3xl cursor-pointer font-semibold"
-          >
-            Accept
-          </p>
-        )}
-
-        {book.status == "accepted" && (
-          <p
-            onClick={handleComplete}
-            className="bg-green-300 text-[12px] shadow-2xl  py-1 text-black px-2 rounded-3xl cursor-pointer font-semibold"
-          >
-            Complete
-          </p>
-        )} */}
+      
         {book.status != "completed" && book.status != "cancelled" && (
           <p
             onClick={handleDecline}

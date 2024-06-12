@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Frame from "../images/Frame.svg";
@@ -9,37 +9,10 @@ import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import { useGetAllAdvertsQuery } from "../redux/AdvertSlice";
 import Footer from "../components/Footer";
-import AdvertError from "./AdvertError";
 
-const Adverts = () => {
+const AdvertError = () => {
   let user = JSON.parse(localStorage.getItem("details"));
   let users = user?.profile;
-  const { data, isLoading } = useGetAllAdvertsQuery();
-  const [currentPage, setCurrentPage] = useState(0);
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (!data) {
-    return <AdvertError />;
-  }
-
-  if (data.length == 0) {
-    return <AdvertError />;
-  }
-
-  const usersPage = 12;
-
-  const page = currentPage * usersPage;
-
-  const displayAdverts = data
-    .slice(page, page + usersPage)
-    .map((item, index) => {
-      return <AdvertsItem key={index} items={item} />;
-    });
-
-  const pageCount = Math.ceil(data.length / usersPage);
 
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
@@ -60,14 +33,15 @@ const Adverts = () => {
                 </Link>
               )}
             </h1>
-            {/* <p className="text-white cursor-pointer">
+            <p className="text-white cursor-pointer">
               <img className="" src={Input} alt="" />
-            </p> */}
+            </p>
           </div>
-          <div className="grid xl:grid-cols-2 grid-cols-1 gap-4">
-            {displayAdverts}
+          <div className="flex justify-center items-center h-[40vh]">
+            <p className="text-xl md:text-3xl font-semibold text-white">
+              No Adverts Available
+            </p>
           </div>
-          <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
         </div>
         <Footer />
       </div>
@@ -75,4 +49,4 @@ const Adverts = () => {
   );
 };
 
-export default Adverts;
+export default AdvertError;

@@ -165,6 +165,20 @@ const ClientDetails = () => {
         setLoad(false);
         dispatch(setCredentials(res.data?.token));
 
+         setData({
+           country: "",
+           state: "",
+           country_code: "",
+           city: "",
+           image: "",
+           display_name: "",
+           mobile_number: "",
+           email: "",
+           password: "",
+           username: "",
+         });
+         setImage("");
+
         if (res.status == 200) {
           navigate("/");
           window.location.reload(true);
@@ -181,19 +195,7 @@ const ClientDetails = () => {
         }
       }
 
-      // setData({
-      //   country: "",
-      //   state: "",
-      //   country_code: "",
-      //   city: "",
-      //   image: "",
-      //   display_name: "",
-      //   mobile_number: "",
-      //   email: "",
-      //   password: "",
-      //   username: "",
-      // });
-      // setImage("");
+     
     }
   };
 

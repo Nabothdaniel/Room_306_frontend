@@ -1,46 +1,24 @@
 import React, { useState } from "react";
-import AllEscortTags from "./AllEscortTags";
-import Pagination from "./Pagination";
-import EscortItems from "./EscortItems";
 import { useGetAllEscortQuery } from "../redux/EscortApi";
-import Loading from "./Loading";
 import { countries } from "./COUNTRY_DATA.JS";
-import FailEscort from "./FailEscort";
+import Loading from "./Loading";
 
-const AllEscort = () => {
+const FailEscort = () => {
   const [country, setCountry] = useState("");
   const [sexual_orientation, setSexual] = useState("");
   const [display_name, setName] = useState("");
   const [gender, setGender] = useState("");
-  const { data, isLoading } = useGetAllEscortQuery({
-    country,
-    sexual_orientation,
-    display_name,
-    gender,
-  });
-  const [currentPage, setCurrentPage] = useState(0);
+//   const { data, isLoading } = useGetAllEscortQuery({
+//     country,
+//     sexual_orientation,
+//     display_name,
+//     gender,
+//   });
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (!data) {
-    return <FailEscort />;
-  }
-
-  if (data.length == 0) {
-    return <FailEscort />;
-  }
-
-  const usersPage = 8;
-
-  const page = currentPage * usersPage;
-
-  const displayUsers = data.slice(page, page + usersPage).map((item, index) => {
-    return <EscortItems key={index} items={item} />;
-  });
-
-  const pageCount = Math.ceil(data.length / usersPage);
+//   if (isLoading) {
+//     return <Loading />;
+//   }
+    
 
   return (
     <div className="py-14 bg-[#121212] px-2">
@@ -53,8 +31,6 @@ const AllEscort = () => {
         </p>
       </div>
       <div className="overflow-x-scroll md:overflow-x-auto">
-        {/* <AllEscortTags /> */}
-
         <div className="flex justify-between items-center">
           <div className="flex justify-between items-center">
             <label className="bg-[#1F1A1A] w-[300px] mr-3 flex items-center pr-7 justify-between rounded-xl text-[#B29A9A]">
@@ -125,12 +101,11 @@ const AllEscort = () => {
           </label>
         </div>
       </div>
-      <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-8">
-        {displayUsers}
+      <div className="h-[30vh] flex justify-center items-center">
+        <p className="text-xl font-semibold text-white">No Escort Available</p>
       </div>
-      <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
     </div>
   );
 };
 
-export default AllEscort;
+export default FailEscort;

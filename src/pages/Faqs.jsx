@@ -215,19 +215,7 @@ const Faqs = () => {
                     Click delete at the top right of the old photo you wish to
                     delete
                   </li>
-                  {/* <li>upload your appealing and bright pictures.</li>
-                  <li>
-                    Take and upload a verification Photo as shown by the
-                    reference picture.
-                  </li>
-                  <li>
-                    click submit and wait for your profile to be approved.
-                  </li>
-                  <li className="ml-2">
-                    once approved, click buy coin, complete the coin buying
-                    process. once approved, log back in , scroll down and click
-                    ACTIVATE. ITS 10,000 NGN to activate your account
-                  </li> */}
+                  
                 </div>
               )}
             </div>
@@ -293,19 +281,7 @@ const Faqs = () => {
                     </li>
                   </ol>
 
-                  {/* <li>upload your appealing and bright pictures.</li>
-                  <li>
-                    Take and upload a verification Photo as shown by the
-                    reference picture.
-                  </li>
-                  <li>
-                    click submit and wait for your profile to be approved.
-                  </li>
-                  <li className="ml-2">
-                    once approved, click buy coin, complete the coin buying
-                    process. once approved, log back in , scroll down and click
-                    ACTIVATE. ITS 10,000 NGN to activate your account
-                  </li> */}
+                 
                 </div>
               )}
             </div>

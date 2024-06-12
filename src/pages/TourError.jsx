@@ -13,9 +13,8 @@ import EscortOneItems from "../components/EscortOneItems";
 import TourFilter from "../components/TourFilter";
 import { ImageContext } from "../Hooks/ImageContext";
 import Footer from "../components/Footer";
-import TourError from "./TourError";
 
-const Tours = () => {
+const TourError = () => {
   const { filter } = useContext(ImageContext);
 
   const country = filter.tourCountry;
@@ -26,33 +25,9 @@ const Tours = () => {
   let users = useD?.profile;
   const [currentPage, setCurrentPage] = useState(0);
 
-  const { data, isLoading } = useGetFilteredTourQuery({ country, city });
-
   const handleFilter = () => {
     setFilters(!filters);
   };
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (!data) {
-    return <TourError />;
-  }
-
-  if (data.length == 0) {
-    return <TourError />;
-  }
-
-  const usersPage = 12;
-
-  const page = currentPage * usersPage;
-
-  const displayUsers = data.slice(page, page + usersPage).map((item, index) => {
-    return <EscortOneItems key={index} items={item} />;
-  });
-
-  const pageCount = Math.ceil(data.length / usersPage);
 
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
@@ -86,21 +61,22 @@ const Tours = () => {
               </Link>
             </p>
             <div className="flex md:justify-end overflow-x-scroll md:overflow-x-auto md:gap-x-3 gap-x-2">
-              {/* <img className="w-auto" src={Latest} alt="" /> */}
-              {/* <img className="w-auto" src={Expire} alt="" /> */}
+              {/* <img className="w-auto " src={Latest} alt="" /> */}
+              {/* <img className=" w-auto" src={Expire} alt="" /> */}
               <img
                 onClick={handleFilter}
-                className="w-auto cursor-pointer"
+                className=" w-auto cursor-pointer"
                 src={Filter}
                 alt=""
               />
             </div>
           </div>
           <div className=" bg-[#121212]">
-            <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-              {displayUsers}
+            <div className="flex justify-center items-center h-[40vh]">
+              <p className="text-xl md:text-3xl font-semibold text-white">
+                No Tour Available
+              </p>
             </div>
-            <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
           </div>
         </div>
         <Footer />
@@ -113,4 +89,4 @@ const Tours = () => {
   );
 };
 
-export default Tours;
+export default TourError;

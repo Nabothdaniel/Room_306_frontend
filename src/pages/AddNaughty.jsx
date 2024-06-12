@@ -154,17 +154,6 @@ const AddNaughty = () => {
                   value={formData.category}
                   onchange={handleChange}
                 />
-                {/* <Input
-                  labelValue={"Tags"}
-                  labelClass={"font-semibold md:text-base text-[14px] py-2"}
-                  inputType={"text"}
-                  required={"*"}
-                  inputName={"tags"}
-                  inputClass={
-                    " rounded-xl text-[#102127] placeholder-[#102127]"
-                  }
-                  holder={"Enter Tags Here"}
-                /> */}
               </div>
             </div>
             <div className="flex justify-end mt-6">

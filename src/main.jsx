@@ -36,7 +36,7 @@ import EditClient from "./pages/EditClient.jsx";
 import EditEscort from "./pages/EditEscort.jsx";
 import ChangePassword from "./pages/ChangePassword.jsx";
 import MyFavorite from "./pages/MyFavorite.jsx";
-import BlacklistedClients from "./pages/BlacklistedClients.jsx";
+
 import MyTour from "./pages/MyTour.jsx";
 import NaughtyVideoView from "./pages/NaughtyVideoView.jsx";
 import EventsView from "./pages/EventsView.jsx";
@@ -55,7 +55,7 @@ import PersonalChat from "./pages/PersonalChat.jsx";
 import UpdateTours from "./pages/UpdateTour.jsx";
 import UpdateRoom from "./pages/UpdateRoom.jsx";
 import ClientView from "./pages/ClientView.jsx";
-import Hello from "./pages/Hello.jsx";
+
 import Search from "./pages/Search.jsx";
 import NotFound from "./pages/404.jsx";
 import MyAdverts from "./pages/MyAdverts.jsx";
@@ -264,10 +264,6 @@ const router = createBrowserRouter([
       {
         path: "/my-favourites",
         element: <MyFavorite />,
-      },
-      {
-        path: "/my-blacklisted-clients",
-        element: <BlacklistedClients />,
       },
       {
         path: "/my-tours",

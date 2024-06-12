@@ -5,7 +5,7 @@ import { BlogSwiper } from "../components/BlogSwiper";
 import Pagination from "../components/Pagination";
 import Arrow from "../images/arrow-left.svg";
 import { useNavigate, useParams } from "react-router-dom";
-import Video from "../images/demo.mp4";
+
 import Like from "../images/dislike.svg";
 import Message from "../images/messages-2.svg";
 import Love from "../images/Love.svg";

@@ -2,56 +2,20 @@ import React, { useContext, useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Filter from "../images/Input.svg";
-import Pagination from "../components/Pagination";
-import RoomsItem from "../components/RoomsItem";
-import { useGetAllRoomsQuery, useGetFilteredRoomQuery } from "../redux/roomApi";
-import Loading from "../components/Loading";
 import Frame from "../images/Frame.svg";
 import { Link } from "react-router-dom";
 import RoomFilter from "../components/RoomFilter";
-import { useSelector } from "react-redux";
-import { ImageContext } from "../Hooks/ImageContext";
 import Footer from "../components/Footer";
-import RoomError from "./RoomError";
 
-const Rooms = () => {
-  const { filter } = useContext(ImageContext);
-
-  const country = filter.roomCountry;
-  const city = filter.roomCity;
-
+const RoomError = () => {
   let useD = JSON.parse(localStorage.getItem("details"));
   let users = useD?.profile;
-  const { data, isLoading } = useGetFilteredRoomQuery({ country, city });
 
-  const [currentPage, setCurrentPage] = useState(0);
   const [filters, setFilters] = useState(false);
 
   const handleFilter = () => {
     setFilters(!filters);
   };
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (!data) {
-    return <RoomError />;
-  }
-
-  if (data.length == 0) {
-    return <RoomError />;
-  }
-
-  const usersPage = 12;
-
-  const page = currentPage * usersPage;
-
-  const displayRooms = data.slice(page, page + usersPage).map((item, index) => {
-    return <RoomsItem key={index} items={item} />;
-  });
-
-  const pageCount = Math.ceil(data.length / usersPage);
 
   return (
     <div className="block md:flex overflow-x-clip h-screen max-w-[1740px] mx-auto">
@@ -82,10 +46,11 @@ const Rooms = () => {
             </div>
           </div>
           <div className=" bg-[#121212]">
-            <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-              {displayRooms}
+            <div className="flex justify-center items-center h-[40vh]">
+              <p className="text-xl md:text-3xl font-semibold text-white">
+                No Room To Let Available
+              </p>
             </div>
-            <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
           </div>
         </div>
         <Footer />
@@ -98,4 +63,4 @@ const Rooms = () => {
   );
 };
 
-export default Rooms;
+export default RoomError;
