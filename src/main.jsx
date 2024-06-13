@@ -36,7 +36,6 @@ import EditClient from "./pages/EditClient.jsx";
 import EditEscort from "./pages/EditEscort.jsx";
 import ChangePassword from "./pages/ChangePassword.jsx";
 import MyFavorite from "./pages/MyFavorite.jsx";
-
 import MyTour from "./pages/MyTour.jsx";
 import NaughtyVideoView from "./pages/NaughtyVideoView.jsx";
 import EventsView from "./pages/EventsView.jsx";
@@ -59,6 +58,7 @@ import ClientView from "./pages/ClientView.jsx";
 import Search from "./pages/Search.jsx";
 import NotFound from "./pages/404.jsx";
 import MyAdverts from "./pages/MyAdverts.jsx";
+import TranslateComponent from "./components/Translate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -140,6 +140,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/hello",
+        element: <TranslateComponent />,
       },
       {
         path: "/reset-password",

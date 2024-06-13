@@ -11,6 +11,7 @@
 
 body {
   font-family: "Work Sans", sans-serif;
+  top: 0px !important;
 }
 
 .swiper {
@@ -25,6 +26,32 @@ body {
 
 ::-webkit-scrollbar {
   width: 5px;
+}
+
+#\:0\.targetLanguage {
+  background-color: white !important;
+  padding-right: 5px;
+  border-radius: 20px 0 0 20px;
+}
+
+.goog-te-gadget span {
+  display: none;
+}
+
+.goog-te-combo {
+  /* padding: 5px; */
+  /* padding: 5px; */
+  /* height: 100px; */
+  padding: 3px;
+  padding-left: 5px;
+  height: 100%;
+  background-color: transparent;
+  outline: none;
+}
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  visibility: hidden !important;
+  display: none;
 }
 
 /* .active {
@@ -423,6 +450,10 @@ img {
 
   .header-left {
     padding-right: 0.5rem;
+  }
+
+  #\:0\.targetLanguage {
+    border-radius: 20px;
   }
 
   .header-left input {
