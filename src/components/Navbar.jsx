@@ -16,6 +16,7 @@ import { differenceInDays, parse, parseISO } from "date-fns";
 import toast from "react-hot-toast";
 import Notification from "./Notification";
 import { useNotificationQuery } from "../redux/ApiSlice";
+import TranslateComponent from "./Translate";
 
 const Navbar = ({ Headervalue, textValue }) => {
   let user = JSON.parse(localStorage.getItem("details"));
@@ -92,7 +93,7 @@ const Navbar = ({ Headervalue, textValue }) => {
             text={textValue}
           />
         </div>
-
+        {/* <TranslateComponent /> */}
         <div className="flex items-center md:hidden">
           <img
             onClick={() => dispatch(navClick(!open))}
@@ -128,6 +129,7 @@ const Navbar = ({ Headervalue, textValue }) => {
               See Coins
             </button>
           )}
+
           {user_id && (
             <div className="relative">
               <div
