@@ -95,7 +95,7 @@ const EscortDetailsOne = () => {
       errors.name = "Display name is required";
     }
 
-    if (!Number(data.mobile_number) || data.mobile_number.length < 11) {
+    if (!Number(data.mobile_number)) {
       errors.number = "Mobile Number is invalid";
     }
 
