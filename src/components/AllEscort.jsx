@@ -18,6 +18,8 @@ const AllEscort = () => {
     display_name,
     gender,
   });
+
+  
   const [currentPage, setCurrentPage] = useState(0);
 
   if (isLoading) {
@@ -31,6 +33,13 @@ const AllEscort = () => {
   if (data.length == 0) {
     return <FailEscort />;
   }
+
+  const clear = () => {
+    setCountry("");
+    setSexual("");
+    setName("");
+    setGender("");
+  };
 
   const usersPage = 8;
 
@@ -48,7 +57,10 @@ const AllEscort = () => {
         <h1 className="text-white font-semibold text-[18px] md:text-[24px]">
           All Escort
         </h1>
-        <p className="text-white cursor-pointer text-[14px] md:text-base">
+        <p
+          onClick={clear}
+          className="text-white cursor-pointer text-[14px] md:text-base"
+        >
           See all
         </p>
       </div>

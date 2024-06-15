@@ -5,8 +5,9 @@ import User from "../images/user-tick.svg";
 import { FaStar } from "react-icons/fa";
 import Slider1 from "../images/slider1.png";
 import { Link } from "react-router-dom";
-import { useFavoriteMutation, useFollowMutation } from "../redux/EscortApi";
+import { useFavoriteMutation } from "../redux/EscortApi";
 import toast from "react-hot-toast";
+
 
 const EscortItems = ({ items }) => {
   const [favorite] = useFavoriteMutation();
@@ -25,7 +26,7 @@ const EscortItems = ({ items }) => {
       <div className="bg-[#1E1E1E] relative overflow-hidden block text-white h-auto  p-3 rounded-lg">
         <Link className="block" to={`/escort/${items.user.username}`}>
           <img
-            className="rounded-lg h-[200px]"
+            className="rounded-lg object-cover h-[200px]"
             src={`https://backend.theroom306.com${items.user.image}`}
             alt=""
           />

@@ -4,6 +4,8 @@ import EscortOne from "./EscortOne";
 import EscortBanner from "./EscortBanner";
 import AllEscort from "./AllEscort";
 import Footer from "./Footer";
+import { Suspense } from "react";
+import Loading from "./Loading";
 
 const MainContent = () => {
   return (
@@ -12,9 +14,16 @@ const MainContent = () => {
         Headervalue={"Welcome to Room 306"}
         textValue={"Explore our escort at your own pace"}
       />
-      <EscortOne />
+
+      <Suspense fallback={<Loading />}>
+        <EscortOne />
+      </Suspense>
+
       <EscortBanner />
-      <AllEscort />
+      <Suspense fallback={<Loading />}>
+        <AllEscort />
+      </Suspense>
+
       <Footer />
     </div>
   );
