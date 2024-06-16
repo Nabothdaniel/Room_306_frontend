@@ -32,7 +32,7 @@ const NaughtyVideoView = () => {
   const { data, isLoading } = useGetVideoByIdQuery(id);
   const [comment, setComment] = useState(false);
 
-  if (isLoading || load) {
+  if (isLoading) {
     return <Loading />;
   }
 
@@ -160,7 +160,7 @@ const NaughtyVideoView = () => {
                 >
                   <img className="md:size-8 size-7" src={Message} alt="" />
                   <span className="text-[20px] font-semibold">
-                    ({comments.length})
+                    ({comments?.length})
                   </span>
                 </div>
               </div>

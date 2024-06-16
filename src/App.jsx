@@ -93,10 +93,12 @@ const App = () => {
           <Outlet />
         </ImageContext.Provider>
       </div>
-      <PopUp
-        popMenu={handlePop}
-        popClass={`${pop ? "-translate-y-[120vh]" : "translate-y-0"}`}
-      />
+      {users?.user?.user_type == "escort" && (
+        <PopUp
+          popMenu={handlePop}
+          popClass={`${pop ? "-translate-y-[120vh]" : "translate-y-0"}`}
+        />
+      )}
     </>
   );
 };

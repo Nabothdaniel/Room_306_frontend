@@ -61,7 +61,7 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
   };
 
   return (
-    <div className="grid md:grid-cols-2 md:px-4 md:pt-4 py-4 px-6 gap-x-6 h-fit pb-7 md:pb-4  rounded-xl bg-[#1E1E1E] ">
+    <div className="grid md:grid-cols-2 md:px-4 md:pt-4 pt-2 px-6 gap-x-6 h-fit pb-7 md:pb-4  rounded-xl bg-[#1E1E1E] ">
       {user.gallery.length > 0 ? (
         <EscortProfileSwiper data={user.gallery} />
       ) : (

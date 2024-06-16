@@ -22,10 +22,6 @@ const Comment = ({ commentClass, handleComment }) => {
     });
   }, [data]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   const handleSend = async () => {
     try {
       const res = await axios.post(
@@ -68,7 +64,7 @@ const Comment = ({ commentClass, handleComment }) => {
           {/* {messages?.map((item, index) => {
             return <NaugthyChannel key={index} item={item} />;
           })} */}
-          {data.map((item, index) => {
+          {data?.map((item, index) => {
             const reviewDate = parseISO(item.createdAt);
             const formattedDate = format(
               reviewDate,
@@ -97,7 +93,6 @@ const Comment = ({ commentClass, handleComment }) => {
               type="text"
               value={message}
             />
-           
           </div>
           <img
             onClick={handleSend}

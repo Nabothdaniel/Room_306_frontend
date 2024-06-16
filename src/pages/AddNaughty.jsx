@@ -89,6 +89,7 @@ const AddNaughty = () => {
                   name="file"
                   id="file"
                   className="input"
+                  accept=" .mp4, .avi"
                   hidden
                   onChange={({ target: { files } }) => {
                     if (files) {

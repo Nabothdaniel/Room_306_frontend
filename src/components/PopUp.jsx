@@ -6,19 +6,19 @@ import { useNavigate } from "react-router-dom";
 const PopUp = ({ popClass, popMenu }) => {
   const navigate = useNavigate();
   let users = JSON.parse(localStorage.getItem("details"));
-  const [day, setDay] = useState("");
 
-  useEffect(() => {
-    if (users?.user?.user_type == "escort") {
-      const birthDate = parseISO(
-        users?.user?.createdAt,
-        "yyyy-MM-dd",
-        new Date()
-      );
-      const currentDate = new Date();
-      setDay(differenceInDays(birthDate, currentDate));
-    }
-  }, []);
+  if (!users?.profile?.user?.user_type) {
+    return;
+  }
+
+  const birthDate = parseISO(
+    users?.profile?.user?.createdAt,
+    "yyyy-MM-dd",
+    new Date()
+  );
+  const currentDate = new Date();
+
+  const day = differenceInDays(birthDate, currentDate);
 
   return (
     <div
