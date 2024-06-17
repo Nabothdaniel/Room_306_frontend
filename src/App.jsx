@@ -70,7 +70,7 @@ const App = () => {
         new Date()
       );
       const currentDate = new Date();
-      setDay(differenceInDays(birthDate, currentDate));
+      setDay(differenceInDays(currentDate, birthDate));
       if (pay?.available_coin <= 0) {
         setPop(false);
       }

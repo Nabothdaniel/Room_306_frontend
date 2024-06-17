@@ -18,7 +18,7 @@ const PopUp = ({ popClass, popMenu }) => {
   );
   const currentDate = new Date();
 
-  const day = differenceInDays(birthDate, currentDate);
+  const day = differenceInDays(currentDate, birthDate);
 
   return (
     <div
