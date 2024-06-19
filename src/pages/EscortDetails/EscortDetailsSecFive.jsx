@@ -91,7 +91,7 @@ const EscortDetailsSecFive = () => {
               <div className="text-white pt-8">
                 <h3 className="md:text-lg pb-4 lg:max-w-[900px]">
                   WRITE YOUR USERNAME (EG SHARON101 , BARBIE44 , WHATEVER YOUR
-                  USERNAME IS) AND CODEDRUNS, ON A PIECE OF PAPER, TAKE A SELFIE
+                  USERNAME IS) AND ROOM 306, ON A PIECE OF PAPER, TAKE A SELFIE
                   HOLDING THE PAPER UP
                 </h3>
                 <ol className="unorder list-decimal pl-8 text-white">

@@ -7,7 +7,7 @@ import Slider1 from "../images/slider1.png";
 import { Link } from "react-router-dom";
 import { useFavoriteMutation } from "../redux/EscortApi";
 import toast from "react-hot-toast";
-
+import { MdVerified } from "react-icons/md";
 
 const EscortItems = ({ items }) => {
   const [favorite] = useFavoriteMutation();
@@ -57,12 +57,11 @@ const EscortItems = ({ items }) => {
         </div>
         <Link className="block" to={`/escort/${items.user.username}`}>
           <p className="lg:text-[15px] text-[12px] text-wrap  pb-2 text-[#DADADA]">
-            {items.heading}
+            {items.heading.substring(0, 50) + '...'}
           </p>
           <div className="flex justify-between pb-2 items-center">
             <p className="flex justify-between items-center">
-              <FaStar className="text-[#FFD910] mr-2" />
-              4.9
+              {items?.is_verified && <MdVerified className="text-yellow-500" />}
             </p>
             <p className="flex justify-between items-center">
               <img src={User} />{" "}

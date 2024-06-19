@@ -12,6 +12,7 @@ import Media from "../components/Media";
 import { ProfileSwiper } from "../components/ProfileSwiper";
 import { Link } from "react-router-dom";
 import ProfileViewItems from "../components/ProfileViewItems";
+import { MdVerified } from "react-icons/md";
 import {
   parseISO,
   format,
@@ -45,7 +46,7 @@ const EscortProfile = () => {
   const [day, setDay] = useState(0);
 
   useEffect(() => {
-    if (user?.user?.user_type == "escort") {
+    if (user?.profile?.user?.user_type == "escort") {
       const cDate = parseISO(
         user?.profile?.user?.createdAt,
         "yyyy-MM-dd",
@@ -119,8 +120,13 @@ const EscortProfile = () => {
               </p>
             </div>
             <div>
-              {user?.profile?.is_verified || (
-                <p className="bg-[#E9CB50] text-black/70 text-[12px] md:text-base font-semibold rounded-xl py-1 text-center min-w-[100px] md:min-w-[130px]">
+              {user?.profile?.is_verified ? (
+                <p className="flex items-center gap-3">
+                  <MdVerified className="text-yellow-500" />{" "}
+                  <span>Verified</span>
+                </p>
+              ) : (
+                <p className="bg-[#E9CB50] text-black/70 text-[12px] md:text-base font-semibold rounded-lg py-1 text-center min-w-[100px] md:min-w-[130px]">
                   Under Review
                 </p>
               )}
@@ -172,11 +178,11 @@ const EscortProfile = () => {
                 disabled
                 name="boost"
                 id="boost"
-                value={7 - day}
+                value={7 - Math.abs(day)}
                 max={7}
               />
               <p className="font-semibold text-[13px] md:text-[15px]">
-                {7 - day} days{" "}
+                {7 - Math.abs(day)} days{" "}
                 <span className="font-normal">left in Boost</span>
               </p>
             </label>

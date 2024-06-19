@@ -37,8 +37,8 @@ const PopUp = ({ popClass, popMenu }) => {
 
         <div className="px-7 py-6">
           <p className="text-center font-semibold">
-            You have less than {7 - day} days to make payment to activate your
-            account{" "}
+            You have less than {7 - Math.abs(day)} days to make payment to
+            activate your account{" "}
           </p>
 
           <button

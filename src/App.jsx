@@ -78,7 +78,7 @@ const App = () => {
   }, [pay, data]);
 
   const handlePop = () => {
-    if (day < 7) {
+    if (Math.abs(day) < 7) {
       setPop(true);
     } else {
       toast.error("Please make payment to activate your account");

@@ -101,7 +101,33 @@ const Faqs = () => {
                 <ol
                   className={`list-decimal text-[13px] md:text-base duration-500 transition-all pt-3 pl-4 unorder text-[#E5C9C9]`}
                 >
-                  Room306 is an exquisite companionship website
+                  <p>Room306 is an exquisite companionship website</p>
+                  <p className="pt-4">
+                    <span className="font-semibold">
+                      {" "}
+                      Unlocking TheRoom306 Secret:
+                    </span>{" "}
+                    At www.TheRoom306.com, home to approximately 100 thousand
+                    escorts, a crucial consideration emerges: What are the odds
+                    that an eager client, driven by desire, would navigate
+                    through over 50 pages in search of an escort?In truth, the
+                    majority of clients opt for convenience, selecting escorts
+                    prominently featured on the front pages. Their exploration
+                    might extend to the second, third, fourth, and fifth pages,
+                    but statistical probability indicates diminishing interest
+                    with each subsequent page. Simply put, proximity to the
+                    first page significantly impacts your visibility and
+                    likelihood of selection.Admittedly, a select few clients
+                    enjoy a thorough perusal, diligently scrolling through all
+                    available pages to find precisely what aligns with their
+                    desires. However, for those seeking maximum exposure to the
+                    site's 200k daily visitors, positioning on the FRONT page is
+                    paramount.To amplify your visibility, consider subscribing
+                    multiple times within a day. By strategically re-BOOSTING,
+                    you can consistently secure the coveted top spot on the
+                    front page, ensuring continued visibility to potential
+                    clients.
+                  </p>
                 </ol>
               )}
             </div>
@@ -215,7 +241,6 @@ const Faqs = () => {
                     Click delete at the top right of the old photo you wish to
                     delete
                   </li>
-                  
                 </div>
               )}
             </div>
@@ -223,7 +248,7 @@ const Faqs = () => {
               ref={animationParent}
               className={`${
                 state.open4 && "border-2 border-[#E9CB50]"
-              } rounded-2xl px-4  md:px-8 py-6 bg-[#121212] md:w-[80%] w-[95%] mx-auto`}
+              } rounded-2xl px-4  md:px-8 py-6 bg-[#121212] mt-4 md:w-[80%] w-[95%] mx-auto`}
             >
               <div className="flex justify-between items-center">
                 <h2 className="md:text-xl text-[15px] font-semibold">
@@ -280,8 +305,6 @@ const Faqs = () => {
                       your well-being.
                     </li>
                   </ol>
-
-                 
                 </div>
               )}
             </div>
