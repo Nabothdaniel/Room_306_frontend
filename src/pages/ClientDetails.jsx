@@ -43,6 +43,12 @@ const ClientDetails = () => {
     return emailRegex.test(email);
   };
 
+  const isValidUsername = (username) => {
+    const usernameRegex =
+      /^([A-z0-9!@#$%^&*().,<>{}[\]<>?_=+\-|;:\'\"\/])*[^\s]\1*$/;
+    return usernameRegex.test(username);
+  };
+
   const validateData = (data) => {
     let errors = {};
     if (!isValidEmail(data.email)) {
@@ -58,6 +64,11 @@ const ClientDetails = () => {
     if (!data.password.trim()) {
       errors.password = "Password is required";
     }
+
+    if (!isValidUsername(data.username)) {
+      errors.username = "Space is not allowed";
+    }
+
     if (!data.username.trim()) {
       errors.username = "Username is required";
     }
@@ -78,7 +89,7 @@ const ClientDetails = () => {
       errors.name = "Display name is required";
     }
 
-    if (!Number(data.mobile_number) || data.mobile_number.length < 11) {
+    if (!Number(data.mobile_number)) {
       errors.number = "Mobile Number is invalid";
     }
 
@@ -165,19 +176,19 @@ const ClientDetails = () => {
         setLoad(false);
         dispatch(setCredentials(res.data?.token));
 
-         setData({
-           country: "",
-           state: "",
-           country_code: "",
-           city: "",
-           image: "",
-           display_name: "",
-           mobile_number: "",
-           email: "",
-           password: "",
-           username: "",
-         });
-         setImage("");
+        setData({
+          country: "",
+          state: "",
+          country_code: "",
+          city: "",
+          image: "",
+          display_name: "",
+          mobile_number: "",
+          email: "",
+          password: "",
+          username: "",
+        });
+        setImage("");
 
         if (res.status == 200) {
           navigate("/");
@@ -194,8 +205,6 @@ const ClientDetails = () => {
           setApiError(err.response?.data?.message);
         }
       }
-
-     
     }
   };
 

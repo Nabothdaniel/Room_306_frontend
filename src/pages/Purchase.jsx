@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
+import { PaystackButton } from "react-paystack";
 import { Convert } from "easy-currencies";
 import toast from "react-hot-toast";
 
@@ -12,29 +12,33 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
   const [mainAmount, setMainAmount] = useState(0);
   const [amountCoin, setAmountCoin] = useState(0);
   const [payment, setPayment] = useState([]);
-  const [curr, setCurr] = useState("USD");
+  const [curr, setCurr] = useState("NGN");
 
   const coinPer = 1;
-  const coinAmount = 100;
+  const coinAmount = 50;
 
   const paymentSuccess = async (data) => {
-    try {
-      const res = await axios.put(
-        "https://backend.theroom306.com/api/profile/buy_coin/",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Bearer " + JSON.parse(localStorage.getItem("token")),
-          },
-        }
-      );
-
-      toast.success("Payment Successful");
-      window.location.reload(true);
-    } catch (err) {
-      console.log(err);
+    if (data.message == "Approved" && data.status == "success") {
+      try {
+        const res = await axios.put(
+          "https://backend.theroom306.com/api/profile/buy_coin/",
+          { coin_amount: coin, amount: amountCoin },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Bearer " + JSON.parse(localStorage.getItem("token")),
+            },
+          }
+        );
+        handleWallet();
+        toast.success("Payment Successful");
+        window.location.reload(true);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      toast.error("Error In Payment");
     }
   };
 
@@ -71,38 +75,52 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
   }, [amount, curr]);
 
   const config = {
-    public_key: import.meta.env.VITE_FLUTTERWAVE,
-    tx_ref: Date.now(),
-    amount,
-    currency: curr,
-    payment_options: "card,mobilemoney,ussd",
-    customer: {
-      email: user?.user?.email || user?.email,
-      phone_number: user?.user?.mobile_number || user?.mobile_number,
-      name: user?.user?.username || user?.username,
-    },
-    customizations: {
-      title: "My store",
-      description: "Payment for coins",
-      logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
-    },
+    publicKey: "pk_live_cdd73507456891acea126db50147c858431ebcb9",
+    reference: new Date().getTime().toString(),
+    amount: amountCoin * 100,
+    email: user?.user?.email || user?.email,
+    // currency: curr,
+    // payment_options: "card,mobilemoney,ussd",
+    // customer: {
+    //   email: user?.profile?.user?.email || user?.profile?.email,
+    //   phone_number: user?.user?.mobile_number || user?.mobile_number,
+    //   name: user?.user?.username || user?.username,
+    // },
+    // customizations: {
+    //   title: "My store",
+    //   description: "Payment for coins",
+    //   logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
+    // },
   };
 
-  const fwConfig = {
+  const handlePaystackCloseAction = () => {
+    handleWallet();
+
+    toast.error("Payment Cancelled");
+  };
+
+  // const fwConfig = {
+  //   ...config,
+  //   text: "Purchase Coin Now",
+  //   callback: (response) => {
+  //     handleWallet();
+  //     if (response.charge_response_message == "Approved Successful") {
+  //       paymentSuccess({ coin_amount: coin, amount: response.amount });
+  //     } else {
+  //       toast.error("Payment Not Successful");
+  //     }
+  //     closePaymentModal();
+  //   },
+  //   onClose: () => {
+  //     toast.error("Payment Cancelled");
+  //   },
+  // };
+
+  const componentProps = {
     ...config,
     text: "Purchase Coin Now",
-    callback: (response) => {
-      handleWallet();
-      if (response.charge_response_message == "Approved Successful") {
-        paymentSuccess({ coin_amount: coin, amount: response.amount });
-      } else {
-        toast.error("Payment Not Successful");
-      }
-      closePaymentModal();
-    },
-    onClose: () => {
-      toast.error("Payment Cancelled");
-    },
+    onSuccess: (reference) => paymentSuccess(reference),
+    onClose: handlePaystackCloseAction,
   };
 
   return (
@@ -153,11 +171,19 @@ const Purchase = ({ purchaseClass, handleWallet }) => {
           )}
         </div>
 
-        <FlutterWaveButton
-          disabled={coin < 100}
-          className="text-center hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4  font-semibold mt-12 rounded-xl"
-          {...fwConfig}
-        />
+        {coin < 100 ? (
+          <button
+            disabled
+            className="text-center duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4  font-semibold mt-12 rounded-xl"
+          >
+            Purchase Coin Now
+          </button>
+        ) : (
+          <PaystackButton
+            className="text-center hover:bg-[#ffdc4e] duration-500  bg-[#E9CB50] w-[100%] py-3 md:py-4  font-semibold mt-12 rounded-xl"
+            {...componentProps}
+          />
+        )}
 
         <button
           onClick={handleWallet}

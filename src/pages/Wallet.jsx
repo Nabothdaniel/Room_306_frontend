@@ -110,19 +110,19 @@ const Wallet = () => {
         <Footer />
       </div>
 
-      {/* <Purchase
-        handleWallet={handleWallet}
-        purchaseClass={`${
-          !openWallet ? "translate-x-[120vw]" : "translate-x-0"
-        }`}
-      /> */}
-
-      <AnotherPurchase
+      <Purchase
         handleWallet={handleWallet}
         purchaseClass={`${
           !openWallet ? "translate-x-[120vw]" : "translate-x-0"
         }`}
       />
+
+      {/* <AnotherPurchase
+        handleWallet={handleWallet}
+        purchaseClass={`${
+          !openWallet ? "translate-x-[120vw]" : "translate-x-0"
+        }`}
+      /> */}
     </div>
   );
 };

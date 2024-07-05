@@ -42,7 +42,12 @@ const EscortDetailsSecFive = () => {
         window.location.reload(true);
       } catch (err) {
         setLoad(false);
-        toast.error(err?.response?.data?.message);
+
+        if (err?.response?.data?.message) {
+          toast.error(err?.response?.data?.message);
+        } else {
+          toast.error("Server Error, Try Again Later");
+        }
       }
     } else {
       toast.error("A Picture of yourself is needed");

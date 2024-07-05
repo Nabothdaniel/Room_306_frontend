@@ -52,6 +52,12 @@ const EscortDetailsOne = () => {
     return emailRegex.test(email);
   };
 
+  const isValidUsername = (username) => {
+    const usernameRegex =
+      /^([A-z0-9!@#$%^&*().,<>{}[\]<>?_=+\-|;:\'\"\/])*[^\s]\1*$/;
+    return usernameRegex.test(username);
+  };
+
   const validateFormData = (data) => {
     let errors = {};
     if (!isValidEmail(data.email)) {
@@ -67,9 +73,15 @@ const EscortDetailsOne = () => {
     if (!data.password.trim()) {
       errors.password = "Password is required";
     }
+
+    if (!isValidUsername(data.username)) {
+      errors.username = "Space is not allowed";
+    }
+
     if (!data.username.trim()) {
       errors.username = "Username is required";
     }
+
     if (!data.state) {
       errors.state = "State is required";
     }
