@@ -11,8 +11,6 @@ import { logout, navClick } from "../redux/UtilSlice";
 import SearchModel from "./SearchModel";
 import ProfileModel from "./ProfileModel";
 import useAuth from "../Hooks/useAuth";
-import PopUp from "./PopUp";
-import { differenceInDays, parse, parseISO } from "date-fns";
 import toast from "react-hot-toast";
 import Notification from "./Notification";
 import { useNotificationQuery } from "../redux/ApiSlice";
@@ -144,9 +142,9 @@ const Navbar = ({ Headervalue, textValue }) => {
                 <TbBell className=" text-[#DADADA] size-7" />
               </div>
               <div
-                className={`absolute top-16 bg-black h-[500px] ${
-                  notify ? "translate-y-0" : "-translate-y-[130vh]"
-                } text-white rounded-3xl duration-500 py-4 px-6 w-[90vw] md:w-[400px] -right-16 md:right-0`}
+                className={`absolute top-16 overflow-hidden bg-black ${
+                  notify ? "h-[420px]" : "h-0"
+                } text-white rounded-3xl duration-700  w-[90vw] md:w-[400px] -right-16 md:right-0`}
               >
                 <Notification data={data} load={isLoading} />
               </div>
@@ -167,42 +165,44 @@ const Navbar = ({ Headervalue, textValue }) => {
                 alt=""
               />
               <div
-                className={`absolute ${
-                  openProfile ? "translate-y-0" : "-translate-y-[100vh]"
-                } duration-700 top-14 bg-[#0A0A0A] w-[140px] h-[140px] text-[#FFF5F5] flex flex-col justify-between text-[15px] right-0 rounded-xl py-3 px-3`}
+                className={`absolute overflow-hidden ${
+                  openProfile ? "h-[160px] " : "h-0"
+                } duration-700 top-14 bg-[#0A0A0A] w-[140px] h-[140px] text-[#FFF5F5]  text-[15px] right-0 rounded-xl `}
               >
-                <Link
-                  to={"/profile"}
-                  className="cursor-pointer hover:text-[#E9CB50] duration-300"
-                >
-                  Profile
-                </Link>
-                {users?.user_type == "client" && (
-                  <p
-                    onClick={handleMenu}
+                <div className="py-3 px-3 flex flex-col gap-[14px] justify-between h-fit">
+                  <Link
+                    to={"/profile"}
                     className="cursor-pointer hover:text-[#E9CB50] duration-300"
                   >
-                    Profile Menu
+                    Profile
+                  </Link>
+                  {users?.user_type == "client" && (
+                    <p
+                      onClick={handleMenu}
+                      className="cursor-pointer hover:text-[#E9CB50] duration-300"
+                    >
+                      Profile Menu
+                    </p>
+                  )}
+                  <p
+                    onClick={() => {
+                      localStorage.removeItem("token");
+                      setOpenLogin(!openLogin);
+                      setTimeout(() => {
+                        localStorage.removeItem("details");
+                      }, 3000);
+                    }}
+                    className="cursor-pointer hover:text-[#E9CB50] duration-300"
+                  >
+                    Switch Account
                   </p>
-                )}
-                <p
-                  onClick={() => {
-                    localStorage.removeItem("token");
-                    setOpenLogin(!openLogin);
-                    setTimeout(() => {
-                      localStorage.removeItem("details");
-                    }, 3000);
-                  }}
-                  className="cursor-pointer hover:text-[#E9CB50] duration-300"
-                >
-                  Switch Account
-                </p>
-                <p
-                  onClick={handleLogout}
-                  className="cursor-pointer hover:text-[#E9CB50] duration-300"
-                >
-                  Logout
-                </p>
+                  <p
+                    onClick={handleLogout}
+                    className="cursor-pointer hover:text-[#E9CB50] duration-300"
+                  >
+                    Logout
+                  </p>
+                </div>
               </div>
             </div>
           )}

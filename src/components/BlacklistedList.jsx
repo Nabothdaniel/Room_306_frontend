@@ -1,11 +1,7 @@
 import React from "react";
 import Calender from "../images/calendar-tick.svg";
 import User from "../images/user-tick.svg";
-import Location from "../images/location-tick.svg";
-import Slider1 from "../images/slider1.png";
-import Love from "../images/Love.svg";
-import Clock from "../images/clock.svg";
-import Ticket from "../images/ticket-2.svg";
+import Placeholder from "../images/green-arrow-capital-profilo.png";
 import { Link } from "react-router-dom";
 import { format, parseISO } from "date-fns";
 
@@ -18,11 +14,20 @@ const BlacklistedList = ({ items }) => {
       to={`/blacklisted/${items.id}`}
       className="bg-[#121212] block text-white p-3 rounded-lg"
     >
-      <img
-        className="rounded-lg h-[200px] object-cover"
-        src={`https://backend.theroom306.com${items?.images[0]?.image}`}
-        alt=""
-      />
+      {items?.images[0]?.image ? (
+        <img
+          className="rounded-lg h-[200px] object-cover"
+          src={`https://backend.theroom306.com${items?.images[0]?.image}`}
+          alt=""
+        />
+      ) : (
+        <img
+          className="rounded-lg h-[200px] object-cover"
+          src={Placeholder}
+          alt=""
+        />
+      )}
+
       <div className=" py-3">
         <div>
           <h4 className="font-semibold text-[18px] pb-2">

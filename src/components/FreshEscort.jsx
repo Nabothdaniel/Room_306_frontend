@@ -38,10 +38,12 @@ const FreshEscort = ({ items }) => {
         {items.about}
       </p>
       <div className="flex justify-between pb-2 items-center">
-        <p className="flex justify-between items-center">
-          <img src={Whatsapp} className="size-4" />{" "}
-          <span className="text-[12px] pl-1">{items.user.mobile_number}</span>
-        </p>
+        {items.showMyNumber && (
+          <p className="flex justify-between items-center">
+            <img src={Whatsapp} className="size-4" />{" "}
+            <span className="text-[12px] pl-1">{items.user.mobile_number}</span>
+          </p>
+        )}
       </div>
     </Link>
   );

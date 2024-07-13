@@ -36,12 +36,12 @@ const EscortItems = ({ items }) => {
           <Link className="block" to={`/escort/${items.user.username}`}>
             <div>
               <h4 className="font-semibold pb-2">{items.user.display_name}</h4>
-              <p className="pb-1 text-[12px] lg:text-[14px]">
+              <p className="pb-1 md:text-[12px] text-[11px] lg:text-[14px]">
                 {/* <span className="font-semibold">#7,500</span> short time */}
 
-                {items.user.mobile_number}
+                {items.showMyNumber && items.user.mobile_number}
               </p>
-              <p className="flex items-center text-[12px] lg:text-[14px]">
+              <p className="flex items-center text-[10px] md:text-[12px] lg:text-[14px]">
                 <img src={Location} className="mr-1 size-5" />
                 <span>
                   {items.user.city}, {items.user.country}
@@ -56,8 +56,8 @@ const EscortItems = ({ items }) => {
           />
         </div>
         <Link className="block" to={`/escort/${items.user.username}`}>
-          <p className="lg:text-[15px] text-[12px] text-wrap  pb-2 text-[#DADADA]">
-            {items.heading.substring(0, 50) + '...'}
+          <p className="lg:text-[15px] md:text-[12px] text-[11px] text-wrap  pb-2 text-[#DADADA]">
+            {items.heading.substring(0, 50) + "..."}
           </p>
           <div className="flex justify-between pb-2 items-center">
             <p className="flex justify-between items-center">

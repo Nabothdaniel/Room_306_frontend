@@ -21,7 +21,7 @@ const NaugthyChannel = ({ item }) => {
 
   if (item.sender.username == (users?.user?.username || users?.username)) {
     return (
-      <div className={`justify-end text-[14px]  flex`}>
+      <div className={`justify-end text-[11px] md:text-[14px]  flex`}>
         <div
           className={`bg-[#00AE79] mt-2 w-fit ${
             !(item.content || item.file) && "hidden"
@@ -41,7 +41,7 @@ const NaugthyChannel = ({ item }) => {
 
   return (
     <div className="bg-[#202D2C] pt-6  text-white">
-      <div className="text-[14px] pb-4 flex">
+      <div className="md:text-[14px] text-[11px] pb-2 flex">
         <img
           className="size-[30px] rounded-full"
           src={`https://backend.theroom306.com${item.sender.image}`}

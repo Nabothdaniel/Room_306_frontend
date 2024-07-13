@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BlogSwiper } from "../components/BlogSwiper";
 import Navbar from "../components/Navbar";
-import Naughty from "../images/Ellipse.svg";
 import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
 import ChannelsName from "../components/ChannelsName";
@@ -98,7 +97,7 @@ const NaughtyRoom = () => {
                 Back
               </h2>
               <div className="md:col-span-3 pt-2 pb-12 md:pb-20 grid md:grid-cols-3">
-                <div className="bg-[#14211F] pb-16 md:pb-0 h-screen  hidden md:block  rounded-s-[30px]">
+                <div className="bg-[#14211F] pb-16 md:pb-0 md:h-[80vh] h-[72vh]  hidden md:block  rounded-s-[30px]">
                   <h1 className="text-white p-[24px]  text-[24px] font-semibold">
                     Chats
                   </h1>
@@ -106,7 +105,7 @@ const NaughtyRoom = () => {
                     <ChannelsName />
                   </div>
                 </div>
-                <div className="md:col-span-2 bg-[#202D2C] flex flex-col p-6 rounded-[30px] h-screen w-[100%] md:rounded-none md:rounded-e-[30px]">
+                <div className="md:col-span-2 bg-[#202D2C] flex flex-col p-6 rounded-[30px] md:h-[80vh] h-[72vh] w-[100%] md:rounded-none md:rounded-e-[30px]">
                   <div className="flex pb-6">
                     <img
                       className="size-[50px] rounded-full"
@@ -165,7 +164,7 @@ const NaughtyRoom = () => {
               </div>
               {/* <div ref={ref}></div> */}
             </div>
-            <div>
+            <div className="mb-10">
               <h2 className="text-center text-white font-medium pb-6 lg:pb-3 text-xl">
                 Fresh Escorts
               </h2>

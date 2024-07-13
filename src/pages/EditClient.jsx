@@ -2,23 +2,19 @@ import React, { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Input from "../components/Input";
-import { useGetCountryQuery } from "../redux/CountryApi";
 import TextArea from "../components/TextArea";
-import Loading from "../components/Loading";
-import { useUpdateClientMutation } from "../redux/ApiSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../components/Footer";
+import { Country, State, City } from "country-state-city";
 
 const EditClient = () => {
   let user = JSON.parse(localStorage.getItem("details"));
-
   let users = user?.profile;
-
-
-
-
+  const [ISOcode, setISOcode] = useState("NG");
+  const [StateISOcode, setStateISOcode] = useState();
   const navigate = useNavigate();
+  const [code, setCode] = useState("");
 
   const [Data, setformData] = useState({
     country: users.country,
@@ -32,26 +28,34 @@ const EditClient = () => {
     country_code: users.country_code,
   });
 
-  const [getState, setGetState] = useState([]);
-  const [getCities, setGetCities] = useState([]);
-  const { data, isLoading } = useGetCountryQuery();
   const [image, setImage] = useState("");
 
+  console.log(Data);
+
   const handleChange = (e) => {
-    setformData({ ...Data, [e.target.name]: e.target.value });
+    if (e.target.name == "country") {
+      const isocode = e.target.value.split(" ");
+      const Iso = isocode[isocode.length - 1];
+      setCode(Country.getCountryByCode(Iso).phonecode);
+      setISOcode(Iso);
+
+      isocode.pop();
+      const NewCode = isocode.join(" ");
+
+      setformData({ ...Data, [e.target.name]: NewCode, state: "", city: "" });
+    } else if (e.target.name == "state") {
+      const isocode = e.target.value.split(" ");
+      const Iso = isocode[isocode.length - 1];
+
+      setStateISOcode(Iso);
+      isocode.pop();
+      const NewCode = isocode.join(" ");
+
+      setformData({ ...Data, [e.target.name]: NewCode, city: "" });
+    } else {
+      setformData({ ...Data, [e.target.name]: e.target.value });
+    }
   };
-
-  let handleCountry = () => {};
-  let handleState = () => {};
-
-  useEffect(() => {
-    handleCountry();
-    handleState();
-  }, [Data, data]);
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   const formData = new FormData();
   formData.append("username", Data.username);
@@ -63,36 +67,39 @@ const EditClient = () => {
   formData.append("password", Data.password);
   formData.append("display_name", Data.display_name);
   formData.append("state", Data.state);
-  formData.append("country_code", Data.country_code);
+
+  if (code) {
+    formData.append("country_code", code);
+  }
 
   if (image) {
     formData.append("image", image);
   }
 
-  let states;
-  handleCountry = (e) => {
-    states = data.filter((state) => state.name === Data.country);
+  // let states;
+  // handleCountry = (e) => {
+  //   states = data.filter((state) => state.name === Data.country);
 
-    states = states?.map((item) => item.states);
+  //   states = states?.map((item) => item.states);
 
-    states.sort();
-    setGetState(states[0]);
-  };
+  //   states.sort();
+  //   setGetState(states[0]);
+  // };
 
-  handleState = (e) => {
-    let city = getState.filter((item) => item.name === Data.state);
-    city = city?.map((item) => item);
+  // handleState = (e) => {
+  //   let city = getState.filter((item) => item.name === Data.state);
+  //   city = city?.map((item) => item);
 
-    setGetCities(city);
-  };
+  //   setGetCities(city);
+  // };
 
-  let newCities = [];
+  // let newCities = [];
 
-  getCities.forEach((childArray) => {
-    childArray.cities.forEach((item) => {
-      newCities.push(item);
-    });
-  });
+  // getCities.forEach((childArray) => {
+  //   childArray.cities.forEach((item) => {
+  //     newCities.push(item);
+  //   });
+  // });
 
   const handleEdit = async () => {
     try {
@@ -216,7 +223,7 @@ const EditClient = () => {
               />
               <div className="grid md:grid-cols-2 gap-y-3 gap-x-3 pt-5">
                 <label
-                  className="text-[#475367] flex flex-col"
+                  className="text-[#475367] pt-2 flex flex-col"
                   htmlFor="country"
                 >
                   <span className="font-semibold text-white pb-1">Country</span>
@@ -225,25 +232,25 @@ const EditClient = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="country"
                       id="country"
-                      value={Data.country}
+                      // value={Data.country}
                       onChange={(e) => {
-                        handleCountry(e);
                         handleChange(e);
                       }}
                     >
                       <option value="">All Country</option>
-                      {data?.map((item) => {
+                      {Country?.getAllCountries()?.map((item, index) => {
                         return (
-                          <option key={item.id} value={item.name}>
-                            {item.name}
+                          <option key={index}>
+                            {item.name} {item.isoCode}
                           </option>
                         );
                       })}
                     </select>
                   </div>
                 </label>
+
                 <label
-                  className="text-[#475367]  flex flex-col"
+                  className="text-[#475367] pt-2 flex flex-col"
                   htmlFor="state"
                 >
                   <span className="font-semibold text-white pb-1">State</span>
@@ -252,23 +259,25 @@ const EditClient = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="state"
                       id="state"
-                      value={Data.state}
+                      // value={Data.state}
                       onChange={(e) => {
-                        handleState(e);
                         handleChange(e);
                       }}
                     >
                       <option value="">State(Optional)</option>
-                      {getState?.map((item, index) => {
-                        return (
-                          <option key={item.id} value={item.name}>
-                            {item.name}
-                          </option>
-                        );
-                      })}
+                      {State?.getStatesOfCountry(ISOcode)?.map(
+                        (item, index) => {
+                          return (
+                            <option key={index}>
+                              {item.name} {item.isoCode}
+                            </option>
+                          );
+                        }
+                      )}
                     </select>
                   </div>
                 </label>
+
                 <label className="text-[#475367] flex flex-col" htmlFor="city">
                   <span className="font-semibold text-white pb-1">City</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
@@ -281,13 +290,11 @@ const EditClient = () => {
                     >
                       <option value="">City(Optional)</option>
 
-                      {newCities?.map((item) => {
-                        return (
-                          <option key={item.id} value={item.name}>
-                            {item.name}
-                          </option>
-                        );
-                      })}
+                      {City?.getCitiesOfState(ISOcode, StateISOcode)?.map(
+                        (item, index) => {
+                          return <option key={index}>{item.name}</option>;
+                        }
+                      )}
                     </select>
                   </div>
                 </label>

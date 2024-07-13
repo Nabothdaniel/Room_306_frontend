@@ -9,13 +9,14 @@ import PopUp from "./components/PopUp";
 import toast from "react-hot-toast";
 import { useWalletQuery } from "./redux/ApiSlice";
 import { FilterApi } from "./Hooks/FilterApi";
+import EmailVerification from "./pages/EmailVerification";
 
 const App = () => {
   let useD = JSON.parse(localStorage.getItem("details"));
   let users = useD?.profile;
   const [image, setImage] = useState("");
   const pathname = useLocation().pathname;
-  const { data, isLoading } = useGetCountryQuery();
+  const [email, setEmail] = useState(false);
   const [pop, setPop] = useState(true);
   const [day, setDay] = useState("");
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ const App = () => {
         navigate("/");
       }
     }
-  }, [pay, pathname, data]);
+  }, [pay, pathname]);
 
   useEffect(() => {
     if (users?.user?.user_type == "escort") {
@@ -75,7 +76,9 @@ const App = () => {
         setPop(false);
       }
     }
-  }, [pay, data]);
+
+    setEmail(users?.user?.is_emailverified);
+  }, [pay]);
 
   const handlePop = () => {
     if (Math.abs(day) < 7) {
@@ -84,6 +87,8 @@ const App = () => {
       toast.error("Please make payment to activate your account");
     }
   };
+
+  
 
   return (
     <>
@@ -99,6 +104,10 @@ const App = () => {
           popClass={`${pop ? "-translate-y-[120vh]" : "translate-y-0"}`}
         />
       )}
+
+      <EmailVerification
+        emailClass={`${!email ? "-translate-y-[120vh]" : "translate-y-0"}`}
+      />
     </>
   );
 };

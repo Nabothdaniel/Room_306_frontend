@@ -83,7 +83,7 @@ const ProfileViewAbout = ({ aboutClass }) => {
       </div>
       <p className="text-white uppercase text-center pt-16">
         Profile Viewed{" "}
-        <span className="bg-red-400 px-3 rounded-3xl mr-1 py-1 font-semibold">
+        <span className="bg-red-400 px-3 text-[14px] rounded-3xl mr-1 py-1 font-semibold">
           {" "}
           {user.user.views}
         </span>

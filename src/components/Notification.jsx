@@ -18,7 +18,7 @@ const Notification = ({ data, load }) => {
   };
 
   return (
-    <div className="">
+    <div className="py-4 px-6">
       <h1 className="text-white md:text-xl font-semibold pb-6">
         Notifications
       </h1>

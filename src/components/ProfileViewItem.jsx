@@ -18,7 +18,7 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
   const [followed, setFollowed] = useState(false);
   const [Data, setData] = useState("");
   const birthDate = parse(
-    user?.escort_details.date_of_birth,
+    user?.escort_details.date_of_birth || "2006-03-03",
     "yyyy-MM-dd",
     new Date()
   );
@@ -96,14 +96,16 @@ const ProfileViewItem = ({ handleBook, user, handleReport, newData }) => {
             {user.profile.display_name}
           </p>
           <div className="flex items-center my-2 rounded-md w-fit mr-3 px-3 py-1 text-white bg-[#0A0A0A]">
-            <a
-              className="flex items-center"
-              target="_blank"
-              href={`https://wa.me/${user?.profile?.mobile_number}`}
-            >
-              <img className="size-5 mr-1" src={Whatsapp} alt="" />
-              {user?.profile.mobile_number}
-            </a>
+            {user?.escort_details?.showMyNumber && (
+              <a
+                className="flex items-center"
+                target="_blank"
+                href={`https://wa.me/${user?.profile?.mobile_number}`}
+              >
+                <img className="size-5 mr-1" src={Whatsapp} alt="" />
+                {user?.profile.mobile_number}
+              </a>
+            )}
           </div>
           <p className="text-[#DADADA] lg:text-[14px] text-[12px]">
             {user?.escort_details.about}

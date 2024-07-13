@@ -13,6 +13,7 @@ import { ProfileSwiper } from "../components/ProfileSwiper";
 import { Link } from "react-router-dom";
 import ProfileViewItems from "../components/ProfileViewItems";
 import { MdVerified } from "react-icons/md";
+import "../check.css";
 import {
   parseISO,
   format,
@@ -22,6 +23,8 @@ import {
 } from "date-fns";
 import { useWalletQuery } from "../redux/ApiSlice";
 import Footer from "../components/Footer";
+import { FaPhoneSquareAlt } from "react-icons/fa";
+import { useEditProfileMutation } from "../redux/EscortApi";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -44,6 +47,20 @@ const EscortProfile = () => {
   const user = JSON.parse(localStorage.getItem("details"));
   const { data } = useWalletQuery();
   const [day, setDay] = useState(0);
+  const [edit] = useEditProfileMutation();
+  const [phone, SetPhone] = useState(user?.profile?.showMyNumber);
+
+  const handleChange = async () => {
+    if (phone) {
+      SetPhone(false);
+      await edit({ showMyNumber: false });
+    } else if (!phone) {
+      SetPhone(true);
+      await edit({ showMyNumber: true });
+    }
+  };
+
+  const handleInput = () => {};
 
   useEffect(() => {
     if (user?.profile?.user?.user_type == "escort") {
@@ -65,7 +82,7 @@ const EscortProfile = () => {
   const formattedDate = format(parsedDate, "MMMM d, yyyy");
 
   const birthDate = parse(
-    user?.profile?.date_of_birth,
+    user?.profile?.date_of_birth || "2006-03-03",
     "yyyy-MM-dd",
     new Date()
   );
@@ -283,6 +300,22 @@ const EscortProfile = () => {
                     </p>
                     <p className="text-[#B29A9A]">Height</p>
                   </div>
+                </div>
+                <div className="mt-10">
+                  <p className="text-white/80 font-semibold pb-2">
+                    Show Phone Number
+                  </p>
+                  <label className="switch">
+                    <input
+                      onChange={handleInput}
+                      type="checkbox"
+                      checked={phone}
+                    />
+                    <span
+                      onClick={handleChange}
+                      className="slider round"
+                    ></span>
+                  </label>
                 </div>
               </div>
               <div>

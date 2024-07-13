@@ -1,10 +1,4 @@
 import React from "react";
-import Naughty from "../images/Ellipse.svg";
-import Lgb from "../images/Ellipse3.svg";
-import Discussion from "../images/Ellipse1.svg";
-import Erotic from "../images/Ellipse4.svg";
-import Testimonial from "../images/Ellipse2.svg";
-import Louge from "../images/Ellipse5.svg";
 import { NavLink, useLocation } from "react-router-dom";
 import { useChannelQuery, useConversationQuery } from "../redux/ApiSlice";
 import Loading from "./Loading";
@@ -23,7 +17,7 @@ const ChannelsName = () => {
   }
 
   return (
-    <div className="px-[9px] flex flex-col gap-y-[10px]">
+    <div className="px-[9px] flex flex-col overflow-y-scroll h-5/6 channel gap-y-[10px]">
       {data?.map((item, index) => {
         const parsedDate = parse(
           item.timestamp,
@@ -54,8 +48,10 @@ const ChannelsName = () => {
               alt=""
             />
             <div className="pl-4 md:block md:w-auto flex justify-between items-center w-full">
-              <p className="font-semibold">{item.name}</p>
-              <p className="text-[12px]  text-[#DADADA]">{formattedTimeAgo}</p>
+              <p className="font-semibold md:text-[14px] text-[13px]">
+                {item.name}
+              </p>
+              <p className="text-[11px]  text-[#DADADA]">{formattedTimeAgo}</p>
             </div>
           </NavLink>
         );
@@ -114,8 +110,6 @@ const ChannelsName = () => {
           </NavLink>
         );
       })}
-
-     
     </div>
   );
 };

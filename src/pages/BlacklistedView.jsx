@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Arrow from "../images/arrow-left.svg";
+import Placeholder from "../images/green-arrow-capital-profilo.png";
 import BlacklistSwiper from "../components/BlacklistSwiper";
 import { useNavigate, useParams } from "react-router-dom";
 import BlacklistImageSwipe from "../components/BlacklistImageSwipe";
@@ -52,6 +53,13 @@ const BlacklistedView = () => {
               </h2>
               <div className="md:col-span-3 mb-6 md:mb-0 bg-[#1E1E1E] rounded-2xl px-2 pt-2 pb-12 md:pb-10">
                 <BlacklistImageSwipe items={data.report.images} />
+                {!items?.images && (
+                  <img
+                    className="rounded-lg md:h-[500px] h-[350px] object-cover"
+                    src={Placeholder}
+                    alt=""
+                  />
+                )}
                 <div className="text-white md:pl-10 pl-6 pt-6">
                   <h2 className="md:text-3xl text-[20px] font-semibold pb-4">
                     {items.display_name}
@@ -69,7 +77,7 @@ const BlacklistedView = () => {
                         {items.mobile_number}
                       </span>
                     </p>
-                    
+
                     <p className="font-semibold ">
                       Crime Committed:{" "}
                       <span className="font-normal text-[14px] text-white/80">
@@ -83,10 +91,9 @@ const BlacklistedView = () => {
                     Full Details
                   </h2>
                   <p className="text-white/80 text-[14px]">
-                    {data?.report?.details}
+                    {data?.report?.description}
                   </p>
                 </div>
-                
               </div>
             </div>
             <div>

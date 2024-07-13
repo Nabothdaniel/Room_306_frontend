@@ -19,7 +19,7 @@ const ProfileVideo = ({ naughtClass }) => {
       className={`${naughtClass} bg-black gap-3 grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  pt-4 pb-10 px-5 rounded-xl mt-10`}
     >
       {video?.length == 0 ? (
-        <div className="xl:col-span-4 lg:col-span-1 sm:col-span-2 flex justify-center items-center h-[40vh]">
+        <div className="xl:col-span-4 lg:col-span-3 sm:col-span-2 flex justify-center items-center h-[40vh]">
           <p className="text-white md:text-xl font-semibold">No Videos Found</p>
         </div>
       ) : (

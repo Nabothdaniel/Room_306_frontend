@@ -28,6 +28,13 @@ const escortApi = ApiSlice.injectEndpoints({
 
     getAllEscorts: build.query({
       query: () => `/escort/escorts/all/`,
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Follow", id })),
+              { type: "Follow", id: "LIST" },
+            ]
+          : [{ type: "Follow", id: "LIST" }],
     }),
 
     getAllVideos: build.query({
@@ -225,6 +232,7 @@ const escortApi = ApiSlice.injectEndpoints({
         },
         body,
       }),
+      invalidatesTags: [{ type: "Follow", id: "LIST" }],
     }),
 
     addServices: build.mutation({
