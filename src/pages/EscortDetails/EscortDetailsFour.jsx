@@ -9,12 +9,15 @@ import RateOption from "../../components/RateOption";
 
 const EscortDetailsFour = () => {
   const currency = useSelector((state) => state.Util.userDetails.currency);
-  const incall = useSelector(
-    (state) => state.Util.userDetails.available_incall
-  );
-  const outcall = useSelector(
-    (state) => state.Util.userDetails.available_outcall
-  );
+  // const incall = useSelector(
+  //   (state) => state.Util.userDetails.available_incall
+  // );
+  // const outcall = useSelector(
+  //   (state) => state.Util.userDetails.available_outcall
+  // );
+
+  const incall = true;
+  const outcall = true;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -77,7 +80,7 @@ const EscortDetailsFour = () => {
               <span className="text-[#B29A9A] text-xl md:text-2xl">
                 Step <span>3/</span>
               </span>
-              7
+              5
             </p>
           </div>
           <div className="rounded-xl lg:px-10  px-4 py-6 md:px-12 md:py-14 bg-[#1E1E1E] ">

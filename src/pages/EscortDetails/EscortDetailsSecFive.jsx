@@ -18,41 +18,41 @@ const EscortDetailsSecFive = () => {
   const [load, setLoad] = useState(false);
   const data = useSelector((state) => state.Util.userDetails);
 
-  const handleSubmit = async () => {
-    if (VImage) {
-      setLoad(true);
-      try {
-        const res = await axios.post(
-          "https://backend.theroom306.com/api/auth/register_escort/",
-          {
-            ...data,
-            verification_image: VImage,
-            image: image,
-            user_type: "escort",
-          },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        setLoad(false);
-        dispatch(setCredentials(res.data?.token));
-        navigate("/services");
-        window.location.reload(true);
-      } catch (err) {
-        setLoad(false);
+  // const handleSubmit = async () => {
+  //   if (VImage) {
+  //     setLoad(true);
+  //     try {
+  //       const res = await axios.post(
+  //         "https://backend.theroom306.com/api/auth/register_escort/",
+  //         {
+  //           ...data,
+  //           verification_image: VImage,
+  //           image: image,
+  //           user_type: "escort",
+  //         },
+  //         {
+  //           headers: {
+  //             "Content-Type": "multipart/form-data",
+  //           },
+  //         }
+  //       );
+  //       setLoad(false);
+  //       dispatch(setCredentials(res.data?.token));
+  //       navigate("/services");
+  //       window.location.reload(true);
+  //     } catch (err) {
+  //       setLoad(false);
 
-        if (err?.response?.data?.message) {
-          toast.error(err?.response?.data?.message);
-        } else {
-          toast.error("Server Error, Try Again Later");
-        }
-      }
-    } else {
-      toast.error("A Picture of yourself is needed");
-    }
-  };
+  //       if (err?.response?.data?.message) {
+  //         toast.error(err?.response?.data?.message);
+  //       } else {
+  //         toast.error("Server Error, Try Again Later");
+  //       }
+  //     }
+  //   } else {
+  //     toast.error("A Picture of yourself is needed");
+  //   }
+  // };
 
   const handleDelete = () => {
     let text =
