@@ -167,7 +167,7 @@ const Navbar = ({ Headervalue, textValue }) => {
               <div
                 className={`absolute overflow-hidden ${
                   openProfile ? "h-[160px] " : "h-0"
-                } duration-700 top-14 bg-[#0A0A0A] w-[140px] h-[140px] text-[#FFF5F5]  text-[15px] right-0 rounded-xl `}
+                } duration-300 top-14 bg-[#0A0A0A] w-[140px] text-[#FFF5F5]  text-[15px] right-0 rounded-xl `}
               >
                 <div className="py-3 px-3 flex flex-col gap-[14px] justify-between h-fit">
                   <Link

@@ -108,7 +108,7 @@ const PersonalChat = () => {
                 Back
               </h2>
               <div className="md:col-span-3 pt-2 pb-12 md:pb-20 grid md:grid-cols-3">
-                <div className="bg-[#14211F] pb-16 md:pb-0 h-screen  hidden md:block  rounded-s-[30px]">
+                <div className="bg-[#14211F] pb-16 md:pb-0 md:h-[80vh] h-[72vh]  hidden md:block  rounded-s-[30px]">
                   <h1 className="text-white p-[24px]  text-[24px] font-semibold">
                     Chats
                   </h1>
@@ -116,7 +116,7 @@ const PersonalChat = () => {
                     <ChannelsName />
                   </div>
                 </div>
-                <div className="md:col-span-2 bg-[#202D2C] flex flex-col p-6 rounded-[30px] h-screen w-[100%] md:rounded-none md:rounded-e-[30px]">
+                <div className="md:col-span-2 bg-[#202D2C] flex flex-col p-6 rounded-[30px] md:h-[80vh] h-[72vh] w-[100%] md:rounded-none md:rounded-e-[30px]">
                   {name[0]?.sender?.username ==
                   (users?.user?.username || users?.username) ? (
                     <Link

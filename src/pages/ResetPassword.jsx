@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Arrow from "../images/arrow-left.svg";
@@ -16,6 +16,7 @@ const ResetPassword = () => {
   const [password] = useNewPasswordMutation();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState({});
   const [Data, setData] = useState({
     passcode: "",
     new_password: "",
@@ -31,6 +32,19 @@ const ResetPassword = () => {
   const handleNewPassword = (e) => {
     setData({ ...Data, [e.target.name]: e.target.value });
   };
+
+  const validateData = (data) => {
+    let errors = {};
+    if (data.new_password.trim().length < 6) {
+      errors.password = "Password must be 6 digit long";
+    }
+    return errors;
+  };
+
+  useEffect(() => {
+    const validationErrors = validateData(Data);
+    setError(validationErrors);
+  }, [Data]);
 
   const handleSubmit = async () => {
     try {
@@ -49,9 +63,10 @@ const ResetPassword = () => {
   const handlePassword = async () => {
     try {
       const res = await password(Data).unwrap();
-      console.log(res);
+      toast.success(res.message);
+      setOpen(false);
     } catch (err) {
-      console.log(err);
+      toast.error("Incorrect Passcode");
     }
   };
 
@@ -100,18 +115,18 @@ const ResetPassword = () => {
                   (Remember the temporary password expires in 60mins if not
                   used)
                 </p>
-                <p>
+                {/* <p>
                   Once you have seen it, login into your account using your{" "}
                   <span className="font-semibold">Email</span> and the Copied{" "}
                   <span className="font-semibold">Temporary password</span>.
-                </p>
+                </p> */}
               </div>
 
               <button
                 onClick={handleSubmit}
                 className="text-center hover:bg-red-500/80 duration-500 md:text-base text-[14px] text-white bg-red-500 w-[100%] sm:w-[250px] py-3 md:py-4  font-semibold mt-4 rounded-xl"
               >
-                Get Reset Password Link
+                Get Reset Password Code
               </button>
             </div>
           </div>
@@ -139,25 +154,36 @@ const ResetPassword = () => {
             holder={"Enter Passcode Here"}
             onchange={handleNewPassword}
           />
-          <Input
-            labelValue={"New Password"}
-            labelClass={
-              "text-[#475367] pb-2 font-semibold md:text-base text-[14px]"
-            }
-            inputType={"tel"}
-            inputName={"new_password"}
-            inputClass={
-              "bg-[#F0F2F5] px-4 mb-5 rounded-xl placeholder-[#102127] text-[#102127]"
-            }
-            holder={"Enter New Password"}
-            onchange={handleNewPassword}
-          />
+          <div className="mb-7">
+            <Input
+              labelValue={"New Password"}
+              labelClass={
+                "text-[#475367] pb-2 font-semibold md:text-base text-[14px]"
+              }
+              inputType={"password"}
+              inputName={"new_password"}
+              inputClass={
+                "bg-[#F0F2F5] px-4 rounded-xl placeholder-[#102127] text-[#102127]"
+              }
+              holder={"Enter New Password"}
+              onchange={handleNewPassword}
+            />
+            {error.password && (
+              <p className="py-1 text-[12px] text-red-500">{error.password}</p>
+            )}
+          </div>
 
           <button
             onClick={handlePassword}
             className="text-center hover:bg-[#ffdc4e] duration-500 bg-[#E9CB50]  w-[100%] py-2 md:py-4  font-semibold mt-4 rounded-xl"
           >
             Submit
+          </button>
+          <button
+            onClick={() => setOpen(false)}
+            className="text-center hover:bg-red-500/90 text-white duration-500 bg-red-500  w-[100%] py-2 md:py-4  font-semibold mt-4 rounded-xl"
+          >
+            Cancel
           </button>
         </div>
       </div>

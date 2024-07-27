@@ -49,7 +49,7 @@ const App = () => {
   useEffect(() => {
     if (users?.user?.user_type == "escort") {
       //setTimeout(() => {
-      if (users?.services?.length == 0) {
+      if (users?.services?.length <= 0) {
         navigate("/services");
       } else if (pathname == "/services" && users?.services?.length > 0) {
         navigate("/survey");
@@ -63,32 +63,30 @@ const App = () => {
     }
   }, [pay, pathname]);
 
-  useEffect(() => {
-    if (users?.user?.user_type == "escort") {
-      const birthDate = parseISO(
-        users?.user?.createdAt,
-        "yyyy-MM-dd",
-        new Date()
-      );
-      const currentDate = new Date();
-      setDay(differenceInDays(currentDate, birthDate));
-      if (pay?.available_coin <= 0) {
-        setPop(false);
-      }
-    }
+  // useEffect(() => {
+  //   if (users?.user?.user_type == "escort") {
+  //     const birthDate = parseISO(
+  //       users?.user?.createdAt,
+  //       "yyyy-MM-dd",
+  //       new Date()
+  //     );
+  //     const currentDate = new Date();
+  //     setDay(differenceInDays(currentDate, birthDate));
+  //     if (pay?.available_coin <= 0) {
+  //       setPop(false);
+  //     }
+  //   }
 
-    setEmail(users?.user?.is_emailverified);
-  }, [pay]);
+  //   setEmail(users?.user?.is_emailverified);
+  // }, [pay]);
 
-  const handlePop = () => {
-    if (Math.abs(day) < 7) {
-      setPop(true);
-    } else {
-      toast.error("Please make payment to activate your account");
-    }
-  };
-
-  
+  // const handlePop = () => {
+  //   if (Math.abs(day) < 7) {
+  //     setPop(true);
+  //   } else {
+  //     toast.error("Please make payment to activate your account");
+  //   }
+  // };
 
   return (
     <>
@@ -98,12 +96,12 @@ const App = () => {
           <Outlet />
         </ImageContext.Provider>
       </div>
-      {users?.user?.user_type == "escort" && (
+      {/* {users?.user?.user_type == "escort" && (
         <PopUp
           popMenu={handlePop}
           popClass={`${pop ? "-translate-y-[120vh]" : "translate-y-0"}`}
         />
-      )}
+      )} */}
 
       <EmailVerification
         emailClass={`${!email ? "-translate-y-[120vh]" : "translate-y-0"}`}

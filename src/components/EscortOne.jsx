@@ -68,7 +68,7 @@ const EscortOne = () => {
         </p>
       </div>
 
-      <div className=" text-white">
+      <div className="text-white">
         <Swiper
           speed={1200}
           slidesPerView={1.5}
@@ -99,7 +99,7 @@ const EscortOne = () => {
         >
           {data.map((item, index) => {
             return (
-              <SwiperSlide className="w-[30px] mb-10 swiper-1" key={index}>
+              <SwiperSlide className="w-[30px] pb-10 swiper-1" key={index}>
                 <EscortItems items={item} />
               </SwiperSlide>
             );

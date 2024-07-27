@@ -12,14 +12,13 @@ const AllEscort = () => {
   const [sexual_orientation, setSexual] = useState("");
   const [display_name, setName] = useState("");
   const [gender, setGender] = useState("");
-  const { data, isLoading } = useGetAllEscortQuery({
+  let { data, isLoading } = useGetAllEscortQuery({
     country,
     sexual_orientation,
     display_name,
     gender,
   });
 
-  
   const [currentPage, setCurrentPage] = useState(0);
 
   if (isLoading) {
@@ -29,6 +28,12 @@ const AllEscort = () => {
   if (!data) {
     return <FailEscort />;
   }
+
+  // data.reverse();
+
+  data = Array.from(data).reverse();
+
+  // console.log(data.reverse());
 
   if (data.length == 0) {
     return <FailEscort />;
@@ -64,7 +69,7 @@ const AllEscort = () => {
           See all
         </p>
       </div>
-      <div className="overflow-x-scroll md:overflow-x-auto">
+      <div className="overflow-x-scroll channel md:overflow-x-auto">
         {/* <AllEscortTags /> */}
 
         <div className="flex justify-between items-center">
@@ -137,8 +142,10 @@ const AllEscort = () => {
           </label>
         </div>
       </div>
-      <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-8">
-        {displayUsers}
+      <div className=" channel overflow-x-scroll">
+        <div className="grid min-w-[1000px] grid-cols-4  gap-4 pt-8">
+          {displayUsers}
+        </div>
       </div>
       <Pagination PageCount={pageCount} setCurrentPage={setCurrentPage} />
     </div>

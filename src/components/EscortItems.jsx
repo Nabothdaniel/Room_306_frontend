@@ -23,10 +23,10 @@ const EscortItems = ({ items }) => {
 
   return (
     <>
-      <div className="bg-[#1E1E1E] relative overflow-hidden block text-white h-auto  p-3 rounded-lg">
+      <div className="bg-[#1E1E1E] relative overflow-hidden w-full block text-white h-[390px] lg:h-[450px]  p-3 rounded-lg">
         <Link className="block" to={`/escort/${items.user.username}`}>
           <img
-            className="rounded-lg object-cover h-[200px]"
+            className="rounded-lg object-cover h-[200px] lg:h-[250px]"
             src={`https://backend.theroom306.com${items.user.image}`}
             alt=""
           />

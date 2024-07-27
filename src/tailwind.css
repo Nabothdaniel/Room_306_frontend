@@ -38,6 +38,10 @@ body {
   display: none;
 }
 
+#google_translate_element {
+  color: white;
+}
+
 .goog-te-combo {
   /* padding: 5px; */
   /* padding: 5px; */
@@ -452,9 +456,9 @@ img {
     padding-right: 0.5rem;
   }
 
-  #\:0\.targetLanguage {
+  /* #\:0\.targetLanguage {
     border-radius: 20px;
-  }
+  } */
 
   .header-left input {
     display: block;
