@@ -10,19 +10,23 @@ import toast from "react-hot-toast";
 import { useWalletQuery } from "./redux/ApiSlice";
 import { FilterApi } from "./Hooks/FilterApi";
 import EmailVerification from "./pages/EmailVerification";
+import EmailConfirm from "./components/EmailConfirm";
 
 const App = () => {
   let useD = JSON.parse(localStorage.getItem("details"));
   let users = useD?.profile;
   const [image, setImage] = useState("");
   const pathname = useLocation().pathname;
-  const [email, setEmail] = useState(false);
+
+  const [email, setEmail] = useState(users?.user?.is_emailverified);
   const [pop, setPop] = useState(true);
-  const [day, setDay] = useState("");
+
+  const [day, setDay] = useState(9);
   const navigate = useNavigate();
   const { data: pay } = useWalletQuery(1, {
     skip: !users,
   });
+
   const [filter, setFilter] = useState({
     roomCountry: "",
     roomCity: "",
@@ -49,7 +53,7 @@ const App = () => {
   useEffect(() => {
     if (users?.user?.user_type == "escort") {
       //setTimeout(() => {
-      if (users?.services?.length <= 0) {
+      if (users?.services?.length == 0 && pathname !== "/survey") {
         navigate("/services");
       } else if (pathname == "/services" && users?.services?.length > 0) {
         navigate("/survey");
@@ -60,6 +64,33 @@ const App = () => {
       if (pathname == "/services") {
         navigate("/");
       }
+    }
+
+    // useEffect(() => {
+    //   if (users?.user?.user_type == "escort") {
+    //     const birthDate = parseISO(
+    //       users?.user?.createdAt,
+    //       "yyyy-MM-dd",
+    //       new Date()
+    //     );
+    //     const currentDate = new Date();
+    //     setDay(differenceInDays(currentDate, birthDate));
+    //     if (pay?.available_coin <= 0) {
+    //       setPop(false);
+    //     }
+    //   }
+
+    //   setEmail(users?.user?.is_emailverified);
+    // }, [pay]);
+
+    if (users) {
+      const birthDate = parseISO(
+        users?.user.createdAt,
+        "yyyy-MM-dd",
+        new Date()
+      );
+
+      setDay(differenceInDays("2024-07-25", birthDate));
     }
   }, [pay, pathname]);
 
@@ -103,9 +134,14 @@ const App = () => {
         />
       )} */}
 
-      <EmailVerification
-        emailClass={`${!email ? "-translate-y-[120vh]" : "translate-y-0"}`}
-      />
+      {/* <EmailConfirm
+        emailClass={`${email ? "-translate-y-[120vh]" : "translate-y-0"}`}
+      /> */}
+      {day <= 0 && (
+        <EmailVerification
+          emailClass={`${email ? "-translate-y-[130vh]" : "translate-y-0"}`}
+        />
+      )}
     </>
   );
 };

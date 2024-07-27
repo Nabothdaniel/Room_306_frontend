@@ -20,6 +20,17 @@ export const ApiSlice = createApi({
       }),
     }),
 
+    email: build.mutation({
+      query: (body) => ({
+        url: "/auth/confirmemailpasscode/",
+        method: "POST",
+        body,
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }),
+    }),
+
     channelById: build.query({
       query: (id) => ({
         url: `channels/${id}/`,
@@ -262,4 +273,5 @@ export const {
   useNotificationQuery,
   useNotificationByIdQuery,
   useNoteMutation,
+  useEmailMutation,
 } = ApiSlice;

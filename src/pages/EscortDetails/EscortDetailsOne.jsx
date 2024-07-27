@@ -177,6 +177,7 @@ const EscortDetailsOne = () => {
       );
 
       navigate("/additional-details");
+      // navigate("/rates");
 
       setFormData({
         country: "",
@@ -214,7 +215,7 @@ const EscortDetailsOne = () => {
               <span className="text-[#B29A9A] text-xl md:text-2xl">
                 Step <span>1/</span>
               </span>
-              7
+              5
             </p>
           </div>
           <div className="rounded-xl lg:px-10 md:px-7 px-4 py-6 md:pl-12 md:py-14 bg-[#1E1E1E] ">

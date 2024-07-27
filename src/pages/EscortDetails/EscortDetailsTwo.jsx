@@ -144,7 +144,7 @@ const EscortDetailsTwo = () => {
               <span className="text-[#B29A9A] md:text-2xl text-xl">
                 Step <span>2/</span>
               </span>
-              7
+              5
             </p>
           </div>
           <div className="rounded-xl md:px-6 px-4 lg:px-10 md:pl-12 pt-6 md:py-14 pb-8 bg-[#1E1E1E] ">

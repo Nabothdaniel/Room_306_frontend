@@ -4,14 +4,20 @@ import SideBar from "../../components/SideBar";
 import Navbar from "../../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import Upload from "../../images/Upload.svg";
-import { useDispatch } from "react-redux";
-import { Image, details } from "../../redux/UtilSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Image, details, setCredentials } from "../../redux/UtilSlice";
 import { ImageContext } from "../../Hooks/ImageContext";
-import toast from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
+import axios from "axios";
 
 const EscortDetailsFive = () => {
-  const { image, setImage } = useContext(ImageContext);
-  const [count, setCount] = useState("");
+  // const { image, setImage } = useContext(ImageContext);
+  const [load, setLoad] = useState(false);
+  const [image, setImage] = useState("");
+  const data = useSelector((state) => state.Util.userDetails);
+  const dispatch = useDispatch();
+
+  // const [count, setCount] = useState("");
   const navigate = useNavigate();
 
   // const item = [];
@@ -20,11 +26,47 @@ const EscortDetailsFive = () => {
   //   item.push(i);
   // }
 
-  const handleImage = () => {
+  // const handleImage = () => {
+  //   if (image) {
+  //     navigate("/verification");
+  //   } else {
+  //     toast.error("Please Upload a Picture");
+  //   }
+  // }
+
+  const handleSubmit = async () => {
     if (image) {
-      navigate("/verification");
+      setLoad(true);
+      try {
+        const res = await axios.post(
+          "https://backend.theroom306.com/api/auth/register_escort/",
+          {
+            ...data,
+            //  verification_image: VImage,
+            image: image,
+            user_type: "escort",
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setLoad(false);
+        dispatch(setCredentials(res.data?.token));
+        navigate("/services");
+        window.location.reload(true);
+      } catch (err) {
+        setLoad(false);
+
+        if (err?.response?.data?.message) {
+          toast.error(err?.response?.data?.message);
+        } else {
+          toast.error("Server Error, Try Again Later");
+        }
+      }
     } else {
-      toast.error("Please Upload a Picture");
+      toast.error("A Picture of yourself is needed");
     }
   };
 
@@ -58,7 +100,7 @@ const EscortDetailsFive = () => {
               <span className="text-[#B29A9A] md:text-2xl text-xl">
                 Step <span>4/</span>
               </span>
-              7
+              5
             </p>
           </div>
           <div className="rounded-xl md:px-16 px-4 md:pl-12 pt-14 pb-10 bg-[#1E1E1E] ">
@@ -140,10 +182,10 @@ const EscortDetailsFive = () => {
                     Delete
                   </button>
                   <button
-                    onClick={handleImage}
+                    onClick={handleSubmit}
                     className="bg-[#E9CB50] block text-center w-[100%] text-[#171717] py-4 md:w-[120px] font-medium rounded-xl"
                   >
-                    Next
+                    {load ? <LoaderIcon className="mx-auto" /> : "Submit"}
                   </button>
                 </div>
               </div>
