@@ -59,11 +59,14 @@ const EscortDetailsFive = () => {
       } catch (err) {
         setLoad(false);
 
-        if (err?.response?.data?.message) {
-          toast.error(err?.response?.data?.message);
-        } else {
-          toast.error("Server Error, Try Again Later");
+        if (err) {
+          if (err?.response?.data?.message) {
+            toast.error(err?.response?.data?.message);
+          } else {
+            toast.error("Something went wrong, Try Again");
+          }
         }
+        
       }
     } else {
       toast.error("A Picture of yourself is needed");

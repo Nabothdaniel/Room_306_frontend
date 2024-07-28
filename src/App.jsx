@@ -52,13 +52,11 @@ const App = () => {
 
   useEffect(() => {
     if (users?.user?.user_type == "escort") {
-      //setTimeout(() => {
       if (users?.services?.length == 0 && pathname !== "/survey") {
         navigate("/services");
       } else if (pathname == "/services" && users?.services?.length > 0) {
         navigate("/survey");
       }
-      //  }, 5000);
     }
     if (users?.user?.user_type !== "escort") {
       if (pathname == "/services") {
