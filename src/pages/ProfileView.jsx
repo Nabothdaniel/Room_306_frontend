@@ -18,7 +18,9 @@ const ProfileView = () => {
   let user = users?.profile;
   const { username } = useParams();
   const { data, isLoading } = useGetProfileByIdQuery(username);
-  const { data: newData, isLoading: load } = useFollowingQuery();
+  const { data: newData, isLoading: load } = useFollowingQuery(1, {
+    skip: !user,
+  });
   const [openBook, setOpenBook] = useState(false);
   const [openReport, setOpenReport] = useState(false);
 

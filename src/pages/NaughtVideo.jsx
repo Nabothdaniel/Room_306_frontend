@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
-import Bdsm from "../images/Bdsm.svg";
-import Sexual from "../images/sexual.svg";
-import Free from "../images/Free.svg";
-import Filter from "../images/Input.svg";
-import Recent from "../images/Recent.svg";
 import NaugthyItems from "../components/NaugthyItems";
 import Pagination from "../components/Pagination";
 import { useGetAllVideosQuery } from "../redux/EscortApi";
 import Loading from "../components/Loading";
 import Footer from "../components/Footer";
+import PurchaseVideo from "./PurchaseVideo";
 
 const NaughtVideo = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const { data, isLoading } = useGetAllVideosQuery();
+  const [openWallet, setWallet] = useState(false);
+
+  const handleWallet = () => {
+    setWallet(!openWallet);
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -55,7 +56,7 @@ const NaughtVideo = () => {
   const displayVideos = data
     .slice(page, page + usersPage)
     .map((item, index) => {
-      return <NaugthyItems key={index} items={item} />;
+      return <NaugthyItems key={index} items={item} premium={handleWallet} />;
     });
 
   const pageCount = Math.ceil(data.length / usersPage);
@@ -124,6 +125,12 @@ const NaughtVideo = () => {
         </div>
         <Footer />
       </div>
+      <PurchaseVideo
+        handleWallet={handleWallet}
+        purchaseClass={`${
+          !openWallet ? "translate-x-[120vw]" : "translate-x-0"
+        }`}
+      />
     </div>
   );
 };

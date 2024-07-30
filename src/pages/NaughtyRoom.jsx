@@ -19,9 +19,12 @@ import axios from "axios";
 import Footer from "../components/Footer";
 
 const NaughtyRoom = () => {
+  let users = JSON.parse(localStorage.getItem("details"));
+  let user = users?.profile;
   const { id } = useParams();
   const { data: messages, isLoading: loading } = useChannelMessagesQuery(id, {
     pollingInterval: 3000,
+    skip: !user,
   });
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
@@ -47,30 +50,32 @@ const NaughtyRoom = () => {
   }
 
   const handleSend = async () => {
-    if (message) {
-      try {
-        const res = await axios.post(
-          `https://backend.theroom306.com/api/channels/${id}/messages/send/`,
-          { content: message, file: image },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Authorization:
-                "Bearer " + JSON.parse(localStorage.getItem("token")),
-            },
-          }
-        );
+    if (user) {
+      if (message) {
+        try {
+          const res = await axios.post(
+            `https://backend.theroom306.com/api/channels/${id}/messages/send/`,
+            { content: message, file: image },
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization:
+                  "Bearer " + JSON.parse(localStorage.getItem("token")),
+              },
+            }
+          );
 
-        await send();
+          await send();
 
-        setImage(null);
-        setMessage("");
-        toast.success("Message Sent");
-      } catch (err) {
-        console.log(err);
+          setImage(null);
+          setMessage("");
+          toast.success("Message Sent");
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        toast.error("Input message");
       }
-    } else {
-      toast.error("Input message");
     }
   };
 

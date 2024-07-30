@@ -18,7 +18,7 @@ const App = () => {
   const [image, setImage] = useState("");
   const pathname = useLocation().pathname;
 
-  const [email, setEmail] = useState(users?.user?.is_emailverified);
+  // const [email, setEmail] = useState(users?.user?.is_emailverified);
   const [pop, setPop] = useState(true);
 
   const [day, setDay] = useState(9);
@@ -81,15 +81,18 @@ const App = () => {
     //   setEmail(users?.user?.is_emailverified);
     // }, [pay]);
 
-    if (users) {
-      const birthDate = parseISO(
-        users?.user.createdAt,
-        "yyyy-MM-dd",
-        new Date()
-      );
 
-      setDay(differenceInDays("2024-07-25", birthDate));
-    }
+    // EMAIL VERIFICATION
+
+    // if (users) {
+    //   const birthDate = parseISO(
+    //     users?.user.createdAt,
+    //     "yyyy-MM-dd",
+    //     new Date()
+    //   );
+
+    //   setDay(differenceInDays("2024-07-25", birthDate));
+    // }
   }, [pay, pathname]);
 
   // useEffect(() => {
@@ -135,11 +138,11 @@ const App = () => {
       {/* <EmailConfirm
         emailClass={`${email ? "-translate-y-[120vh]" : "translate-y-0"}`}
       /> */}
-      {day <= 0 && (
+      {/* {day <= 0 && (
         <EmailVerification
           emailClass={`${email ? "-translate-y-[130vh]" : "translate-y-0"}`}
         />
-      )}
+      )} */}
     </>
   );
 };
