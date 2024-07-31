@@ -14,7 +14,7 @@ const NaugthyItems = ({ items, premium }) => {
   let users = JSON.parse(localStorage.getItem("details"));
   let user = users?.profile;
 
-  const [User, setUser] = useState("");
+  const [User, setUser] = useState([]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -26,10 +26,15 @@ const NaugthyItems = ({ items, premium }) => {
     getUser();
   }, []);
 
+  const newUser = User?.filter((item) => item.name == user.display_name);
+  const newUsers = newUser?.filter((item) => item.video_id == items.id);
+
+  console.log(newUser);
+
   const handlePremium = () => {
     if (user) {
-      if (User.video_id == items.id && User.name == user.display_name) {
-        navigate(`/${items.id}`);
+      if (newUsers[0]?.video_id == items.id) {
+        navigate(`/naughty-videos/${items.id}`);
       } else {
         localStorage.setItem("id", JSON.stringify(items.id));
         premium();
@@ -38,8 +43,6 @@ const NaugthyItems = ({ items, premium }) => {
       toast.error("Only Signed In User Can view premium video");
     }
   };
-
-  console.log(User);
 
   if (!items.is_premium) {
     return (

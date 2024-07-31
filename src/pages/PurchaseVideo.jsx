@@ -46,6 +46,9 @@ const PurchaseVideo = ({ purchaseClass, handleWallet }) => {
 
       try {
         await addDoc(users, { video_id: id, name: user.display_name });
+        handleWallet();
+        toast.success("Payment Successful");
+        window.location.reload(true);
       } catch (err) {
         toast.error("something went wrong");
       }
@@ -87,7 +90,7 @@ const PurchaseVideo = ({ purchaseClass, handleWallet }) => {
   //   }, [amount, curr]);
 
   const config = {
-    publicKey: "pk_live_cdd73507456891acea126db50147c858431ebcb9",
+    publicKey: "pk_test_6cfeedbec9c8c42cb4f4222432cf78c14e097f7d",
     reference: new Date().getTime().toString(),
     amount: 2000 * 100,
     email: user?.user?.email || user?.email,
