@@ -3,10 +3,14 @@ import axios from "axios";
 import { PaystackButton } from "react-paystack";
 import { Convert } from "easy-currencies";
 import toast from "react-hot-toast";
+import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
+import { db } from "../Hooks/firebase";
 
 const PurchaseVideo = ({ purchaseClass, handleWallet }) => {
   let useD = JSON.parse(localStorage.getItem("details"));
+  let id = JSON.parse(localStorage.getItem("id"));
   let user = useD?.profile;
+
   const [coin, setCoin] = useState("");
   const [amount, setAmount] = useState(0);
   const [mainAmount, setMainAmount] = useState(0);
@@ -17,30 +21,38 @@ const PurchaseVideo = ({ purchaseClass, handleWallet }) => {
   const coinPer = 1;
   const coinAmount = 50;
 
-  //   const paymentSuccess = async (data) => {
-  //     if (data.message == "Approved" && data.status == "success") {
-  //       try {
-  //         const res = await axios.put(
-  //           "https://backend.theroom306.com/api/profile/buy_coin/",
-  //           { coin_amount: coin, amount: amountCoin },
-  //           {
-  //             headers: {
-  //               "Content-Type": "application/json",
-  //               Authorization:
-  //                 "Bearer " + JSON.parse(localStorage.getItem("token")),
-  //             },
-  //           }
-  //         );
-  //         handleWallet();
-  //         toast.success("Payment Successful");
-  //         window.location.reload(true);
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     } else {
-  //       toast.error("Error In Payment");
-  //     }
-  //   };
+  const users = collection(db, "video");
+
+  const paymentSuccess = async (data) => {
+    if (data.message == "Approved" && data.status == "success") {
+      // try {
+      //   const res = await axios.put(
+      //     "https://backend.theroom306.com/api/profile/buy_coin/",
+      //     { coin_amount: coin, amount: amountCoin },
+      //     {
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         Authorization:
+      //           "Bearer " + JSON.parse(localStorage.getItem("token")),
+      //       },
+      //     }
+      //   );
+      //   handleWallet();
+      //   toast.success("Payment Successful");
+      //   window.location.reload(true);
+      // } catch (err) {
+      //   console.log(err);
+      // }
+
+      try {
+        await addDoc(users, { video_id: id, name: user.display_name });
+      } catch (err) {
+        toast.error("something went wrong");
+      }
+    } else {
+      toast.error("Error In Payment");
+    }
+  };
 
   //   const currency = async () => {
   //     const value = await Convert(amount).from(curr).to("NGN");

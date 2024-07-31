@@ -1,15 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Naugt from "../images/naught.jpeg";
 import Eye from "../images/eye.svg";
 import Like from "../images/dislike.svg";
 import Message from "../images/messages-2.svg";
 import Blog from "../images/blog.jpeg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { db } from "../Hooks/firebase";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+import toast from "react-hot-toast";
 
 const NaugthyItems = ({ items, premium }) => {
+  const navigate = useNavigate();
+  let users = JSON.parse(localStorage.getItem("details"));
+  let user = users?.profile;
+
+  const [User, setUser] = useState("");
+
+  useEffect(() => {
+    const getUser = async () => {
+      const user = collection(db, "video");
+      const userSnapshot = await getDocs(user);
+      const users = userSnapshot.docs.map((doc) => doc.data());
+      setUser(users);
+    };
+    getUser();
+  }, []);
+
   const handlePremium = () => {
-    premium();
+    if (user) {
+      if (User.video_id == items.id && User.name == user.display_name) {
+        navigate(`/${items.id}`);
+      } else {
+        localStorage.setItem("id", JSON.stringify(items.id));
+        premium();
+      }
+    } else {
+      toast.error("Only Signed In User Can view premium video");
+    }
   };
+
+  console.log(User);
 
   if (!items.is_premium) {
     return (
