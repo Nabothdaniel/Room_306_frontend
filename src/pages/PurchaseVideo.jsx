@@ -90,7 +90,7 @@ const PurchaseVideo = ({ purchaseClass, handleWallet }) => {
   //   }, [amount, curr]);
 
   const config = {
-    publicKey: "pk_test_6cfeedbec9c8c42cb4f4222432cf78c14e097f7d",
+    publicKey: "pk_live_cdd73507456891acea126db50147c858431ebcb9",
     reference: new Date().getTime().toString(),
     amount: 2000 * 100,
     email: user?.user?.email || user?.email,

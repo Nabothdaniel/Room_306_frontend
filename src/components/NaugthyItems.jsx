@@ -29,8 +29,6 @@ const NaugthyItems = ({ items, premium }) => {
   const newUser = User?.filter((item) => item.name == user.display_name);
   const newUsers = newUser?.filter((item) => item.video_id == items.id);
 
-  console.log(newUser);
-
   const handlePremium = () => {
     if (user) {
       if (newUsers[0]?.video_id == items.id) {
@@ -44,7 +42,7 @@ const NaugthyItems = ({ items, premium }) => {
     }
   };
 
-  if (!items.is_premium) {
+  if (items.is_premium) {
     return (
       <div
         onClick={handlePremium}

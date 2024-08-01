@@ -11,6 +11,9 @@ import Footer from "../components/Footer";
 
 const AddNaughty = () => {
   const navigate = useNavigate();
+
+  const [is_Premium, setPremium] = useState(false);
+
   const [video, setVideo] = useState();
   const [load, setLoad] = useState(false);
 
@@ -30,7 +33,7 @@ const AddNaughty = () => {
       try {
         const res = await axios.post(
           "https://backend.theroom306.com/api/escort/upload-video/",
-          { ...formData, video },
+          { ...formData, video, is_Premium },
           {
             headers: {
               "Content-Type": "multipart/form-data",
@@ -155,6 +158,34 @@ const AddNaughty = () => {
                   value={formData.category}
                   onchange={handleChange}
                 />
+                <div className=" pt-5">
+                  <h4 className="text-white font-semibold pb-3">
+                    Premium<span className="text-[#E9CB50]">*</span>
+                  </h4>
+                  <div className="flex md:w-[50%]">
+                    <label className="container text-white ">
+                      Yes
+                      <input
+                        value={"True"}
+                        onChange={(e) => setPremium(e.target.value)}
+                        type="radio"
+                        name="is_premium"
+                      />
+                      <span className="checkmark"></span>
+                    </label>
+
+                    <label className="container text-white">
+                      No
+                      <input
+                        value={"False"}
+                        onChange={(e) => setPremium(e.target.value)}
+                        type="radio"
+                        name="is_premium"
+                      />
+                      <span className="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="flex justify-end mt-6">
