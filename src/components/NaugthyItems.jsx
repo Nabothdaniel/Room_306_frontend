@@ -95,7 +95,6 @@ const NaugthyItems = ({ items, premium }) => {
       <video
         className="h-[300px] w-full object-cover rounded-lg"
         src={`https://backend.theroom306.com${items.video}`}
-        autoPlay
       ></video>
 
       <div className=" w-[100%] absolute bottom-0 left-0">

@@ -33,7 +33,7 @@ const AddNaughty = () => {
       try {
         const res = await axios.post(
           "https://backend.theroom306.com/api/escort/upload-video/",
-          { ...formData, video, is_Premium },
+          { ...formData, video, is_premium: is_Premium },
           {
             headers: {
               "Content-Type": "multipart/form-data",
