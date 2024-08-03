@@ -94,15 +94,15 @@ const AddAdverts = () => {
 
   let states;
   const handleCountry = (e) => {
-    states = data.filter((state) => state.name === e.target.value);
-    states = states.map((item) => item.states);
+    states = data?.filter((state) => state.name === e.target.value);
+    states = states?.map((item) => item.states);
 
     states.sort();
     setGetState(states[0]);
   };
 
   const handleState = (e) => {
-    let city = getState.filter((item) => item.name === e.target.value);
+    let city = getState?.filter((item) => item.name === e.target.value);
     city = city.map((item) => item);
 
     setGetCities(city);
@@ -110,7 +110,7 @@ const AddAdverts = () => {
 
   let newCities = [];
 
-  getCities.forEach((childArray) => {
+  getCities?.forEach((childArray) => {
     childArray.cities.forEach((item) => {
       newCities.push(item);
     });
@@ -268,7 +268,7 @@ const AddAdverts = () => {
                     }}
                   >
                     <option value="">All Country</option>
-                    {data.map((item) => {
+                    {data?.map((item) => {
                       return (
                         <option key={item.id} value={item.name}>
                           {item.name}
@@ -297,7 +297,7 @@ const AddAdverts = () => {
                     }}
                   >
                     <option value="">State(Optional)</option>
-                    {getState.map((item, index) => {
+                    {getState?.map((item, index) => {
                       return (
                         <option key={item.id} value={item.name}>
                           {item.name}
@@ -323,7 +323,7 @@ const AddAdverts = () => {
                   >
                     <option value="">City(Optional)</option>
 
-                    {newCities.map((item) => {
+                    {newCities?.map((item) => {
                       return (
                         <option key={item.id} value={item.name}>
                           {item.name}

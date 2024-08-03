@@ -9,15 +9,17 @@ import { setCredentials } from "../redux/UtilSlice";
 import { useDispatch } from "react-redux";
 import Footer from "../components/Footer";
 import toast, { LoaderIcon } from "react-hot-toast";
-import { Country, State, City } from "country-state-city";
+import { useGetCountryQuery } from "../redux/CountryApi";
+import Loading from "../components/Loading";
 
 const ClientDetails = () => {
+  const { data, isLoading } = useGetCountryQuery();
   const navigate = useNavigate();
   const [image, setImage] = useState("");
   const [confirmPwd, setConfirmPwd] = useState("");
   const [error, setError] = useState({});
-  const [ISOcode, setISOcode] = useState("NG");
-  const [StateISOcode, setStateISOcode] = useState();
+  const [getState, setGetState] = useState([]);
+  const [getCities, setGetCities] = useState([]);
   const [code, setCode] = useState("");
   const [apiError, setApiError] = useState("");
   const dispatch = useDispatch();
@@ -77,7 +79,7 @@ const ClientDetails = () => {
       errors.country = "Country is required";
     }
     if (!data.city) {
-      errors.cities = "City is required";
+      errors.city = "City is required";
     }
     if (!data.image) {
       errors.image = "Please upload your profile picture!";
@@ -108,28 +110,7 @@ const ClientDetails = () => {
   }, [Data, confirmPwd]);
 
   const handleChange = (e) => {
-    if (e.target.name == "country") {
-      const isocode = e.target.value.split(" ");
-      const Iso = isocode[isocode.length - 1];
-      setCode(Country.getCountryByCode(Iso).phonecode);
-      setISOcode(Iso);
-
-      isocode.pop();
-      const NewCode = isocode.join(" ");
-
-      setData({ ...Data, [e.target.name]: NewCode, state: "", city: "" });
-    } else if (e.target.name == "state") {
-      const isocode = e.target.value.split(" ");
-      const Iso = isocode[isocode.length - 1];
-
-      setStateISOcode(Iso);
-      isocode.pop();
-      const NewCode = isocode.join(" ");
-
-      setData({ ...Data, [e.target.name]: NewCode, city: "" });
-    } else {
-      setData({ ...Data, [e.target.name]: e.target.value });
-    }
+    setData({ ...Data, [e.target.name]: e.target.value });
   };
 
   const formData = new FormData();
@@ -144,6 +125,34 @@ const ClientDetails = () => {
   formData.append("display_name", Data.display_name);
   formData.append("state", Data.state);
   formData.append("country_code", code);
+
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
+
+  let states;
+  const handleCountry = (e) => {
+    states = data?.filter((state) => state.name === e.target.value);
+    setCode(states[0]?.phone_code || "");
+    states = states?.map((item) => item.states);
+    states.sort();
+    setGetState(states[0]);
+  };
+
+  const handleState = (e) => {
+    let city = getState?.filter((item) => item.name === e.target.value);
+    city = city.map((item) => item);
+
+    setGetCities(city);
+  };
+
+  let newCities = [];
+
+  getCities.forEach((childArray) => {
+    childArray.cities.forEach((item) => {
+      newCities.push(item);
+    });
+  });
 
   const handleSubmit = async () => {
     const validationErrors = validateData(Data);
@@ -181,7 +190,7 @@ const ClientDetails = () => {
           navigate("/");
           window.location.reload(true);
         }
-        console.log(res);
+        
         setApiError("");
       } catch (err) {
         setLoad(false);
@@ -309,7 +318,7 @@ const ClientDetails = () => {
                   </div>
 
                   <label
-                    className="text-[#475367] pt-2 flex flex-col"
+                    className="text-[#475367] flex flex-col"
                     htmlFor="country"
                   >
                     <span className="font-semibold text-white pb-1">
@@ -320,26 +329,28 @@ const ClientDetails = () => {
                         className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                         name="country"
                         id="country"
-                        // value={Data.country}
+                        value={Data.country}
                         onChange={(e) => {
+                          handleCountry(e);
                           handleChange(e);
                         }}
                       >
                         <option value="">All Country</option>
-                        {Country?.getAllCountries()?.map((item, index) => {
+                        {data?.map((item) => {
                           return (
-                            <option key={index}>
-                              {item.name} {item.isoCode}
+                            <option key={item.id} value={item.name}>
+                              {item.name}
                             </option>
                           );
                         })}
                       </select>
                     </div>
-                    <p className="py-1 text-[12px] text-red-500">
-                      {error.country}
-                    </p>
+                    {error.country && (
+                      <p className="py-1 text-[12px] text-red-500">
+                        {error.country}
+                      </p>
+                    )}
                   </label>
-
                   <label
                     className="text-[#475367] flex flex-col"
                     htmlFor="state"
@@ -350,26 +361,27 @@ const ClientDetails = () => {
                         className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                         name="state"
                         id="state"
-                        // value={Data.state}
+                        value={Data.state}
                         onChange={(e) => {
+                          handleState(e);
                           handleChange(e);
                         }}
                       >
                         <option value="">State(Optional)</option>
-                        {State?.getStatesOfCountry(ISOcode)?.map(
-                          (item, index) => {
-                            return (
-                              <option key={index}>
-                                {item.name} {item.isoCode}
-                              </option>
-                            );
-                          }
-                        )}
+                        {getState?.map((item, index) => {
+                          return (
+                            <option key={item.id} value={item.name}>
+                              {item.name}
+                            </option>
+                          );
+                        })}
                       </select>
                     </div>
-                    <p className="py-1 text-[12px] text-red-500">
-                      {error.state}
-                    </p>
+                    {error.state && (
+                      <p className="py-1 text-[12px] text-red-500">
+                        {error.state}
+                      </p>
+                    )}
                   </label>
 
                   <label
@@ -387,16 +399,20 @@ const ClientDetails = () => {
                       >
                         <option value="">City(Optional)</option>
 
-                        {City?.getCitiesOfState(ISOcode, StateISOcode)?.map(
-                          (item, index) => {
-                            return <option key={index}>{item.name}</option>;
-                          }
-                        )}
+                        {newCities?.map((item) => {
+                          return (
+                            <option key={item.id} value={item.name}>
+                              {item.name}
+                            </option>
+                          );
+                        })}
                       </select>
                     </div>
-                    <p className="py-1 text-[12px] text-red-500">
-                      {error.cities}
-                    </p>
+                    {error.city && (
+                      <p className="py-1 text-[12px] text-red-500">
+                        {error.city}
+                      </p>
+                    )}
                   </label>
 
                   <label

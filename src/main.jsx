@@ -57,7 +57,7 @@ import ClientView from "./pages/ClientView.jsx";
 import Search from "./pages/Search.jsx";
 import NotFound from "./pages/404.jsx";
 import MyAdverts from "./pages/MyAdverts.jsx";
-import WeatherApp from "./pages/WeatherApp.jsx";
+// import WeatherApp from "./pages/WeatherApp.jsx";
 
 const router = createBrowserRouter([
   {
@@ -293,10 +293,10 @@ const router = createBrowserRouter([
         path: "/add-room",
         element: <AddRoom />,
       },
-      {
-        path: "/hellow",
-        element: <WeatherApp />,
-      },
+      // {
+      //   path: "/hellow",
+      //   element: <WeatherApp />,
+      // },
       {
         path: "/update-tours",
         element: <UpdateTours />,

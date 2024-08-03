@@ -7,12 +7,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { details } from "../../redux/UtilSlice";
 import { differenceInYears, parse } from "date-fns";
-import { Country, State, City } from "country-state-city";
+import { useGetCountryQuery } from "../../redux/CountryApi";
 
 const EscortDetailsOne = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const { data, isLoading } = useGetCountryQuery();
+  const [getState, setGetState] = useState([]);
+  const [getCities, setGetCities] = useState([]);
   const [confirmPwd, setConfirmPwd] = useState("");
   const [error, setError] = useState({});
   const [code, setCode] = useState("");
@@ -81,7 +83,7 @@ const EscortDetailsOne = () => {
       errors.country = "Country is required";
     }
     if (!data.city) {
-      errors.cities = "City is required";
+      errors.city = "City is required";
     }
     if (data.male == null || data.female == null) {
       errors.gender = "Gender is required";
@@ -133,35 +135,35 @@ const EscortDetailsOne = () => {
           setFormData({ ...formData, male: "False", female: "True" });
         }
       }
-    } else if (e.target.name == "country") {
-      const isocode = e.target.value.split(" ");
-      const Iso = isocode[isocode.length - 1];
-      setCode(Country.getCountryByCode(Iso).phonecode);
-      setCurrency(Country.getCountryByCode(Iso).currency);
-      setISOcode(Iso);
-
-      isocode.pop();
-      const NewCode = isocode.join(" ");
-
-      setFormData({
-        ...formData,
-        [e.target.name]: NewCode,
-        state: "",
-        city: "",
-      });
-    } else if (e.target.name == "state") {
-      const isocode = e.target.value.split(" ");
-      const Iso = isocode[isocode.length - 1];
-
-      setStateISOcode(Iso);
-      isocode.pop();
-      const NewCode = isocode.join(" ");
-
-      setFormData({ ...formData, [e.target.name]: NewCode, city: "" });
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
   };
+
+  let states;
+  const handleCountry = (e) => {
+    states = data?.filter((state) => state.name === e.target.value);
+    setCode(states[0]?.phone_code || "");
+    setCurrency(states[0]?.currency);
+    states = states?.map((item) => item.states);
+    states.sort();
+    setGetState(states[0]);
+  };
+
+  const handleState = (e) => {
+    let city = getState?.filter((item) => item.name === e.target.value);
+    city = city.map((item) => item);
+
+    setGetCities(city);
+  };
+
+  let newCities = [];
+
+  getCities.forEach((childArray) => {
+    childArray.cities.forEach((item) => {
+      newCities.push(item);
+    });
+  });
 
   const handleEscortOne = async () => {
     const validationErrors = validateFormData(formData);
@@ -309,7 +311,7 @@ const EscortDetailsOne = () => {
                 </div>
 
                 <label
-                  className="text-[#475367] pt-2 flex flex-col"
+                  className="text-[#475367] flex flex-col"
                   htmlFor="country"
                 >
                   <span className="font-semibold text-white pb-1">Country</span>
@@ -318,26 +320,28 @@ const EscortDetailsOne = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="country"
                       id="country"
-                      // value={Data.country}
+                      value={formData.country}
                       onChange={(e) => {
+                        handleCountry(e);
                         handleChange(e);
                       }}
                     >
                       <option value="">All Country</option>
-                      {Country?.getAllCountries()?.map((item, index) => {
+                      {data?.map((item) => {
                         return (
-                          <option key={index}>
-                            {item.name} {item.isoCode}
+                          <option key={item.id} value={item.name}>
+                            {item.name}
                           </option>
                         );
                       })}
                     </select>
                   </div>
-                  <p className="py-1 text-[12px] text-red-500">
-                    {error.country}
-                  </p>
+                  {error.country && (
+                    <p className="py-1 text-[12px] text-red-500">
+                      {error.country}
+                    </p>
+                  )}
                 </label>
-
                 <label className="text-[#475367] flex flex-col" htmlFor="state">
                   <span className="font-semibold text-white pb-1">State</span>
                   <div className=" w-[100%] placeholder-[#102127] bg-[#F0F2F5] text-[#102127] rounded-xl outline-none px-4">
@@ -345,24 +349,27 @@ const EscortDetailsOne = () => {
                       className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                       name="state"
                       id="state"
-                      // value={Data.state}
+                      value={formData.state}
                       onChange={(e) => {
+                        handleState(e);
                         handleChange(e);
                       }}
                     >
                       <option value="">State(Optional)</option>
-                      {State?.getStatesOfCountry(ISOcode)?.map(
-                        (item, index) => {
-                          return (
-                            <option key={index}>
-                              {item.name} {item.isoCode}
-                            </option>
-                          );
-                        }
-                      )}
+                      {getState?.map((item, index) => {
+                        return (
+                          <option key={item.id} value={item.name}>
+                            {item.name}
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
-                  <p className="py-1 text-[12px] text-red-500">{error.state}</p>
+                  {error.state && (
+                    <p className="py-1 text-[12px] text-red-500">
+                      {error.state}
+                    </p>
+                  )}
                 </label>
 
                 <label className="text-[#475367] flex flex-col" htmlFor="city">
@@ -377,16 +384,20 @@ const EscortDetailsOne = () => {
                     >
                       <option value="">City(Optional)</option>
 
-                      {City?.getCitiesOfState(ISOcode, StateISOcode)?.map(
-                        (item, index) => {
-                          return <option key={index}>{item.name}</option>;
-                        }
-                      )}
+                      {newCities?.map((item) => {
+                        return (
+                          <option key={item.id} value={item.name}>
+                            {item.name}
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
-                  <p className="py-1 text-[12px] text-red-500">
-                    {error.cities}
-                  </p>
+                  {error.city && (
+                    <p className="py-1 text-[12px] text-red-500">
+                      {error.city}
+                    </p>
+                  )}
                 </label>
 
                 <div>

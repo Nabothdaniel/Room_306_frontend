@@ -13,6 +13,8 @@ import EmailVerification from "./pages/EmailVerification";
 import EmailConfirm from "./components/EmailConfirm";
 
 const App = () => {
+  const { data, isLoading } = useGetCountryQuery();
+
   let useD = JSON.parse(localStorage.getItem("details"));
   let users = useD?.profile;
   const [image, setImage] = useState("");
@@ -81,7 +83,6 @@ const App = () => {
     //   setEmail(users?.user?.is_emailverified);
     // }, [pay]);
 
-
     // EMAIL VERIFICATION
 
     // if (users) {
@@ -93,7 +94,7 @@ const App = () => {
 
     //   setDay(differenceInDays("2024-07-25", birthDate));
     // }
-  }, [pay, pathname]);
+  }, [pay, pathname, data]);
 
   // useEffect(() => {
   //   if (users?.user?.user_type == "escort") {

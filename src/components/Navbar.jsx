@@ -68,13 +68,13 @@ const Navbar = ({ Headervalue, textValue }) => {
     window.location.reload(true);
   };
 
-  const handlePop = () => {
-    if (day < 7) {
-      setPop(true);
-    } else {
-      toast.error("Please make payment to activate your account");
-    }
-  };
+  // const handlePop = () => {
+  //   if (day < 7) {
+  //     setPop(true);
+  //   } else {
+  //     toast.error("Please make payment to activate your account");
+  //   }
+  // };
 
   const wallet = () => {
     navigate("/my-wallet");
