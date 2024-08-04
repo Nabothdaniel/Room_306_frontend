@@ -126,9 +126,9 @@ const ClientDetails = () => {
   formData.append("state", Data.state);
   formData.append("country_code", code);
 
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
+  if (isLoading) {
+    return <Loading />;
+  }
 
   let states;
   const handleCountry = (e) => {

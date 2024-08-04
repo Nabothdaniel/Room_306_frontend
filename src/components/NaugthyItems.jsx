@@ -26,8 +26,8 @@ const NaugthyItems = ({ items, premium }) => {
     getUser();
   }, []);
 
-  const newUser = User?.filter((item) => item.name == user.display_name);
-  const newUsers = newUser?.filter((item) => item.video_id == items.id);
+  const newUser = User?.filter((item) => item?.name == user?.display_name);
+  const newUsers = newUser?.filter((item) => item?.video_id == items?.id);
 
   const handlePremium = () => {
     if (user) {

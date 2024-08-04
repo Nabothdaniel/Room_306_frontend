@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { details } from "../../redux/UtilSlice";
 import { differenceInYears, parse } from "date-fns";
 import { useGetCountryQuery } from "../../redux/CountryApi";
+import Loading from "../../components/Loading";
 
 const EscortDetailsOne = () => {
   const dispatch = useDispatch();
@@ -140,27 +141,31 @@ const EscortDetailsOne = () => {
     }
   };
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   let states;
   const handleCountry = (e) => {
     states = data?.filter((state) => state.name === e.target.value);
     setCode(states[0]?.phone_code || "");
     setCurrency(states[0]?.currency);
     states = states?.map((item) => item.states);
-    states.sort();
+    states?.sort();
     setGetState(states[0]);
   };
 
   const handleState = (e) => {
     let city = getState?.filter((item) => item.name === e.target.value);
-    city = city.map((item) => item);
+    city = city?.map((item) => item);
 
     setGetCities(city);
   };
 
   let newCities = [];
 
-  getCities.forEach((childArray) => {
-    childArray.cities.forEach((item) => {
+  getCities?.forEach((childArray) => {
+    childArray?.cities.forEach((item) => {
       newCities.push(item);
     });
   });
