@@ -29,6 +29,10 @@ const App = () => {
     skip: !users,
   });
 
+  // if (data) {
+  //   sessionStorage.setItem("country", JSON.stringify(data));
+  // }
+
   const [filter, setFilter] = useState({
     roomCountry: "",
     roomCity: "",

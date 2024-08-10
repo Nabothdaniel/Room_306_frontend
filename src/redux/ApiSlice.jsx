@@ -1,5 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+var headers = new Headers();
+headers.append(
+  "X-CSCAPI-KEY",
+  "Y2VyUDVwczN1NDVJMVh3YzZjVVMxaEwyemR3aXA5MjFrTm84U1p4UQ=="
+);
+
 export const ApiSlice = createApi({
   reducerPath: "Api",
   baseQuery: fetchBaseQuery({
@@ -97,6 +103,30 @@ export const ApiSlice = createApi({
         headers: {
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
+      }),
+    }),
+
+    countryData: build.query({
+      query: () => ({
+        url: "https://api.countrystatecity.in/v1/countries",
+        method: "GET",
+        headers: headers,
+      }),
+    }),
+
+    cityData: build.query({
+      query: ({ country, state }) => ({
+        url: `https://api.countrystatecity.in/v1/countries/${country}/states/${state}/cities`,
+        method: "GET",
+        headers: headers,
+      }),
+    }),
+
+    stateData: build.query({
+      query: ({ country }) => ({
+        url: `https://api.countrystatecity.in/v1/countries/${country}/states`,
+        method: "GET",
+        headers: headers,
       }),
     }),
 
@@ -274,4 +304,7 @@ export const {
   useNotificationByIdQuery,
   useNoteMutation,
   useEmailMutation,
+  useCountryDataQuery,
+  useStateDataQuery,
+  useCityDataQuery,
 } = ApiSlice;

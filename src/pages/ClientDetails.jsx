@@ -11,9 +11,27 @@ import Footer from "../components/Footer";
 import toast, { LoaderIcon } from "react-hot-toast";
 import { useGetCountryQuery } from "../redux/CountryApi";
 import Loading from "../components/Loading";
+import {
+  useCityDataQuery,
+  useCountryDataQuery,
+  useStateDataQuery,
+} from "../redux/ApiSlice";
 
 const ClientDetails = () => {
   const { data, isLoading } = useGetCountryQuery();
+
+  const { data: Country, isLoading: loading } = useCountryDataQuery();
+  const [ISOcode, setISOcode] = useState("NG");
+  const [StateISOcode, setStateISOcode] = useState();
+  const { data: State, isLoading: loadingState } = useStateDataQuery({
+    country: ISOcode,
+  });
+
+  const { data: City, isLoading: loadingCity } = useCityDataQuery({
+    country: ISOcode,
+    state: StateISOcode,
+  });
+
   const navigate = useNavigate();
   const [image, setImage] = useState("");
   const [confirmPwd, setConfirmPwd] = useState("");
@@ -24,6 +42,27 @@ const ClientDetails = () => {
   const [apiError, setApiError] = useState("");
   const dispatch = useDispatch();
   const [load, setLoad] = useState(false);
+
+  // COUNTRY
+
+  // var headers = new Headers();
+  // headers.append(
+  //   "X-CSCAPI-KEY",
+  //   "Y2VyUDVwczN1NDVJMVh3YzZjVVMxaEwyemR3aXA5MjFrTm84U1p4UQ=="
+  // );
+
+  // var requestOptions = {
+  //   method: "GET",
+  //   headers: headers,
+  //   redirect: "follow",
+  // };
+
+  // fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
+  //   .then((response) => response.text())
+  //   .then((result) => console.log(result))
+  //   .catch((error) => console.log("error", error));
+
+  // END
 
   const [Data, setData] = useState({
     country: "",
@@ -110,7 +149,23 @@ const ClientDetails = () => {
   }, [Data, confirmPwd]);
 
   const handleChange = (e) => {
-    setData({ ...Data, [e.target.name]: e.target.value });
+    if (e.target.name == "country") {
+      setCode(Country.find((item) => item.name == e.target.value).phonecode);
+      setISOcode(Country.find((item) => item.name == e.target.value).iso2);
+
+      setData({
+        ...Data,
+        [e.target.name]: e.target.value,
+        state: "",
+        city: "",
+      });
+    } else if (e.target.name == "state") {
+      setStateISOcode(State.find((item) => item.name == e.target.value).iso2);
+
+      setData({ ...Data, [e.target.name]: e.target.value, city: "" });
+    } else {
+      setData({ ...Data, [e.target.name]: e.target.value });
+    }
   };
 
   const formData = new FormData();
@@ -126,33 +181,33 @@ const ClientDetails = () => {
   formData.append("state", Data.state);
   formData.append("country_code", code);
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
 
-  let states;
-  const handleCountry = (e) => {
-    states = data?.filter((state) => state.name === e.target.value);
-    setCode(states[0]?.phone_code || "");
-    states = states?.map((item) => item.states);
-    states.sort();
-    setGetState(states[0]);
-  };
+  // let states;
+  // const handleCountry = (e) => {
+  //   states = data?.filter((state) => state.name === e.target.value);
+  //   setCode(states[0]?.phone_code || "");
+  //   states = states?.map((item) => item.states);
+  //   states.sort();
+  //   setGetState(states[0]);
+  // };
 
-  const handleState = (e) => {
-    let city = getState?.filter((item) => item.name === e.target.value);
-    city = city.map((item) => item);
+  // const handleState = (e) => {
+  //   let city = getState?.filter((item) => item.name === e.target.value);
+  //   city = city.map((item) => item);
 
-    setGetCities(city);
-  };
+  //   setGetCities(city);
+  // };
 
-  let newCities = [];
+  // let newCities = [];
 
-  getCities.forEach((childArray) => {
-    childArray.cities.forEach((item) => {
-      newCities.push(item);
-    });
-  });
+  // getCities.forEach((childArray) => {
+  //   childArray.cities.forEach((item) => {
+  //     newCities.push(item);
+  //   });
+  // });
 
   const handleSubmit = async () => {
     const validationErrors = validateData(Data);
@@ -190,7 +245,7 @@ const ClientDetails = () => {
           navigate("/");
           window.location.reload(true);
         }
-        
+
         setApiError("");
       } catch (err) {
         setLoad(false);
@@ -318,7 +373,7 @@ const ClientDetails = () => {
                   </div>
 
                   <label
-                    className="text-[#475367] flex flex-col"
+                    className="text-[#475367] pt-2 flex flex-col"
                     htmlFor="country"
                   >
                     <span className="font-semibold text-white pb-1">
@@ -329,28 +384,22 @@ const ClientDetails = () => {
                         className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                         name="country"
                         id="country"
-                        value={Data.country}
+                        // value={Data.country}
                         onChange={(e) => {
-                          handleCountry(e);
                           handleChange(e);
                         }}
                       >
                         <option value="">All Country</option>
-                        {data?.map((item) => {
-                          return (
-                            <option key={item.id} value={item.name}>
-                              {item.name}
-                            </option>
-                          );
+                        {Country?.map((item, index) => {
+                          return <option key={index}>{item.name}</option>;
                         })}
                       </select>
                     </div>
-                    {error.country && (
-                      <p className="py-1 text-[12px] text-red-500">
-                        {error.country}
-                      </p>
-                    )}
+                    <p className="py-1 text-[12px] text-red-500">
+                      {error.country}
+                    </p>
                   </label>
+
                   <label
                     className="text-[#475367] flex flex-col"
                     htmlFor="state"
@@ -361,29 +410,22 @@ const ClientDetails = () => {
                         className="w-[100%] bg-[#F0F2F5] py-[14px] outline-none"
                         name="state"
                         id="state"
-                        value={Data.state}
+                        // value={Data.state}
                         onChange={(e) => {
-                          handleState(e);
                           handleChange(e);
                         }}
                       >
                         <option value="">State(Optional)</option>
-                        {getState?.map((item, index) => {
-                          return (
-                            <option key={item.id} value={item.name}>
-                              {item.name}
-                            </option>
-                          );
+                        {State?.map((item, index) => {
+                          return <option key={index}>{item.name}</option>;
                         })}
                       </select>
                     </div>
-                    {error.state && (
-                      <p className="py-1 text-[12px] text-red-500">
-                        {error.state}
-                      </p>
-                    )}
+                    <p className="py-1 text-[12px] text-red-500">
+                      {error.state}
+                    </p>
                   </label>
-
+                  
                   <label
                     className="text-[#475367] flex flex-col"
                     htmlFor="city"
@@ -399,21 +441,17 @@ const ClientDetails = () => {
                       >
                         <option value="">City(Optional)</option>
 
-                        {newCities?.map((item) => {
-                          return (
-                            <option key={item.id} value={item.name}>
-                              {item.name}
-                            </option>
-                          );
-                        })}
+                        {City?.map(
+                          (item, index) => {
+                            return <option key={index}>{item.name}</option>;
+                          }
+                        )}
                       </select>
                     </div>
-                    {error.city && (
-                      <p className="py-1 text-[12px] text-red-500">
-                        {error.city}
-                      </p>
-                    )}
-                  </label>
+                    <p className="py-1 text-[12px] text-red-500">
+                      {error.city}
+                    </p>
+                        </label>
 
                   <label
                     className="text-[#475367] pt-2 flex flex-col"
