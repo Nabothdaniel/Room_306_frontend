@@ -12,7 +12,7 @@
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
     "@reduxjs/toolkit": "^2.2.3",
-    "axios": "^1.7.4",
+    "axios": "^1.13.0",
     "date-fns": "^3.6.0",
     "easy-currencies": "^1.8.1",
     "firebase": "^10.12.4",
